@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { ArrowLeft, Clock, Loader2, Sparkles, Copy, CheckCheck, ArrowRight } from 'lucide-react'
 import { blogSeeds } from './Blog'
+import { blogContent } from '../data/blogContent'
 import { usePageMeta } from '../hooks/usePageMeta'
 import SchemaMarkup from '../components/SchemaMarkup'
 
@@ -85,10 +86,24 @@ export default function BlogPost() {
       full += chunk
       setContent(prev => prev + chunk)
     }).then(() => {
-      setGenerated(true)
-      localStorage.setItem(CACHE_KEY(seed.slug), full)
-    }).catch(err => {
-      setContent(`Failed to generate article: ${err.message}. Please check that ANTHROPIC_API_KEY is set on the server.`)
+      if (full.trim()) {
+        setGenerated(true)
+        localStorage.setItem(CACHE_KEY(seed.slug), full)
+      } else {
+        const fallback = blogContent[seed.slug]
+        if (fallback) {
+          setContent(fallback)
+          setGenerated(true)
+        }
+      }
+    }).catch(() => {
+      const fallback = blogContent[seed.slug]
+      if (fallback) {
+        setContent(fallback)
+        setGenerated(true)
+      } else {
+        setContent('Article content is not available. Please check that ANTHROPIC_API_KEY is configured on the server.')
+      }
     }).finally(() => {
       setStreaming(false)
     })
@@ -113,10 +128,24 @@ export default function BlogPost() {
       full += chunk
       setContent(prev => prev + chunk)
     }).then(() => {
-      setGenerated(true)
-      localStorage.setItem(CACHE_KEY(seed.slug), full)
-    }).catch(err => {
-      setContent(`Error: ${err.message}`)
+      if (full.trim()) {
+        setGenerated(true)
+        localStorage.setItem(CACHE_KEY(seed.slug), full)
+      } else {
+        const fallback = blogContent[seed.slug]
+        if (fallback) {
+          setContent(fallback)
+          setGenerated(true)
+        }
+      }
+    }).catch(() => {
+      const fallback = blogContent[seed.slug]
+      if (fallback) {
+        setContent(fallback)
+        setGenerated(true)
+      } else {
+        setContent('Article content is not available. Please check that ANTHROPIC_API_KEY is configured on the server.')
+      }
     }).finally(() => {
       setStreaming(false)
     })
