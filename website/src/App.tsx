@@ -5,6 +5,9 @@ import ChatWidget from './components/ChatWidget'
 import Home from './pages/Home'
 import Products from './pages/Products'
 import ProductDetail from './pages/ProductDetail'
+import Industries from './pages/Industries'
+import IndustryDetail from './pages/IndustryDetail'
+import Configurator from './pages/Configurator'
 import RFQ from './pages/RFQ'
 
 export default function App() {
@@ -17,6 +20,9 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />
             <Route path="/products/:slug" element={<ProductDetail />} />
+            <Route path="/industries" element={<Industries />} />
+            <Route path="/industries/:slug" element={<IndustryDetail />} />
+            <Route path="/configurator" element={<Configurator />} />
             <Route path="/rfq" element={<RFQ />} />
           </Routes>
         </main>

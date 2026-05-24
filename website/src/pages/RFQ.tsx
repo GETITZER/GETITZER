@@ -1,51 +1,43 @@
+// Principle #4: Minimal fields — 5 fields max for maximum conversion
 import { useState } from 'react'
-import { Send, Loader2, CheckCircle, Sparkles, ChevronDown, ArrowRight } from 'lucide-react'
+import { Send, Loader2, CheckCircle, Sparkles, ArrowRight, Zap } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import type { RFQFormData } from '../types'
 
-const initialForm: RFQFormData = {
-  name: '',
-  email: '',
-  company: '',
-  industry: '',
-  valveType: '',
-  application: '',
-  fluidType: '',
-  sizeRange: '',
-  pressureClass: '',
-  quantity: '',
-  timeline: '',
-  additionalInfo: '',
+interface SimpleRFQ {
+  name: string
+  email: string
+  company: string
+  application: string
+  valveType: string
 }
 
-const industries = ['Mining', 'Water Treatment', 'Oil & Gas', 'Chemical & Petrochemical', 'HVAC', 'Pulp & Paper', 'Other']
-const valveTypes = ['Ball Valve', 'Butterfly Valve', 'Gate Valve', 'Knife Gate Valve', 'Not sure — need recommendation']
-const timelines = ['Urgent (< 2 weeks)', '1 month', '1–3 months', '3–6 months', '6+ months']
-const quantities = ['1–5', '6–20', '21–100', '100+']
+const initialForm: SimpleRFQ = { name: '', email: '', company: '', application: '', valveType: '' }
+
+const valveOptions = [
+  'Ball Valve',
+  'Butterfly Valve',
+  'Gate Valve',
+  'Knife Gate Valve',
+  'Not sure — recommend one for me',
+]
 
 function renderAnalysis(text: string) {
   return text.split('\n').map((line, i) => {
-    if (line.startsWith('## ')) {
-      return <h3 key={i} className="text-sm font-bold text-slate-900 mt-5 mb-1.5 first:mt-0">{line.replace('## ', '')}</h3>
-    }
-    if (line.startsWith('- ')) {
-      return <li key={i} className="text-sm text-slate-600 ml-4 mb-1 list-disc">{line.replace('- ', '')}</li>
-    }
-    if (line.trim()) {
-      return <p key={i} className="text-sm text-slate-600 mb-2 leading-relaxed">{line}</p>
-    }
+    if (line.startsWith('## ')) return <h3 key={i} className="text-sm font-black text-slate-900 mt-5 mb-1.5 first:mt-0">{line.replace('## ', '')}</h3>
+    if (line.startsWith('- ')) return <li key={i} className="text-sm text-slate-600 ml-4 mb-1 list-disc">{line.replace('- ', '')}</li>
+    if (line.trim()) return <p key={i} className="text-sm text-slate-600 mb-2 leading-relaxed">{line}</p>
     return null
   })
 }
 
 export default function RFQ() {
-  const [form, setForm] = useState<RFQFormData>(initialForm)
+  const [form, setForm] = useState<SimpleRFQ>(initialForm)
   const [submitting, setSubmitting] = useState(false)
   const [analysis, setAnalysis] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
 
-  const update = (field: keyof RFQFormData, value: string) =>
-    setForm(prev => ({ ...prev, [field]: value }))
+  const update = (f: keyof SimpleRFQ, v: string) => setForm(p => ({ ...p, [f]: v }))
+  const isValid = form.name && form.email && form.company && form.application
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -68,129 +60,118 @@ export default function RFQ() {
     }
   }
 
-  const isValid = form.name && form.email && form.company && form.application
-
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
       {/* Header */}
       <div className="max-w-xl mb-12">
-        <span className="inline-flex items-center gap-2 text-xs font-bold text-brand-700 bg-brand-50 border border-brand-200 px-3 py-1.5 rounded-full mb-4 uppercase tracking-wider">
-          <Sparkles className="w-3 h-3" /> AI-Powered Qualification
+        <span className="inline-flex items-center gap-2 text-xs font-black text-brand-700 bg-brand-50 border border-brand-200 px-3 py-1.5 rounded-full mb-4 uppercase tracking-wider">
+          <Sparkles className="w-3 h-3" /> AI-Qualified in Seconds
         </span>
         <h1 className="text-3xl sm:text-4xl font-black text-slate-900">Request a Quote</h1>
+        {/* Principle #4: Explain the minimal form approach */}
         <p className="text-slate-500 mt-3 text-lg leading-relaxed">
-          Describe your valve application and get an instant AI qualification assessment. Our team will follow up with a
-          detailed engineering proposal.
+          Just 5 fields. Our AI reads your application description and extracts the technical requirements —
+          so you don't have to fill in 12 form fields.
         </p>
       </div>
 
-      <div className="grid lg:grid-cols-[1fr_340px] gap-10">
-        {/* Form */}
+      {/* Not sure which valve? Nudge to configurator */}
+      <div className="mb-8 p-4 bg-isa-50 border border-isa-200 rounded-xl flex items-center gap-4">
+        <Zap className="w-5 h-5 text-isa-600 flex-shrink-0" />
+        <div className="flex-1 min-w-0">
+          <p className="text-sm font-bold text-slate-900">Not sure which valve type you need?</p>
+          <p className="text-sm text-slate-500">Answer 4 quick questions and get an AI recommendation first.</p>
+        </div>
+        <Link to="/configurator" className="flex-shrink-0 inline-flex items-center gap-1.5 bg-isa-600 hover:bg-isa-700 text-white font-bold text-sm px-4 py-2 rounded-lg transition-colors">
+          Try Selector <ArrowRight className="w-3.5 h-3.5" />
+        </Link>
+      </div>
+
+      <div className="grid lg:grid-cols-[1fr_300px] gap-10">
+        {/* Form — 5 fields only */}
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="grid sm:grid-cols-2 gap-5">
-            <Field label="Full name *">
-              <input type="text" value={form.name} onChange={e => update('name', e.target.value)}
-                placeholder="Jane Smith" required className="field-input" />
-            </Field>
-            <Field label="Work email *">
-              <input type="email" value={form.email} onChange={e => update('email', e.target.value)}
-                placeholder="jane@company.com" required className="field-input" />
-            </Field>
+            <div className="flex flex-col gap-1.5">
+              <label className="text-sm font-bold text-slate-700">Full name <span className="text-red-400">*</span></label>
+              <input type="text" value={form.name} onChange={e => update('name', e.target.value)} placeholder="Jane Smith" required className="field-input" />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <label className="text-sm font-bold text-slate-700">Work email <span className="text-red-400">*</span></label>
+              <input type="email" value={form.email} onChange={e => update('email', e.target.value)} placeholder="jane@company.com" required className="field-input" />
+            </div>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-5">
-            <Field label="Company *">
-              <input type="text" value={form.company} onChange={e => update('company', e.target.value)}
-                placeholder="Acme Mining Ltd" required className="field-input" />
-            </Field>
-            <Field label="Industry">
-              <SelectField value={form.industry} onChange={v => update('industry', v)} options={industries} placeholder="Select industry…" />
-            </Field>
+          <div className="flex flex-col gap-1.5">
+            <label className="text-sm font-bold text-slate-700">Company / Organisation <span className="text-red-400">*</span></label>
+            <input type="text" value={form.company} onChange={e => update('company', e.target.value)} placeholder="Acme Mining Ltd" required className="field-input" />
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-5">
-            <Field label="Valve type">
-              <SelectField value={form.valveType} onChange={v => update('valveType', v)} options={valveTypes} placeholder="Select valve type…" />
-            </Field>
-            <Field label="Fluid / medium">
-              <input type="text" value={form.fluidType} onChange={e => update('fluidType', e.target.value)}
-                placeholder="e.g. water, slurry, crude oil…" className="field-input" />
-            </Field>
+          <div className="flex flex-col gap-1.5">
+            <label className="text-sm font-bold text-slate-700">Application description <span className="text-red-400">*</span></label>
+            <textarea
+              value={form.application}
+              onChange={e => update('application', e.target.value)}
+              placeholder="Describe what you need: fluid type (water, slurry, chemical…), line size (DN), operating pressure, industry, quantity, and timeline. The more detail you include, the faster we can quote."
+              required
+              rows={5}
+              className="field-input resize-none"
+            />
+            <p className="text-xs text-slate-400">Include: fluid type · size range (DN) · operating pressure · quantity · timeline</p>
           </div>
 
-          <Field label="Application description *">
-            <textarea value={form.application} onChange={e => update('application', e.target.value)}
-              placeholder="Describe the system, operating conditions, temperature, and specific requirements…"
-              required rows={4} className="field-input resize-none" />
-          </Field>
-
-          <div className="grid sm:grid-cols-3 gap-5">
-            <Field label="Size range (DN)">
-              <input type="text" value={form.sizeRange} onChange={e => update('sizeRange', e.target.value)}
-                placeholder="e.g. DN100, DN50–200" className="field-input" />
-            </Field>
-            <Field label="Pressure class">
-              <input type="text" value={form.pressureClass} onChange={e => update('pressureClass', e.target.value)}
-                placeholder="e.g. PN16, ANSI 150" className="field-input" />
-            </Field>
-            <Field label="Quantity">
-              <SelectField value={form.quantity} onChange={v => update('quantity', v)} options={quantities} placeholder="Qty range…" />
-            </Field>
+          <div className="flex flex-col gap-1.5">
+            <label className="text-sm font-bold text-slate-700">Preferred valve type <span className="text-slate-400 font-normal">(optional)</span></label>
+            <div className="flex flex-wrap gap-2">
+              {valveOptions.map(opt => (
+                <button
+                  key={opt}
+                  type="button"
+                  onClick={() => update('valveType', form.valveType === opt ? '' : opt)}
+                  className={`text-sm px-3.5 py-2 rounded-lg border font-medium transition-colors ${
+                    form.valveType === opt
+                      ? 'bg-brand-600 text-white border-brand-600'
+                      : 'border-slate-200 text-slate-600 hover:border-slate-300 bg-white'
+                  }`}
+                >
+                  {opt}
+                </button>
+              ))}
+            </div>
           </div>
 
-          <Field label="Required timeline">
-            <SelectField value={form.timeline} onChange={v => update('timeline', v)} options={timelines} placeholder="Select timeline…" />
-          </Field>
-
-          <Field label="Additional requirements">
-            <textarea value={form.additionalInfo} onChange={e => update('additionalInfo', e.target.value)}
-              placeholder="Certifications needed, special coatings, existing systems, etc."
-              rows={2} className="field-input resize-none" />
-          </Field>
-
-          <button type="submit" disabled={!isValid || submitting}
-            className="inline-flex items-center gap-2 bg-isa-600 hover:bg-isa-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold px-8 py-3 rounded-xl transition-colors text-base"
+          <button
+            type="submit"
+            disabled={!isValid || submitting}
+            className="inline-flex items-center gap-2 bg-isa-600 hover:bg-isa-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-black px-8 py-3.5 rounded-xl transition-colors text-base"
           >
             {submitting
               ? <><Loader2 className="w-4 h-4 animate-spin" /> Analysing…</>
-              : <><Send className="w-4 h-4" /> Submit & Get AI Analysis</>
+              : <><Send className="w-4 h-4" /> Get AI Qualification</>
             }
           </button>
 
-          {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl px-4 py-3">{error}</div>
-          )}
+          {error && <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl px-4 py-3">{error}</div>}
         </form>
 
         {/* Sidebar */}
         <div className="space-y-5">
           {analysis ? (
-            <div className="card p-6 border-brand-200">
+            <div className="card p-6 border-emerald-200 bg-emerald-50/30">
               <div className="flex items-center gap-2 mb-4">
-                <CheckCircle className="w-5 h-5 text-emerald-500" />
-                <h2 className="font-bold text-slate-900">AI Qualification Report</h2>
+                <CheckCircle className="w-5 h-5 text-emerald-600" />
+                <h2 className="font-black text-slate-900">AI Qualification Report</h2>
               </div>
               <div>{renderAnalysis(analysis)}</div>
-              <button
-                onClick={() => { setForm(initialForm); setAnalysis(null) }}
-                className="mt-5 text-sm text-brand-600 hover:text-brand-700 font-medium"
-              >
+              <button onClick={() => { setForm(initialForm); setAnalysis(null) }} className="mt-5 text-sm text-brand-700 hover:text-brand-800 font-semibold">
                 Submit another request →
               </button>
             </div>
           ) : (
             <div className="card p-6">
               <Sparkles className="w-6 h-6 text-brand-600 mb-3" />
-              <h3 className="font-bold text-slate-900 mb-2">AI analyses your RFQ for:</h3>
+              <h3 className="font-black text-slate-900 mb-3">AI analyses your submission for:</h3>
               <ul className="space-y-2">
-                {[
-                  'Valve type recommendation / confirmation',
-                  'Lead qualification score (1–10)',
-                  'Key technical requirements',
-                  'Missing specification details',
-                  'Project complexity estimate',
-                  'Recommended next steps',
-                ].map(item => (
+                {['Valve type recommendation', 'Qualification score (1–10)', 'Key technical requirements', 'Missing specification details', 'Recommended next steps'].map(item => (
                   <li key={item} className="flex items-start gap-2 text-sm text-slate-500">
                     <span className="w-1.5 h-1.5 rounded-full bg-brand-400 mt-1.5 flex-shrink-0" />
                     {item}
@@ -200,47 +181,12 @@ export default function RFQ() {
             </div>
           )}
 
-          <div className="card p-5 bg-slate-50">
-            <p className="text-sm font-bold text-slate-900 mb-1.5">Not sure which valve?</p>
-            <p className="text-xs text-slate-500 mb-3 leading-relaxed">
-              Use the AI chat button (bottom-right) to describe your application and get an instant recommendation.
-            </p>
-            <Link to="/products" className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:text-brand-800">
-              Browse product range <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
-
           <div className="border border-brand-200 bg-brand-50 rounded-xl p-5">
-            <p className="text-xs font-bold text-brand-900 mb-1">ISO 9001:2015 Certified</p>
-            <p className="text-xs text-brand-700 leading-relaxed">
-              All products tested to hydrostatic & pneumatic standards at 1.5× rated pressure. Complete documentation and traceability included.
-            </p>
+            <p className="text-xs font-black text-brand-900 mb-1">ISO 9001:2015 Certified</p>
+            <p className="text-xs text-brand-800 leading-relaxed">All products tested at 1.5× rated pressure. Full documentation and material traceability included with every order.</p>
           </div>
         </div>
       </div>
-    </div>
-  )
-}
-
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div className="flex flex-col gap-1.5">
-      <label className="text-sm font-semibold text-slate-700">{label}</label>
-      {children}
-    </div>
-  )
-}
-
-function SelectField({ value, onChange, options, placeholder }: {
-  value: string; onChange: (v: string) => void; options: string[]; placeholder: string
-}) {
-  return (
-    <div className="relative">
-      <select value={value} onChange={e => onChange(e.target.value)} className="field-input appearance-none pr-8">
-        <option value="">{placeholder}</option>
-        {options.map(o => <option key={o} value={o}>{o}</option>)}
-      </select>
-      <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
     </div>
   )
 }
