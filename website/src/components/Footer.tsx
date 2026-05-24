@@ -40,11 +40,11 @@ export default function Footer() {
               25 years of precision-engineered valve solutions for mining, water treatment, oil & gas, chemical, and industrial applications.
             </p>
             <div className="space-y-2 text-sm">
-              <a href="tel:+27000000000" className="flex items-center gap-2 hover:text-white transition-colors">
-                <Phone className="w-3.5 h-3.5 text-isa-500" /> +27 (0) 00 000 0000
+              <a href="tel:+27060688548" className="flex items-center gap-2 hover:text-white transition-colors">
+                <Phone className="w-3.5 h-3.5 text-isa-500" /> +27 060 688 5648
               </a>
-              <a href="mailto:info@isavalve.co.za" className="flex items-center gap-2 hover:text-white transition-colors">
-                <Mail className="w-3.5 h-3.5 text-isa-500" /> info@isavalve.co.za
+              <a href="mailto:isa-valve@outlook.com" className="flex items-center gap-2 hover:text-white transition-colors">
+                <Mail className="w-3.5 h-3.5 text-isa-500" /> isa-valve@outlook.com
               </a>
               <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white transition-colors" style={{ color: '#4ade80' }}>
                 <WhatsAppIcon className="w-3.5 h-3.5 flex-shrink-0" /> WhatsApp Business
