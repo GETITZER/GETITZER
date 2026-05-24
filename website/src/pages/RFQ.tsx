@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { Send, Loader2, CheckCircle, Sparkles, ArrowRight, Zap } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { WhatsAppIcon, WA_URL } from '../components/WhatsAppButton'
 
 interface SimpleRFQ {
   name: string
@@ -180,6 +181,23 @@ export default function RFQ() {
               </ul>
             </div>
           )}
+
+          {/* WhatsApp alternative */}
+          <a
+            href={WA_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 p-4 rounded-xl border-2 border-green-200 bg-green-50 hover:bg-green-100 transition-colors group"
+          >
+            <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#25D366' }}>
+              <WhatsAppIcon className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <p className="text-sm font-black text-slate-900">Prefer WhatsApp?</p>
+              <p className="text-xs text-slate-500 leading-snug">Send your requirements directly — we respond within the hour during business hours.</p>
+            </div>
+            <ArrowRight className="w-4 h-4 text-green-600 ml-auto flex-shrink-0 group-hover:translate-x-1 transition-transform" />
+          </a>
 
           <div className="border border-brand-200 bg-brand-50 rounded-xl p-5">
             <p className="text-xs font-black text-brand-900 mb-1">ISO 9001:2015 Certified</p>

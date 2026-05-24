@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Search, Menu, X, ChevronDown, Phone, Zap, Newspaper, Sparkles } from 'lucide-react'
 import SearchModal from './SearchModal'
+import { WhatsAppIcon, WA_URL } from './WhatsAppButton'
 
 // ISA triangular logo mark
 function ISALogo() {
@@ -154,6 +155,19 @@ export default function Navigation() {
               <Phone className="w-3.5 h-3.5" /> +27 (0) 00 000 0000
             </a>
 
+            <a
+              href={WA_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
+              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors hover:bg-green-50"
+              style={{ color: '#25D366' }}
+              title="Chat on WhatsApp"
+            >
+              <WhatsAppIcon className="w-4 h-4" />
+              <span className="hidden lg:inline">WhatsApp</span>
+            </a>
+
             <button
               onClick={() => setSearchOpen(true)}
               className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 text-sm text-slate-500 hover:border-slate-300 hover:text-slate-700 bg-slate-50 transition-colors"
@@ -179,6 +193,9 @@ export default function Navigation() {
           <div className="lg:hidden border-t border-slate-100 bg-white px-4 py-3 space-y-1">
             <a href="tel:+27000000000" className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold text-isa-700 bg-isa-50">
               <Phone className="w-4 h-4" /> +27 (0) 00 000 0000
+            </a>
+            <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold" style={{ color: '#25D366' }}>
+              <WhatsAppIcon className="w-4 h-4" /> Chat on WhatsApp
             </a>
             <button onClick={() => { setSearchOpen(true); setMobileOpen(false) }} className="w-full flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50">
               <Search className="w-4 h-4" /> Search products
