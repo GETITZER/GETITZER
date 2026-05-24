@@ -28,13 +28,6 @@ const valueProps = [
   { metric: '3 → 14 mo', context: 'valve service life', proof: 'Extended in active slurry processing through custom valve engineering' },
 ]
 
-// Principle #6: Scannable product specs for technical buyers
-const productHighlights = [
-  { slug: 'ball-valve', range: 'DN15–DN600', pressure: 'PN16 / PN40 / ANSI 600' },
-  { slug: 'butterfly-valve', range: 'DN50–DN1200', pressure: 'PN10 / PN16' },
-  { slug: 'gate-valve', range: 'DN50–DN1000', pressure: 'PN10 / PN16' },
-  { slug: 'knife-gate-valve', range: 'DN50–DN600', pressure: 'PN10 / PN16' },
-]
 
 const qualitySteps = [
   { n: '1', title: 'Material Verification', desc: 'Spectroscopic analysis confirms exact alloy composition for every critical component.' },
@@ -276,32 +269,45 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {products.map((product, i) => {
-            const highlight = productHighlights[i]
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {products.map((product) => {
+            const sizeSpec = product.specs.find(s => s.label === 'Size Range')
+            const pressureSpec = product.specs.find(s => s.label === 'Pressure Class' || s.label === 'Pressure Rating')
+            const badgeBg = product.badgeColor === 'red' ? 'bg-red-600' : product.badgeColor === 'green' ? 'bg-green-600' : 'bg-isa-600'
             return (
-              <Link key={product.id} to={`/products/${product.slug}`}
-                className="group card p-5 flex flex-col gap-3 hover:shadow-lg hover:border-brand-200 hover:-translate-y-0.5 transition-all duration-200">
-                <span className="text-2xl">{product.icon}</span>
+              <button key={product.id}
+                onClick={() => setModalProduct(product)}
+                className="group card p-5 text-left flex flex-col gap-3 hover:shadow-lg hover:border-brand-200 hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                <div className="flex items-start justify-between gap-2">
+                  <span className="text-2xl">{product.icon}</span>
+                  {product.badge && (
+                    <span className={`text-[10px] font-black px-2 py-0.5 rounded-full text-white ${badgeBg}`}>NEW</span>
+                  )}
+                </div>
                 <div>
-                  <h3 className="font-black text-slate-900 group-hover:text-brand-700 transition-colors">{product.name}</h3>
-                  {/* Principle #6: Scannable specs inline on cards */}
+                  <h3 className="font-black text-slate-900 group-hover:text-brand-700 transition-colors">{product.shortName}</h3>
                   <div className="mt-2 space-y-1">
-                    <div className="flex gap-1.5 text-xs">
-                      <span className="text-slate-400 w-16 flex-shrink-0">Size</span>
-                      <span className="font-semibold text-slate-700">{highlight?.range}</span>
-                    </div>
-                    <div className="flex gap-1.5 text-xs">
-                      <span className="text-slate-400 w-16 flex-shrink-0">Pressure</span>
-                      <span className="font-semibold text-slate-700">{highlight?.pressure}</span>
-                    </div>
+                    {sizeSpec && (
+                      <div className="flex gap-1.5 text-xs">
+                        <span className="text-slate-400 w-14 flex-shrink-0">Size</span>
+                        <span className="font-semibold text-slate-700 truncate">{sizeSpec.value.split(' (')[0]}</span>
+                      </div>
+                    )}
+                    {pressureSpec && (
+                      <div className="flex gap-1.5 text-xs">
+                        <span className="text-slate-400 w-14 flex-shrink-0">Pressure</span>
+                        <span className="font-semibold text-slate-700 truncate">{pressureSpec.value}</span>
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="mt-auto pt-2 border-t border-slate-100 flex items-center justify-between">
-                  <span className="text-xs text-slate-400">View full specs</span>
+                  <span className="text-xs text-brand-600 font-semibold flex items-center gap-1">
+                    <Eye className="w-3 h-3" /> Quick View
+                  </span>
                   <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-brand-500 group-hover:translate-x-1 transition-all" />
                 </div>
-              </Link>
+              </button>
             )
           })}
         </div>

@@ -18,6 +18,8 @@ const productLinks = [
   { label: 'Butterfly Valve', to: '/products/butterfly-valve' },
   { label: 'Gate Valve', to: '/products/gate-valve' },
   { label: 'Knife Gate Valve', to: '/products/knife-gate-valve' },
+  { label: 'ISA Pinch Valve Series', to: '/products/pinch-valve' },
+  { label: 'DXST Slurry KGV', to: '/products/dxst-kgv' },
 ]
 
 const industryLinks = ['Mining', 'Water Treatment', 'Oil & Gas', 'Chemical & Petrochemical', 'HVAC', 'Pulp & Paper']
@@ -40,7 +42,7 @@ export default function Footer() {
               25 years of precision-engineered valve solutions for mining, water treatment, oil & gas, chemical, and industrial applications.
             </p>
             <div className="space-y-2 text-sm">
-              <a href="tel:+27060688548" className="flex items-center gap-2 hover:text-white transition-colors">
+              <a href="tel:+270606885648" className="flex items-center gap-2 hover:text-white transition-colors">
                 <Phone className="w-3.5 h-3.5 text-isa-500" /> +27 060 688 5648
               </a>
               <a href="mailto:isa-valve@outlook.com" className="flex items-center gap-2 hover:text-white transition-colors">

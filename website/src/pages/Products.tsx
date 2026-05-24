@@ -88,7 +88,7 @@ export default function Products() {
       <div className="max-w-2xl mb-8">
         <h1 className="text-3xl sm:text-4xl font-black text-slate-900">Product Range</h1>
         <p className="text-slate-500 mt-3 text-lg leading-relaxed">
-          Four precision-engineered valve types covering DN15 to DN1200. Filter by industry, actuation, or pressure class.
+          Six precision-engineered valve types covering DN15 to DN1200. Filter by industry, actuation, or pressure class.
         </p>
       </div>
 
