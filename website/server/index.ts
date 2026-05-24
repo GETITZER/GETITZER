@@ -200,6 +200,379 @@ Critical details still needed before a firm quote can be issued.
   }
 })
 
+// ═══════════════════════════════════════════════════════════════
+// SEO AI TOOLKIT — 8 endpoints
+// ═══════════════════════════════════════════════════════════════
+
+// 1. Product Description (streaming)
+app.post('/api/seo/describe', async (req, res) => {
+  try {
+    const { productName, keywords, specs } = req.body as {
+      productName: string; keywords: string; specs?: string
+    }
+    sseHeaders(res)
+    const stream = getClient().messages.stream({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 1600,
+      messages: [{
+        role: 'user',
+        content: `You are an ecommerce SEO expert for ISA Valve Solutions & Industrial Supplies — a South African industrial valve supplier certified to ISO 9001:2015.
+
+Product: ${productName}
+Target keywords: ${keywords}
+${specs ? `Specs: ${specs}` : ''}
+
+Write a complete SEO product description using this exact format:
+
+META: [compelling meta description, 150-155 characters, include primary keyword naturally]
+
+## [Keyword-rich H2 — primary application and value proposition]
+[2 persuasive paragraphs, 150 words total, technical language for engineers]
+
+## [Keyword-rich H2 — technical specifications and certifications]
+[2 paragraphs covering specs, standards (SABS, ISO, API), and compliance, 150 words]
+
+## [Keyword-rich H2 — industry applications and why choose ISA]
+[2 paragraphs on industry fit and ISA's competitive advantages, 150 words]
+
+[CTA — 2 sentences inviting the reader to request a quote or use the AI valve selector. Include primary keyword.]`,
+      }],
+    })
+    for await (const chunk of stream) {
+      if (chunk.type === 'content_block_delta' && chunk.delta.type === 'text_delta')
+        sseWrite(res, { text: chunk.delta.text })
+    }
+    sseWrite(res, { done: true })
+    res.end()
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : 'Error'
+    if (!res.headersSent) res.status(500).json({ error: msg })
+    else { sseWrite(res, { error: msg }); res.end() }
+  }
+})
+
+// 2. JSON-LD Schema Markup
+app.post('/api/seo/schema', async (req, res) => {
+  try {
+    const { productName, sku, price, description } = req.body as {
+      productName: string; sku: string; price: string; description?: string
+    }
+    const message = await getClient().messages.create({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 1024,
+      messages: [{
+        role: 'user',
+        content: `Generate valid JSON-LD schema for a product page. Return ONLY the raw JSON object — no markdown fences, no explanation.
+
+Product name: ${productName}
+SKU: ${sku}
+Price: ${price}
+Currency: ZAR
+Availability: InStock
+Brand: ISA Valve Solutions & Industrial Supplies
+${description ? `Description: ${description}` : ''}
+Rating: 4.7 (23 reviews)
+Seller name: ISA Valve Solutions & Industrial Supplies
+
+Include schema types: Product, Offer, AggregateRating, Brand.
+Ensure it validates in Google's Rich Results Test.`,
+      }],
+    })
+    const text = message.content[0].type === 'text' ? message.content[0].text.trim() : '{}'
+    try {
+      const clean = text.replace(/^```json\n?/, '').replace(/\n?```$/, '').trim()
+      res.json({ schema: JSON.parse(clean) })
+    } catch {
+      res.json({ schema: {}, raw: text })
+    }
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : 'Error' })
+  }
+})
+
+// 3. Blog Post (streaming)
+app.post('/api/seo/blog', async (req, res) => {
+  try {
+    const { topic, keywords } = req.body as { topic: string; keywords: string }
+    sseHeaders(res)
+    const stream = getClient().messages.stream({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 2200,
+      messages: [{
+        role: 'user',
+        content: `You are a technical content writer for ISA Valve Solutions & Industrial Supplies (South Africa). Write an SEO-optimized 1,000-word blog post.
+
+Topic: ${topic}
+Keywords: ${keywords}
+
+Use this exact format:
+
+META_TITLE: [blog title, max 60 characters, include primary keyword]
+META_DESC: [meta description, max 155 characters, include keyword + CTA]
+
+# [Full headline]
+
+[Introduction, 120 words, include primary keyword naturally]
+
+## [Keyword-rich subheading 1]
+[180 words of technical, authoritative content]
+
+## [Keyword-rich subheading 2]
+[180 words]
+
+## [Keyword-rich subheading 3]
+[180 words]
+
+## [Keyword-rich subheading 4]
+[180 words]
+
+## [Keyword-rich subheading 5]
+[180 words]
+
+## Frequently Asked Questions
+
+**Q: [Real engineer/buyer question]**
+A: [60-word answer with natural keyword use]
+
+**Q: [Another question]**
+A: [60-word answer]
+
+**Q: [Third question]**
+A: [60-word answer]
+
+[Conclusion with CTA to contact ISA Valve Solutions, 80 words]`,
+      }],
+    })
+    for await (const chunk of stream) {
+      if (chunk.type === 'content_block_delta' && chunk.delta.type === 'text_delta')
+        sseWrite(res, { text: chunk.delta.text })
+    }
+    sseWrite(res, { done: true })
+    res.end()
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : 'Error'
+    if (!res.headersSent) res.status(500).json({ error: msg })
+    else { sseWrite(res, { error: msg }); res.end() }
+  }
+})
+
+// 4. Keyword Research
+app.post('/api/seo/keywords', async (req, res) => {
+  try {
+    const { productOrCategory } = req.body as { productOrCategory: string }
+    const message = await getClient().messages.create({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 1200,
+      messages: [{
+        role: 'user',
+        content: `You are an SEO strategist for ISA Valve Solutions (South Africa). Analyze ecommerce keywords.
+
+Product/Category: ${productOrCategory}
+
+Organize by funnel stage using this exact format:
+
+## AWARENESS
+| Keyword | Search Intent | Long-Tail Variation |
+|---------|--------------|---------------------|
+[5 rows — informational/educational queries]
+
+## CONSIDERATION
+| Keyword | Search Intent | Long-Tail Variation |
+|---------|--------------|---------------------|
+[5 rows — comparison/evaluation queries]
+
+## PURCHASE
+| Keyword | Search Intent | Long-Tail Variation |
+|---------|--------------|---------------------|
+[5 rows — transactional/supplier queries]
+
+## SEARCH INTENT NOTES
+[3 sentences: B2B buyer behavior, South African market nuances, procurement timeline]`,
+      }],
+    })
+    const text = message.content[0].type === 'text' ? message.content[0].text : ''
+    res.json({ keywords: text })
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : 'Error' })
+  }
+})
+
+// 5. Technical SEO Audit (streaming)
+app.post('/api/seo/audit', async (req, res) => {
+  try {
+    const { urlOrData } = req.body as { urlOrData: string }
+    sseHeaders(res)
+    const stream = getClient().messages.stream({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 1600,
+      messages: [{
+        role: 'user',
+        content: `You are a technical SEO expert. Audit this website for SEO issues.
+
+Context: ISA Valve Solutions & Industrial Supplies
+- React SPA (Vite, client-side rendering — no SSR)
+- B2B industrial valve supplier, South Africa
+- Products: Ball Valve, Butterfly Valve, Gate Valve, Knife Gate Valve
+- Routes: /, /products, /products/:slug, /industries, /industries/:slug, /configurator, /rfq, /blog, /seo
+- Has JSON-LD schema on product pages, FAQPage schema, Organization schema on homepage
+- Has react-helmet for dynamic page titles
+
+Input: ${urlOrData || 'Provide general technical SEO recommendations for this specific website'}
+
+Identify the top 5 most impactful issues and prioritize by business impact:
+
+## Issue 1: [Name]
+**Severity**: High
+**Problem**: [Specific description]
+**Fix**: [Exact implementation steps]
+**SEO Impact**: [Expected outcome]
+
+[Repeat for issues 2–5, varying severity]
+
+## Quick Wins (implement in under 1 hour)
+- [Win 1]
+- [Win 2]
+- [Win 3]`,
+      }],
+    })
+    for await (const chunk of stream) {
+      if (chunk.type === 'content_block_delta' && chunk.delta.type === 'text_delta')
+        sseWrite(res, { text: chunk.delta.text })
+    }
+    sseWrite(res, { done: true })
+    res.end()
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : 'Error'
+    if (!res.headersSent) res.status(500).json({ error: msg })
+    else { sseWrite(res, { error: msg }); res.end() }
+  }
+})
+
+// 6. Category Page Optimization (streaming)
+app.post('/api/seo/category', async (req, res) => {
+  try {
+    const { category, keywords } = req.body as { category: string; keywords: string }
+    sseHeaders(res)
+    const stream = getClient().messages.stream({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 1200,
+      messages: [{
+        role: 'user',
+        content: `You are an SEO content writer for ISA Valve Solutions & Industrial Supplies (South Africa).
+
+Write optimized copy for a category page.
+Category: ${category}
+Target keywords: ${keywords}
+
+Format:
+
+META_TITLE: [60 chars max, primary keyword near start]
+META_DESC: [155 chars max, keyword + CTA]
+
+## [Keyword-rich intro heading]
+[150-word introduction, include all target keywords naturally]
+
+## [Subheading 2 — product range or applications]
+[100-word supporting paragraph]
+
+## [Subheading 3 — certifications and standards]
+[100-word supporting paragraph]
+
+## [Subheading 4 — industries served]
+[100-word supporting paragraph]`,
+      }],
+    })
+    for await (const chunk of stream) {
+      if (chunk.type === 'content_block_delta' && chunk.delta.type === 'text_delta')
+        sseWrite(res, { text: chunk.delta.text })
+    }
+    sseWrite(res, { done: true })
+    res.end()
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : 'Error'
+    if (!res.headersSent) res.status(500).json({ error: msg })
+    else { sseWrite(res, { error: msg }); res.end() }
+  }
+})
+
+// 7. FAQ Generator
+app.post('/api/seo/faq', async (req, res) => {
+  try {
+    const { topic } = req.body as { topic: string }
+    const message = await getClient().messages.create({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 1400,
+      messages: [{
+        role: 'user',
+        content: `Generate 5 SEO-optimized FAQs for: ${topic}
+
+Context: ISA Valve Solutions & Industrial Supplies — South African industrial valve supplier.
+Products: Ball Valve (DN15–DN600), Butterfly Valve (DN50–DN1200), Gate Valve (DN50–DN1000), Knife Gate Valve (DN50–DN600). ISO 9001:2015.
+
+Write questions real engineers and procurement managers would search on Google. Answers: 60-80 words, technically accurate, include natural keywords.
+
+Format:
+
+**Q1: [Question]**
+A: [Answer]
+
+**Q2: [Question]**
+A: [Answer]
+
+**Q3: [Question]**
+A: [Answer]
+
+**Q4: [Question]**
+A: [Answer]
+
+**Q5: [Question]**
+A: [Answer]
+
+SCHEMA:
+[Valid JSON-LD FAQPage schema — raw JSON only, no code fences]`,
+      }],
+    })
+    const text = message.content[0].type === 'text' ? message.content[0].text : ''
+    res.json({ faq: text })
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : 'Error' })
+  }
+})
+
+// 8. Meta Tags Generator
+app.post('/api/seo/meta', async (req, res) => {
+  try {
+    const { pageTitle, description, keyword } = req.body as {
+      pageTitle: string; description: string; keyword: string
+    }
+    const message = await getClient().messages.create({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 200,
+      messages: [{
+        role: 'user',
+        content: `Generate optimized meta tags. Return ONLY the two lines below — nothing else.
+
+Page: ${pageTitle}
+Context: ${description}
+Primary keyword: ${keyword}
+Brand: ISA Valve Solutions (South Africa)
+
+TITLE: [max 60 characters, keyword near start]
+DESC: [max 155 characters, keyword + strong CTA]`,
+      }],
+    })
+    const text = message.content[0].type === 'text' ? message.content[0].text.trim() : ''
+    const titleMatch = text.match(/^TITLE:\s*(.+)$/m)
+    const descMatch = text.match(/^DESC:\s*(.+)$/m)
+    res.json({
+      title: titleMatch?.[1]?.trim() ?? '',
+      description: descMatch?.[1]?.trim() ?? '',
+    })
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : 'Error' })
+  }
+})
+
 app.listen(PORT, () => {
   console.log(`\n  API server → http://localhost:${PORT}`)
   if (!process.env.ANTHROPIC_API_KEY) {
