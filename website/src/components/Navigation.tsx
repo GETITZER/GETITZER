@@ -86,6 +86,9 @@ export default function Navigation() {
                   <Link to="/products" className="block px-4 py-2 text-sm font-bold text-slate-700 hover:bg-slate-50">
                     All Products →
                   </Link>
+                  <Link to="/catalog" className="block px-4 py-2 text-sm font-semibold text-brand-700 hover:bg-brand-50">
+                    📄 Full Catalog (40+ Models)
+                  </Link>
                   <div className="border-t border-slate-100 my-1" />
                   {productLinks.map(link => (
                     <Link key={link.to} to={link.to} className="flex items-start gap-3 px-4 py-2.5 hover:bg-brand-50">
@@ -210,6 +213,7 @@ export default function Navigation() {
             <Link to="/industries" className="block px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-50">Industries</Link>
             <Link to="/about" className="block px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-50">About</Link>
             <Link to="/delivery-faq" className="block px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-50">Delivery & FAQ</Link>
+            <Link to="/catalog" className="block px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-50">Product Catalog</Link>
             <Link to="/blog" className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-50">
               <Newspaper className="w-4 h-4" /> Blog
             </Link>
