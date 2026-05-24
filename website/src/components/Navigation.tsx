@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Search, Menu, X, ChevronDown, Phone, Zap } from 'lucide-react'
+import { Search, Menu, X, ChevronDown, Phone, Zap, Newspaper, Sparkles } from 'lucide-react'
 import SearchModal from './SearchModal'
 
 // ISA triangular logo mark
@@ -124,6 +124,21 @@ export default function Navigation() {
             >
               <Zap className="w-3.5 h-3.5" /> Valve Selector
             </Link>
+
+            <Link
+              to="/blog"
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-medium transition-colors ${isActive('/blog') ? 'text-brand-700 bg-brand-50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'}`}
+            >
+              <Newspaper className="w-3.5 h-3.5" /> Blog
+            </Link>
+
+            <Link
+              to="/seo"
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-medium transition-colors ${isActive('/seo') ? 'text-brand-700 bg-brand-50' : 'text-slate-500 hover:text-slate-700 hover:bg-slate-50'}`}
+              title="SEO AI Studio"
+            >
+              <Sparkles className="w-3.5 h-3.5" /> SEO Tools
+            </Link>
           </div>
 
           {/* Right side */}
@@ -169,6 +184,12 @@ export default function Navigation() {
               <Link key={l.to} to={l.to} className="block px-6 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-50">{l.label}</Link>
             ))}
             <Link to="/industries" className="block px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-50">Industries</Link>
+            <Link to="/blog" className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-50">
+              <Newspaper className="w-4 h-4" /> Blog
+            </Link>
+            <Link to="/seo" className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50">
+              <Sparkles className="w-4 h-4" /> SEO Tools
+            </Link>
             <Link to="/rfq" className="block mt-2 text-center bg-isa-600 hover:bg-isa-700 text-white text-sm font-bold px-4 py-2.5 rounded-lg transition-colors">
               Request a Quote
             </Link>
