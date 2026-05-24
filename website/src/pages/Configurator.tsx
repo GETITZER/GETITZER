@@ -82,6 +82,8 @@ Our product range:
 2. Butterfly Valve — DN50–DN1200, PN10/PN16. Compact, fast quarter-turn, ideal for large-bore water, HVAC, and fire protection systems.
 3. Gate Valve — DN50–DN1000, PN10/PN16. Full-bore isolation, minimal pressure drop, clean water and HVAC service.
 4. Knife Gate Valve — DN50–DN600, PN10/PN16. Slide-gate for slurry, viscous, abrasive, and fibrous media. Ceramic-lined options for extended life.
+5. ISA Pinch Valve Series — PN16, ISO 5208 Grade A zero leakage. Full-bore elastomeric sleeve valve for coarse ore, raw gravel, thickener underflow, tailings lines, CIL/CIP circuits. 4 sleeve grades: ISA-Flex (abrasion), ISA-Extrem (high-temp), ISA-Shield (UV/ozone), ISA-Chem (chemical).
+6. DXST Slurry KGV — DN25–DN300, PN6–PN20. Natural rubber lined knife gate valve with 466% longer life. Proven 3→14 month life extension in copper mining thickener underflow. For extreme abrasion and dense slurry.
 
 Based on the answers, provide a structured recommendation using exactly this format:
 
@@ -141,6 +143,8 @@ export default function Configurator() {
   }
 
   const extractSlug = (text: string): string | null => {
+    if (/pinch\s*valve|ISA-Flex|ISA-Extrem|ISA-Shield|ISA-Chem/i.test(text)) return 'pinch-valve'
+    if (/DXST|slurry\s*KGV|rubber.lined/i.test(text)) return 'dxst-kgv'
     if (/knife\s*gate/i.test(text)) return 'knife-gate-valve'
     if (/butterfly/i.test(text)) return 'butterfly-valve'
     if (/\bgate\b/i.test(text)) return 'gate-valve'
