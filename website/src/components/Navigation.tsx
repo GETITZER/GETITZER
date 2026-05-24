@@ -1,11 +1,34 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Search, Menu, X, Zap } from 'lucide-react'
+import { Search, Menu, X, ChevronDown } from 'lucide-react'
 import SearchModal from './SearchModal'
+
+// SVG ISA logo mark — triangle in brand blue + orange accent
+function ISALogo() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Blue left triangle */}
+      <polygon points="2,30 16,2 22,30" fill="#2563eb" />
+      {/* Orange accent stripe */}
+      <polygon points="16,2 22,30 20,30 14,4" fill="#ea580c" opacity="0.85" />
+      {/* Dark right lines */}
+      <polygon points="22,30 30,30 24,10" fill="#374151" />
+      <polygon points="24,10 30,30 28,30 22,12" fill="#6b7280" opacity="0.6" />
+    </svg>
+  )
+}
+
+const productLinks = [
+  { label: 'Ball Valve', to: '/products/ball-valve' },
+  { label: 'Butterfly Valve', to: '/products/butterfly-valve' },
+  { label: 'Gate Valve', to: '/products/gate-valve' },
+  { label: 'Knife Gate Valve', to: '/products/knife-gate-valve' },
+]
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [productDropdown, setProductDropdown] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const location = useLocation()
 
@@ -17,6 +40,7 @@ export default function Navigation() {
 
   useEffect(() => {
     setMobileOpen(false)
+    setProductDropdown(false)
   }, [location.pathname])
 
   useEffect(() => {
@@ -30,42 +54,72 @@ export default function Navigation() {
     return () => window.removeEventListener('keydown', handler)
   }, [])
 
-  const navLinks = [
-    { label: 'Guides', to: '/guides' },
-    { label: 'Get a Quote', to: '/rfq' },
-  ]
-
   return (
     <>
       <header
         className={`sticky top-0 z-40 transition-all duration-200 ${
-          scrolled ? 'bg-white/95 backdrop-blur shadow-sm border-b border-slate-200' : 'bg-white border-b border-slate-100'
+          scrolled
+            ? 'bg-white/95 backdrop-blur shadow-md border-b border-slate-200'
+            : 'bg-white border-b border-slate-200'
         }`}
       >
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-6">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center">
-              <Zap className="w-4 h-4 text-white" />
+          <Link to="/" className="flex items-center gap-2.5 flex-shrink-0">
+            <ISALogo />
+            <div className="leading-none">
+              <div className="font-black text-sm tracking-tight text-slate-900">ISA VALVE SOLUTIONS.</div>
+              <div className="text-[10px] font-semibold text-isa-600 tracking-wider uppercase">& Industrial Supplies</div>
             </div>
-            <span className="font-bold text-lg text-slate-900 tracking-tight">GetItzer</span>
           </Link>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-1">
-            {navLinks.map(link => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  location.pathname.startsWith(link.to)
-                    ? 'text-brand-600 bg-brand-50'
+          <div className="hidden lg:flex items-center gap-1 flex-1">
+            {/* Products dropdown */}
+            <div className="relative" onMouseLeave={() => setProductDropdown(false)}>
+              <button
+                onMouseEnter={() => setProductDropdown(true)}
+                className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  location.pathname.startsWith('/products')
+                    ? 'text-brand-700 bg-brand-50'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                 }`}
               >
-                {link.label}
-              </Link>
-            ))}
+                Products <ChevronDown className="w-3.5 h-3.5" />
+              </button>
+
+              {productDropdown && (
+                <div className="absolute top-full left-0 mt-1 w-52 bg-white rounded-xl shadow-xl border border-slate-200 py-2 z-50">
+                  <Link
+                    to="/products"
+                    className="block px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+                  >
+                    All Products →
+                  </Link>
+                  <div className="border-t border-slate-100 my-1" />
+                  {productLinks.map(link => (
+                    <Link
+                      key={link.to}
+                      to={link.to}
+                      className="block px-4 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-700"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <Link
+              to="/rfq"
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                location.pathname === '/rfq'
+                  ? 'text-brand-700 bg-brand-50'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+              }`}
+            >
+              Request a Quote
+            </Link>
           </div>
 
           {/* Right side */}
@@ -73,22 +127,22 @@ export default function Navigation() {
             <button
               onClick={() => setSearchOpen(true)}
               className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 text-sm text-slate-500 hover:border-slate-300 hover:text-slate-700 transition-colors bg-slate-50"
-              aria-label="Open search"
+              aria-label="Search products"
             >
               <Search className="w-4 h-4" />
-              <span>Search</span>
-              <kbd className="text-xs bg-white border border-slate-200 px-1.5 py-0.5 rounded font-mono">⌘K</kbd>
+              <span className="hidden md:inline">Search</span>
+              <kbd className="hidden md:inline text-xs bg-white border border-slate-200 px-1.5 py-0.5 rounded font-mono">⌘K</kbd>
             </button>
 
             <Link
               to="/rfq"
-              className="hidden md:inline-flex items-center gap-1.5 bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+              className="hidden md:inline-flex items-center gap-1.5 bg-isa-600 hover:bg-isa-700 text-white text-sm font-bold px-4 py-2 rounded-lg transition-colors"
             >
-              Get started
+              Get a Quote
             </Link>
 
             <button
-              className="md:hidden p-2 rounded-lg hover:bg-slate-100 transition-colors"
+              className="lg:hidden p-2 rounded-lg hover:bg-slate-100 transition-colors"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
             >
@@ -99,27 +153,30 @@ export default function Navigation() {
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="md:hidden border-t border-slate-100 bg-white px-4 py-3 space-y-1">
+          <div className="lg:hidden border-t border-slate-100 bg-white px-4 py-3 space-y-1">
             <button
               onClick={() => { setSearchOpen(true); setMobileOpen(false) }}
               className="w-full flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50"
             >
-              <Search className="w-4 h-4" /> Search guides
+              <Search className="w-4 h-4" /> Search products
             </button>
-            {navLinks.map(link => (
+            <Link to="/products" className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50">
+              All Products
+            </Link>
+            {productLinks.map(link => (
               <Link
                 key={link.to}
                 to={link.to}
-                className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                className="block px-6 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-50"
               >
                 {link.label}
               </Link>
             ))}
             <Link
               to="/rfq"
-              className="block mt-2 text-center bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition-colors"
+              className="block mt-2 text-center bg-isa-600 hover:bg-isa-700 text-white text-sm font-bold px-4 py-2.5 rounded-lg transition-colors"
             >
-              Get started free
+              Request a Quote
             </Link>
           </div>
         )}

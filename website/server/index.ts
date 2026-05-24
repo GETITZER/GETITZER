@@ -166,29 +166,29 @@ app.post('/api/rfq', async (req, res) => {
       messages: [
         {
           role: 'user',
-          content: `Analyze this RFQ submission and provide a structured sales assessment.
+          content: `You are an application engineer at ISA Valve Solutions & Industrial Supplies. Analyze this valve RFQ and provide a structured engineering assessment.
 
-Submission:
-${Object.entries(formData)
-  .map(([k, v]) => `${k}: ${v}`)
-  .join('\n')}
+ISA product range: Ball Valve (DN15–DN600, PN16/PN40/ANSI 150-600) · Butterfly Valve (DN50–DN1200, PN10/PN16) · Gate Valve (DN50–DN1000, PN10/PN16) · Knife Gate Valve (DN50–DN600, PN10/PN16)
+
+RFQ Submission:
+${Object.entries(formData).map(([k, v]) => `${k}: ${v}`).join('\n')}
 
 Respond with these exact sections:
 
+## Valve Recommendation
+Which ISA valve type best suits this application and why. If already specified, confirm or suggest alternative.
+
 ## Qualification Score
-Rate 1-10 with one-sentence rationale.
+Rate 1-10 with one-sentence rationale (10 = fully specified, ready to quote).
 
 ## Key Requirements
-3-5 bullet points of the core requirements identified.
-
-## Recommended Next Steps
-2-3 concrete actions for the sales team.
+3-5 bullet points of the core technical requirements identified.
 
 ## Missing Information
-Any critical details needed before quoting.
+Critical details still needed before a firm quote can be issued.
 
-## Project Complexity
-Low / Medium / High with one-sentence explanation.`,
+## Next Steps
+2-3 concrete actions for the sales/engineering team.`,
         },
       ],
     })

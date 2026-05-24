@@ -1,20 +1,20 @@
-export interface GuideSection {
-  id: string
-  title: string
-  content: string
+export interface ProductSpec {
+  label: string
+  value: string
 }
 
-export interface Guide {
+export interface Product {
   id: string
   slug: string
-  title: string
-  excerpt: string
-  category: string
-  publishedAt: string
-  readTime: string
-  author: string
-  tags: string[]
-  sections: GuideSection[]
+  name: string
+  shortName: string
+  tagline: string
+  description: string
+  useCase: string
+  specs: ProductSpec[]
+  industries: string[]
+  compliance: string[]
+  icon: string
 }
 
 export interface ChatMessage {
@@ -28,8 +28,12 @@ export interface RFQFormData {
   email: string
   company: string
   industry: string
-  projectDescription: string
+  valveType: string
+  application: string
+  fluidType: string
+  sizeRange: string
+  pressureClass: string
+  quantity: string
   timeline: string
-  budget: string
   additionalInfo: string
 }

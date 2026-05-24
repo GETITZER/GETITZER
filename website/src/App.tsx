@@ -3,8 +3,8 @@ import Navigation from './components/Navigation'
 import Footer from './components/Footer'
 import ChatWidget from './components/ChatWidget'
 import Home from './pages/Home'
-import Guides from './pages/Guides'
-import GuideDetail from './pages/GuideDetail'
+import Products from './pages/Products'
+import ProductDetail from './pages/ProductDetail'
 import RFQ from './pages/RFQ'
 
 export default function App() {
@@ -15,8 +15,8 @@ export default function App() {
         <main className="flex-1">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/guides" element={<Guides />} />
-            <Route path="/guides/:slug" element={<GuideDetail />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/products/:slug" element={<ProductDetail />} />
             <Route path="/rfq" element={<RFQ />} />
           </Routes>
         </main>
