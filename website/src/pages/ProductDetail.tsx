@@ -6,6 +6,7 @@ import { streamGenerate } from '../hooks/useChat'
 import { usePageMeta } from '../hooks/usePageMeta'
 import SchemaMarkup from '../components/SchemaMarkup'
 import FAQSection from '../components/FAQSection'
+import ValveIllustration from '../components/ValveIllustration'
 import { productFaqs } from '../data/faqs'
 
 function buildProductSchema(product: ReturnType<typeof getProduct>) {
@@ -112,14 +113,26 @@ export default function ProductDetail() {
         <div>
           {/* Product hero */}
           <div className="mb-10">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="text-4xl">{product.icon}</span>
+            <div className="grid sm:grid-cols-[1fr_280px] gap-8 items-start">
               <div>
-                <h1 className="text-3xl sm:text-4xl font-black text-slate-900">{product.name}</h1>
-                <p className="text-isa-600 font-semibold mt-0.5">{product.tagline}</p>
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-3xl">{product.icon}</span>
+                  <div>
+                    <h1 className="text-3xl sm:text-4xl font-black text-slate-900">{product.name}</h1>
+                    <p className="text-isa-600 font-semibold mt-0.5">{product.tagline}</p>
+                  </div>
+                </div>
+                <p className="text-slate-600 leading-relaxed text-lg">{product.description}</p>
+              </div>
+              {/* Technical illustration */}
+              <div className="hidden sm:block bg-slate-50 border border-slate-200 rounded-2xl p-6">
+                <ValveIllustration
+                  type={product.slug as 'ball-valve' | 'butterfly-valve' | 'gate-valve' | 'knife-gate-valve'}
+                  className="w-full"
+                />
+                <p className="text-xs text-center text-slate-400 mt-3 font-medium">Schematic illustration — {product.name}</p>
               </div>
             </div>
-            <p className="text-slate-600 leading-relaxed text-lg max-w-2xl">{product.description}</p>
           </div>
 
           {/* Spec table */}

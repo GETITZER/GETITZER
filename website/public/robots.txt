@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.isa-valve.co.za/sitemap.xml
+
+# Block SEO admin tools from indexing internal tool pages
+Disallow: /seo
