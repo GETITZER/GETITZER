@@ -23,7 +23,8 @@ const orgSchema = {
   description: 'ISO 9001:2015 certified industrial valve supplier in South Africa. Ball valves, butterfly valves, gate valves, and knife gate valves for mining, water treatment, oil & gas, and chemical industries.',
   url: 'https://www.isa-valve.co.za',
   logo: 'https://www.isa-valve.co.za/logo.png',
-  telephone: '+27-000-000-0000',
+  telephone: '+27-060-688-5648',
+  email: 'isa-valve@outlook.com',
   address: {
     '@type': 'PostalAddress',
     addressCountry: 'ZA',

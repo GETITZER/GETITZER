@@ -35,8 +35,8 @@ function getMailer() {
 }
 
 async function sendMail(subject: string, html: string) {
-  const to   = process.env.EMAIL_TO   ?? 'isaauditgrade@gmail.com'
-  const from = process.env.EMAIL_FROM ?? 'noreply@isa-valve.co.za'
+  const to   = process.env.EMAIL_TO   ?? 'isa-valve@outlook.com'
+  const from = process.env.EMAIL_FROM ?? 'isa-valve@outlook.com'
   const mailer = getMailer()
   if (!mailer) {
     console.log(`\n📧 [EMAIL — no SMTP configured]\nTo: ${to}\nSubject: ${subject}\n${html.replace(/<[^>]+>/g, ' ')}\n`)

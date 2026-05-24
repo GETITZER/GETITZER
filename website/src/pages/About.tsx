@@ -231,23 +231,23 @@ export default function About() {
             </p>
 
             <div className="space-y-5 mb-8">
-              <a href="tel:+27000000000" className="flex items-center gap-4 p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors group">
+              <a href="tel:+27060688548" className="flex items-center gap-4 p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors group">
                 <div className="w-10 h-10 rounded-lg bg-brand-100 flex items-center justify-center flex-shrink-0">
                   <Phone className="w-5 h-5 text-brand-600" />
                 </div>
                 <div>
                   <p className="text-xs text-slate-400 font-medium">Phone</p>
-                  <p className="font-bold text-slate-900 group-hover:text-brand-700">+27 (0) 00 000 0000</p>
+                  <p className="font-bold text-slate-900 group-hover:text-brand-700">+27 060 688 5648</p>
                 </div>
               </a>
 
-              <a href="mailto:info@isavalve.co.za" className="flex items-center gap-4 p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors group">
+              <a href="mailto:isa-valve@outlook.com" className="flex items-center gap-4 p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors group">
                 <div className="w-10 h-10 rounded-lg bg-brand-100 flex items-center justify-center flex-shrink-0">
                   <Mail className="w-5 h-5 text-brand-600" />
                 </div>
                 <div>
                   <p className="text-xs text-slate-400 font-medium">Email</p>
-                  <p className="font-bold text-slate-900 group-hover:text-brand-700">info@isavalve.co.za</p>
+                  <p className="font-bold text-slate-900 group-hover:text-brand-700">isa-valve@outlook.com</p>
                 </div>
               </a>
 
@@ -307,7 +307,7 @@ export default function About() {
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label className="text-xs font-bold text-slate-700 block mb-1.5">Phone</label>
-                    <input value={form.phone} onChange={e => update('phone', e.target.value)} placeholder="+27 (0) 00 000 0000" className="field-input" />
+                    <input value={form.phone} onChange={e => update('phone', e.target.value)} placeholder="+27 060 688 5648" className="field-input" />
                   </div>
                   <div>
                     <label className="text-xs font-bold text-slate-700 block mb-1.5">Company</label>

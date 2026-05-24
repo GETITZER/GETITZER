@@ -151,8 +151,8 @@ export default function Navigation() {
 
           {/* Right side */}
           <div className="flex items-center gap-2">
-            <a href="tel:+27000000000" className="hidden xl:flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-700">
-              <Phone className="w-3.5 h-3.5" /> +27 (0) 00 000 0000
+            <a href="tel:+27060688548" className="hidden xl:flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-700">
+              <Phone className="w-3.5 h-3.5" /> +27 060 688 5648
             </a>
 
             <a
@@ -191,8 +191,8 @@ export default function Navigation() {
         {/* Mobile menu */}
         {mobileOpen && (
           <div className="lg:hidden border-t border-slate-100 bg-white px-4 py-3 space-y-1">
-            <a href="tel:+27000000000" className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold text-isa-700 bg-isa-50">
-              <Phone className="w-4 h-4" /> +27 (0) 00 000 0000
+            <a href="tel:+27060688548" className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold text-isa-700 bg-isa-50">
+              <Phone className="w-4 h-4" /> +27 060 688 5648
             </a>
             <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold" style={{ color: '#25D366' }}>
               <WhatsAppIcon className="w-4 h-4" /> Chat on WhatsApp
