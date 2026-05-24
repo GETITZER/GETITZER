@@ -17,6 +17,7 @@ import SEODashboard from './pages/SEODashboard'
 import About from './pages/About'
 import DeliveryFAQ from './pages/DeliveryFAQ'
 import Catalog from './pages/Catalog'
+import NotFound from './pages/NotFound'
 
 const orgSchema = {
   '@context': 'https://schema.org',
@@ -55,6 +56,7 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/delivery-faq" element={<DeliveryFAQ />} />
             <Route path="/catalog" element={<Catalog />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
         <Footer />

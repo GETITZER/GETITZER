@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Shield, CheckCircle, TrendingDown, Clock, DollarSign, Zap, Play, Star, ChevronRight, Eye } from 'lucide-react'
+import { ArrowRight, Shield, CheckCircle, TrendingDown, Clock, DollarSign, Zap, Star, ChevronRight, Eye } from 'lucide-react'
 import { products, industries } from '../data/products'
 import ProductModal from '../components/ProductModal'
 import ValveIllustration from '../components/ValveIllustration'
@@ -236,24 +236,61 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── VIDEO PLACEHOLDER (Principle #2) ──────────────────────── */}
+      {/* ── ENGINEERING CREDENTIALS ───────────────────────────────── */}
       <section className="py-16 bg-slate-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-xs font-black text-isa-500 uppercase tracking-widest mb-3">See Our Valves in the Field</p>
-          <h2 className="text-2xl font-black text-white mb-4">Watch ceramic-lined knife gate valves in active mining slurry service</h2>
-          {/* Replace this div with a real <video> or iframe when footage is available */}
-          <div className="relative aspect-video bg-slate-800 rounded-2xl border border-slate-700 flex items-center justify-center cursor-pointer group hover:bg-slate-750 transition-colors overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent" />
-            <div className="relative z-10 flex flex-col items-center gap-3">
-              <div className="w-16 h-16 rounded-full bg-isa-500 group-hover:bg-isa-400 flex items-center justify-center transition-colors shadow-xl">
-                <Play className="w-7 h-7 text-white ml-1" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-xs font-black text-isa-500 uppercase tracking-widest text-center mb-10">Engineering Credentials &amp; Quality Assurance</p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                cert: 'ISO 9001:2015',
+                title: 'Quality Management',
+                desc: 'Every valve manufactured under a certified quality management system with full material traceability and documented test records.',
+                color: 'border-brand-500',
+                badge: 'bg-brand-700',
+              },
+              {
+                cert: 'API 6D',
+                title: 'Pipeline Valves',
+                desc: 'Ball valves and gate valves certified to API 6D for upstream and midstream pipeline service. Hydrocarbon and H₂S rated.',
+                color: 'border-isa-500',
+                badge: 'bg-isa-700',
+              },
+              {
+                cert: 'SABS',
+                title: 'SA Bureau of Standards',
+                desc: 'Gate and butterfly valves compliant with SABS 664 for South African municipal water and industrial applications.',
+                color: 'border-emerald-500',
+                badge: 'bg-emerald-700',
+              },
+              {
+                cert: 'ISO 5208 Grade A',
+                title: 'Zero Leakage',
+                desc: 'ISA Pinch Valve Series certified to ISO 5208 Grade A — the highest leakage classification. Audit-grade shut-off for slurry and mining.',
+                color: 'border-violet-500',
+                badge: 'bg-violet-700',
+              },
+            ].map(item => (
+              <div key={item.cert} className={`bg-slate-800 rounded-2xl p-6 border-t-4 ${item.color} flex flex-col gap-3`}>
+                <span className={`self-start text-xs font-black text-white px-2.5 py-1 rounded-full ${item.badge}`}>{item.cert}</span>
+                <h3 className="font-black text-white text-base">{item.title}</h3>
+                <p className="text-slate-400 text-sm leading-relaxed flex-1">{item.desc}</p>
               </div>
-              <p className="text-sm text-slate-400">Operations footage coming soon</p>
-            </div>
-            {/* Placeholder background suggestion */}
-            <div className="absolute inset-0 opacity-10 bg-gradient-to-br from-brand-400 to-isa-600" />
+            ))}
           </div>
-          <p className="text-xs text-slate-500 mt-3">Procurement teams and engineers need to see your capabilities. Replace with real facility footage.</p>
+          <div className="mt-10 grid sm:grid-cols-3 gap-4">
+            {[
+              { value: '1.5×', label: 'Rated pressure', sub: 'Every valve hydrostatic tested before dispatch' },
+              { value: '100%', label: 'Documentation', sub: 'Material certs, test reports, CoC included with every order' },
+              { value: '25 yr', label: 'Field experience', sub: 'Mining, water, oil & gas, chemical, HVAC' },
+            ].map(stat => (
+              <div key={stat.value} className="bg-slate-800/60 rounded-xl p-5 text-center border border-slate-700">
+                <div className="text-2xl font-black text-isa-400 mb-1">{stat.value}</div>
+                <div className="text-sm font-bold text-white mb-0.5">{stat.label}</div>
+                <div className="text-xs text-slate-500">{stat.sub}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

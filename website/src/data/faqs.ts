@@ -89,4 +89,48 @@ export const productFaqs: Record<string, FAQ[]> = {
       a: 'ISA knife gate valves are designed for slurry up to 70% solids by weight, depending on particle size and shape. For extremely high-concentration or coarse-particle slurry (e.g., coarse ore or sand), ceramic-lined bodies with hardened gates are recommended. The valve must be installed in a vertical or near-vertical pipeline orientation for reliable seating. Contact ISA engineering for applications above 50% solids.',
     },
   ],
+  'pinch-valve': [
+    {
+      q: 'What is the ISO 5208 Grade A certification on the ISA Pinch Valve?',
+      a: 'ISO 5208 defines leakage classifications for industrial valves during seat acceptance testing. Grade A is the most stringent — it permits zero measurable leakage under hydrostatic pressure. The ISA Pinch Valve Series is certified to Grade A, making it suitable for audit-grade isolation duties in mining and mineral processing where any leakage past the shut-off valve is unacceptable. Test certificates are supplied with every valve.',
+    },
+    {
+      q: 'How do I select the correct ISA sleeve grade for my application?',
+      a: 'ISA-Flex™ is the standard choice for general mining slurry, thickener underflow, and tailings lines. ISA-Extrem™ is specified for high-velocity slurry, autoclave/POX feed, and high-temperature service up to 110°C. ISA-Shield™ is used for outdoor and above-ground pipelines exposed to UV radiation and ozone. ISA-Chem™ is formulated for CIL/CIP circuits, acid wash, and reagent dosing lines where chemical attack is the primary failure mode. Contact ISA engineering if unsure — we will specify based on your exact fluid and conditions.',
+    },
+    {
+      q: 'How long does a pinch valve sleeve last and how is it replaced?',
+      a: 'Sleeve life depends on application severity. In thickener underflow service, ISA-Flex™ sleeves typically last 6–18 months before replacement is required. ISA recommends stocking 1 spare sleeve per 3 installed valves. Sleeve replacement is carried out in-situ without removing the valve from the pipeline — unbolt the end plates, extract the worn sleeve, insert the new one, and re-torque. No specialist tools or welding are required. Typical replacement time is under 30 minutes.',
+    },
+    {
+      q: 'Can the ISA Pinch Valve be used with pneumatic or electric actuation?',
+      a: 'Yes. The standard configuration is manual handwheel operation via a rising spindle. Pneumatic double-acting or spring-return cylinder actuation is available for automated isolation and remote control. Electric actuators are offered for low-cycle or quarter-hourly operation. For hazardous mining atmospheres, ATEX-rated actuators and intrinsically safe limit switches are available on request. Actuated assemblies are factory assembled and stroke-tested before dispatch.',
+    },
+    {
+      q: 'What flange standards does the ISA Pinch Valve comply with?',
+      a: 'The ISA Pinch Valve Series is drilled to SANS 1123 (Table 1000/1), BS10 Table E and Table D, and ANSI 150 Class. This multi-standard drilling allows direct bolt-up to existing South African, British, and ANSI-flanged pipelines without adapters. PN16 pressure rating (1600 kPa) is standard. Consult ISA for PN25 or higher-pressure requirements.',
+    },
+  ],
+  'dxst-kgv': [
+    {
+      q: 'What does "466% longer life" mean and where was it proven?',
+      a: 'Under standard operating conditions in a copper mining thickener underflow circuit in the Northern Cape, standard knife gate valves were failing within 3 months of installation. ISA DXST Series valves with premium injection-moulded natural rubber lining achieved 14-month service life in the same application — 466% longer than the incumbent. This equated to 72% less maintenance downtime and R1.2 million per year in parts and shutdown cost savings.',
+    },
+    {
+      q: 'What is the natural rubber lining and how does it protect the valve?',
+      a: 'The DXST Series uses 100% premium natural rubber, injection-moulded (not cast) as a continuous one-piece lining that covers the entire wetted surface — body bore, gate passage, and seat area. Injection moulding eliminates the cold-pours and thickness variations common in cast linings. The rubber absorbs abrasive impact through elastic deformation, dramatically reducing erosion compared to hard-surface valves. Operating range is -10°C to +85°C. Above 85°C, contact ISA for EPDM or Viton-lined options.',
+    },
+    {
+      q: 'What sizes and pressure classes does the DXST Series cover?',
+      a: 'The DXST Series is available from DN25 to DN300 in standard size increments. Pressure ratings range from PN6 to PN20 depending on size. For DN350 and above or PN25+ requirements, contact ISA — larger sizes are available on extended lead time. The cast iron body uses multi-standard flange drillings (SANS 1123, BS10, ANSI 150) for universal compatibility.',
+    },
+    {
+      q: 'Can the DXST KGV handle bi-directional flow?',
+      a: 'The DXST Series is designed for uni-directional flow in the standard configuration. The lining geometry and gate seating are optimised for slurry flowing in one defined direction. Bi-directional versions are available on request with reinforced seating geometry. For applications with regular flow reversal (e.g., backwash circuits), specify the requirement when ordering so the correct configuration is supplied.',
+    },
+    {
+      q: 'What maintenance does the DXST Slurry KGV require?',
+      a: 'The precision-machined stainless steel rising spindle is self-indicating (position visible at a glance) and requires only periodic grease application to the stem threads — non-hydrocarbon grease only. The gland packing should be checked every 6 months and re-torqued or replaced if leakage is observed. Lining inspection is recommended at each planned maintenance shutdown. No special tools are required. ISA recommends stocking one replacement lining kit per 5 installed valves.',
+    },
+  ],
 }

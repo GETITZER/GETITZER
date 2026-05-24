@@ -22,7 +22,14 @@ const productLinks = [
   { label: 'DXST Slurry KGV', to: '/products/dxst-kgv' },
 ]
 
-const industryLinks = ['Mining', 'Water Treatment', 'Oil & Gas', 'Chemical & Petrochemical', 'HVAC', 'Pulp & Paper']
+const industryLinks = [
+  { label: 'Mining', to: '/industries/mining' },
+  { label: 'Water Treatment', to: '/industries/water-treatment' },
+  { label: 'Oil & Gas', to: '/industries/oil-gas' },
+  { label: 'Chemical & Petrochemical', to: '/industries/chemical' },
+  { label: 'HVAC', to: '/industries/hvac' },
+  { label: 'Pulp & Paper', to: '/industries/pulp-paper' },
+]
 
 export default function Footer() {
   return (
@@ -86,8 +93,8 @@ export default function Footer() {
             <h3 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">Industries</h3>
             <ul className="space-y-2.5">
               {industryLinks.map(ind => (
-                <li key={ind}>
-                  <span className="text-sm">{ind}</span>
+                <li key={ind.to}>
+                  <Link to={ind.to} className="text-sm hover:text-white transition-colors">{ind.label}</Link>
                 </li>
               ))}
             </ul>
