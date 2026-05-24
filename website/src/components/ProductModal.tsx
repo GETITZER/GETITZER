@@ -59,7 +59,7 @@ export default function ProductModal({ product, onClose }: Props) {
       onClick={e => { if (e.target === e.currentTarget) close() }}
     >
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm" onClick={close} />
 
       {/* Modal */}
       <div className={`relative w-full sm:max-w-4xl max-h-[96vh] overflow-y-auto rounded-t-3xl sm:rounded-3xl bg-white shadow-2xl transition-all duration-300 ${visible ? 'translate-y-0' : 'translate-y-8'}`}>
@@ -210,7 +210,7 @@ export default function ProductModal({ product, onClose }: Props) {
               <WhatsAppIcon className="w-4 h-4" /> WhatsApp Query
             </a>
           </div>
-          {['ball-valve','butterfly-valve','gate-valve','knife-gate-valve'].includes(product.slug) && (
+          {['ball-valve','butterfly-valve','gate-valve','knife-gate-valve','pinch-valve','dxst-kgv'].includes(product.slug) && (
             <Link
               to={`/products/${product.slug}`}
               onClick={close}

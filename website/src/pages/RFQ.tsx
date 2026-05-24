@@ -19,6 +19,8 @@ const valveOptions = [
   'Butterfly Valve',
   'Gate Valve',
   'Knife Gate Valve',
+  'ISA Pinch Valve Series',
+  'DXST Slurry KGV',
   'Not sure — recommend one for me',
 ]
 

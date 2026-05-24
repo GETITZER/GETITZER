@@ -21,6 +21,8 @@ const productLinks = [
   { label: 'Butterfly Valve', to: '/products/butterfly-valve', desc: 'DN50–DN1200 · PN10/PN16' },
   { label: 'Gate Valve', to: '/products/gate-valve', desc: 'DN50–DN1000 · PN10/PN16' },
   { label: 'Knife Gate Valve', to: '/products/knife-gate-valve', desc: 'DN50–DN600 · Slurry service' },
+  { label: 'ISA Pinch Valve', to: '/products/pinch-valve', desc: 'PN16 · ISO 5208 Grade A · Mining' },
+  { label: 'DXST Slurry KGV', to: '/products/dxst-kgv', desc: 'DN25–DN300 · 466% longer life' },
 ]
 
 const industryLinks = [
@@ -82,7 +84,7 @@ export default function Navigation() {
                 Products <ChevronDown className="w-3.5 h-3.5" />
               </button>
               {productDropdown && (
-                <div className="absolute top-full left-0 mt-1 w-72 bg-white rounded-xl shadow-xl border border-slate-200 py-2 z-50">
+                <div className="absolute top-full left-0 mt-1 w-80 bg-white rounded-xl shadow-xl border border-slate-200 py-2 z-50">
                   <Link to="/products" className="block px-4 py-2 text-sm font-bold text-slate-700 hover:bg-slate-50">
                     All Products →
                   </Link>
@@ -154,7 +156,7 @@ export default function Navigation() {
 
           {/* Right side */}
           <div className="flex items-center gap-2">
-            <a href="tel:+27060688548" className="hidden xl:flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-700">
+            <a href="tel:+270606885648" className="hidden xl:flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-700 whitespace-nowrap">
               <Phone className="w-3.5 h-3.5" /> +27 060 688 5648
             </a>
 
@@ -194,7 +196,7 @@ export default function Navigation() {
         {/* Mobile menu */}
         {mobileOpen && (
           <div className="lg:hidden border-t border-slate-100 bg-white px-4 py-3 space-y-1">
-            <a href="tel:+27060688548" className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold text-isa-700 bg-isa-50">
+            <a href="tel:+270606885648" className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold text-isa-700 bg-isa-50">
               <Phone className="w-4 h-4" /> +27 060 688 5648
             </a>
             <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold" style={{ color: '#25D366' }}>
