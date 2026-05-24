@@ -3,6 +3,14 @@ export interface ProductSpec {
   value: string
 }
 
+export interface ProductVariant {
+  name: string
+  subtitle: string
+  color: string
+  desc: string
+  applications: string[]
+}
+
 export interface Product {
   id: string
   slug: string
@@ -15,6 +23,11 @@ export interface Product {
   industries: string[]
   compliance: string[]
   icon: string
+  badge?: string
+  badgeColor?: 'isa' | 'brand' | 'green' | 'red'
+  highlights?: string[]
+  variants?: ProductVariant[]
+  featured?: boolean
 }
 
 export interface ChatMessage {

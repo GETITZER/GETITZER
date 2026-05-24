@@ -1,6 +1,10 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Shield, CheckCircle, TrendingDown, Clock, DollarSign, Zap, Play, Star, ChevronRight } from 'lucide-react'
+import { ArrowRight, Shield, CheckCircle, TrendingDown, Clock, DollarSign, Zap, Play, Star, ChevronRight, Eye } from 'lucide-react'
 import { products, industries } from '../data/products'
+import ProductModal from '../components/ProductModal'
+import ValveIllustration from '../components/ValveIllustration'
+import type { Product } from '../types'
 
 // Principle #3: Certifications above the fold — shown as prominent trust badges
 const certBadges = [
@@ -38,7 +42,19 @@ const qualitySteps = [
   { n: '3', title: 'Performance Validation', desc: 'Automated cycle testing simulates years of service to verify long-term reliability.' },
 ]
 
+const featuredSlugs = ['pinch-valve', 'dxst-kgv', 'knife-gate-valve', 'ball-valve']
+const featuredProducts = featuredSlugs.map(s => products.find(p => p.slug === s)).filter(Boolean) as Product[]
+
+const tcoSteps = [
+  { label: 'Digital Precision Sizing', icon: '⊙' },
+  { label: 'ISO-Certified QA Testing', icon: '✓' },
+  { label: 'DXST Application Materials', icon: '◈' },
+  { label: '24/7 Global Support', icon: '⊕' },
+]
+
 export default function Home() {
+  const [modalProduct, setModalProduct] = useState<Product | null>(null)
+
   return (
     <div>
       {/* ── HERO (Principles #1 #3 #11) ─────────────────────────── */}
@@ -115,6 +131,93 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── FEATURED PRODUCTS SPOTLIGHT ────────────────────────────── */}
+      <section className="py-16 bg-slate-50 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-end justify-between mb-8 gap-4">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="inline-flex items-center gap-1.5 text-xs font-black bg-isa-600 text-white px-3 py-1 rounded-full">
+                  <Shield className="w-3 h-3" /> NEW PRODUCTS
+                </span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900">Featured Product Innovations</h2>
+              <p className="text-slate-500 mt-1 text-sm max-w-lg">Click any card to see full specifications, certifications, and sleeve options.</p>
+            </div>
+            <Link to="/products" className="hidden sm:flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-800 whitespace-nowrap">
+              All Products <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {featuredProducts.map(product => {
+              const slugType = product.slug as 'ball-valve' | 'butterfly-valve' | 'gate-valve' | 'knife-gate-valve' | 'pinch-valve' | 'dxst-kgv'
+              const badgeBg = product.badgeColor === 'red' ? 'bg-red-600' : product.badgeColor === 'green' ? 'bg-green-600' : product.badgeColor === 'isa' ? 'bg-isa-600' : 'bg-brand-600'
+              return (
+                <button
+                  key={product.id}
+                  onClick={() => setModalProduct(product)}
+                  className="group text-left card p-0 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-2 border-transparent hover:border-brand-200 focus:outline-none focus:ring-2 focus:ring-brand-500"
+                >
+                  {/* Visual panel */}
+                  <div className="relative h-44 bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center p-4">
+                    <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'repeating-linear-gradient(45deg,#fff 0,#fff 1px,transparent 0,transparent 50%)', backgroundSize: '20px 20px' }} />
+                    {product.badge && (
+                      <div className={`absolute top-3 left-3 text-[10px] font-black px-2 py-0.5 rounded-full text-white ${badgeBg}`}>
+                        {product.badge}
+                      </div>
+                    )}
+                    <ValveIllustration type={slugType} className="w-full h-full max-h-32" />
+                    <div className="absolute inset-0 bg-brand-600/0 group-hover:bg-brand-600/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                      <div className="bg-white/95 text-brand-700 font-bold text-xs px-4 py-2 rounded-full flex items-center gap-1.5 shadow-lg">
+                        <Eye className="w-3.5 h-3.5" /> View Specs
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Info panel */}
+                  <div className="p-4">
+                    <h3 className="font-black text-sm text-slate-900 group-hover:text-brand-700 transition-colors leading-tight">{product.name}</h3>
+                    <p className="text-xs text-isa-600 font-semibold mt-0.5 mb-2 leading-tight line-clamp-1">{product.tagline}</p>
+                    {product.highlights?.slice(0, 2).map(h => (
+                      <p key={h} className="text-xs text-slate-500 leading-tight flex items-start gap-1.5 mb-1">
+                        <CheckCircle className="w-3 h-3 text-green-500 flex-shrink-0 mt-0.5" />
+                        <span className="line-clamp-1">{h}</span>
+                      </p>
+                    ))}
+                  </div>
+                </button>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── TCO EQUATION STRIP ─────────────────────────────────────── */}
+      <section className="bg-navy border-b border-white/10 py-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-xs text-blue-400 font-bold uppercase tracking-widest text-center mb-6">The ISA Total Cost of Ownership Equation</p>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            {tcoSteps.map((step, i) => (
+              <div key={step.label} className="flex items-center gap-3">
+                <div className="flex items-center gap-2 bg-white/10 border border-white/20 rounded-xl px-4 py-2.5">
+                  <span className="text-isa-400 font-black text-base">{step.icon}</span>
+                  <span className="text-white text-xs font-semibold">{step.label}</span>
+                </div>
+                {i < tcoSteps.length - 1 && <span className="text-slate-500 font-bold text-lg">+</span>}
+              </div>
+            ))}
+            <span className="text-slate-500 font-bold text-xl">=</span>
+            <div className="bg-isa-600 border border-isa-500 rounded-xl px-4 py-2.5 max-w-xs text-center">
+              <p className="text-white font-black text-xs leading-tight">3x–5x lifecycle · Near-zero downtime · Compounded energy savings</p>
+            </div>
+          </div>
+          <p className="text-center text-slate-400 text-xs italic mt-5 max-w-xl mx-auto">
+            "You aren't just buying a valve — you are buying an engineered ecosystem that permanently reduces your baseline operating costs."
+          </p>
         </div>
       </section>
 
@@ -361,6 +464,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <ProductModal product={modalProduct} onClose={() => setModalProduct(null)} />
     </div>
   )
 }
