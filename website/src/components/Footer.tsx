@@ -71,6 +71,11 @@ export default function Footer() {
                   All Products →
                 </Link>
               </li>
+              <li>
+                <Link to="/catalog" className="text-sm hover:text-white transition-colors">
+                  Full Catalog (40+ Models)
+                </Link>
+              </li>
             </ul>
           </div>
 

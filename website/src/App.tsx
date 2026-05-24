@@ -16,6 +16,7 @@ import BlogPost from './pages/BlogPost'
 import SEODashboard from './pages/SEODashboard'
 import About from './pages/About'
 import DeliveryFAQ from './pages/DeliveryFAQ'
+import Catalog from './pages/Catalog'
 
 const orgSchema = {
   '@context': 'https://schema.org',
@@ -53,6 +54,7 @@ export default function App() {
             <Route path="/seo" element={<SEODashboard />} />
             <Route path="/about" element={<About />} />
             <Route path="/delivery-faq" element={<DeliveryFAQ />} />
+            <Route path="/catalog" element={<Catalog />} />
           </Routes>
         </main>
         <Footer />
