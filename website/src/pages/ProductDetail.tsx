@@ -1,6 +1,7 @@
 import { useState } from 'react'
+import type React from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { ArrowLeft, ArrowRight, ChevronRight, CheckCircle, Sparkles, Loader2 } from 'lucide-react'
+import { ArrowRight, ChevronRight, CheckCircle, Sparkles, Loader2, FileText, Send } from 'lucide-react'
 import { getProduct, getRelatedProducts } from '../data/products'
 import { streamGenerate } from '../hooks/useChat'
 import { usePageMeta } from '../hooks/usePageMeta'
@@ -54,11 +55,43 @@ export default function ProductDetail() {
   const [generatedSpec, setGeneratedSpec] = useState('')
   const [generating, setGenerating] = useState(false)
   const [genError, setGenError] = useState<string | null>(null)
+  const [datasheetOpen, setDatasheetOpen] = useState(false)
+  const [dsName, setDsName] = useState('')
+  const [dsEmail, setDsEmail] = useState('')
+  const [dsCompany, setDsCompany] = useState('')
+  const [dsSending, setDsSending] = useState(false)
+  const [dsSent, setDsSent] = useState(false)
+  const [dsError, setDsError] = useState<string | null>(null)
 
   usePageMeta(
     product ? `${product.name} — Technical Specifications` : 'Product',
     product?.description,
   )
+
+  const handleDatasheetRequest = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setDsSending(true)
+    setDsError(null)
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: dsName,
+          email: dsEmail,
+          message: `Technical datasheet request for: ${product?.name}\nCompany: ${dsCompany || 'Not provided'}`,
+          phone: '',
+          company: dsCompany,
+        }),
+      })
+      if (!res.ok) throw new Error('Request failed')
+      setDsSent(true)
+    } catch {
+      setDsError('Failed to send request. Please email us directly.')
+    } finally {
+      setDsSending(false)
+    }
+  }
 
   if (!product) {
     return (
@@ -251,6 +284,71 @@ export default function ProductDetail() {
             <p className="text-xs text-slate-500 leading-relaxed">
               All {product.name.toLowerCase()}s are tested at 1.5× rated pressure before delivery. Full material traceability included.
             </p>
+          </div>
+
+          {/* Datasheet request */}
+          <div className="border border-slate-200 bg-white rounded-xl p-5">
+            <div className="flex items-center gap-2 mb-3">
+              <FileText className="w-4 h-4 text-brand-600" />
+              <p className="text-sm font-bold text-slate-900">Technical Datasheet</p>
+            </div>
+            {dsSent ? (
+              <div className="text-center py-2">
+                <CheckCircle className="w-8 h-8 text-green-500 mx-auto mb-2" />
+                <p className="text-sm font-semibold text-slate-800">Request received!</p>
+                <p className="text-xs text-slate-500 mt-1">We'll email you the datasheet within 1 business day.</p>
+              </div>
+            ) : !datasheetOpen ? (
+              <>
+                <p className="text-xs text-slate-500 mb-3 leading-relaxed">
+                  Get the full technical datasheet for the {product.name}, including dimensional drawings, material grades, and test certificates.
+                </p>
+                <button
+                  onClick={() => setDatasheetOpen(true)}
+                  className="flex items-center justify-center gap-2 w-full border border-brand-400 text-brand-700 hover:bg-brand-50 font-semibold px-4 py-2.5 rounded-xl transition-colors text-sm"
+                >
+                  <FileText className="w-4 h-4" /> Request Datasheet
+                </button>
+              </>
+            ) : (
+              <form onSubmit={handleDatasheetRequest} className="space-y-2.5">
+                <input
+                  required
+                  type="text"
+                  placeholder="Your name"
+                  value={dsName}
+                  onChange={e => setDsName(e.target.value)}
+                  className="w-full text-sm border border-slate-200 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+                />
+                <input
+                  required
+                  type="email"
+                  placeholder="Work email"
+                  value={dsEmail}
+                  onChange={e => setDsEmail(e.target.value)}
+                  className="w-full text-sm border border-slate-200 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+                />
+                <input
+                  type="text"
+                  placeholder="Company (optional)"
+                  value={dsCompany}
+                  onChange={e => setDsCompany(e.target.value)}
+                  className="w-full text-sm border border-slate-200 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+                />
+                {dsError && <p className="text-xs text-red-600 bg-red-50 rounded px-2 py-1">{dsError}</p>}
+                <button
+                  type="submit"
+                  disabled={dsSending}
+                  className="flex items-center justify-center gap-2 w-full bg-brand-600 hover:bg-brand-700 disabled:opacity-60 text-white font-semibold px-4 py-2.5 rounded-xl transition-colors text-sm"
+                >
+                  {dsSending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                  {dsSending ? 'Sending…' : 'Send Request'}
+                </button>
+                <button type="button" onClick={() => setDatasheetOpen(false)} className="w-full text-xs text-slate-400 hover:text-slate-600 text-center pt-1">
+                  Cancel
+                </button>
+              </form>
+            )}
           </div>
 
           {/* SEO Tools link */}
