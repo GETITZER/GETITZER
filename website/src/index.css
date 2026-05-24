@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans text-slate-900 bg-white;
+  }
+}
+
+@layer components {
+  .prose-guide h2 {
+    @apply text-2xl font-bold text-slate-900 mt-10 mb-4;
+  }
+
+  .prose-guide h3 {
+    @apply text-xl font-semibold text-slate-800 mt-8 mb-3;
+  }
+
+  .prose-guide p {
+    @apply text-slate-600 leading-relaxed mb-5;
+  }
+
+  .prose-guide ul {
+    @apply list-disc list-inside text-slate-600 mb-5 space-y-1;
+  }
+
+  .prose-guide strong {
+    @apply font-semibold text-slate-800;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-5 py-2.5 rounded-lg transition-colors duration-150;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 border border-slate-300 hover:border-slate-400 text-slate-700 font-medium px-5 py-2.5 rounded-lg transition-colors duration-150 bg-white;
+  }
+
+  .card {
+    @apply bg-white border border-slate-200 rounded-xl hover:shadow-md transition-all duration-200;
+  }
+
+  .field-input {
+    @apply w-full text-sm border border-slate-200 rounded-xl px-3.5 py-2.5 outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition bg-white text-slate-900 placeholder-slate-400;
+  }
+}
+
+/* Chat streaming cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink::after {
+  content: '▋';
+  @apply text-brand-600;
+  animation: blink 1s step-end infinite;
+}
+
+/* Smooth slide-up for chat panel */
+@keyframes slideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.slide-up {
+  animation: slideUp 0.25s ease-out forwards;
+}
+
+/* Search modal fade */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.fade-in {
+  animation: fadeIn 0.15s ease-out forwards;
+}
