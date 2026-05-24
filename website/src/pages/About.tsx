@@ -6,6 +6,7 @@ import {
 } from 'lucide-react'
 import { usePageMeta } from '../hooks/usePageMeta'
 import SchemaMarkup from '../components/SchemaMarkup'
+import { WhatsAppIcon, WA_URL } from '../components/WhatsAppButton'
 
 const stats = [
   { value: '25+', label: 'Years in operation' },
@@ -247,6 +248,16 @@ export default function About() {
                 <div>
                   <p className="text-xs text-slate-400 font-medium">Email</p>
                   <p className="font-bold text-slate-900 group-hover:text-brand-700">info@isavalve.co.za</p>
+                </div>
+              </a>
+
+              <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 bg-slate-50 rounded-xl hover:bg-green-50 transition-colors group">
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#dcfce7' }}>
+                  <WhatsAppIcon className="w-5 h-5" style={{ color: '#16a34a' }} />
+                </div>
+                <div>
+                  <p className="text-xs text-slate-400 font-medium">WhatsApp Business</p>
+                  <p className="font-bold text-slate-900 group-hover:text-green-700">Chat with us instantly</p>
                 </div>
               </a>
 

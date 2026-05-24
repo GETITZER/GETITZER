@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Phone, Mail, MapPin } from 'lucide-react'
+import { WhatsAppIcon, WA_URL } from './WhatsAppButton'
 
 function ISALogoWhite() {
   return (
@@ -44,6 +45,9 @@ export default function Footer() {
               </a>
               <a href="mailto:info@isavalve.co.za" className="flex items-center gap-2 hover:text-white transition-colors">
                 <Mail className="w-3.5 h-3.5 text-isa-500" /> info@isavalve.co.za
+              </a>
+              <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white transition-colors" style={{ color: '#4ade80' }}>
+                <WhatsAppIcon className="w-3.5 h-3.5 flex-shrink-0" /> WhatsApp Business
               </a>
               <span className="flex items-start gap-2">
                 <MapPin className="w-3.5 h-3.5 text-isa-500 mt-0.5 flex-shrink-0" /> South Africa — Global Partner Network

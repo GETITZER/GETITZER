@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navigation from './components/Navigation'
 import Footer from './components/Footer'
 import ChatWidget from './components/ChatWidget'
+import WhatsAppButton from './components/WhatsAppButton'
 import SchemaMarkup from './components/SchemaMarkup'
 import Home from './pages/Home'
 import Products from './pages/Products'
@@ -53,6 +54,7 @@ export default function App() {
         </main>
         <Footer />
         <ChatWidget />
+        <WhatsAppButton />
       </div>
     </BrowserRouter>
   )
