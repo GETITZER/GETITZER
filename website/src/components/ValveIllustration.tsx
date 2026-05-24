@@ -1,5 +1,5 @@
 interface Props {
-  type: 'ball-valve' | 'butterfly-valve' | 'gate-valve' | 'knife-gate-valve'
+  type: 'ball-valve' | 'butterfly-valve' | 'gate-valve' | 'knife-gate-valve' | 'pinch-valve' | 'dxst-kgv'
   className?: string
 }
 
@@ -167,11 +167,97 @@ function KnifeGateValveSVG() {
   )
 }
 
+function PinchValveSVG() {
+  return (
+    <svg viewBox="0 0 240 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      {/* Left pipe */}
+      <rect x="0" y="62" width="50" height="36" fill="#334155" rx="3" />
+      <rect x="0" y="68" width="50" height="24" fill="#1e293b" rx="1" />
+      {/* Right pipe */}
+      <rect x="190" y="62" width="50" height="36" fill="#334155" rx="3" />
+      <rect x="190" y="68" width="50" height="24" fill="#1e293b" rx="1" />
+      {/* Left flange */}
+      <rect x="44" y="46" width="16" height="68" fill="#ea580c" rx="3" />
+      <circle cx="52" cy="55" r="4" fill="#c2410c" />
+      <circle cx="52" cy="105" r="4" fill="#c2410c" />
+      {/* Right flange */}
+      <rect x="180" y="46" width="16" height="68" fill="#ea580c" rx="3" />
+      <circle cx="188" cy="55" r="4" fill="#c2410c" />
+      <circle cx="188" cy="105" r="4" fill="#c2410c" />
+      {/* Body housing */}
+      <rect x="58" y="42" width="124" height="76" fill="#ea580c" rx="6" />
+      <rect x="62" y="46" width="116" height="68" fill="#dc2626" rx="4" />
+      {/* Sleeve (elastic) */}
+      <path d="M62 68 Q120 55 178 68 L178 92 Q120 105 62 92 Z" fill="#f97316" />
+      {/* Flow bore */}
+      <ellipse cx="120" cy="80" rx="30" ry="12" fill="#7f1d1d" opacity="0.7" />
+      {/* ISA-Flex label */}
+      <rect x="90" y="72" width="60" height="16" rx="3" fill="#fff" opacity="0.15" />
+      <text x="120" y="83" textAnchor="middle" fill="#fff" fontSize="7" fontWeight="bold">ISA-Flex™</text>
+      {/* Top actuator stem */}
+      <rect x="114" y="10" width="12" height="32" fill="#475569" rx="2" />
+      <rect x="102" y="6" width="36" height="10" fill="#334155" rx="2" />
+      {/* Handwheel */}
+      <circle cx="120" cy="4" r="10" fill="none" stroke="#94a3b8" strokeWidth="3" />
+      <line x1="110" y1="4" x2="130" y2="4" stroke="#94a3b8" strokeWidth="2" />
+      <line x1="120" y1="-6" x2="120" y2="14" stroke="#94a3b8" strokeWidth="2" />
+    </svg>
+  )
+}
+
+function DXSTValveSVG() {
+  return (
+    <svg viewBox="0 0 240 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      {/* Left pipe */}
+      <rect x="0" y="100" width="50" height="36" fill="#334155" rx="3" />
+      <rect x="0" y="106" width="50" height="24" fill="#1e293b" rx="1" />
+      {/* Right pipe */}
+      <rect x="190" y="100" width="50" height="36" fill="#334155" rx="3" />
+      <rect x="190" y="106" width="50" height="24" fill="#1e293b" rx="1" />
+      {/* Left flange */}
+      <rect x="44" y="86" width="16" height="64" fill="#475569" rx="2" />
+      <circle cx="52" cy="94" r="4" fill="#2563eb" />
+      <circle cx="52" cy="142" r="4" fill="#2563eb" />
+      {/* Right flange */}
+      <rect x="180" y="86" width="16" height="64" fill="#475569" rx="2" />
+      <circle cx="188" cy="94" r="4" fill="#2563eb" />
+      <circle cx="188" cy="142" r="4" fill="#2563eb" />
+      {/* Body — cast iron */}
+      <rect x="58" y="82" width="124" height="72" fill="#334155" rx="4" />
+      {/* Rubber lining (green) */}
+      <rect x="62" y="86" width="116" height="64" fill="#1e293b" rx="3" />
+      <rect x="66" y="90" width="108" height="56" fill="#15803d" rx="2" opacity="0.8" />
+      {/* Gate blade */}
+      <rect x="105" y="92" width="30" height="52" fill="#475569" rx="2" />
+      <rect x="109" y="92" width="22" height="52" fill="#2563eb" rx="1" />
+      {/* Flow bore */}
+      <rect x="66" y="108" width="108" height="20" fill="#064e3b" rx="2" />
+      {/* Gate slot */}
+      <rect x="105" y="82" width="30" height="12" fill="#334155" rx="1" />
+      {/* Stem */}
+      <rect x="114" y="10" width="12" height="74" fill="#94a3b8" rx="2" />
+      {/* Yoke */}
+      <rect x="86" y="38" width="68" height="8" fill="#475569" rx="2" />
+      <rect x="86" y="38" width="6" height="46" fill="#475569" rx="2" />
+      <rect x="148" y="38" width="6" height="46" fill="#475569" rx="2" />
+      {/* Handwheel */}
+      <circle cx="120" cy="10" r="16" fill="none" stroke="#64748b" strokeWidth="3" />
+      <line x1="104" y1="10" x2="136" y2="10" stroke="#64748b" strokeWidth="2" />
+      <circle cx="120" cy="10" r="5" fill="#475569" />
+      {/* DXST badge */}
+      <rect x="75" y="112" width="90" height="16" rx="3" fill="#15803d" opacity="0.9" />
+      <text x="120" y="123" textAnchor="middle" fill="#fff" fontSize="7" fontWeight="bold">DXST — Natural Rubber</text>
+    </svg>
+  )
+}
+
 const components = {
   'ball-valve': BallValveSVG,
   'butterfly-valve': ButterflyValveSVG,
   'gate-valve': GateValveSVG,
   'knife-gate-valve': KnifeGateValveSVG,
+  'pinch-valve': PinchValveSVG,
+  'dxst-kgv': DXSTValveSVG,
 }
 
 export default function ValveIllustration({ type, className = '' }: Props) {
