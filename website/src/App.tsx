@@ -15,6 +15,7 @@ import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
 import SEODashboard from './pages/SEODashboard'
 import About from './pages/About'
+import DeliveryFAQ from './pages/DeliveryFAQ'
 
 const orgSchema = {
   '@context': 'https://schema.org',
@@ -51,6 +52,7 @@ export default function App() {
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/seo" element={<SEODashboard />} />
             <Route path="/about" element={<About />} />
+            <Route path="/delivery-faq" element={<DeliveryFAQ />} />
           </Routes>
         </main>
         <Footer />

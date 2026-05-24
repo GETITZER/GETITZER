@@ -94,6 +94,7 @@ export default function Footer() {
               <li><Link to="/about#contact" className="text-sm hover:text-white transition-colors">Contact</Link></li>
               <li><Link to="/blog" className="text-sm hover:text-white transition-colors">Technical Blog</Link></li>
               <li><Link to="/rfq" className="text-sm hover:text-white transition-colors">Request a Quote</Link></li>
+              <li><Link to="/delivery-faq" className="text-sm hover:text-white transition-colors">Delivery & FAQ</Link></li>
               <li><Link to="/seo" className="text-sm hover:text-white transition-colors">SEO AI Studio</Link></li>
             </ul>
 

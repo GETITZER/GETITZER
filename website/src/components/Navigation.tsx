@@ -209,6 +209,7 @@ export default function Navigation() {
             ))}
             <Link to="/industries" className="block px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-50">Industries</Link>
             <Link to="/about" className="block px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-50">About</Link>
+            <Link to="/delivery-faq" className="block px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-50">Delivery & FAQ</Link>
             <Link to="/blog" className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-50">
               <Newspaper className="w-4 h-4" /> Blog
             </Link>
