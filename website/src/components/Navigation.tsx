@@ -126,6 +126,13 @@ export default function Navigation() {
             </Link>
 
             <Link
+              to="/about"
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-medium transition-colors ${isActive('/about') ? 'text-brand-700 bg-brand-50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'}`}
+            >
+              About
+            </Link>
+
+            <Link
               to="/blog"
               className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-medium transition-colors ${isActive('/blog') ? 'text-brand-700 bg-brand-50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'}`}
             >
@@ -184,6 +191,7 @@ export default function Navigation() {
               <Link key={l.to} to={l.to} className="block px-6 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-50">{l.label}</Link>
             ))}
             <Link to="/industries" className="block px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-50">Industries</Link>
+            <Link to="/about" className="block px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-50">About</Link>
             <Link to="/blog" className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-50">
               <Newspaper className="w-4 h-4" /> Blog
             </Link>

@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import Anthropic from '@anthropic-ai/sdk'
+import nodemailer from 'nodemailer'
 
 const app = express()
 const PORT = 3001
@@ -8,11 +9,52 @@ const PORT = 3001
 app.use(cors({ origin: ['http://localhost:5173', 'http://localhost:4173'] }))
 app.use(express.json({ limit: '1mb' }))
 
+// ── Anthropic client with prompt-caching beta ─────────────────────────────────
 function getClient() {
   const apiKey = process.env.ANTHROPIC_API_KEY
   if (!apiKey) throw new Error('ANTHROPIC_API_KEY is not set')
-  return new Anthropic({ apiKey })
+  return new Anthropic({
+    apiKey,
+    defaultHeaders: { 'anthropic-beta': 'prompt-caching-2024-07-31' },
+  })
 }
+
+// ── Email transport (optional — falls back to console log) ────────────────────
+function getMailer() {
+  const host = process.env.SMTP_HOST
+  if (!host) return null
+  return nodemailer.createTransport({
+    host,
+    port: parseInt(process.env.SMTP_PORT ?? '587'),
+    secure: process.env.SMTP_PORT === '465',
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+  })
+}
+
+async function sendMail(subject: string, html: string) {
+  const to   = process.env.EMAIL_TO   ?? 'isaauditgrade@gmail.com'
+  const from = process.env.EMAIL_FROM ?? 'noreply@isa-valve.co.za'
+  const mailer = getMailer()
+  if (!mailer) {
+    console.log(`\n📧 [EMAIL — no SMTP configured]\nTo: ${to}\nSubject: ${subject}\n${html.replace(/<[^>]+>/g, ' ')}\n`)
+    return
+  }
+  await mailer.sendMail({ from, to, subject, html })
+}
+
+// ── ISA context block (cached across all requests) ────────────────────────────
+const ISA_CONTEXT = `You are a senior application engineer at ISA Valve Solutions & Industrial Supplies — an ISO 9001:2015 certified industrial valve supplier in South Africa.
+
+Product range:
+- Ball Valve: DN15–DN600 · PN16/PN40/ANSI 150-600 · API 6D · Carbon steel / SS / duplex · Manual / pneumatic / electric
+- Butterfly Valve: DN50–DN1200 · PN10/PN16 · SABS / WRAS · Cast iron / ductile iron / SS · Wafer / lug / flanged
+- Gate Valve: DN50–DN1000 · PN10/PN16 · SABS 664 · Rising/non-rising stem · Manual / electric / gearbox
+- Knife Gate Valve: DN50–DN600 · PN10/PN16 · Ceramic-lined option · Slurry / fibrous / abrasive media
+
+Key facts: All valves tested at 1.5× rated pressure. Full material traceability on every order. Case study: ceramic-lined knife gate valves extended service life from 3 months to 14 months in platinum mining slurry service, saving R1.2M/year.`
 
 function sseHeaders(res: express.Response) {
   res.setHeader('Content-Type', 'text/event-stream')
@@ -25,7 +67,7 @@ function sseWrite(res: express.Response, data: object) {
   res.write(`data: ${JSON.stringify(data)}\n\n`)
 }
 
-// --- Chat (streaming) ---
+// --- Chat (streaming, with prompt caching) ---
 app.post('/api/chat', async (req, res) => {
   try {
     const { messages, systemPrompt } = req.body as {
@@ -36,12 +78,13 @@ app.post('/api/chat', async (req, res) => {
     sseHeaders(res)
     const client = getClient()
 
+    const sysText = systemPrompt ?? `${ISA_CONTEXT}\n\nHelp the user select the right valve, understand specifications, and navigate ISA's product range. Be concise and technically accurate.`
+
     const stream = client.messages.stream({
       model: 'claude-sonnet-4-6',
       max_tokens: 1024,
-      system:
-        systemPrompt ||
-        'You are a helpful AI assistant for GetItzer, an AI-powered guides platform. Help users understand guides, find relevant information, and apply best practices to their projects. Be concise and practical.',
+      // Cache the system prompt — saves ~90% on tokens for repeated conversations
+      system: [{ type: 'text', text: sysText, cache_control: { type: 'ephemeral' } }] as Parameters<typeof client.messages.stream>[0]['system'],
       messages,
     })
 
@@ -154,7 +197,7 @@ Write in a professional, authoritative tone. Include specific metrics, concrete 
   }
 })
 
-// --- RFQ Analysis ---
+// --- RFQ Analysis + Email Notification ---
 app.post('/api/rfq', async (req, res) => {
   try {
     const { formData } = req.body as { formData: Record<string, string> }
@@ -163,12 +206,11 @@ app.post('/api/rfq', async (req, res) => {
     const message = await client.messages.create({
       model: 'claude-sonnet-4-6',
       max_tokens: 1024,
+      system: [{ type: 'text', text: ISA_CONTEXT, cache_control: { type: 'ephemeral' } }] as Parameters<typeof client.messages.create>[0]['system'],
       messages: [
         {
           role: 'user',
-          content: `You are an application engineer at ISA Valve Solutions & Industrial Supplies. Analyze this valve RFQ and provide a structured engineering assessment.
-
-ISA product range: Ball Valve (DN15–DN600, PN16/PN40/ANSI 150-600) · Butterfly Valve (DN50–DN1200, PN10/PN16) · Gate Valve (DN50–DN1000, PN10/PN16) · Knife Gate Valve (DN50–DN600, PN10/PN16)
+          content: `Analyze this valve RFQ and provide a structured engineering assessment.
 
 RFQ Submission:
 ${Object.entries(formData).map(([k, v]) => `${k}: ${v}`).join('\n')}
@@ -176,7 +218,7 @@ ${Object.entries(formData).map(([k, v]) => `${k}: ${v}`).join('\n')}
 Respond with these exact sections:
 
 ## Valve Recommendation
-Which ISA valve type best suits this application and why. If already specified, confirm or suggest alternative.
+Which ISA valve type best suits this application and why.
 
 ## Qualification Score
 Rate 1-10 with one-sentence rationale (10 = fully specified, ready to quote).
@@ -193,8 +235,46 @@ Critical details still needed before a firm quote can be issued.
       ],
     })
 
-    const text = message.content[0].type === 'text' ? message.content[0].text : ''
-    res.json({ analysis: text })
+    const analysis = message.content[0].type === 'text' ? message.content[0].text : ''
+
+    // Send email notification (non-blocking — don't fail the request if email fails)
+    sendMail(
+      `New RFQ: ${formData.company ?? formData.name ?? 'Unknown'} — ${formData.valveType ?? 'Valve enquiry'}`,
+      `<h2>New RFQ Submission</h2>
+      <table style="border-collapse:collapse;width:100%;font-family:sans-serif;font-size:14px">
+        ${Object.entries(formData).map(([k, v]) => `<tr><td style="padding:6px 12px;font-weight:bold;background:#f8fafc;border:1px solid #e2e8f0">${k}</td><td style="padding:6px 12px;border:1px solid #e2e8f0">${v}</td></tr>`).join('')}
+      </table>
+      <h3 style="margin-top:24px">AI Qualification Report</h3>
+      <pre style="background:#f8fafc;padding:16px;border-radius:8px;font-size:13px;white-space:pre-wrap">${analysis}</pre>`,
+    ).catch(err => console.error('Email send failed:', err))
+
+    res.json({ analysis })
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : 'Error' })
+  }
+})
+
+// --- Contact Form ---
+app.post('/api/contact', async (req, res) => {
+  try {
+    const { name, email, phone, company, message } = req.body as {
+      name: string; email: string; phone?: string; company?: string; message: string
+    }
+    if (!name || !email || !message) return res.status(400).json({ error: 'name, email and message are required' })
+
+    await sendMail(
+      `Website Enquiry: ${name}${company ? ` — ${company}` : ''}`,
+      `<h2 style="font-family:sans-serif">New Contact Form Submission</h2>
+      <table style="border-collapse:collapse;width:100%;font-family:sans-serif;font-size:14px">
+        <tr><td style="padding:6px 12px;font-weight:bold;background:#f8fafc;border:1px solid #e2e8f0">Name</td><td style="padding:6px 12px;border:1px solid #e2e8f0">${name}</td></tr>
+        <tr><td style="padding:6px 12px;font-weight:bold;background:#f8fafc;border:1px solid #e2e8f0">Email</td><td style="padding:6px 12px;border:1px solid #e2e8f0"><a href="mailto:${email}">${email}</a></td></tr>
+        ${phone ? `<tr><td style="padding:6px 12px;font-weight:bold;background:#f8fafc;border:1px solid #e2e8f0">Phone</td><td style="padding:6px 12px;border:1px solid #e2e8f0">${phone}</td></tr>` : ''}
+        ${company ? `<tr><td style="padding:6px 12px;font-weight:bold;background:#f8fafc;border:1px solid #e2e8f0">Company</td><td style="padding:6px 12px;border:1px solid #e2e8f0">${company}</td></tr>` : ''}
+        <tr><td style="padding:6px 12px;font-weight:bold;background:#f8fafc;border:1px solid #e2e8f0">Message</td><td style="padding:6px 12px;border:1px solid #e2e8f0;white-space:pre-wrap">${message}</td></tr>
+      </table>`,
+    )
+
+    res.json({ ok: true })
   } catch (err) {
     res.status(500).json({ error: err instanceof Error ? err.message : 'Error' })
   }
