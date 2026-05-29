@@ -7,8 +7,10 @@ import nodemailer from 'nodemailer'
 const app = express()
 const PORT = 3001
 
-app.use(cors({ origin: ['http://localhost:5173', 'http://localhost:4173'] }))
+app.use(cors())
 app.use(express.json({ limit: '1mb' }))
+
+app.get('/api/health', (_req, res) => res.json({ ok: true }))
 
 // ── Anthropic client with prompt-caching beta ─────────────────────────────────
 function getClient() {
@@ -654,8 +656,22 @@ DESC: [max 155 characters, keyword + strong CTA]`,
   }
 })
 
-app.listen(PORT, () => {
-  console.log(`\n  API server → http://localhost:${PORT}`)
+import { fileURLToPath } from 'url'
+import { dirname, join } from 'path'
+import { existsSync } from 'fs'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const distPath = join(__dirname, '../dist')
+
+if (existsSync(distPath)) {
+  const { default: serveStatic } = await import('serve-static')
+  app.use(serveStatic(distPath))
+  app.get('*', (_req, res) => res.sendFile(join(distPath, 'index.html')))
+}
+
+const port = parseInt(process.env.PORT ?? String(PORT))
+app.listen(port, () => {
+  console.log(`\n  API server → http://localhost:${port}`)
   if (!process.env.ANTHROPIC_API_KEY) {
     console.warn('  ⚠  ANTHROPIC_API_KEY not set — AI features will return errors\n')
   } else {
