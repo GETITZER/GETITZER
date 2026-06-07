@@ -31,7 +31,7 @@ function DashboardContent() {
           </div>
           <div className="flex items-center gap-4">
             <span className="text-xs text-slate-400">{user?.primaryEmailAddress?.emailAddress}</span>
-            <UserButton afterSignOutUrl="/" />
+            <UserButton />
           </div>
         </div>
 

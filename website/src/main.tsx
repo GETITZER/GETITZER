@@ -15,7 +15,7 @@ const root = createRoot(document.getElementById('root')!)
 if (PUBLISHABLE_KEY) {
   root.render(
     <StrictMode>
-      <ClerkProvider afterSignOutUrl="/">
+      <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
         <App />
       </ClerkProvider>
     </StrictMode>,

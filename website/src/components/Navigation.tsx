@@ -143,7 +143,7 @@ export default function Navigation() {
                     <Link to="/dashboard" className="flex items-center gap-1.5 text-sm font-semibold text-slate-300 hover:text-white transition-colors">
                       <LayoutDashboard className="w-3.5 h-3.5" /> My Account
                     </Link>
-                    <UserButton afterSignOutUrl="/" />
+                    <UserButton />
                   </Show>
                 </>
               )}
@@ -226,7 +226,7 @@ export default function Navigation() {
                     <LayoutDashboard className="w-4 h-4" /> My Account / Dashboard
                   </Link>
                   <div className="px-3 py-2">
-                    <UserButton afterSignOutUrl="/" showName />
+                    <UserButton showName />
                   </div>
                 </Show>
               </>
