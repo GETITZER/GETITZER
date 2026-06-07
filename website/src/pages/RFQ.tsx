@@ -1,8 +1,10 @@
-// Principle #4: Minimal fields — 5 fields max for maximum conversion
 import { useState } from 'react'
-import { Send, Loader2, CheckCircle, Sparkles, ArrowRight, Zap } from 'lucide-react'
+import { Send, Loader2, CheckCircle, Sparkles, ArrowRight, Zap, LogIn, UserPlus } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { SignedIn, SignedOut, SignInButton, SignUpButton } from '@clerk/clerk-react'
 import { WhatsAppIcon, WA_URL } from '../components/WhatsAppButton'
+
+const CLERK_ENABLED = !!import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
 interface SimpleRFQ {
   name: string
@@ -63,7 +65,7 @@ export default function RFQ() {
     }
   }
 
-  return (
+  const formJsx = (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
       {/* Header */}
       <div className="max-w-xl mb-12">
@@ -208,5 +210,50 @@ export default function RFQ() {
         </div>
       </div>
     </div>
+  )
+
+  if (!CLERK_ENABLED) return formJsx
+
+  return (
+    <>
+      <SignedIn>{formJsx}</SignedIn>
+      <SignedOut>
+        <div className="min-h-screen flex items-center justify-center px-4" style={{ background: '#081D42' }}>
+          <div className="max-w-md w-full text-center">
+            <div className="glass p-10 rounded-3xl">
+              <div className="w-16 h-16 rounded-2xl bg-blue-500/15 flex items-center justify-center mx-auto mb-6"
+                style={{ border: '1px solid rgba(0,109,255,0.25)' }}>
+                <Sparkles className="w-8 h-8 text-blue-400" />
+              </div>
+              <h1 className="font-display text-2xl font-bold text-white mb-3">Request a Quote</h1>
+              <p className="text-slate-400 text-sm mb-8 leading-relaxed">
+                Create a free account to submit a quote request and get our AI-powered valve recommendation. No credit card required.
+              </p>
+              <div className="space-y-3">
+                <SignUpButton mode="modal">
+                  <button className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-xl font-bold text-white text-sm transition-all"
+                    style={{ background: 'linear-gradient(135deg, #006DFF 0%, #0052CC 100%)', border: '1px solid rgba(0,109,255,0.4)' }}>
+                    <UserPlus className="w-4 h-4" /> Create Free Account
+                  </button>
+                </SignUpButton>
+                <SignInButton mode="modal">
+                  <button className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-xl font-semibold text-slate-300 text-sm hover:text-white transition-colors"
+                    style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)' }}>
+                    <LogIn className="w-4 h-4" /> Sign In to Existing Account
+                  </button>
+                </SignInButton>
+              </div>
+              <p className="text-xs text-slate-500 mt-6">
+                Free account. Instant access. No spam — we only contact you about your quote request.
+              </p>
+            </div>
+            <a href={WA_URL} target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-6 text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition-colors">
+              <WhatsAppIcon className="w-4 h-4" /> Or contact us directly on WhatsApp
+            </a>
+          </div>
+        </div>
+      </SignedOut>
+    </>
   )
 }
