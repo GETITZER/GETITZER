@@ -18,11 +18,12 @@
     "dotenv": "^17.4.2",
     "express": "^4.21.1",
     "lucide-react": "^0.453.0",
-    "nodemailer": "^8.0.8",
+    "nodemailer": "^8.0.10",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.2",
-    "serve-static": "^2.2.1"
+    "serve-static": "^2.2.1",
+    "svix": "^1.95.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
