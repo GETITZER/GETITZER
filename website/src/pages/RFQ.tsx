@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Send, Loader2, CheckCircle, Sparkles, ArrowRight, Zap, LogIn, UserPlus } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { SignedIn, SignedOut, SignInButton, SignUpButton } from '@clerk/clerk-react'
+import { Show, SignInButton, SignUpButton } from '@clerk/react'
 import { WhatsAppIcon, WA_URL } from '../components/WhatsAppButton'
 
 const CLERK_ENABLED = !!import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
@@ -216,8 +216,8 @@ export default function RFQ() {
 
   return (
     <>
-      <SignedIn>{formJsx}</SignedIn>
-      <SignedOut>
+      <Show when="signed-in">{formJsx}</Show>
+      <Show when="signed-out">
         <div className="min-h-screen flex items-center justify-center px-4" style={{ background: '#081D42' }}>
           <div className="max-w-md w-full text-center">
             <div className="glass p-10 rounded-3xl">
@@ -253,7 +253,7 @@ export default function RFQ() {
             </a>
           </div>
         </div>
-      </SignedOut>
+      </Show>
     </>
   )
 }

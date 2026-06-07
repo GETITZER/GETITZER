@@ -1,6 +1,6 @@
-import { useUser, UserButton, SignedIn, SignedOut, SignInButton } from '@clerk/clerk-react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useUser, UserButton, Show, SignInButton } from '@clerk/react'
+import { Link } from 'react-router-dom'
+
 import { Download, ArrowRight, Zap, FileText, ClipboardList, LogIn } from 'lucide-react'
 
 const docs = [
@@ -98,10 +98,10 @@ function DashboardContent() {
 export default function Dashboard() {
   return (
     <>
-      <SignedIn>
+      <Show when="signed-in">
         <DashboardContent />
-      </SignedIn>
-      <SignedOut>
+      </Show>
+      <Show when="signed-out">
         <div className="min-h-screen flex items-center justify-center px-4" style={{ background: '#081D42' }}>
           <div className="max-w-sm w-full text-center">
             <div className="glass p-10 rounded-3xl">
@@ -116,7 +116,7 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-      </SignedOut>
+      </Show>
     </>
   )
 }

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Download, BookOpen, ArrowRight, Calculator, ExternalLink, Shield, Zap, LogIn } from 'lucide-react'
-import { useAuth, SignInButton, SignUpButton } from '@clerk/clerk-react'
+import { useAuth, SignInButton } from '@clerk/react'
 
 const CLERK_ENABLED = !!import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X, ChevronDown, Zap, ArrowRight, Calculator, BookOpen, Download, FileText, LayoutDashboard } from 'lucide-react'
-import { SignInButton, SignUpButton, UserButton, SignedIn, SignedOut } from '@clerk/clerk-react'
+import { SignInButton, SignUpButton, UserButton, Show } from '@clerk/react'
 
 const CLERK_ENABLED = !!import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 import { WhatsAppIcon, WA_URL } from './WhatsAppButton'
@@ -139,7 +139,7 @@ export default function Navigation() {
               </a>
               {CLERK_ENABLED && (
                 <>
-                  <SignedOut>
+                  <Show when="signed-out">
                     <SignInButton mode="modal">
                       <button className="text-sm font-semibold text-slate-300 hover:text-white transition-colors px-3 py-1.5 rounded-lg hover:bg-white/5">
                         Sign In
@@ -151,13 +151,13 @@ export default function Navigation() {
                         Register
                       </button>
                     </SignUpButton>
-                  </SignedOut>
-                  <SignedIn>
+                  </Show>
+                  <Show when="signed-in">
                     <Link to="/dashboard" className="flex items-center gap-1.5 text-sm font-semibold text-blue-300 hover:text-blue-200 transition-colors">
                       <LayoutDashboard className="w-3.5 h-3.5" /> My Account
                     </Link>
                     <UserButton afterSignOutUrl="/" />
-                  </SignedIn>
+                  </Show>
                 </>
               )}
               <Link to="/rfq" className="btn-primary !px-4 !py-2 !text-sm">Get Quote</Link>
@@ -222,7 +222,7 @@ export default function Navigation() {
             {CLERK_ENABLED && (
               <>
                 <div className="border-t border-white/10 my-4" />
-                <SignedOut>
+                <Show when="signed-out">
                   <SignInButton mode="modal">
                     <button className="w-full text-sm font-semibold text-slate-200 px-3 py-3 rounded-xl hover:bg-white/5 text-left transition-colors">
                       Sign In to My Account
@@ -234,15 +234,15 @@ export default function Navigation() {
                       Create Free Account
                     </button>
                   </SignUpButton>
-                </SignedOut>
-                <SignedIn>
+                </Show>
+                <Show when="signed-in">
                   <Link to="/dashboard" className="flex items-center gap-2 px-3 py-3 rounded-xl font-semibold text-blue-300 hover:bg-white/5 transition-colors">
                     <LayoutDashboard className="w-4 h-4" /> My Account / Dashboard
                   </Link>
                   <div className="px-3 py-2">
                     <UserButton afterSignOutUrl="/" showName />
                   </div>
-                </SignedIn>
+                </Show>
               </>
             )}
           </div>
