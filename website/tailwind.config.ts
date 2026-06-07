@@ -6,37 +6,40 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
-        // ISA blue — primary brand colour (matches logo)
+        // Dark luxury background palette
+        dark: {
+          900: '#08111F',
+          800: '#0D1B2E',
+          700: '#132238',
+          600: '#1A2E48',
+          500: '#243B57',
+        },
+        // Orange accent — #FF6A00
+        accent: {
+          50:  '#fff3e6',
+          100: '#ffe0bf',
+          200: '#ffc280',
+          300: '#ffa040',
+          400: '#ff8520',
+          500: '#FF6A00',
+          600: '#e05e00',
+          700: '#c05200',
+        },
+        // Muted text
+        muted: '#A8B2C5',
+        // Legacy aliases kept for pages not yet redesigned
         brand: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
+          50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe',
+          500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a',
         },
-        // ISA orange — accent / CTA colour (matches logo orange stripe)
         isa: {
-          50: '#fff7ed',
-          100: '#ffedd5',
-          400: '#fb923c',
-          500: '#f97316',
-          600: '#ea580c',
-          700: '#c2410c',
+          50: '#fff7ed', 100: '#ffedd5', 400: '#fb923c',
+          500: '#FF6A00', 600: '#FF6A00', 700: '#c2410c',
         },
-        // Dark navy used in hero backgrounds
-        navy: '#0f2744',
-      },
-      typography: {
-        DEFAULT: {
-          css: {
-            maxWidth: 'none',
-          },
-        },
+        navy: '#08111F',
       },
     },
   },

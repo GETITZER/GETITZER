@@ -3,81 +3,133 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
+  html { scroll-behavior: smooth; }
 
   body {
-    @apply font-sans text-slate-900 bg-white;
+    @apply font-sans text-white bg-dark-900;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', Inter, system-ui, sans-serif;
   }
 }
 
 @layer components {
-  .prose-guide h2 {
-    @apply text-2xl font-bold text-slate-900 mt-10 mb-4;
+  /* ── Glassmorphism card ── */
+  .glass {
+    background: rgba(19, 34, 56, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 1.25rem;
   }
 
-  .prose-guide h3 {
-    @apply text-xl font-semibold text-slate-800 mt-8 mb-3;
+  .glass-light {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.25rem;
   }
 
-  .prose-guide p {
-    @apply text-slate-600 leading-relaxed mb-5;
+  /* ── Blueprint grid background ── */
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(255,106,0,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,106,0,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
   }
 
-  .prose-guide ul {
-    @apply list-disc list-inside text-slate-600 mb-5 space-y-1;
+  /* ── Accent glow ── */
+  .glow-accent {
+    box-shadow: 0 0 40px rgba(255, 106, 0, 0.25), 0 0 80px rgba(255, 106, 0, 0.1);
   }
 
-  .prose-guide strong {
-    @apply font-semibold text-slate-800;
+  .glow-accent-sm {
+    box-shadow: 0 0 20px rgba(255, 106, 0, 0.2);
   }
 
+  /* ── Buttons ── */
   .btn-primary {
-    @apply inline-flex items-center gap-2 bg-isa-600 hover:bg-isa-700 text-white font-semibold px-5 py-2.5 rounded-lg transition-colors duration-150;
+    @apply inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-400 text-white font-bold px-6 py-3 rounded-xl transition-all duration-200;
+    box-shadow: 0 0 24px rgba(255,106,0,0.35);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 0 36px rgba(255,106,0,0.5);
+    transform: translateY(-1px);
   }
 
   .btn-secondary {
-    @apply inline-flex items-center gap-2 border border-slate-300 hover:border-slate-400 text-slate-700 font-medium px-5 py-2.5 rounded-lg transition-colors duration-150 bg-white;
+    @apply inline-flex items-center gap-2 border border-white/20 hover:border-white/40 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 bg-white/5 hover:bg-white/10;
   }
 
+  /* ── Legacy card (used on non-redesigned pages) ── */
   .card {
-    @apply bg-white border border-slate-200 rounded-xl hover:shadow-md transition-all duration-200;
+    @apply glass;
   }
 
+  /* ── Form inputs ── */
   .field-input {
-    @apply w-full text-sm border border-slate-200 rounded-xl px-3.5 py-2.5 outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition bg-white text-slate-900 placeholder-slate-400;
+    @apply w-full text-sm border border-white/10 rounded-xl px-3.5 py-2.5 outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent transition bg-dark-700 text-white placeholder-muted;
   }
+
+  /* ── Prose for blog/article pages ── */
+  .prose-article h1 { @apply text-3xl sm:text-4xl font-black text-white mb-6 leading-tight; }
+  .prose-article h2 { @apply text-xl font-black text-white mt-10 mb-3; }
+  .prose-article p  { @apply text-muted leading-relaxed mb-4 text-[15px]; }
+  .prose-article li { @apply text-slate-300 ml-6 mb-2 list-disc leading-relaxed; }
+
+  .prose-guide h2 { @apply text-2xl font-bold text-white mt-10 mb-4; }
+  .prose-guide h3 { @apply text-xl font-semibold text-slate-200 mt-8 mb-3; }
+  .prose-guide p  { @apply text-muted leading-relaxed mb-5; }
+  .prose-guide ul { @apply list-disc list-inside text-muted mb-5 space-y-1; }
+  .prose-guide strong { @apply font-semibold text-white; }
 }
 
-/* Chat streaming cursor */
+/* ── Animations ── */
 @keyframes blink {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  50%       { opacity: 0; }
 }
-
 .cursor-blink::after {
   content: '▋';
-  @apply text-brand-600;
+  color: #FF6A00;
   animation: blink 1s step-end infinite;
 }
 
-/* Smooth slide-up for chat panel */
 @keyframes slideUp {
   from { transform: translateY(100%); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  to   { transform: translateY(0);    opacity: 1; }
 }
+.slide-up { animation: slideUp 0.25s ease-out forwards; }
 
-.slide-up {
-  animation: slideUp 0.25s ease-out forwards;
-}
-
-/* Search modal fade */
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.97); }
-  to { opacity: 1; transform: scale(1); }
+  to   { opacity: 1; transform: scale(1);    }
 }
+.fade-in { animation: fadeIn 0.15s ease-out forwards; }
 
-.fade-in {
-  animation: fadeIn 0.15s ease-out forwards;
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0);     }
+}
+.count-up { animation: countUp 0.6s ease-out forwards; }
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(255,106,0,0.3); }
+  50%       { box-shadow: 0 0 40px rgba(255,106,0,0.6); }
+}
+.pulse-glow { animation: pulseGlow 2s ease-in-out infinite; }
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+.shimmer-text {
+  background: linear-gradient(90deg, #fff 0%, #FF6A00 50%, #fff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
 }
