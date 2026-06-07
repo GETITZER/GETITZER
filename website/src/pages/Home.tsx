@@ -1,13 +1,13 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Shield, Zap, MapPin, Download, Phone, Star } from 'lucide-react'
-import ProductModal from '../components/ProductModal'
+import { ArrowRight, Shield, Phone, Mail, CheckCircle } from 'lucide-react'
 import { WhatsAppIcon, WA_URL } from '../components/WhatsAppButton'
 import type { Product } from '../types'
+import ProductModal from '../components/ProductModal'
 
 /* ── Animated counter ─────────────────────────────────────────────── */
-function StatCard({ target, suffix, prefix = '', label, sub }: {
-  target: number; suffix?: string; prefix?: string; label: string; sub: string
+function StatCard({ target, suffix, label, sub }: {
+  target: number; suffix?: string; label: string; sub: string
 }) {
   const [count, setCount] = useState(0)
   const [started, setStarted] = useState(false)
@@ -31,110 +31,64 @@ function StatCard({ target, suffix, prefix = '', label, sub }: {
   }, [started, target])
 
   return (
-    <div ref={ref} className="text-center px-6 py-8 group">
-      <div className="font-display text-5xl font-bold text-white mb-1 tabular-nums">
-        {prefix}{count}{suffix}
+    <div ref={ref} className="text-center px-6 py-10">
+      <div className="text-5xl font-extrabold text-isa-500 mb-1 tabular-nums tracking-tight">
+        {count}{suffix}
       </div>
-      <div className="text-sm font-bold text-blue-300 uppercase tracking-widest mb-1">{label}</div>
-      <div className="text-xs text-slate-500">{sub}</div>
+      <div className="text-sm font-bold text-slate-700 uppercase tracking-widest mb-1">{label}</div>
+      <div className="text-xs text-slate-400">{sub}</div>
     </div>
   )
 }
 
-/* ── Pre-computed particles (deterministic — no Math.random) ────── */
-const PARTICLES = Array.from({ length: 28 }, (_, i) => ({
-  x: (i * 37 + 11) % 100,
-  y: (i * 53 + 7) % 100,
-  size: ((i * 19) % 3) + 1,
-  blue: i % 3 !== 0,
-  dur: 8 + (i * 11) % 10,
-  del: (i * 7) % 9,
-  cls: i % 2 === 0 ? 'float-p' : 'float-s',
-}))
-
 /* ── Data ───────────────────────────────────────────────────────── */
 const STATS = [
   { target: 35, suffix: '+', label: 'Years Experience', sub: 'Proven engineering expertise' },
-  { target: 500, suffix: '+', label: 'Projects Delivered', sub: 'Across multiple industries' },
-  { target: 8, suffix: '+', label: 'Countries Served', sub: 'Africa and beyond' },
-  { target: 24, suffix: '/7', label: 'Engineering Support', sub: 'Always available' },
+  { target: 500, suffix: '+', label: 'Projects Completed', sub: 'Across multiple industries' },
+  { target: 8, suffix: '+', label: 'Countries Served', sub: 'Southern & Central Africa' },
+  { target: 24, suffix: '/7', label: 'Engineering Support', sub: 'Technical assistance' },
 ]
 
 const CERTS = [
-  { code: 'ISO 9001', name: 'Quality Management', color: '#006DFF' },
-  { code: 'API 6D', name: 'Pipeline Valves', color: '#10b981' },
-  { code: 'ISO 5208', name: 'Grade A Zero Leak', color: '#ef4444' },
-  { code: 'WRAS', name: 'Potable Water', color: '#8b5cf6' },
-  { code: 'SABS 664', name: 'SA Gate Valves', color: '#f59e0b' },
+  { code: 'ISO 9001:2015', name: 'Quality Management System' },
+  { code: 'API 6D', name: 'Pipeline & Piping Valves' },
+  { code: 'ISO 5208', name: 'Grade A Zero Leakage' },
+  { code: 'WRAS Approved', name: 'Potable Water Applications' },
+  { code: 'SABS 664', name: 'South African Gate Valves' },
 ]
 
 const PRODUCT_CATS = [
-  { title: 'ISA DXST™ Slurry KGV', sub: '466% longer service life · Built for mining', slug: 'dxst-kgv', color: '#FF6A00', img: '/images/products/dxst-kgv.png' },
-  { title: 'ISA Titan™ Ball Valve', sub: 'DN15–DN600 · API 6D certified', slug: 'ball-valve', color: '#006DFF', img: '/images/products/ball-valve.png' },
-  { title: 'ISA Hydra™ Butterfly Valve', sub: 'DN50–DN1200 · WRAS approved', slug: 'butterfly-valve', color: '#10b981', img: '/images/products/butterfly-valve.png' },
-  { title: 'ISA Core™ Gate Valve', sub: 'DN50–DN1000 · SABS 664 certified', slug: 'gate-valve', color: '#8b5cf6', img: '/images/products/gate-valve.png' },
-  { title: 'ISA Shield™ Pinch Valve', sub: 'ISO 5208 Grade A · 4 sleeve types', slug: 'pinch-valve', color: '#ef4444', img: '/images/hero/mining-slurry.png' },
-  { title: 'ISA ProSeal™ Knife Gate', sub: 'Slurry · Ceramic-lined · Wafer/Lug', slug: 'knife-gate-valve', color: '#f59e0b', img: '/images/hero/industrial-banner.png' },
+  { title: 'ISA DXST™ Slurry KGV', sub: '466% longer service life', spec: 'DN50–DN600 · Mining grade', slug: 'dxst-kgv', img: '/images/products/dxst-kgv.png' },
+  { title: 'ISA Titan™ Ball Valve', sub: 'API 6D certified', spec: 'DN15–DN600 · Full bore', slug: 'ball-valve', img: '/images/products/ball-valve.png' },
+  { title: 'ISA Hydra™ Butterfly Valve', sub: 'WRAS approved', spec: 'DN50–DN1200 · Triple offset', slug: 'butterfly-valve', img: '/images/products/butterfly-valve.png' },
+  { title: 'ISA Core™ Gate Valve', sub: 'SABS 664 certified', spec: 'DN50–DN1000 · OS&Y', slug: 'gate-valve', img: '/images/products/gate-valve.png' },
+  { title: 'ISA Shield™ Pinch Valve', sub: 'ISO 5208 Grade A', spec: 'DN25–DN400 · 4 sleeve types', slug: 'pinch-valve', img: '/images/hero/mining-slurry.png' },
+  { title: 'ISA ProSeal™ Knife Gate', sub: 'Ceramic-lined option', spec: 'DN50–DN600 · Wafer/Lug', slug: 'knife-gate-valve', img: '/images/hero/industrial-banner.png' },
 ]
 
 const INDUSTRIES = [
-  { name: 'Mining', icon: '⛏', desc: 'Slurry, tailings & process control' },
-  { name: 'Water Treatment', icon: '💧', desc: 'Municipal & desalination' },
-  { name: 'Oil & Gas', icon: '🛢', desc: 'API 6D upstream & midstream' },
-  { name: 'Chemical', icon: '⚗️', desc: 'Corrosive & high-pressure media' },
-  { name: 'Municipal', icon: '🏗', desc: 'Water networks, SABS certified' },
-  { name: 'Power', icon: '⚡', desc: 'Steam, cooling & utility systems' },
-  { name: 'Food & Beverage', icon: '🌾', desc: 'Sanitary, FDA-grade materials' },
-  { name: 'Pulp & Paper', icon: '📄', desc: 'Fibrous, abrasion-resistant media' },
+  { name: 'Mining & Minerals', desc: 'Slurry, tailings, concentrate transfer', to: '/industries/mining' },
+  { name: 'Water Treatment', desc: 'Municipal supply & desalination', to: '/industries/water-treatment' },
+  { name: 'Oil & Gas', desc: 'Upstream, midstream & pipeline', to: '/industries/oil-gas' },
+  { name: 'Chemical Processing', desc: 'Corrosive & high-pressure media', to: '/industries/chemical' },
+  { name: 'Municipal Infrastructure', desc: 'Distribution networks, SABS certified', to: '/industries' },
+  { name: 'Power Generation', desc: 'Steam, cooling & utility systems', to: '/industries' },
+  { name: 'Pulp & Paper', desc: 'Fibrous, abrasion-resistant service', to: '/industries/pulp-paper' },
+  { name: 'Food & Beverage', desc: 'Sanitary, FDA-compliant materials', to: '/industries' },
 ]
 
 const PROJECTS = [
-  {
-    title: 'Konige Mine — Zambia',
-    sub: 'Coriolis Mass Flow · Slurry Sampling System',
-    desc: 'Audit-grade IFC installation for copper concentrate measurement with full fabrication, installation and commissioning protocols.',
-    tag: 'Mining · Zambia',
-    icon: '⛏',
-  },
-  {
-    title: 'Municipal Water Network',
-    sub: 'DN800 Butterfly Valves · WRAS Compliant',
-    desc: 'WRAS-compliant butterfly valve installation for potable water distribution network. Delivered within 3 weeks of order.',
-    tag: 'Water · South Africa',
-    icon: '💧',
-  },
-  {
-    title: 'Intelligent Slurry Sampling',
-    sub: 'LSD-E · LMD Distributor · Siemens WinCC',
-    desc: 'On-line mineral slurry sampling system for platinum group metals processing with full SCADA automation.',
-    tag: 'Mining · PGM',
-    icon: '⚗️',
-  },
-  {
-    title: 'Control Valve Commissioning',
-    sub: 'Hydraulic Control · Pressure Reducing',
-    desc: 'Complete hydraulic control valve package — pressure reducing, sustaining, foot check and swing check valves for industrial process.',
-    tag: 'Industrial · RSA',
-    icon: '⚙️',
-  },
+  { title: 'Konige Mine — Zambia', sub: 'Coriolis Mass Flow & Slurry Sampling System', desc: 'Audit-grade IFC installation for copper concentrate measurement. Full fabrication, installation and commissioning protocols.', tag: 'Mining · Zambia' },
+  { title: 'Municipal Water Network', sub: 'DN800 Butterfly Valves — WRAS Compliant', desc: 'WRAS-compliant butterfly valve installation for potable water distribution network. Delivered within 3 weeks of order.', tag: 'Water · South Africa' },
+  { title: 'Intelligent Slurry Sampling', sub: 'LSD-E · LMD Distributor · Siemens WinCC', desc: 'On-line mineral slurry sampling system for platinum group metals processing with full SCADA automation.', tag: 'Mining · PGM' },
+  { title: 'Control Valve Package', sub: 'Hydraulic Control · Pressure Reducing Valves', desc: 'Complete hydraulic control valve package — pressure reducing, sustaining, foot check and swing check valves.', tag: 'Industrial · RSA' },
 ]
 
-/* Country dots on Africa: percentage positions within the container */
-const AFRICA_DOTS = [
-  { name: 'South Africa', x: 44, y: 80, primary: true },
-  { name: 'Namibia', x: 30, y: 66, primary: false },
-  { name: 'Botswana', x: 45, y: 68, primary: false },
-  { name: 'Zimbabwe', x: 53, y: 60, primary: false },
-  { name: 'Mozambique', x: 60, y: 63, primary: false },
-  { name: 'Zambia', x: 49, y: 50, primary: false },
+const CAPABILITIES = [
+  { title: 'Engineering Support', desc: 'In-house technical team for valve sizing, material selection, and application engineering across all product lines.' },
+  { title: 'Quality Assurance', desc: 'Every valve hydrostatic and pneumatically tested at 1.5× rated pressure. Full material traceability documentation included.' },
+  { title: 'Africa-Wide Delivery', desc: 'Established logistics network covering South Africa, Zambia, Zimbabwe, Botswana, Namibia and Mozambique.' },
 ]
-
-const HERO_PRODUCTS = [
-  'Pressure Pipeline Sampler', 'Slurry DXST™', 'Control Valves',
-  'Multi-Way Distributor', 'Pinch Valve Series', 'Gravity Flow Sampler',
-  'Pressure Transmitters', 'Intelligent Sampling System',
-]
-
 
 /* ═══════════════════════════════════════════════════════════════════ */
 export default function Home() {
@@ -143,494 +97,300 @@ export default function Home() {
   return (
     <div>
 
-      {/* ── HERO ────────────────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex items-center overflow-hidden"
-        style={{ background: 'linear-gradient(160deg, #040e22 0%, #071B2E 40%, #0a2448 70%, #071B2E 100%)' }}>
-
-        {/* Blueprint grid */}
-        <div className="absolute inset-0 bg-grid opacity-40" />
-
-        {/* Radial glow */}
-        <div className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse 70% 60% at 60% 50%, rgba(0,109,255,0.10) 0%, transparent 70%)' }} />
-        <div className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse 40% 50% at 80% 30%, rgba(255,138,0,0.05) 0%, transparent 60%)' }} />
-
-        {/* Particles */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {PARTICLES.map((p, i) => (
-            <div key={i}
-              className={`absolute rounded-full ${p.cls}`}
-              style={{
-                left: `${p.x}%`, top: `${p.y}%`,
-                width: `${p.size}px`, height: `${p.size}px`,
-                background: p.blue ? '#006DFF' : '#FF8A00',
-                opacity: 0.25,
-                '--dur': `${p.dur}s`, '--del': `${p.del}s`,
-              } as React.CSSProperties} />
-          ))}
+      {/* ── 1. HERO ─────────────────────────────────────────────────── */}
+      <section className="relative min-h-screen flex items-center overflow-hidden" style={{ background: '#071A2D' }}>
+        {/* Hero image — right half, subtle brightness reduction */}
+        <div className="absolute inset-0 lg:left-1/2">
+          <img
+            src="/images/hero/industrial-banner.png"
+            alt="Industrial valve installation"
+            className="w-full h-full object-cover brightness-75"
+          />
+          {/* Edge fade so image blends into navy on the left */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#071A2D] via-[#071A2D]/60 to-transparent" />
         </div>
 
-        {/* Horizontal scan line */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
-          <div className="absolute top-1/3 left-0 right-0 h-px"
-            style={{ background: 'linear-gradient(90deg, transparent, rgba(0,109,255,0.5), transparent)', animation: 'scan-line 8s linear infinite' }} />
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 grid lg:grid-cols-2 gap-16 items-center w-full">
-
-          {/* Left — headline */}
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold text-blue-300 mb-8"
-              style={{ background: 'rgba(0,109,255,0.12)', border: '1px solid rgba(0,109,255,0.3)' }}>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 w-full">
+          <div className="max-w-xl">
+            {/* Orange cert badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold text-white mb-8"
+              style={{ background: '#F97316', border: '1px solid rgba(249,115,22,0.5)' }}>
               <Shield className="w-3 h-3" /> ISO 9001:2015 Certified · South Africa
             </div>
 
-            <h1 className="font-display text-6xl sm:text-7xl lg:text-8xl font-bold text-white leading-[1.0] tracking-tight mb-6">
-              YOUR PARTNER IN
-              <span className="block mt-1" style={{ color: '#FF8A00' }}>VALVE</span>
-              <span className="block" style={{ background: 'linear-gradient(90deg, #006DFF, #00B4FF)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>SOLUTIONS</span>
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.05] mb-6">
+              Precision-Engineered<br />Valve Solutions
             </h1>
 
-            <p className="text-slate-400 text-lg sm:text-xl leading-relaxed mb-8 max-w-lg">
-              Industrial Flow Control · Sampling Systems · Municipal Water · Mining · Oil & Gas · Automation
+            <p className="text-lg text-slate-300 max-w-lg mb-8 leading-relaxed">
+              35 years supplying ball, butterfly, gate, knife gate and slurry valves for mining, water treatment, oil & gas and chemical industries across Africa.
             </p>
 
+            {/* CTA row */}
             <div className="flex flex-wrap gap-3 mb-10">
-              <Link to="/products" className="btn-primary">
-                View Products <ArrowRight className="w-4 h-4" />
+              <Link to="/rfq" className="btn-primary !px-6 !py-3 !text-base">
+                Request a Quote <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link to="/rfq" className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm text-white transition-all"
-                style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.15)' }}>
-                Request Quote
+              <Link to="/products"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-base text-white border border-white/30 hover:border-white/60 hover:bg-white/5 transition-all duration-150">
+                View Products
               </Link>
-              <a href={WA_URL} target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm text-emerald-400 transition-all hover:text-emerald-300"
-                style={{ background: 'rgba(16,185,129,0.08)', border: '1px solid rgba(16,185,129,0.2)' }}>
-                <WhatsAppIcon className="w-4 h-4" /> WhatsApp
-              </a>
             </div>
 
-            {/* Cert badges */}
-            <div className="flex flex-wrap gap-2">
-              {CERTS.map(c => (
-                <div key={c.code} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg"
-                  style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
-                  <div className="w-1.5 h-1.5 rounded-full" style={{ background: c.color }} />
-                  <span className="text-xs font-bold text-white">{c.code}</span>
-                </div>
+            {/* Cert dots row */}
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-semibold text-slate-400">
+              {CERTS.map((c, i) => (
+                <span key={c.code} className="flex items-center gap-1.5">
+                  {i > 0 && <span className="text-slate-600 mr-2">·</span>}
+                  <span className="w-1.5 h-1.5 rounded-full bg-isa-500 inline-block" />
+                  {c.code}
+                </span>
               ))}
             </div>
           </div>
-
-          {/* Right — floating product pills */}
-          <div className="hidden lg:block relative h-96">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-48 h-48 rounded-full opacity-10 dot-glow"
-                style={{ background: 'radial-gradient(circle, rgba(0,109,255,0.4) 0%, transparent 70%)', border: '1px solid rgba(0,109,255,0.3)' }} />
-            </div>
-            {HERO_PRODUCTS.map((name, i) => {
-              const angle = (i / HERO_PRODUCTS.length) * 360
-              const r = 140 + (i % 2) * 30
-              const x = 50 + (r / 2.5) * Math.cos((angle * Math.PI) / 180)
-              const y = 50 + (r / 3.5) * Math.sin((angle * Math.PI) / 180)
-              return (
-                <div key={name}
-                  className="absolute transform -translate-x-1/2 -translate-y-1/2 float-p whitespace-nowrap"
-                  style={{
-                    left: `${x}%`, top: `${y}%`,
-                    '--dur': `${10 + i * 2}s`, '--del': `${i * 1.2}s`,
-                  } as React.CSSProperties}>
-                  <div className="px-3 py-1.5 rounded-full text-xs font-semibold text-blue-300"
-                    style={{ background: 'rgba(0,109,255,0.1)', border: '1px solid rgba(0,109,255,0.25)', backdropFilter: 'blur(8px)' }}>
-                    {name}
-                  </div>
-                </div>
-              )
-            })}
-            {/* Central ISA mark */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
-              <div className="font-display text-2xl font-bold text-white">ISA</div>
-              <div className="text-xs text-blue-400 mt-0.5 tracking-widest">VALVE SOLUTIONS</div>
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-40">
-          <div className="w-px h-8" style={{ background: 'linear-gradient(to bottom, transparent, rgba(0,109,255,0.8))' }} />
-          <div className="text-[10px] text-blue-400 font-bold uppercase tracking-widest">Scroll</div>
         </div>
       </section>
 
-      {/* ── INDUSTRY TICKER ─────────────────────────────────────────── */}
-      <div className="border-y py-3 overflow-hidden"
-        style={{ background: '#040e22', borderColor: 'rgba(255,255,255,0.06)' }}>
-        <div className="flex items-center gap-8 px-6 flex-wrap justify-center">
-          <span className="text-xs font-bold text-slate-500 uppercase tracking-widest whitespace-nowrap">Trusted in</span>
-          {['Mining', 'Water Treatment', 'Oil & Gas', 'Chemical Processing', 'Municipal Infrastructure', 'Power Generation', 'Pulp & Paper'].map((ind, i, arr) => (
+      {/* ── 2. INDUSTRY TRUST BAR ───────────────────────────────────── */}
+      <div className="bg-white border-b border-slate-200 py-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+          <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Trusted across:</span>
+          {['Mining', 'Water Treatment', 'Oil & Gas', 'Chemical Processing', 'Municipal', 'Power Generation', 'Pulp & Paper'].map((ind, i, arr) => (
             <span key={ind} className="flex items-center gap-4">
-              <span className="text-sm font-semibold text-slate-400">{ind}</span>
-              {i < arr.length - 1 && <span className="text-slate-700">·</span>}
+              <span className="text-sm font-semibold text-slate-600">{ind}</span>
+              {i < arr.length - 1 && <span className="text-slate-300">·</span>}
             </span>
           ))}
         </div>
       </div>
 
-      {/* ── ANIMATED STATS ──────────────────────────────────────────── */}
-      <section style={{ background: '#071B2E', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-        <div className="max-w-5xl mx-auto grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-white/10">
+      {/* ── 3. STATS ────────────────────────────────────────────────── */}
+      <section className="bg-white py-16 border-b border-slate-100">
+        <div className="max-w-5xl mx-auto grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-slate-200">
           {STATS.map(s => (
             <StatCard key={s.label} {...s} />
           ))}
         </div>
       </section>
 
-      {/* ── CERTIFICATIONS — white ───────────────────────────────────── */}
-      <section className="py-16 bg-white border-y border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <p className="text-xs font-black uppercase tracking-widest text-blue-600 mb-2">Quality Assurance</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">International Certifications</h2>
-            <p className="text-slate-500 text-base mt-2 max-w-xl mx-auto">Every ISA valve is tested and certified to the highest international standards</p>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-            {CERTS.map(c => (
-              <div key={c.code} className="bg-slate-50 border border-slate-200 p-5 text-center rounded-2xl group hover:-translate-y-1 hover:shadow-md transition-all duration-200">
-                <div className="w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center"
-                  style={{ background: `${c.color}12`, border: `1px solid ${c.color}30` }}>
-                  <Shield className="w-5 h-5" style={{ color: c.color }} />
-                </div>
-                <div className="font-bold text-slate-900 text-sm mb-1">{c.code}</div>
-                <div className="text-xs text-slate-500">{c.name}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── PRODUCT CATEGORIES — white bg, real photo cards ───────── */}
-      <section className="py-20 bg-white">
+      {/* ── 4. PRODUCTS ─────────────────────────────────────────────── */}
+      <section className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between mb-12">
             <div>
-              <p className="text-xs font-black uppercase tracking-widest text-blue-600 mb-2">Product Range</p>
-              <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 leading-tight">Engineering Solutions</h2>
+              <span className="section-label">Product Range</span>
+              <h2 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                Flow Control Solutions
+              </h2>
               <p className="text-slate-500 text-lg mt-2">Purpose-engineered for your application</p>
             </div>
-            <Link to="/products" className="hidden sm:flex items-center gap-1.5 text-sm font-bold text-blue-600 hover:text-blue-700 transition-colors">
+            <Link to="/products" className="hidden sm:flex items-center gap-1.5 text-sm font-bold text-isa-600 hover:text-isa-700 transition-colors">
               All Products <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {PRODUCT_CATS.map(cat => (
               <Link key={cat.slug} to={`/products/${cat.slug}`}
-                className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
-                style={{ aspectRatio: '4/3' }}>
-                {/* Photo background */}
-                <img src={cat.img} alt={cat.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                {/* Dark gradient overlay */}
-                <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.10) 100%)' }} />
-                {/* Accent top bar */}
-                <div className="absolute top-0 left-0 right-0 h-1" style={{ background: cat.color }} />
-                {/* Text content */}
-                <div className="absolute inset-x-0 bottom-0 p-5">
-                  <h3 className="font-bold text-white text-lg leading-snug mb-1 group-hover:text-blue-200 transition-colors">{cat.title}</h3>
-                  <p className="text-sm text-slate-300 mb-3">{cat.sub}</p>
-                  <div className="flex items-center gap-1.5 text-xs font-bold transition-transform group-hover:translate-x-1 duration-200"
-                    style={{ color: cat.color }}>
-                    View Specifications <ArrowRight className="w-3 h-3" />
-                  </div>
+                className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-slate-200 group">
+                {/* Image area */}
+                <div className="relative h-52 overflow-hidden bg-slate-100">
+                  <img
+                    src={cat.img}
+                    alt={cat.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                {/* Content area */}
+                <div className="p-5">
+                  <h3 className="font-bold text-slate-900 text-base mb-1">{cat.title}</h3>
+                  <p className="text-isa-600 text-sm font-medium mb-1">{cat.sub}</p>
+                  <p className="text-slate-500 text-xs mb-4">{cat.spec}</p>
+                  <span className="flex items-center gap-1 text-sm font-semibold text-isa-600 hover:text-isa-700 group-hover:gap-2 transition-all duration-150">
+                    View Specifications <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
                 </div>
               </Link>
             ))}
           </div>
           <div className="mt-8 sm:hidden text-center">
-            <Link to="/products" className="inline-flex items-center gap-1.5 text-sm font-bold text-blue-600">
+            <Link to="/products" className="inline-flex items-center gap-1.5 text-sm font-bold text-isa-600">
               View All Products <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* ── AI SELECTOR CTA ─────────────────────────────────────────── */}
-      <section className="py-12 mx-4 sm:mx-8 lg:mx-auto max-w-7xl">
-        <div className="rounded-3xl p-8 sm:p-10 flex flex-col sm:flex-row items-center gap-6 relative overflow-hidden"
-          style={{ background: 'linear-gradient(135deg, rgba(0,109,255,0.15) 0%, rgba(0,50,120,0.3) 100%)', border: '1px solid rgba(0,109,255,0.25)' }}>
-          <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none" />
-          <div className="relative flex-1">
-            <div className="flex items-center gap-2 mb-3">
-              <Zap className="w-5 h-5 text-accent-400" />
-              <span className="text-sm font-bold text-accent-400 uppercase tracking-widest">AI Valve Selector</span>
-            </div>
-            <h2 className="font-display text-2xl font-bold text-white mb-2">Not sure which valve? Answer 4 questions.</h2>
-            <p className="text-slate-400 text-sm">Get an AI-powered valve recommendation with engineering reasoning — no sales call required.</p>
+      {/* ── 5. CAPABILITIES ─────────────────────────────────────────── */}
+      <section className="py-20 relative" style={{ background: '#071A2D' }}>
+        {/* Orange accent bar at top */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-isa-500" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="section-label">Engineering Excellence</span>
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+              Why Engineers Specify ISA
+            </h2>
+            <p className="text-slate-400 text-lg mt-3 max-w-xl mx-auto">
+              From specification to commissioning — engineering support at every stage.
+            </p>
           </div>
-          <div className="relative flex-shrink-0">
-            <Link to="/configure" className="btn-primary whitespace-nowrap">
-              <Zap className="w-4 h-4" /> Start AI Selector
-            </Link>
+
+          <div className="grid sm:grid-cols-3 gap-6 mb-12">
+            {CAPABILITIES.map(cap => (
+              <div key={cap.title} className="rounded-xl p-6" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.10)' }}>
+                <div className="w-8 h-8 rounded-lg bg-isa-500/20 flex items-center justify-center mb-4">
+                  <CheckCircle className="w-4 h-4 text-isa-400" />
+                </div>
+                <h3 className="font-bold text-white text-base mb-2">{cap.title}</h3>
+                <p className="text-sm text-slate-400 leading-relaxed">{cap.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Metrics bar */}
+          <div className="flex flex-wrap justify-center gap-x-10 gap-y-3 pt-8 border-t border-white/10 text-center">
+            {['35+ Years', '500+ Projects', '8+ Countries', 'ISO 9001:2015'].map(m => (
+              <span key={m} className="text-sm font-bold text-slate-300 uppercase tracking-widest">{m}</span>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── INDUSTRIES — dark navy ───────────────────────────────────── */}
-      <section className="py-20" style={{ background: '#071B2E' }}>
+      {/* ── 6. INDUSTRIES ───────────────────────────────────────────── */}
+      <section className="bg-slate-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="eng-label mb-2">Industries Served</p>
-            <h2 className="font-display text-4xl sm:text-5xl font-bold text-white">Sector Solutions</h2>
-            <p className="text-slate-400 text-lg mt-3">ISA valves engineered for the most demanding applications</p>
+            <span className="section-label">Markets We Serve</span>
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+              Sector Solutions
+            </h2>
+            <p className="text-slate-500 text-lg mt-3">ISA valves engineered for the most demanding applications</p>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {INDUSTRIES.map(ind => (
-              <Link key={ind.name} to={`/industries/${ind.name.toLowerCase().replace(/[^a-z]/g, '-').replace(/-+/g, '-')}`}
-                className="glass-light p-5 rounded-2xl group hover:-translate-y-1 transition-all duration-200 text-center">
-                <div className="text-3xl mb-3 group-hover:scale-110 transition-transform duration-200">{ind.icon}</div>
-                <div className="font-semibold text-white text-sm mb-1 group-hover:text-blue-300 transition-colors">{ind.name}</div>
-                <div className="text-xs text-muted leading-snug">{ind.desc}</div>
+              <Link key={ind.name} to={ind.to}
+                className="bg-white border border-slate-200 rounded-xl p-5 hover:border-isa-300 hover:shadow-sm transition-all group">
+                <h3 className="font-semibold text-slate-900 text-sm mb-1">{ind.name}</h3>
+                <p className="text-slate-500 text-xs mb-3 leading-snug">{ind.desc}</p>
+                <ArrowRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-isa-500 group-hover:translate-x-0.5 transition-all duration-150" />
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── FEATURED PROJECTS — dark ─────────────────────────────────── */}
-      <section className="py-20" style={{ background: '#040e22' }}>
+      {/* ── 7. FEATURED PROJECTS ────────────────────────────────────── */}
+      <section className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-12">
-            <div>
-              <p className="eng-label mb-2">Case Studies</p>
-              <h2 className="font-display text-4xl sm:text-5xl font-bold text-white">Featured Projects</h2>
-              <p className="text-slate-400 text-lg mt-2">Real installations across Africa</p>
-            </div>
+          <div className="text-center mb-12">
+            <span className="section-label">Recent Installations</span>
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+              Featured Projects
+            </h2>
+            <p className="text-slate-500 text-lg mt-3">Real installations across Africa</p>
           </div>
           <div className="grid sm:grid-cols-2 gap-5">
             {PROJECTS.map(p => (
-              <div key={p.title} className="glass rounded-2xl overflow-hidden group hover:-translate-y-1 transition-all duration-300"
-                style={{ border: '1px solid rgba(255,255,255,0.07)' }}>
-                <div className="h-2" style={{ background: 'linear-gradient(90deg, #006DFF, #FF8A00)' }} />
-                <div className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 text-2xl"
-                      style={{ background: 'rgba(0,109,255,0.1)', border: '1px solid rgba(0,109,255,0.2)' }}>
-                      {p.icon}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1 flex-wrap">
-                        <span className="text-xs font-bold text-blue-400 px-2 py-0.5 rounded-full"
-                          style={{ background: 'rgba(0,109,255,0.1)' }}>{p.tag}</span>
-                      </div>
-                      <h3 className="font-display font-bold text-white group-hover:text-blue-300 transition-colors leading-snug">{p.title}</h3>
-                      <p className="text-xs font-semibold text-accent-400 mt-0.5 mb-3">{p.sub}</p>
-                      <p className="text-sm text-muted leading-relaxed">{p.desc}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="text-center mt-8">
-            <Link to="/resources" className="inline-flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors">
-              View Technical Resources <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ── AFRICA PRESENCE ─────────────────────────────────────────── */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <p className="eng-label mb-2">African Footprint</p>
-            <h2 className="font-display text-4xl sm:text-5xl font-bold text-white">Regional Presence</h2>
-            <p className="text-slate-400 text-lg mt-3">Engineering solutions delivered across Southern and Central Africa</p>
-          </div>
-          <div className="glass rounded-3xl p-8 sm:p-12 relative overflow-hidden"
-            style={{ border: '1px solid rgba(0,109,255,0.15)' }}>
-            {/* Background glow */}
-            <div className="absolute inset-0 pointer-events-none"
-              style={{ background: 'radial-gradient(ellipse 60% 80% at 50% 50%, rgba(0,109,255,0.05) 0%, transparent 70%)' }} />
-
-            <div className="relative grid lg:grid-cols-2 gap-12 items-center">
-              {/* Map visual — simplified SVG Africa silhouette with dots */}
-              <div className="relative mx-auto w-72 h-80">
-                {/* Simplified Africa outline */}
-                <svg viewBox="0 0 200 260" className="absolute inset-0 w-full h-full opacity-10" fill="none">
-                  <path d="M80 10 L130 5 L170 30 L190 70 L185 120 L175 150 L155 185 L130 220 L110 250 L90 250 L65 220 L45 185 L25 150 L15 110 L20 70 L40 35 Z"
-                    stroke="#006DFF" strokeWidth="1.5" fill="rgba(0,109,255,0.05)" />
-                </svg>
-
-                {/* Country dots */}
-                {AFRICA_DOTS.map(c => (
-                  <div key={c.name}
-                    className="absolute transform -translate-x-1/2 -translate-y-1/2 group"
-                    style={{ left: `${c.x}%`, top: `${c.y}%` }}>
-                    {/* Pulse ring */}
-                    <div className="absolute inset-0 rounded-full animate-ping"
-                      style={{
-                        background: c.primary ? 'rgba(255,138,0,0.3)' : 'rgba(0,109,255,0.3)',
-                        width: c.primary ? 24 : 16, height: c.primary ? 24 : 16,
-                        top: c.primary ? -8 : -4, left: c.primary ? -8 : -4,
-                        animationDuration: c.primary ? '1.5s' : '2.5s',
-                      }} />
-                    {/* Dot */}
-                    <div className={`rounded-full ${c.primary ? 'dot-glow-o' : 'dot-glow'}`}
-                      style={{
-                        width: c.primary ? 10 : 7, height: c.primary ? 10 : 7,
-                        background: c.primary ? '#FF8A00' : '#006DFF',
-                      }} />
-                    {/* Label */}
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 whitespace-nowrap px-2 py-0.5 rounded text-xs font-semibold text-white opacity-0 group-hover:opacity-100 transition-opacity"
-                      style={{ background: 'rgba(8,29,66,0.95)', border: '1px solid rgba(0,109,255,0.3)' }}>
-                      {c.name}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Country list */}
-              <div>
-                <div className="grid grid-cols-2 gap-3">
-                  {AFRICA_DOTS.map(c => (
-                    <div key={c.name} className="flex items-center gap-3 p-3 rounded-xl"
-                      style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
-                      <div className="w-2 h-2 rounded-full flex-shrink-0"
-                        style={{ background: c.primary ? '#FF8A00' : '#006DFF', boxShadow: `0 0 6px ${c.primary ? '#FF8A00' : '#006DFF'}` }} />
-                      <div>
-                        <div className="text-sm font-semibold text-white">{c.name}</div>
-                        {c.primary && <div className="text-xs text-accent-400">Headquarters</div>}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-6 p-4 rounded-2xl"
-                  style={{ background: 'rgba(0,109,255,0.06)', border: '1px solid rgba(0,109,255,0.15)' }}>
-                  <p className="text-sm text-slate-300 leading-relaxed">
-                    From mining operations in Zambia to municipal water infrastructure in South Africa, ISA delivers engineered valve solutions across the region.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── WHY ISA — light gray ────────────────────────────────────── */}
-      <section className="py-20" style={{ background: '#F6F8FA' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <p className="text-xs font-black uppercase tracking-widest text-blue-600 mb-2">Client Results</p>
-            <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 leading-tight">Proven Performance</h2>
-            <p className="text-slate-500 text-lg mt-3">Why leading engineers specify ISA</p>
-          </div>
-
-          {/* Key metrics */}
-          <div className="grid sm:grid-cols-3 gap-6 mb-12">
-            {[
-              { value: '3 → 14 mo', label: 'Valve service life extended', sub: 'Slurry mining applications' },
-              { value: '1.5×', label: 'Rated pressure tested', sub: 'Every valve before dispatch' },
-              { value: '100%', label: 'Material documentation', sub: 'Test certs & CoC on every order' },
-            ].map(m => (
-              <div key={m.value} className="bg-white border border-slate-200 rounded-2xl p-6 text-center shadow-sm">
-                <div className="text-4xl font-bold text-blue-600 mb-1">{m.value}</div>
-                <div className="text-sm font-bold text-slate-800 mb-0.5">{m.label}</div>
-                <div className="text-xs text-slate-500">{m.sub}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="grid sm:grid-cols-3 gap-6">
-            {[
-              { industry: 'Copper Mining — Northern Cape', result: '72% maintenance downtime reduction. R1.2M annual parts saving after switching to ceramic-lined ISA knife gate valves.', stars: 5 },
-              { industry: 'Municipal Water Treatment', result: 'WRAS-compliant DN800 butterfly valves delivered and commissioned within 3 weeks of order confirmation.', stars: 5 },
-              { industry: 'Oil & Gas — Upstream Pipeline', result: 'API 6D ball valves supplied with full material traceability documentation. Zero defects on 47-unit order.', stars: 5 },
-            ].map(sp => (
-              <div key={sp.industry} className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-                <div className="flex gap-0.5 mb-4">
-                  {Array.from({ length: sp.stars }).map((_, j) => (
-                    <Star key={j} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                  ))}
-                </div>
-                <p className="text-sm text-slate-600 leading-relaxed mb-4">"{sp.result}"</p>
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-wide">{sp.industry}</p>
+              <div key={p.title} className="border-l-4 border-isa-500 bg-white shadow-sm rounded-xl p-6 hover:shadow-md transition-shadow">
+                <span className="inline-block text-xs font-bold text-isa-700 bg-isa-50 px-2 py-0.5 rounded mb-3">{p.tag}</span>
+                <h3 className="font-bold text-slate-900 text-base mb-1">{p.title}</h3>
+                <p className="text-sm font-semibold text-slate-600 mb-2">{p.sub}</p>
+                <p className="text-sm text-slate-500 leading-relaxed">{p.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── ENGINEERING RESOURCES ───────────────────────────────────── */}
-      <section className="py-20">
+      {/* ── 8. CERTIFICATIONS ───────────────────────────────────────── */}
+      <section className="bg-slate-50 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <span className="section-label">Quality Assurance</span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+              International Certifications
+            </h2>
+            <p className="text-slate-500 text-base mt-2 max-w-xl mx-auto">
+              Independently certified to international standards
+            </p>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            {CERTS.map(c => (
+              <div key={c.code} className="bg-white border border-slate-200 rounded-xl p-5 text-center shadow-sm">
+                <Shield className="w-6 h-6 text-isa-500 mx-auto mb-3" />
+                <div className="font-bold text-slate-900 text-sm">{c.code}</div>
+                <div className="text-xs text-slate-500 mt-0.5">{c.name}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 9. ENGINEERING RESOURCES ────────────────────────────────── */}
+      <section className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="eng-label mb-2">Technical Library</p>
-            <h2 className="font-display text-4xl sm:text-5xl font-bold text-white">Engineering Resources</h2>
-            <p className="text-slate-400 text-lg mt-3">Data sheets, selection guides and calculators — sign in for free access</p>
+            <span className="section-label">Technical Library</span>
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+              Technical Resources
+            </h2>
+            <p className="text-slate-500 text-lg mt-3">Data sheets, selection guides and calculators</p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
-              { title: 'Technical Data Sheets', sub: '7 PDF documents — immediate download', icon: '📄', to: '/resources#downloads', color: '#10b981' },
-              { title: 'Engineering Calculators', sub: 'Cv, flow rate, pressure drop', icon: '⚡', to: '/calculators', color: '#006DFF' },
-              { title: 'Chemical Compatibility', sub: 'NBR · EPDM · Viton® · PTFE guide', icon: '🧪', to: '/resources#compatibility', color: '#8b5cf6' },
-              { title: 'Product Catalog', sub: '40+ valve models, all specifications', icon: '📋', to: '/catalog', color: '#f59e0b' },
-              { title: 'Valve Selection Guide', sub: 'Match application to valve type', icon: '🎯', to: '/resources#selection', color: '#ef4444' },
-              { title: 'Standards Reference', sub: 'ISO, API 6D, SABS, WRAS', icon: '📐', to: '/resources#standards', color: '#FF6A00' },
+              { title: 'Technical Data Sheets', sub: '7 PDF documents — immediate download', to: '/resources#downloads' },
+              { title: 'Engineering Calculators', sub: 'Cv, flow rate, pressure drop', to: '/calculators' },
+              { title: 'Chemical Compatibility', sub: 'NBR · EPDM · Viton® · PTFE guide', to: '/resources#compatibility' },
+              { title: 'Product Catalog', sub: '40+ valve models, all specifications', to: '/catalog' },
+              { title: 'Valve Selection Guide', sub: 'Match application to valve type', to: '/resources#selection' },
+              { title: 'Standards Reference', sub: 'ISO, API 6D, SABS, WRAS', to: '/resources#standards' },
             ].map(r => (
               <Link key={r.title} to={r.to}
-                className="glass p-5 rounded-2xl group hover:-translate-y-0.5 transition-all duration-200 flex items-center gap-4"
-                style={{ border: '1px solid rgba(255,255,255,0.06)' }}>
-                <div className="w-11 h-11 rounded-xl flex items-center justify-center text-xl flex-shrink-0"
-                  style={{ background: `${r.color}12`, border: `1px solid ${r.color}25` }}>
-                  {r.icon}
+                className="bg-slate-50 border border-slate-200 rounded-xl p-5 flex items-center gap-4 hover:border-isa-300 hover:shadow-sm transition-all group">
+                <div className="w-10 h-10 rounded-lg bg-isa-50 border border-isa-100 flex items-center justify-center flex-shrink-0">
+                  <CheckCircle className="w-5 h-5 text-isa-500" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="font-semibold text-white text-sm group-hover:text-blue-300 transition-colors">{r.title}</div>
-                  <div className="text-xs text-muted mt-0.5">{r.sub}</div>
+                  <div className="font-semibold text-slate-900 text-sm group-hover:text-isa-700 transition-colors">{r.title}</div>
+                  <div className="text-xs text-slate-500 mt-0.5">{r.sub}</div>
                 </div>
-                <ArrowRight className="w-4 h-4 text-muted group-hover:text-blue-400 group-hover:translate-x-1 transition-all flex-shrink-0" />
+                <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-isa-500 group-hover:translate-x-0.5 transition-all flex-shrink-0" />
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── FULL-WIDTH CTA ──────────────────────────────────────────── */}
-      <section className="py-20 relative overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, #040e22 0%, #0a1f45 50%, #040e22 100%)' }}>
-        <div className="absolute inset-0 bg-grid opacity-30" />
-        <div className="absolute inset-0"
-          style={{ background: 'radial-gradient(ellipse 70% 80% at 50% 50%, rgba(0,109,255,0.08) 0%, transparent 70%)' }} />
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold text-blue-300 mb-6"
-            style={{ background: 'rgba(0,109,255,0.1)', border: '1px solid rgba(0,109,255,0.25)' }}>
-            <Shield className="w-3 h-3" /> ISO 9001:2015 · API 6D · WRAS · SABS · ISO 5208
-          </div>
-          <h2 className="font-display text-4xl sm:text-5xl font-bold text-white mb-4 leading-tight">
+      {/* ── 10. CTA ─────────────────────────────────────────────────── */}
+      <section className="py-20" style={{ background: '#071A2D' }}>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <span className="text-xs font-bold uppercase tracking-widest text-isa-400 block mb-6">
+            ISO 9001:2015 · API 6D · WRAS · SABS 664 · ISO 5208
+          </span>
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
             Ready to Engineer<br />Your Next Project?
           </h2>
           <p className="text-slate-400 text-lg mb-10 max-w-xl mx-auto">
             Get expert valve sizing, product selection and engineering support from ISA Valve Solutions. ISO certified. Africa proven.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4 mb-10">
             <Link to="/rfq" className="btn-primary !px-8 !py-3.5 !text-base">
               Request Quote <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link to="/configure" className="flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold text-sm text-white transition-all"
-              style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.15)' }}>
-              <Zap className="w-4 h-4 text-accent-400" /> AI Valve Selector
+            <Link to="/products"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg font-bold text-base text-white border border-white/25 hover:border-white/50 hover:bg-white/5 transition-all duration-150">
+              View Products
             </Link>
             <a href={WA_URL} target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold text-sm text-emerald-400 transition-colors hover:text-emerald-300"
-              style={{ background: 'rgba(16,185,129,0.08)', border: '1px solid rgba(16,185,129,0.2)' }}>
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg font-bold text-base text-emerald-400 border border-emerald-500/25 hover:border-emerald-400/50 hover:bg-emerald-500/5 transition-all duration-150">
               <WhatsAppIcon className="w-4 h-4" /> WhatsApp Us
             </a>
           </div>
-          <div className="mt-10 flex flex-wrap justify-center gap-6 text-sm text-slate-500">
+          <div className="flex flex-wrap justify-center gap-6 text-sm text-slate-500">
             <span className="flex items-center gap-1.5"><Phone className="w-3.5 h-3.5" /> +27 060 688 5648</span>
-            <span className="flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5" /> South Africa · Regional coverage</span>
-            <a href="mailto:isa-valve@outlook.com" className="flex items-center gap-1.5 hover:text-blue-400 transition-colors">
-              <Download className="w-3.5 h-3.5" /> isa-valve@outlook.com
+            <a href="mailto:isa-valve@outlook.com" className="flex items-center gap-1.5 hover:text-isa-400 transition-colors">
+              <Mail className="w-3.5 h-3.5" /> isa-valve@outlook.com
             </a>
           </div>
         </div>
