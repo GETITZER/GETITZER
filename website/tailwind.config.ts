@@ -10,35 +10,35 @@ export default {
         mono:    ['JetBrains Mono', 'Fira Code', 'monospace'],
       },
       colors: {
-        // Primary navy — #081D42 (ISA brand)
+        // Primary navy — ISA Dark Navy #071B2E
         dark: {
-          950: '#040e22',
-          900: '#081D42',
-          800: '#0a2352',
-          700: '#0d2b66',
-          600: '#1a3a7a',
-          500: '#244d8f',
+          950: '#030d18',
+          900: '#071B2E',
+          800: '#091f36',
+          700: '#0d2844',
+          600: '#173554',
+          500: '#1f4268',
         },
-        // Engineering blue — #006DFF
+        // ISA Engineering Blue — #0066CC
         blue: {
-          700: '#0047cc',
-          600: '#0055cc',
-          500: '#006DFF',
-          400: '#338fff',
-          300: '#66aaff',
-          200: '#99ccff',
-          100: '#cce5ff',
+          700: '#004499',
+          600: '#0055b3',
+          500: '#0066CC',
+          400: '#2280e0',
+          300: '#55a0f0',
+          200: '#88c0ff',
+          100: '#ccdfff',
         },
-        // ISA Orange — #FF6A00
+        // ISA Orange — #FF8A00
         accent: {
-          50:  '#fff3e6',
-          100: '#ffe0bf',
-          200: '#ffc280',
-          300: '#ffa040',
-          400: '#ff8520',
-          500: '#FF6A00',
-          600: '#e05e00',
-          700: '#c05200',
+          50:  '#fff5e6',
+          100: '#ffe4bf',
+          200: '#ffc980',
+          300: '#ffac40',
+          400: '#ff9c20',
+          500: '#FF8A00',
+          600: '#e07800',
+          700: '#c06600',
         },
         // Neutral text
         muted: '#A8B2C5',

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X, ChevronDown, Zap, ArrowRight, Calculator, BookOpen, Download, FileText } from 'lucide-react'
 import { WhatsAppIcon, WA_URL } from './WhatsAppButton'
+import { ISALogoNav } from './ISALogo'
 
 const productLinks = [
   { label: 'ISA Titan™ Ball Valve',      sub: 'DN15–DN600 · API 6D',          to: '/products/ball-valve',       color: '#006DFF' },
@@ -24,15 +25,6 @@ const navLinks = [
   { label: 'About',      to: '/about' },
 ]
 
-function ISALogo() {
-  return (
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="2,30 16,2 22,30" fill="#3b82f6" />
-      <polygon points="16,2 22,30 20,30 14,4" fill="#FF6A00" opacity="0.95" />
-      <polygon points="22,30 30,30 24,10" fill="#A8B2C5" opacity="0.6" />
-    </svg>
-  )
-}
 
 export default function Navigation() {
   const [mobileOpen,   setMobileOpen]   = useState(false)
@@ -62,12 +54,8 @@ export default function Navigation() {
           <div className="flex items-center justify-between h-16">
 
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-3 group">
-              <ISALogo />
-              <div className="leading-none">
-                <div className="font-display font-bold text-sm tracking-tight text-white group-hover:text-blue-300 transition-colors">ISA VALVE SOLUTIONS</div>
-                <div className="text-[9px] font-semibold text-muted tracking-widest uppercase">& Industrial Supplies</div>
-              </div>
+            <Link to="/" className="group">
+              <ISALogoNav />
             </Link>
 
             {/* Desktop nav */}

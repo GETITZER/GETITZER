@@ -1,16 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Phone, Mail, MapPin, ArrowRight, Calculator, BookOpen, Download } from 'lucide-react'
 import { WhatsAppIcon, WA_URL } from './WhatsAppButton'
-
-function ISALogo() {
-  return (
-    <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="2,30 16,2 22,30" fill="#3b82f6" />
-      <polygon points="16,2 22,30 20,30 14,4" fill="#FF6A00" opacity="0.95" />
-      <polygon points="22,30 30,30 24,10" fill="#A8B2C5" opacity="0.6" />
-    </svg>
-  )
-}
+import { ISALogoFooter } from './ISALogo'
 
 const productLinks = [
   { label: 'ISA Titan™ Ball Valve',       to: '/products/ball-valve' },
@@ -49,12 +40,8 @@ export default function Footer() {
 
           {/* Brand — 2 columns */}
           <div className="sm:col-span-2">
-            <Link to="/" className="flex items-center gap-2.5 mb-5">
-              <ISALogo />
-              <div className="leading-none">
-                <div className="font-display font-bold text-sm tracking-tight text-white">ISA VALVE SOLUTIONS</div>
-                <div className="text-[9px] font-semibold text-muted tracking-widest uppercase">& Industrial Supplies</div>
-              </div>
+            <Link to="/" className="block mb-5">
+              <ISALogoFooter />
             </Link>
             <p className="text-sm text-muted leading-relaxed mb-6 max-w-xs">
               Precision-engineered valve solutions for Mining, Water Treatment, Oil & Gas, Chemical and Industrial applications — ISO 9001:2015 certified, Southern Africa's engineering partner.

@@ -1,16 +1,38 @@
 import { Link } from 'react-router-dom'
 import { Download, BookOpen, ArrowRight, Calculator, ExternalLink, Shield, Zap } from 'lucide-react'
 
-const downloads = [
-  { name: 'Valve Selection Guide',         type: 'PDF', size: '2.1 MB', desc: 'Complete guide to selecting the right valve type for your application', icon: '📋' },
-  { name: 'ISA Titan™ Ball Valve Data Sheet', type: 'PDF', size: '850 KB', desc: 'Technical data, dimensions and performance curves for DN15–DN600', icon: '⚙️' },
-  { name: 'ISA Hydra™ Butterfly Valve Data Sheet', type: 'PDF', size: '920 KB', desc: 'Technical data, dimensions and torque curves for DN50–DN1200', icon: '🦋' },
-  { name: 'ISA Core™ Gate Valve Data Sheet', type: 'PDF', size: '780 KB', desc: 'Technical data, dimensions and pressure ratings for DN50–DN1000', icon: '🔧' },
-  { name: 'ISA ProSeal™ Knife Gate Valve Data Sheet', type: 'PDF', size: '1.1 MB', desc: 'Technical data for slurry and abrasive service applications', icon: '🔪' },
-  { name: 'ISA Shield™ Pinch Valve Data Sheet', type: 'PDF', size: '1.4 MB', desc: 'ISO 5208 Grade A pinch valve with 4 sleeve grades — full technical data', icon: '🔴' },
-  { name: 'ISA DXST™ Slurry KGV Data Sheet', type: 'PDF', size: '1.8 MB', desc: '466% longer life knife gate valve — full technical and case study data', icon: '🟢' },
-  { name: 'Chemical Compatibility Chart',    type: 'PDF', size: '3.2 MB', desc: 'Elastomer and body material compatibility for 120+ chemicals', icon: '⚗' },
-  { name: 'Hydrostatic Test Certificates',   type: 'PDF', size: 'On request', desc: 'Individual hydro test certificates available for every valve supplied', icon: '💧' },
+interface DownloadDoc {
+  name: string; type: string; size: string; desc: string; icon: string
+  href?: string  // direct download URL if file is hosted
+}
+const downloads: DownloadDoc[] = [
+  {
+    name: 'ISA High Performance Slurry KGV',
+    type: 'PDF', size: '199 KB',
+    desc: 'Knife gate valve for abrasive slurry and ore applications — DN25–DN300, PN6–PN20, mining proven',
+    icon: '🔪',
+    href: '/downloads/ISA-High-Performance-Slurry-KGV.pdf',
+  },
+  {
+    name: 'ISA Slurry DXST — Proprietary Materials',
+    type: 'PDF', size: '552 KB',
+    desc: 'ISA DXST™ heavy duty mining series — ISA-Shield™ polymer lining, ISA-Flex™ elastomer, DN25–DN350',
+    icon: '🟠',
+    href: '/downloads/ISA-Slurry-DXST-Datasheet.pdf',
+  },
+  {
+    name: 'ISA Precision Flow Solutions — Portfolio',
+    type: 'PDF', size: '12 MB',
+    desc: 'Engineered ecosystems for extreme environments — comprehensive technical capability and product portfolio',
+    icon: '📋',
+    href: '/downloads/ISA-Precision-Flow-Solutions.pdf',
+  },
+  { name: 'ISA Titan™ Ball Valve Data Sheet', type: 'PDF', size: 'On request', desc: 'Technical data, dimensions and performance curves for DN15–DN600 · API 6D', icon: '⚙️' },
+  { name: 'ISA Hydra™ Butterfly Valve Data Sheet', type: 'PDF', size: 'On request', desc: 'Technical data, dimensions and torque curves for DN50–DN1200 · WRAS', icon: '🦋' },
+  { name: 'ISA Core™ Gate Valve Data Sheet', type: 'PDF', size: 'On request', desc: 'Technical data, dimensions and pressure ratings for DN50–DN1000 · SABS 664', icon: '🔧' },
+  { name: 'ISA Shield™ Pinch Valve Data Sheet', type: 'PDF', size: 'On request', desc: 'ISO 5208 Grade A pinch valve with 4 sleeve grades — full technical data', icon: '🔴' },
+  { name: 'Chemical Compatibility Chart', type: 'PDF', size: 'On request', desc: 'Elastomer and body material compatibility for 120+ chemicals', icon: '⚗' },
+  { name: 'Hydrostatic Test Certificates', type: 'PDF', size: 'On request', desc: 'Individual hydro test certificates — available for every valve supplied', icon: '💧' },
 ]
 
 const standards = [
@@ -141,30 +163,52 @@ export default function Resources() {
             </div>
             <p className="text-sm text-muted hidden sm:block">Contact us to receive any document by email</p>
           </div>
+          {/* Real downloads — available immediately */}
+          <div className="mb-6 p-4 rounded-2xl flex items-center gap-3"
+            style={{ background: 'rgba(16,185,129,0.07)', border: '1px solid rgba(16,185,129,0.18)' }}>
+            <Shield className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+            <p className="text-sm text-emerald-300"><strong className="text-white">3 documents available for immediate download</strong> — no sign-up required. Remaining data sheets available on request.</p>
+          </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {downloads.map(doc => (
-              <div key={doc.name} className="glass p-5 group hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
-                style={{ border: '1px solid rgba(255,255,255,0.07)' }}
-                onClick={() => window.location.href = '/rfq?type=document&doc=' + encodeURIComponent(doc.name)}>
-                <div className="flex items-start gap-3 mb-3">
-                  <span className="text-2xl">{doc.icon}</span>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-sm font-bold text-white group-hover:text-blue-300 transition-colors leading-snug">{doc.name}</h3>
-                    <div className="flex items-center gap-2 mt-1">
-                      <span className="text-[10px] font-bold text-blue-400 px-1.5 py-0.5 rounded"
-                        style={{ background: 'rgba(0,109,255,0.1)' }}>{doc.type}</span>
-                      <span className="text-[10px] text-muted">{doc.size}</span>
+            {downloads.map(doc => {
+              const isReal = !!doc.href
+              return (
+                <div key={doc.name}
+                  className={`glass p-5 group hover:-translate-y-0.5 transition-all duration-200 ${isReal ? 'cursor-pointer' : 'cursor-default'}`}
+                  style={{ border: isReal ? '1px solid rgba(16,185,129,0.18)' : '1px solid rgba(255,255,255,0.07)' }}
+                  onClick={() => !isReal && (window.location.href = '/rfq?type=document&doc=' + encodeURIComponent(doc.name))}>
+                  <div className="flex items-start gap-3 mb-3">
+                    <span className="text-2xl">{doc.icon}</span>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-sm font-bold text-white group-hover:text-blue-300 transition-colors leading-snug">{doc.name}</h3>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-[10px] font-bold px-1.5 py-0.5 rounded"
+                          style={{ background: isReal ? 'rgba(16,185,129,0.12)' : 'rgba(0,109,255,0.1)',
+                                   color: isReal ? '#6ee7b7' : '#93c5fd' }}>{doc.type}</span>
+                        <span className="text-[10px] text-muted">{doc.size}</span>
+                        {isReal && <span className="text-[10px] font-bold text-emerald-400">● LIVE</span>}
+                      </div>
                     </div>
                   </div>
+                  <p className="text-xs text-muted leading-relaxed">{doc.desc}</p>
+                  <div className="mt-3">
+                    {isReal ? (
+                      <a href={doc.href} download
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
+                        onClick={e => e.stopPropagation()}>
+                        <Download className="w-3.5 h-3.5" /> Download PDF
+                      </a>
+                    ) : (
+                      <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <Download className="w-3.5 h-3.5" /> Request document
+                      </span>
+                    )}
+                  </div>
                 </div>
-                <p className="text-xs text-muted leading-relaxed">{doc.desc}</p>
-                <div className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <Download className="w-3.5 h-3.5" /> Request document
-                </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
-          <p className="text-xs text-muted text-center mt-6">All documents provided on request — contact us with your email address or request via our RFQ form.</p>
+          <p className="text-xs text-muted text-center mt-6">Additional data sheets and test certificates available on request — email <a href="mailto:isa-valve@outlook.com" className="text-blue-400 hover:underline">isa-valve@outlook.com</a> or use our RFQ form.</p>
         </Section>
 
         {/* ── VALVE SELECTION GUIDE ── */}

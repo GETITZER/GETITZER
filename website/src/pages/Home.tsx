@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, Zap, Shield, ChevronRight, Check, X, MapPin, Star, Download, Calculator, BookOpen, ChevronDown } from 'lucide-react'
 import { products } from '../data/products'
 import ProductModal from '../components/ProductModal'
+import ValveIllustration from '../components/ValveIllustration'
+import { ISALogoHero, ISAWatermark } from '../components/ISALogo'
 import type { Product } from '../types'
 
 /* ── Animated counter hook ── */
@@ -185,6 +187,67 @@ function StatCard({ value, prefix = '', suffix = '', label, sub, delay = 0 }: {
   )
 }
 
+/* ── Product Carousel ── */
+const carouselItems = [
+  { slug: 'ball-valve',       brand: 'ISA Titan™',    tagline: 'DN15–DN600 · API 6D Certified',          color: '#0066CC' },
+  { slug: 'butterfly-valve',  brand: 'ISA Hydra™',   tagline: 'DN50–DN1200 · WRAS Approved',             color: '#10b981' },
+  { slug: 'gate-valve',       brand: 'ISA Core™',     tagline: 'Full-Bore Isolation · SABS 664',          color: '#8b5cf6' },
+  { slug: 'knife-gate-valve', brand: 'ISA ProSeal™',  tagline: 'Slurry · Ceramic-Lined',                  color: '#f59e0b' },
+  { slug: 'pinch-valve',      brand: 'ISA Shield™',   tagline: 'ISO 5208 Grade A · Zero Leakage',         color: '#FF8A00' },
+  { slug: 'dxst-kgv',         brand: 'ISA DXST™',    tagline: '466% Longer Life · Natural Rubber Lined', color: '#10b981' },
+] as const
+
+function ProductCarousel() {
+  const [active, setActive] = useState(0)
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
+
+  useEffect(() => {
+    timerRef.current = setInterval(() => setActive(a => (a + 1) % carouselItems.length), 3500)
+    return () => { if (timerRef.current) clearInterval(timerRef.current) }
+  }, [])
+
+  const item = carouselItems[active]
+
+  return (
+    <div style={{ background: 'rgba(0,0,0,0.25)', borderTop: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 items-center gap-0">
+          <div className="flex items-center justify-center py-8 lg:py-12 relative overflow-hidden">
+            <div className="absolute inset-0" style={{ background: `radial-gradient(ellipse 70% 60% at 50% 50%, ${item.color}12, transparent)` }} />
+            <div className="relative z-10 w-72 sm:w-96 transition-all duration-500">
+              <ValveIllustration type={item.slug} className="w-full drop-shadow-2xl" />
+            </div>
+          </div>
+          <div className="py-8 lg:py-12 lg:pl-12 border-t lg:border-t-0 lg:border-l border-white/5">
+            <div className="flex gap-2 mb-6">
+              {carouselItems.map((_, i) => (
+                <button key={i}
+                  onClick={() => { setActive(i); if (timerRef.current) { clearInterval(timerRef.current); timerRef.current = setInterval(() => setActive(a => (a + 1) % carouselItems.length), 3500) } }}
+                  className="h-1 rounded-full transition-all duration-300"
+                  style={{ width: i === active ? '28px' : '8px', background: i === active ? item.color : 'rgba(255,255,255,0.2)' }} />
+              ))}
+            </div>
+            <div className="text-xs font-bold tracking-widest uppercase mb-2" style={{ color: item.color }}>{item.brand}</div>
+            <h3 className="font-display text-2xl sm:text-3xl font-bold text-white mb-2">
+              {products.find(p => p.slug === item.slug)?.name}
+            </h3>
+            <p className="text-muted text-sm mb-3">{item.tagline}</p>
+            <p className="text-slate-300 text-sm leading-relaxed mb-6 line-clamp-3">
+              {products.find(p => p.slug === item.slug)?.tagline}
+            </p>
+            <div className="flex gap-3 flex-wrap">
+              <Link to={`/products/${item.slug}`} className="btn-primary text-sm px-5 py-2.5">
+                View Specs <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+              <Link to="/rfq" className="btn-secondary text-sm px-5 py-2.5">Get Quote</Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const brandedProducts = [
   { slug: 'ball-valve',       brandName: 'ISA Titan™',    color: '#006DFF', tagColor: 'rgba(0,109,255,0.1)',   tagBorder: 'rgba(0,109,255,0.25)' },
   { slug: 'butterfly-valve',  brandName: 'ISA Hydra™',   color: '#10b981', tagColor: 'rgba(16,185,129,0.1)', tagBorder: 'rgba(16,185,129,0.25)' },
@@ -288,51 +351,71 @@ export default function Home() {
 
       {/* ── HERO ─────────────────────────────────────────────────── */}
       <section className="relative min-h-screen flex items-center overflow-hidden pt-16">
+        {/* Hero banner photo — very subtle overlay */}
+        <img
+          src="/images/hero/control-valves.png"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover opacity-[0.08] pointer-events-none"
+        />
         <div className="absolute inset-0 bg-grid opacity-70" />
         <div className="absolute inset-0" style={{
-          background: 'radial-gradient(ellipse 70% 70% at 60% 50%, rgba(0,109,255,0.08) 0%, transparent 65%), radial-gradient(ellipse 50% 60% at 20% 30%, rgba(255,106,0,0.06) 0%, transparent 55%)'
+          background: 'radial-gradient(ellipse 70% 70% at 60% 50%, rgba(0,102,204,0.12) 0%, transparent 65%), radial-gradient(ellipse 50% 60% at 20% 30%, rgba(255,138,0,0.08) 0%, transparent 55%)'
         }} />
+        {/* ISA triangle watermark — very subtle */}
+        <div className="absolute right-0 top-0 bottom-0 flex items-center opacity-[0.035] pointer-events-none hidden lg:flex">
+          <ISAWatermark size={700} opacity={1} />
+        </div>
         {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-40" style={{ background: 'linear-gradient(to bottom, transparent, #081D42)' }} />
+        <div className="absolute bottom-0 left-0 right-0 h-40" style={{ background: 'linear-gradient(to bottom, transparent, #071B2E)' }} />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20 w-full">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left: Text */}
             <div>
+              {/* Logo — prominent in hero */}
+              <div className="mb-8">
+                <ISALogoHero />
+              </div>
+
               {/* Cert badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold text-blue-300 mb-7"
-                style={{ background: 'rgba(0,109,255,0.1)', border: '1px solid rgba(0,109,255,0.25)' }}>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold text-blue-300 mb-6"
+                style={{ background: 'rgba(0,102,204,0.1)', border: '1px solid rgba(0,102,204,0.25)' }}>
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
                 ISO 9001:2015 · API 6D · SABS · WRAS · ISO 5208 Grade A
               </div>
 
-              <h1 className="font-display text-5xl sm:text-6xl lg:text-[4.25rem] font-bold text-white leading-[1.04] mb-5">
-                Precision Valves<br />
-                That Keep Your<br />
-                <span className="shimmer-text">Process Running</span>
+              <h1 className="font-display text-5xl sm:text-6xl lg:text-[4rem] font-bold text-white leading-[1.06] mb-5">
+                YOUR PARTNER IN<br />
+                <span className="shimmer-text">VALVE SOLUTIONS</span>
               </h1>
 
-              <p className="text-lg sm:text-xl text-muted leading-relaxed mb-4 max-w-xl">
-                Engineered flow control solutions for Mining, Water Treatment, Oil & Gas, Chemical Processing and Industrial Applications — backed by 25 years of field-proven expertise.
+              <p className="text-lg text-muted leading-relaxed mb-3 max-w-xl">
+                Industrial Valve Specialists · Flow Control · Mining · Water · Oil & Gas · Chemical Processing
               </p>
-              <p className="text-sm font-semibold text-accent-400 mb-10">
+              <p className="text-sm font-semibold text-accent-400 mb-8">
                 ↑ 72% less downtime · R1.2M annual saving · Copper mining, Northern Cape
               </p>
 
-              <div className="flex flex-wrap gap-4 mb-10">
-                <Link to="/rfq" className="btn-primary text-base px-8 py-4">
-                  Get a Quote <ArrowRight className="w-4 h-4" />
+              <div className="flex flex-wrap gap-4 mb-8">
+                <Link to="/products" className="btn-primary text-base px-8 py-4">
+                  View Products <ArrowRight className="w-4 h-4" />
                 </Link>
-                <Link to="/configure" className="btn-secondary text-base px-8 py-4">
-                  <Zap className="w-4 h-4 text-accent-400" /> AI Valve Selector
+                <Link to="/rfq" className="btn-secondary text-base px-8 py-4">
+                  Request a Quote
+                </Link>
+              </div>
+              <div className="flex flex-wrap gap-2 mb-2">
+                <Link to="/configure" className="flex items-center gap-1.5 text-sm font-semibold text-accent-400 hover:text-accent-300 transition-colors">
+                  <Zap className="w-3.5 h-3.5" /> Try AI Valve Selector
                 </Link>
               </div>
 
               {/* Cert icons */}
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 mt-6">
                 {['ISO 9001:2015', 'API 6D', 'SABS', 'WRAS', 'ISO 5208 Grd A'].map(c => (
                   <span key={c} className="text-xs font-bold text-blue-300 px-3 py-1.5 rounded-full"
-                    style={{ background: 'rgba(0,109,255,0.08)', border: '1px solid rgba(0,109,255,0.15)' }}>
+                    style={{ background: 'rgba(0,102,204,0.08)', border: '1px solid rgba(0,102,204,0.2)' }}>
                     {c}
                   </span>
                 ))}
@@ -352,6 +435,9 @@ export default function Home() {
           <ChevronDown className="w-4 h-4 animate-bounce" />
         </div>
       </section>
+
+      {/* ── PRODUCT SHOWCASE CAROUSEL ─────────────────────────────── */}
+      <ProductCarousel />
 
       {/* ── SCROLLING TRUST STRIP ─────────────────────────────────── */}
       <div className="py-4 section-sep overflow-hidden" style={{ background: 'rgba(0,109,255,0.04)' }}>
@@ -398,35 +484,42 @@ export default function Home() {
               <button
                 key={product.slug}
                 onClick={() => setModalProduct(product)}
-                className={`group text-left glass p-6 hover:border-blue-500/30 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl reveal reveal-delay-${Math.min(i + 1, 6)} ${productsReveal.inView ? 'in-view' : ''}`}
+                className={`group text-left glass p-0 overflow-hidden hover:border-blue-500/30 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl reveal reveal-delay-${Math.min(i + 1, 6)} ${productsReveal.inView ? 'in-view' : ''}`}
                 style={{ border: '1px solid rgba(255,255,255,0.07)' }}
               >
-                {/* Brand badge */}
-                <div className="flex items-start justify-between mb-5">
-                  <span className="text-4xl">{product.icon}</span>
-                  <span className="text-[10px] font-black uppercase tracking-widest px-2.5 py-1.5 rounded-full"
-                    style={{ background: product.tagColor, border: `1px solid ${product.tagBorder}`, color: product.color }}>
-                    {product.brandName}
-                  </span>
-                </div>
-                <h3 className="font-display text-lg font-bold text-white mb-1.5 group-hover:text-blue-300 transition-colors">{product.name}</h3>
-                <p className="text-sm text-muted leading-relaxed mb-4 line-clamp-2">{product.tagline}</p>
-                {/* Specs */}
-                <div className="space-y-1.5 mb-4">
-                  {product.specs.filter(s => ['Size range', 'Pressure rating', 'Pressure Class', 'Certification'].includes(s.label)).slice(0,2).map(s => (
-                    <div key={s.label} className="flex items-center gap-2 text-xs text-muted">
-                      <span className="w-1 h-1 rounded-full bg-blue-400 flex-shrink-0" />
-                      <span className="text-slate-400">{s.label}:</span>
-                      <span className="text-slate-300 font-medium truncate">{s.value}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="flex items-center justify-between pt-3" style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-                  <div className="flex items-center gap-1.5 text-xs font-semibold text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                    View specs <ChevronRight className="w-3.5 h-3.5" />
+                {/* Valve illustration */}
+                <div className="relative overflow-hidden flex items-center justify-center py-6 px-4"
+                  style={{ background: `linear-gradient(135deg, ${product.tagColor}, rgba(7,27,46,0.8))`, minHeight: '140px' }}>
+                  <div className="absolute inset-0" style={{ background: `radial-gradient(ellipse 80% 80% at 50% 50%, ${product.color}10, transparent)` }} />
+                  <ValveIllustration type={product.slug as 'ball-valve' | 'butterfly-valve' | 'gate-valve' | 'knife-gate-valve' | 'pinch-valve' | 'dxst-kgv'} className="w-40 relative z-10" />
+                  {/* Brand badge */}
+                  <div className="absolute top-3 right-3">
+                    <span className="text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded-full"
+                      style={{ background: `${product.color}25`, border: `1px solid ${product.color}50`, color: product.color }}>
+                      {product.brandName}
+                    </span>
                   </div>
-                  <div className="flex items-center gap-1.5 text-xs font-semibold text-muted opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Download className="w-3.5 h-3.5" /> Data Sheet
+                </div>
+                {/* Content */}
+                <div className="p-5">
+                  <h3 className="font-display text-base font-bold text-white mb-1.5 group-hover:text-blue-300 transition-colors">{product.name}</h3>
+                  <p className="text-xs text-muted leading-relaxed mb-3 line-clamp-2">{product.tagline}</p>
+                  <div className="space-y-1 mb-3">
+                    {product.specs.filter(s => ['Size range', 'Pressure rating', 'Pressure Class', 'Certification'].includes(s.label)).slice(0,2).map(s => (
+                      <div key={s.label} className="flex items-center gap-2 text-xs text-muted">
+                        <span className="w-1 h-1 rounded-full bg-blue-400 flex-shrink-0" />
+                        <span className="text-slate-400">{s.label}:</span>
+                        <span className="text-slate-300 font-medium truncate">{s.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex items-center justify-between pt-3" style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+                    <div className="flex items-center gap-1.5 text-xs font-semibold text-blue-400 group-hover:opacity-100 opacity-70 transition-opacity">
+                      View specs <ChevronRight className="w-3.5 h-3.5" />
+                    </div>
+                    <div className="flex items-center gap-1.5 text-xs font-semibold text-muted opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Download className="w-3.5 h-3.5" /> Data Sheet
+                    </div>
                   </div>
                 </div>
               </button>
