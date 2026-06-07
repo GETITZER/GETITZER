@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type React from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { ArrowRight, ChevronRight, CheckCircle, Sparkles, Loader2, FileText, Send } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ChevronRight, CheckCircle, Sparkles, Loader2, FileText, Send } from 'lucide-react'
 import { getProduct, getRelatedProducts } from '../data/products'
 import { streamGenerate } from '../hooks/useChat'
 import { usePageMeta } from '../hooks/usePageMeta'
