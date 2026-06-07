@@ -7,18 +7,46 @@ interface DownloadDoc {
 }
 const downloads: DownloadDoc[] = [
   {
+    name: 'ISA Pinch Valve Series — Audit Grade',
+    type: 'PDF', size: '152 KB',
+    desc: 'ISA-Flex™ / ISA-Extrem™ / ISA-Shield™ / ISA-Chem™ sleeves · PN16 · ISO 5208 Grade A Zero Leakage · Mining proven',
+    icon: '🔴',
+    href: '/downloads/ISA-Pinch-Valve-Series-Mining.pdf',
+  },
+  {
     name: 'ISA High Performance Slurry KGV',
     type: 'PDF', size: '199 KB',
-    desc: 'Knife gate valve for abrasive slurry and ore applications — DN25–DN300, PN6–PN20, mining proven',
+    desc: 'Knife gate valve for abrasive slurry and ore applications — DN25–DN300, PN6–PN20, compact design, full bore flow',
     icon: '🔪',
     href: '/downloads/ISA-High-Performance-Slurry-KGV.pdf',
   },
   {
     name: 'ISA Slurry DXST — Proprietary Materials',
     type: 'PDF', size: '552 KB',
-    desc: 'ISA DXST™ heavy duty mining series — ISA-Shield™ polymer lining, ISA-Flex™ elastomer, DN25–DN350',
+    desc: 'Heavy duty mining series — ISA-Shield™ polymer lining, ISA-Flex™ elastomer diaphragm, DN25–DN350, up to 10 Bar',
     icon: '🟠',
     href: '/downloads/ISA-Slurry-DXST-Datasheet.pdf',
+  },
+  {
+    name: 'ISA Intelligent Slurry Sampling System',
+    type: 'PDF', size: '8.3 MB',
+    desc: 'On-line mineral slurry sampling system — LSD-E pressure sampler, LSD-F gravity sampler, LMD distributor, Siemens WinCC control',
+    icon: '⚗',
+    href: '/downloads/ISA-Intelligent-Slurry-Sampling-System.pdf',
+  },
+  {
+    name: 'ISA Control Valve Catalog',
+    type: 'PDF', size: '7.4 MB',
+    desc: 'Hydraulic control valves, pressure reducing/sustaining, foot check, wafer check, swing check — industrial & municipal flow control',
+    icon: '⚙️',
+    href: '/downloads/ISA-Control-Valve-Catalog.pdf',
+  },
+  {
+    name: 'ISA Coriolis Installation Master Package',
+    type: 'PDF', size: '16 MB',
+    desc: 'Audit-Grade IFC — Coriolis mass flowmeter fabrication, installation and commissioning protocols for mining service (Konige Mine, Zambia)',
+    icon: '📐',
+    href: '/downloads/ISA-Coriolis-Installation-Package.pdf',
   },
   {
     name: 'ISA Precision Flow Solutions — Portfolio',
@@ -27,11 +55,9 @@ const downloads: DownloadDoc[] = [
     icon: '📋',
     href: '/downloads/ISA-Precision-Flow-Solutions.pdf',
   },
-  { name: 'ISA Titan™ Ball Valve Data Sheet', type: 'PDF', size: 'On request', desc: 'Technical data, dimensions and performance curves for DN15–DN600 · API 6D', icon: '⚙️' },
+  { name: 'ISA Titan™ Ball Valve Data Sheet', type: 'PDF', size: 'On request', desc: 'Technical data, dimensions and performance curves for DN15–DN600 · API 6D', icon: '🔵' },
   { name: 'ISA Hydra™ Butterfly Valve Data Sheet', type: 'PDF', size: 'On request', desc: 'Technical data, dimensions and torque curves for DN50–DN1200 · WRAS', icon: '🦋' },
-  { name: 'ISA Core™ Gate Valve Data Sheet', type: 'PDF', size: 'On request', desc: 'Technical data, dimensions and pressure ratings for DN50–DN1000 · SABS 664', icon: '🔧' },
-  { name: 'ISA Shield™ Pinch Valve Data Sheet', type: 'PDF', size: 'On request', desc: 'ISO 5208 Grade A pinch valve with 4 sleeve grades — full technical data', icon: '🔴' },
-  { name: 'Chemical Compatibility Chart', type: 'PDF', size: 'On request', desc: 'Elastomer and body material compatibility for 120+ chemicals', icon: '⚗' },
+  { name: 'Chemical Compatibility Chart', type: 'PDF', size: 'On request', desc: 'Elastomer and body material compatibility for 120+ chemicals', icon: '🧪' },
   { name: 'Hydrostatic Test Certificates', type: 'PDF', size: 'On request', desc: 'Individual hydro test certificates — available for every valve supplied', icon: '💧' },
 ]
 
@@ -167,7 +193,7 @@ export default function Resources() {
           <div className="mb-6 p-4 rounded-2xl flex items-center gap-3"
             style={{ background: 'rgba(16,185,129,0.07)', border: '1px solid rgba(16,185,129,0.18)' }}>
             <Shield className="w-5 h-5 text-emerald-400 flex-shrink-0" />
-            <p className="text-sm text-emerald-300"><strong className="text-white">3 documents available for immediate download</strong> — no sign-up required. Remaining data sheets available on request.</p>
+            <p className="text-sm text-emerald-300"><strong className="text-white">7 documents available for immediate download</strong> — no sign-up required. Additional data sheets available on request.</p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {downloads.map(doc => {
