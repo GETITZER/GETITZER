@@ -1,22 +1,27 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X, ChevronDown, Zap, ArrowRight } from 'lucide-react'
+import { Menu, X, ChevronDown, Zap, ArrowRight, Calculator, BookOpen, Download, FileText } from 'lucide-react'
 import { WhatsAppIcon, WA_URL } from './WhatsAppButton'
 
 const productLinks = [
-  { label: 'Ball Valve', sub: 'DN15–DN600 · API 6D', to: '/products/ball-valve' },
-  { label: 'Butterfly Valve', sub: 'DN50–DN1200 · WRAS', to: '/products/butterfly-valve' },
-  { label: 'Gate Valve', sub: 'DN50–DN1000 · SABS', to: '/products/gate-valve' },
-  { label: 'Knife Gate Valve', sub: 'Slurry · Ceramic-lined', to: '/products/knife-gate-valve' },
-  { label: 'ISA Pinch Valve', sub: 'ISO 5208 Grade A · 4 sleeves', to: '/products/pinch-valve' },
-  { label: 'DXST Slurry KGV', sub: '466% longer life · Mining', to: '/products/dxst-kgv' },
+  { label: 'ISA Titan™ Ball Valve',      sub: 'DN15–DN600 · API 6D',          to: '/products/ball-valve',       color: '#006DFF' },
+  { label: 'ISA Hydra™ Butterfly Valve', sub: 'DN50–DN1200 · WRAS',           to: '/products/butterfly-valve',  color: '#10b981' },
+  { label: 'ISA Core™ Gate Valve',       sub: 'DN50–DN1000 · SABS 664',       to: '/products/gate-valve',       color: '#8b5cf6' },
+  { label: 'ISA ProSeal™ Knife Gate',    sub: 'Slurry · Ceramic-lined',        to: '/products/knife-gate-valve', color: '#f59e0b' },
+  { label: 'ISA Shield™ Pinch Valve',    sub: 'ISO 5208 Grade A · 4 sleeves', to: '/products/pinch-valve',      color: '#ef4444' },
+  { label: 'ISA DXST™ Slurry KGV',      sub: '466% longer life · Mining',    to: '/products/dxst-kgv',         color: '#FF6A00' },
+]
+
+const resourceLinks = [
+  { label: 'Engineering Calculators',   sub: 'Cv, flow, pressure drop',       to: '/calculators', icon: Calculator },
+  { label: 'Resource Centre',           sub: 'Data sheets, selection guides',  to: '/resources',   icon: BookOpen },
+  { label: 'Product Catalog',           sub: '40+ valve models, all specs',    to: '/catalog',     icon: Download },
+  { label: 'Technical Blog',            sub: 'Application guides & articles',  to: '/blog',        icon: FileText },
 ]
 
 const navLinks = [
   { label: 'Industries', to: '/industries' },
-  { label: 'Catalog', to: '/catalog' },
-  { label: 'Blog', to: '/blog' },
-  { label: 'About', to: '/about' },
+  { label: 'About',      to: '/about' },
 ]
 
 function ISALogo() {
@@ -30,9 +35,10 @@ function ISALogo() {
 }
 
 export default function Navigation() {
-  const [mobileOpen, setMobileOpen] = useState(false)
-  const [productOpen, setProductOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+  const [mobileOpen,   setMobileOpen]   = useState(false)
+  const [productOpen,  setProductOpen]  = useState(false)
+  const [resourceOpen, setResourceOpen] = useState(false)
+  const [scrolled,     setScrolled]     = useState(false)
   const location = useLocation()
 
   useEffect(() => {
@@ -42,51 +48,51 @@ export default function Navigation() {
   }, [])
 
   useEffect(() => {
-    setMobileOpen(false)
-    setProductOpen(false)
+    setMobileOpen(false); setProductOpen(false); setResourceOpen(false)
   }, [location])
+
+  const navBg = scrolled ? 'rgba(8,29,66,0.97)' : 'rgba(8,29,66,0.25)'
+  const border = scrolled ? '1px solid rgba(255,255,255,0.07)' : '1px solid transparent'
 
   return (
     <>
-      <nav
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-        style={{
-          background: scrolled ? 'rgba(8,17,31,0.95)' : 'rgba(8,17,31,0.3)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
-          borderBottom: scrolled ? '1px solid rgba(255,255,255,0.07)' : '1px solid transparent',
-        }}
-      >
+      <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+        style={{ background: navBg, backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', borderBottom: border }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
+
+            {/* Logo */}
             <Link to="/" className="flex items-center gap-3 group">
               <ISALogo />
               <div className="leading-none">
-                <div className="font-display font-bold text-sm tracking-tight text-white group-hover:text-accent-400 transition-colors">ISA VALVE SOLUTIONS</div>
+                <div className="font-display font-bold text-sm tracking-tight text-white group-hover:text-blue-300 transition-colors">ISA VALVE SOLUTIONS</div>
                 <div className="text-[9px] font-semibold text-muted tracking-widest uppercase">& Industrial Supplies</div>
               </div>
             </Link>
 
-            <div className="hidden lg:flex items-center gap-1">
+            {/* Desktop nav */}
+            <div className="hidden lg:flex items-center gap-0.5">
+
+              {/* Products dropdown */}
               <div className="relative" onMouseLeave={() => setProductOpen(false)}>
-                <button
-                  onMouseEnter={() => setProductOpen(true)}
-                  onClick={() => setProductOpen(!productOpen)}
-                  className="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all"
-                >
-                  Products <ChevronDown className={`w-3.5 h-3.5 transition-transform ${productOpen ? 'rotate-180' : ''}`} />
+                <button onMouseEnter={() => setProductOpen(true)} onClick={() => setProductOpen(!productOpen)}
+                  className="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all">
+                  Products <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${productOpen ? 'rotate-180' : ''}`} />
                 </button>
                 {productOpen && (
-                  <div className="absolute top-full left-0 pt-2 w-72">
-                    <div className="p-2 shadow-2xl rounded-2xl" style={{ background: 'rgba(13,27,46,0.98)', border: '1px solid rgba(255,255,255,0.08)' }}>
+                  <div className="absolute top-full left-0 pt-2 w-80">
+                    <div className="p-2 shadow-2xl rounded-2xl" style={{ background: 'rgba(8,29,66,0.98)', border: '1px solid rgba(255,255,255,0.08)' }}>
                       {productLinks.map(p => (
-                        <Link key={p.to} to={p.to} className="flex flex-col px-3.5 py-2.5 rounded-xl hover:bg-white/5 transition-colors group">
-                          <span className="text-sm font-semibold text-white group-hover:text-accent-400 transition-colors">{p.label}</span>
-                          <span className="text-xs text-muted mt-0.5">{p.sub}</span>
+                        <Link key={p.to} to={p.to} className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl hover:bg-white/5 transition-colors group">
+                          <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: p.color }} />
+                          <div>
+                            <span className="text-sm font-semibold text-white group-hover:text-blue-300 transition-colors block">{p.label}</span>
+                            <span className="text-xs text-muted">{p.sub}</span>
+                          </div>
                         </Link>
                       ))}
                       <div className="border-t border-white/5 mt-1 pt-1">
-                        <Link to="/products" className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl text-sm font-semibold text-accent-400 hover:bg-white/5 transition-colors">
+                        <Link to="/products" className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl text-sm font-semibold text-blue-400 hover:bg-white/5 transition-colors">
                           All Products <ArrowRight className="w-3.5 h-3.5" />
                         </Link>
                       </div>
@@ -95,21 +101,44 @@ export default function Navigation() {
                 )}
               </div>
 
+              {/* Resources dropdown */}
+              <div className="relative" onMouseLeave={() => setResourceOpen(false)}>
+                <button onMouseEnter={() => setResourceOpen(true)} onClick={() => setResourceOpen(!resourceOpen)}
+                  className="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all">
+                  Resources <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${resourceOpen ? 'rotate-180' : ''}`} />
+                </button>
+                {resourceOpen && (
+                  <div className="absolute top-full left-0 pt-2 w-72">
+                    <div className="p-2 shadow-2xl rounded-2xl" style={{ background: 'rgba(8,29,66,0.98)', border: '1px solid rgba(255,255,255,0.08)' }}>
+                      {resourceLinks.map(r => {
+                        const Icon = r.icon
+                        return (
+                          <Link key={r.to} to={r.to} className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl hover:bg-white/5 transition-colors group">
+                            <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                              style={{ background: 'rgba(0,109,255,0.1)', border: '1px solid rgba(0,109,255,0.2)' }}>
+                              <Icon className="w-4 h-4 text-blue-400" />
+                            </div>
+                            <div>
+                              <span className="text-sm font-semibold text-white group-hover:text-blue-300 transition-colors block">{r.label}</span>
+                              <span className="text-xs text-muted">{r.sub}</span>
+                            </div>
+                          </Link>
+                        )
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
+
               {navLinks.map(link => (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                    location.pathname === link.to
-                      ? 'text-white bg-white/10'
-                      : 'text-slate-300 hover:text-white hover:bg-white/5'
-                  }`}
-                >
+                <Link key={link.to} to={link.to}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${location.pathname === link.to ? 'text-white bg-white/10' : 'text-slate-300 hover:text-white hover:bg-white/5'}`}>
                   {link.label}
                 </Link>
               ))}
             </div>
 
+            {/* Desktop CTAs */}
             <div className="hidden lg:flex items-center gap-3">
               <Link to="/configure" className="flex items-center gap-1.5 text-sm font-semibold text-accent-400 hover:text-accent-300 transition-colors">
                 <Zap className="w-3.5 h-3.5" /> AI Selector
@@ -120,6 +149,7 @@ export default function Navigation() {
               <Link to="/rfq" className="btn-primary !px-4 !py-2 !text-sm">Get Quote</Link>
             </div>
 
+            {/* Mobile toggle */}
             <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/10 transition-colors">
               {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -127,23 +157,44 @@ export default function Navigation() {
         </div>
       </nav>
 
+      {/* Mobile menu */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-40 lg:hidden pt-16 overflow-y-auto" style={{ background: 'rgba(8,17,31,0.98)', backdropFilter: 'blur(20px)' }}>
+        <div className="fixed inset-0 z-40 lg:hidden pt-16 overflow-y-auto" style={{ background: 'rgba(8,29,66,0.99)', backdropFilter: 'blur(20px)' }}>
           <div className="px-4 py-6 space-y-1">
             <p className="text-xs font-bold text-muted uppercase tracking-widest px-3 mb-3">Products</p>
             {productLinks.map(p => (
-              <Link key={p.to} to={p.to} className="flex flex-col px-3 py-3 rounded-xl hover:bg-white/5 transition-colors">
-                <span className="font-semibold text-white">{p.label}</span>
-                <span className="text-xs text-muted mt-0.5">{p.sub}</span>
+              <Link key={p.to} to={p.to} className="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white/5 transition-colors">
+                <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: p.color }} />
+                <div>
+                  <span className="font-semibold text-white block">{p.label}</span>
+                  <span className="text-xs text-muted">{p.sub}</span>
+                </div>
               </Link>
             ))}
-            <div className="border-t border-white/10 my-3" />
+            <Link to="/products" className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-semibold text-blue-400">
+              All Products <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+
+            <div className="border-t border-white/10 my-4" />
+            <p className="text-xs font-bold text-muted uppercase tracking-widest px-3 mb-3">Resources</p>
+            {resourceLinks.map(r => {
+              const Icon = r.icon
+              return (
+                <Link key={r.to} to={r.to} className="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white/5 transition-colors">
+                  <Icon className="w-4 h-4 text-blue-400" />
+                  <span className="font-semibold text-slate-200">{r.label}</span>
+                </Link>
+              )
+            })}
+
+            <div className="border-t border-white/10 my-4" />
             {navLinks.map(link => (
               <Link key={link.to} to={link.to} className="block px-3 py-3 rounded-xl font-semibold text-slate-200 hover:text-white hover:bg-white/5 transition-colors">
                 {link.label}
               </Link>
             ))}
-            <div className="border-t border-white/10 my-3" />
+
+            <div className="border-t border-white/10 my-4" />
             <Link to="/configure" className="flex items-center gap-2 px-3 py-3 rounded-xl font-bold text-accent-400">
               <Zap className="w-4 h-4" /> AI Valve Selector
             </Link>

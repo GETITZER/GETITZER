@@ -5,19 +5,31 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans:    ['Inter', 'system-ui', 'sans-serif'],
         display: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
+        mono:    ['JetBrains Mono', 'Fira Code', 'monospace'],
       },
       colors: {
-        // Dark luxury background palette
+        // Primary navy — #081D42 (ISA brand)
         dark: {
-          900: '#08111F',
-          800: '#0D1B2E',
-          700: '#132238',
-          600: '#1A2E48',
-          500: '#243B57',
+          950: '#040e22',
+          900: '#081D42',
+          800: '#0a2352',
+          700: '#0d2b66',
+          600: '#1a3a7a',
+          500: '#244d8f',
         },
-        // Orange accent — #FF6A00
+        // Engineering blue — #006DFF
+        blue: {
+          700: '#0047cc',
+          600: '#0055cc',
+          500: '#006DFF',
+          400: '#338fff',
+          300: '#66aaff',
+          200: '#99ccff',
+          100: '#cce5ff',
+        },
+        // ISA Orange — #FF6A00
         accent: {
           50:  '#fff3e6',
           100: '#ffe0bf',
@@ -28,9 +40,12 @@ export default {
           600: '#e05e00',
           700: '#c05200',
         },
-        // Muted text
+        // Neutral text
         muted: '#A8B2C5',
-        // Legacy aliases kept for pages not yet redesigned
+        slate: {
+          150: '#eef1f6',
+        },
+        // Legacy aliases kept for unredesigned pages
         brand: {
           50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe',
           500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a',
@@ -39,7 +54,11 @@ export default {
           50: '#fff7ed', 100: '#ffedd5', 400: '#fb923c',
           500: '#FF6A00', 600: '#FF6A00', 700: '#c2410c',
         },
-        navy: '#08111F',
+        navy: '#081D42',
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
     },
   },

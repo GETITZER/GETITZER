@@ -6,7 +6,8 @@
   html { scroll-behavior: smooth; }
 
   body {
-    @apply font-sans text-white bg-dark-900;
+    @apply font-sans text-white;
+    background-color: #081D42;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -15,9 +16,9 @@
 }
 
 @layer components {
-  /* ── Glassmorphism card ── */
+  /* ── Glassmorphism cards ── */
   .glass {
-    background: rgba(19, 34, 56, 0.75);
+    background: rgba(13, 35, 82, 0.75);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.07);
@@ -28,19 +29,35 @@
     background: rgba(255, 255, 255, 0.04);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 1.25rem;
+  }
+
+  /* ── Blue engineering glass ── */
+  .glass-blue {
+    background: rgba(0, 109, 255, 0.06);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 109, 255, 0.15);
     border-radius: 1.25rem;
   }
 
   /* ── Blueprint grid background ── */
   .bg-grid {
     background-image:
-      linear-gradient(rgba(255,106,0,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,106,0,0.04) 1px, transparent 1px);
+      linear-gradient(rgba(0,109,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,109,255,0.04) 1px, transparent 1px);
     background-size: 48px 48px;
   }
 
-  /* ── Accent glow ── */
+  .bg-grid-sm {
+    background-image:
+      linear-gradient(rgba(0,109,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,109,255,0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* ── Glow effects ── */
   .glow-accent {
     box-shadow: 0 0 40px rgba(255, 106, 0, 0.25), 0 0 80px rgba(255, 106, 0, 0.1);
   }
@@ -49,14 +66,28 @@
     box-shadow: 0 0 20px rgba(255, 106, 0, 0.2);
   }
 
+  .glow-blue {
+    box-shadow: 0 0 40px rgba(0, 109, 255, 0.2), 0 0 80px rgba(0, 109, 255, 0.08);
+  }
+
   /* ── Buttons ── */
   .btn-primary {
     @apply inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-400 text-white font-bold px-6 py-3 rounded-xl transition-all duration-200;
-    box-shadow: 0 0 24px rgba(255,106,0,0.35);
+    box-shadow: 0 0 24px rgba(255, 106, 0, 0.35);
   }
 
   .btn-primary:hover {
-    box-shadow: 0 0 36px rgba(255,106,0,0.5);
+    box-shadow: 0 0 36px rgba(255, 106, 0, 0.55);
+    transform: translateY(-1px);
+  }
+
+  .btn-blue {
+    @apply inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-400 text-white font-bold px-6 py-3 rounded-xl transition-all duration-200;
+    box-shadow: 0 0 24px rgba(0, 109, 255, 0.3);
+  }
+
+  .btn-blue:hover {
+    box-shadow: 0 0 36px rgba(0, 109, 255, 0.5);
     transform: translateY(-1px);
   }
 
@@ -64,14 +95,37 @@
     @apply inline-flex items-center gap-2 border border-white/20 hover:border-white/40 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 bg-white/5 hover:bg-white/10;
   }
 
-  /* ── Legacy card (used on non-redesigned pages) ── */
+  /* ── Legacy card alias ── */
   .card {
     @apply glass;
   }
 
   /* ── Form inputs ── */
   .field-input {
-    @apply w-full text-sm border border-white/10 rounded-xl px-3.5 py-2.5 outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent transition bg-dark-700 text-white placeholder-muted;
+    @apply w-full text-sm border border-white/10 rounded-xl px-3.5 py-2.5 outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition bg-dark-700 text-white placeholder-muted;
+  }
+
+  /* ── ISA Triangle geometry divider ── */
+  .triangle-accent {
+    position: relative;
+  }
+  .triangle-accent::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 0; height: 0;
+    border-left: 40px solid rgba(255,106,0,0.15);
+    border-bottom: 40px solid transparent;
+  }
+
+  /* ── Engineering label ── */
+  .eng-label {
+    @apply text-xs font-bold tracking-widest uppercase text-blue-400;
+  }
+
+  /* ── Premium section separator ── */
+  .section-sep {
+    border-top: 1px solid rgba(255,255,255,0.05);
   }
 
   /* ── Prose for blog/article pages ── */
@@ -118,9 +172,15 @@
 
 @keyframes pulseGlow {
   0%, 100% { box-shadow: 0 0 20px rgba(255,106,0,0.3); }
-  50%       { box-shadow: 0 0 40px rgba(255,106,0,0.6); }
+  50%       { box-shadow: 0 0 50px rgba(255,106,0,0.6); }
 }
-.pulse-glow { animation: pulseGlow 2s ease-in-out infinite; }
+.pulse-glow { animation: pulseGlow 2.5s ease-in-out infinite; }
+
+@keyframes pulseBlue {
+  0%, 100% { box-shadow: 0 0 20px rgba(0,109,255,0.25); }
+  50%       { box-shadow: 0 0 50px rgba(0,109,255,0.5); }
+}
+.pulse-blue { animation: pulseBlue 3s ease-in-out infinite; }
 
 @keyframes shimmer {
   0%   { background-position: -200% center; }
@@ -131,14 +191,37 @@
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmer 3s linear infinite;
+  background-clip: text;
+  animation: shimmer 3.5s linear infinite;
 }
 
-/* ── Scroll-reveal animations ── */
+.shimmer-blue {
+  background: linear-gradient(90deg, #fff 0%, #006DFF 50%, #fff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0.3deg); }
+  50%       { transform: translateY(-14px) rotate(-0.3deg); }
+}
+.animate-float { animation: float 7s ease-in-out infinite; }
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+.animate-float-slow { animation: floatSlow 5s ease-in-out infinite; }
+
+/* ── Scroll-reveal ── */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  transform: translateY(30px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal.in-view {
   opacity: 1;
@@ -148,3 +231,5 @@
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+.reveal-delay-6 { transition-delay: 0.6s; }
