@@ -1,8 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Download, BookOpen, ArrowRight, Calculator, ExternalLink, Shield, Zap, LogIn } from 'lucide-react'
-import { useAuth, SignInButton } from '@clerk/react'
-
-const CLERK_ENABLED = !!import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
+import { Download, BookOpen, ArrowRight, Calculator, ExternalLink, Shield, Zap } from 'lucide-react'
 
 interface DownloadDoc {
   name: string; type: string; size: string; desc: string; icon: string
@@ -142,27 +139,6 @@ function Section({ id, children }: { id?: string; children: React.ReactNode }) {
   return <section id={id} className="py-16 section-sep">{children}</section>
 }
 
-/* Auth-gated download button — only rendered when ClerkProvider is in tree */
-function AuthDownloadButton({ doc }: { doc: DownloadDoc }) {
-  const { isSignedIn } = useAuth()
-  if (isSignedIn) {
-    return (
-      <a href={doc.href} download
-        className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
-        onClick={e => e.stopPropagation()}>
-        <Download className="w-3.5 h-3.5" /> Download PDF
-      </a>
-    )
-  }
-  return (
-    <SignInButton mode="modal">
-      <button className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-400 hover:text-blue-300 transition-colors">
-        <LogIn className="w-3.5 h-3.5" /> Sign in to download
-      </button>
-    </SignInButton>
-  )
-}
-
 export default function Resources() {
   return (
     <div style={{ background: '#081D42' }} className="min-h-screen pt-20 pb-24">
@@ -217,7 +193,7 @@ export default function Resources() {
           <div className="mb-6 p-4 rounded-2xl flex items-center gap-3"
             style={{ background: 'rgba(16,185,129,0.07)', border: '1px solid rgba(16,185,129,0.18)' }}>
             <Shield className="w-5 h-5 text-emerald-400 flex-shrink-0" />
-            <p className="text-sm text-emerald-300"><strong className="text-white">7 documents available for immediate download</strong> — free account required. Register in seconds to access all datasheets.</p>
+            <p className="text-sm text-emerald-300"><strong className="text-white">7 documents available for immediate download</strong> — no sign-up required. Additional data sheets available on request.</p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {downloads.map(doc => {
@@ -243,13 +219,11 @@ export default function Resources() {
                   <p className="text-xs text-muted leading-relaxed">{doc.desc}</p>
                   <div className="mt-3">
                     {isReal ? (
-                      CLERK_ENABLED
-                        ? <AuthDownloadButton doc={doc} />
-                        : <a href={doc.href} download
-                            className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
-                            onClick={e => e.stopPropagation()}>
-                            <Download className="w-3.5 h-3.5" /> Download PDF
-                          </a>
+                      <a href={doc.href} download
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
+                        onClick={e => e.stopPropagation()}>
+                        <Download className="w-3.5 h-3.5" /> Download PDF
+                      </a>
                     ) : (
                       <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity">
                         <Download className="w-3.5 h-3.5" /> Request document

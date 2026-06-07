@@ -20,7 +20,6 @@ import DeliveryFAQ from './pages/DeliveryFAQ'
 import Catalog from './pages/Catalog'
 import Resources from './pages/Resources'
 import Calculators from './pages/Calculators'
-import Dashboard from './pages/Dashboard'
 import NotFound from './pages/NotFound'
 import { WA_URL } from './components/WhatsAppButton'
 
@@ -28,7 +27,7 @@ const orgSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'ISA Valve Solutions & Industrial Supplies',
-  description: 'ISO 9001:2015 certified industrial valve supplier in South Africa.',
+  description: 'ISO 9001:2015 certified industrial valve supplier in South Africa. Ball valves, butterfly valves, gate valves, and knife gate valves for mining, water treatment, oil & gas, and chemical industries.',
   url: 'https://www.isavalvesolutions.com',
   telephone: '+27-060-688-5648',
   email: 'isa-valve@outlook.com',
@@ -36,6 +35,7 @@ const orgSchema = {
   sameAs: [],
 }
 
+/* Sticky mobile bar — shown only on small screens */
 function MobileStickyBar() {
   return (
     <div className="fixed bottom-0 left-0 right-0 z-30 lg:hidden"
@@ -86,7 +86,6 @@ export default function App() {
             <Route path="/catalog"         element={<Catalog />} />
             <Route path="/resources"       element={<Resources />} />
             <Route path="/calculators"     element={<Calculators />} />
-            <Route path="/dashboard"       element={<Dashboard />} />
             <Route path="/seo"             element={<SEODashboard />} />
             <Route path="*"                element={<NotFound />} />
           </Routes>
