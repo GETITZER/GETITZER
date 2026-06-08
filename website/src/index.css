@@ -54,6 +54,19 @@
     @apply text-xs font-bold uppercase tracking-widest text-isa-600 mb-3 block;
   }
 
+  /* Legacy alias — used in Dashboard, Resources */
+  .eng-label {
+    @apply text-xs font-bold uppercase tracking-widest text-isa-600 mb-2 block;
+  }
+
+  /* Subtle blueprint grid — used in hero/dark sections */
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
   .oem-card {
     @apply bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200;
   }
