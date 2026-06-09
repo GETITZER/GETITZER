@@ -41,7 +41,7 @@ export default function Navigation() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50" style={{ background: '#071A2D', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
 
@@ -56,7 +56,7 @@ export default function Navigation() {
               {/* Products dropdown */}
               <div className="relative" onMouseLeave={() => setProductOpen(false)}>
                 <button onMouseEnter={() => setProductOpen(true)} onClick={() => setProductOpen(!productOpen)}
-                  className="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-all">
+                  className="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-all">
                   Products <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${productOpen ? 'rotate-180' : ''}`} />
                 </button>
                 {productOpen && (
@@ -84,7 +84,7 @@ export default function Navigation() {
               {/* Resources dropdown */}
               <div className="relative" onMouseLeave={() => setResourceOpen(false)}>
                 <button onMouseEnter={() => setResourceOpen(true)} onClick={() => setResourceOpen(!resourceOpen)}
-                  className="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-all">
+                  className="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-all">
                   Resources <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${resourceOpen ? 'rotate-180' : ''}`} />
                 </button>
                 {resourceOpen && (
@@ -111,7 +111,7 @@ export default function Navigation() {
 
               {navLinks.map(link => (
                 <Link key={link.to} to={link.to}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${location.pathname === link.to ? 'text-white bg-white/10' : 'text-slate-200 hover:text-white hover:bg-white/5'}`}>
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${location.pathname === link.to ? 'text-isa-600 bg-isa-50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'}`}>
                   {link.label}
                 </Link>
               ))}
@@ -119,28 +119,28 @@ export default function Navigation() {
 
             {/* Desktop CTAs */}
             <div className="hidden lg:flex items-center gap-3">
-              <Link to="/configure" className="flex items-center gap-1.5 text-sm font-semibold text-isa-400 hover:text-isa-300 transition-colors">
+              <Link to="/configure" className="flex items-center gap-1.5 text-sm font-semibold text-isa-600 hover:text-isa-700 transition-colors">
                 <Zap className="w-3.5 h-3.5" /> AI Selector
               </Link>
-              <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition-colors">
+              <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm font-semibold text-emerald-600 hover:text-emerald-700 transition-colors">
                 <WhatsAppIcon className="w-3.5 h-3.5" /> WhatsApp
               </a>
               {CLERK_ENABLED && (
                 <>
                   <Show when="signed-out">
                     <SignInButton mode="modal">
-                      <button className="text-sm font-semibold text-slate-300 hover:text-white transition-colors px-3 py-1.5 rounded-lg hover:bg-white/5">
+                      <button className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors px-3 py-1.5 rounded-lg hover:bg-slate-50">
                         Sign In
                       </button>
                     </SignInButton>
                     <SignUpButton mode="modal">
-                      <button className="text-sm font-semibold text-white px-3 py-1.5 rounded-lg transition-colors border border-white/20 hover:bg-white/5">
+                      <button className="text-sm font-semibold text-slate-700 px-3 py-1.5 rounded-lg transition-colors border border-slate-300 hover:bg-slate-50">
                         Register
                       </button>
                     </SignUpButton>
                   </Show>
                   <Show when="signed-in">
-                    <Link to="/dashboard" className="flex items-center gap-1.5 text-sm font-semibold text-slate-300 hover:text-white transition-colors">
+                    <Link to="/dashboard" className="flex items-center gap-1.5 text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors">
                       <LayoutDashboard className="w-3.5 h-3.5" /> My Account
                     </Link>
                     <UserButton />
@@ -151,7 +151,7 @@ export default function Navigation() {
             </div>
 
             {/* Mobile toggle */}
-            <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/10 transition-colors">
+            <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors">
               {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
