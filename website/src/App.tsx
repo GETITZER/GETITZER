@@ -21,6 +21,9 @@ import Catalog from './pages/Catalog'
 import Resources from './pages/Resources'
 import Calculators from './pages/Calculators'
 import NotFound from './pages/NotFound'
+import Projects from './pages/Projects'
+import PrivacyPolicy from './pages/PrivacyPolicy'
+import Terms from './pages/Terms'
 import { WA_URL } from './components/WhatsAppButton'
 
 const orgSchema = {
@@ -116,6 +119,9 @@ export default function App() {
             <Route path="/resources"       element={<Resources />} />
             <Route path="/calculators"     element={<Calculators />} />
             <Route path="/seo"             element={<SEODashboard />} />
+            <Route path="/projects"        element={<Projects />} />
+            <Route path="/privacy-policy"  element={<PrivacyPolicy />} />
+            <Route path="/terms"           element={<Terms />} />
             <Route path="*"                element={<NotFound />} />
           </Routes>
         </main>

@@ -27,6 +27,15 @@
   <url><loc>https://www.isavalvesolutions.com/industries/chemical</loc><lastmod>2026-06-09</lastmod><priority>0.8</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://www.isavalvesolutions.com/industries/hvac</loc><lastmod>2026-06-09</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://www.isavalvesolutions.com/industries/pulp-paper</loc><lastmod>2026-06-09</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/industries/municipal</loc><lastmod>2026-06-09</lastmod><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/industries/agriculture</loc><lastmod>2026-06-09</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/industries/power-generation</loc><lastmod>2026-06-09</lastmod><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/industries/food-beverage</loc><lastmod>2026-06-09</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
+
+  <!-- Projects & legal -->
+  <url><loc>https://www.isavalvesolutions.com/projects</loc><lastmod>2026-06-09</lastmod><priority>0.75</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/privacy-policy</loc><lastmod>2026-06-09</lastmod><priority>0.3</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/terms</loc><lastmod>2026-06-09</lastmod><priority>0.3</priority><changefreq>yearly</changefreq></url>
 
   <!-- Blog -->
   <url><loc>https://www.isavalvesolutions.com/blog</loc><lastmod>2026-06-09</lastmod><priority>0.75</priority><changefreq>weekly</changefreq></url>

@@ -237,6 +237,8 @@ export default function Home() {
                   <img
                     src={cat.img}
                     alt={cat.title}
+                    loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-sm"
                   />
                 </div>
