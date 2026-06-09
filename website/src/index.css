@@ -296,6 +296,41 @@
   animation: count-glow 3s ease-in-out infinite;
 }
 
+/* ─── Knife-gate valve cutaway animation ─────────────────────────── */
+/* Gate strokes: open → closed → open over a 9s cycle */
+@keyframes kg-gate-stroke {
+  0%, 22%   { transform: translateY(-118px); }  /* fully open */
+  38%, 60%  { transform: translateY(0); }        /* fully closed */
+  78%, 100% { transform: translateY(-118px); }   /* re-opened */
+}
+.kg-gate-grp {
+  animation: kg-gate-stroke 9s cubic-bezier(0.45,0,0.55,1) infinite;
+}
+/* Downstream slurry vanishes while the gate is shut */
+@keyframes kg-down-vis {
+  0%, 24%   { opacity: 1; }
+  40%, 58%  { opacity: 0; }
+  76%, 100% { opacity: 1; }
+}
+.kg-down-flow { animation: kg-down-vis 9s linear infinite; }
+/* Continuous particle stream (spacing = 60px) */
+@keyframes kg-flow-move {
+  from { transform: translateX(0); }
+  to   { transform: translateX(60px); }
+}
+.kg-flow { animation: kg-flow-move 0.8s linear infinite; }
+/* Handwheel turns as the gate strokes */
+@keyframes kg-wheel-spin {
+  0%, 22%   { transform: rotate(0deg); }
+  38%, 60%  { transform: rotate(220deg); }
+  78%, 100% { transform: rotate(0deg); }
+}
+.kg-wheel { animation: kg-wheel-spin 9s cubic-bezier(0.45,0,0.55,1) infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .kg-gate-grp, .kg-down-flow, .kg-flow, .kg-wheel { animation: none; }
+}
+
 /* Smooth slide-up for chat panel */
 @keyframes slideUp {
   from { transform: translateY(100%); opacity: 0; }
