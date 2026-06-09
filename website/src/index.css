@@ -96,6 +96,22 @@
   animation: blink 1s step-end infinite;
 }
 
+/* ISA branded copyright watermark — applied to hero/product image containers */
+.isa-copyright-mark::after {
+  content: '© ISA Valve Solutions  |  www.isavalvesolutions.com';
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 9px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.60);
+  letter-spacing: 0.02em;
+  pointer-events: none;
+  white-space: nowrap;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  z-index: 10;
+}
+
 /* Smooth slide-up for chat panel */
 @keyframes slideUp {
   from { transform: translateY(100%); opacity: 0; }

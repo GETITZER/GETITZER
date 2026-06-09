@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Download, BookOpen, ArrowRight, Calculator, ExternalLink, Shield, Zap } from 'lucide-react'
 import { usePageMeta } from '../hooks/usePageMeta'
+import DownloadGate from '../components/DownloadGate'
 
 interface DownloadDoc {
   name: string; type: string; size: string; desc: string; icon: string
@@ -206,7 +207,7 @@ export default function Resources() {
           <div className="mb-6 p-4 rounded-2xl flex items-center gap-3"
             style={{ background: 'rgba(16,185,129,0.07)', border: '1px solid rgba(16,185,129,0.18)' }}>
             <Shield className="w-5 h-5 text-emerald-400 flex-shrink-0" />
-            <p className="text-sm text-emerald-300"><strong className="text-white">8 documents available for immediate download</strong> — no sign-up required. Additional data sheets available on request.</p>
+            <p className="text-sm text-emerald-300"><strong className="text-white">8 documents available for download</strong> — all protected by ISA copyright. Provide your details to access. Additional data sheets available on request.</p>
           </div>
           {/* Audit-grade datasheet showcase */}
           <div className="mb-8 grid md:grid-cols-[260px_1fr] gap-6 items-center glass p-6 rounded-2xl"
@@ -230,7 +231,7 @@ export default function Resources() {
               const isReal = !!doc.href
               return (
                 <div key={doc.name}
-                  className={`glass p-5 group hover:-translate-y-0.5 transition-all duration-200 ${isReal ? 'cursor-pointer' : 'cursor-default'}`}
+                  className="glass p-5 group hover:-translate-y-0.5 transition-all duration-200 cursor-default"
                   style={{ border: isReal ? '1px solid rgba(16,185,129,0.18)' : '1px solid rgba(255,255,255,0.07)' }}
                   onClick={() => !isReal && (window.location.href = '/rfq?type=document&doc=' + encodeURIComponent(doc.name))}>
                   <div className="flex items-start gap-3 mb-3">
@@ -249,11 +250,10 @@ export default function Resources() {
                   <p className="text-xs text-muted leading-relaxed">{doc.desc}</p>
                   <div className="mt-3">
                     {isReal ? (
-                      <a href={doc.href} download
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
-                        onClick={e => e.stopPropagation()}>
+                      <DownloadGate fileName={doc.name} fileHref={doc.href!}
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer">
                         <Download className="w-3.5 h-3.5" /> Download PDF
-                      </a>
+                      </DownloadGate>
                     ) : (
                       <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity">
                         <Download className="w-3.5 h-3.5" /> Request document

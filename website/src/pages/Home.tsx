@@ -152,7 +152,7 @@ export default function Home() {
     <div>
 
       {/* ── 1. HERO ──────────────────────────────────────────────────── */}
-      <section className="relative min-h-[88vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[88vh] flex items-center overflow-hidden isa-copyright-mark">
         <div className="absolute inset-0">
           <img
             src="/images/hero/pipeline-field.jpg"
