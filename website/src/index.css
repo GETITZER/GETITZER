@@ -331,6 +331,47 @@
   .kg-gate-grp, .kg-down-flow, .kg-flow, .kg-wheel { animation: none; }
 }
 
+/* ─── Industrial plant scene animation ───────────────────────────── */
+@keyframes plant-steam {
+  0%   { opacity: 0; transform: translateY(0) scale(0.7); }
+  15%  { opacity: 0.7; }
+  100% { opacity: 0; transform: translateY(-95px) scale(1.8); }
+}
+.plant-steam { animation: plant-steam 4.5s ease-out infinite; }
+
+@keyframes plant-flare {
+  0%, 100% { transform: scaleY(1) scaleX(1); opacity: 0.92; }
+  40%      { transform: scaleY(1.3) scaleX(0.86); opacity: 1; }
+  70%      { transform: scaleY(0.9) scaleX(1.1); opacity: 0.85; }
+}
+.plant-flare {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  animation: plant-flare 0.5s ease-in-out infinite;
+}
+
+@keyframes plant-flow { to { stroke-dashoffset: -240; } }
+.plant-flow     { animation: plant-flow 3s linear infinite; }
+.plant-flow-rev { animation: plant-flow 3.4s linear infinite reverse; }
+
+@keyframes plant-fan { to { transform: rotate(360deg); } }
+.plant-fan {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: plant-fan 2.2s linear infinite;
+}
+
+@keyframes plant-led { 0%, 100% { opacity: 1; } 50% { opacity: 0.18; } }
+.plant-led { animation: plant-led 1.4s ease-in-out infinite; }
+
+@keyframes plant-cloud { from { transform: translateX(0); } to { transform: translateX(70px); } }
+.plant-cloud { animation: plant-cloud 26s ease-in-out infinite alternate; }
+
+@media (prefers-reduced-motion: reduce) {
+  .plant-steam, .plant-flare, .plant-flow, .plant-flow-rev,
+  .plant-fan, .plant-led, .plant-cloud { animation: none; }
+}
+
 /* Smooth slide-up for chat panel */
 @keyframes slideUp {
   from { transform: translateY(100%); opacity: 0; }

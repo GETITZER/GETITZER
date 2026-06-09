@@ -11,6 +11,7 @@ import type { Product } from '../types'
 import ProductModal from '../components/ProductModal'
 import { ISAMark } from '../components/ISALogo'
 import ValveCutaway from '../components/ValveCutaway'
+import PlantVideo from '../components/PlantVideo'
 
 /* ── Scroll reveal hook ───────────────────────────────────────────── */
 function useReveal(threshold = 0.12) {
@@ -409,26 +410,29 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 5. INSTALLATION SHOWCASE ────────────────────────────────── */}
+      {/* ── 5. INDUSTRIAL PLANT SHOWCASE (animated / video) ──────────── */}
       <section className="relative overflow-hidden">
-        <div className="relative h-[380px] sm:h-[460px]">
-          <img
-            src="/images/branding/isa-water-treatment.png"
-            alt="ISA valves installed in water treatment facility"
-            className="w-full h-full object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/92 via-slate-900/70 to-slate-900/20" />
+        <div className="relative h-[400px] sm:h-[500px]">
+          {/* Animated plant scene (auto-swaps to /videos/industrial-plant.mp4 if present) */}
+          <PlantVideo className="absolute inset-0 w-full h-full" />
+          {/* Left-weighted overlay for text legibility */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/55 to-transparent" />
+          {/* LIVE badge */}
+          <div className="absolute top-5 right-5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-900/85 text-white text-[10px] font-bold uppercase tracking-widest z-10">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+            Live Plant
+          </div>
           <div className="absolute inset-0 flex items-center">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
               <div className="max-w-lg">
-                <span className="text-xs font-bold uppercase tracking-widest text-isa-400 block mb-4">Field Proven</span>
-                <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight mb-4">
-                  Reliable Flow.<br />Clean Results.
+                <span className="text-xs font-bold uppercase tracking-widest text-isa-400 block mb-4">In Service</span>
+                <h2 className="text-3xl sm:text-5xl font-extrabold text-white leading-[1.05] mb-4">
+                  Specified Into<br />Plants Across Africa
                 </h2>
-                <p className="text-slate-300 text-base mb-6 leading-relaxed">
-                  ISA valves are installed across water treatment plants, mining circuits and industrial facilities throughout Africa — engineered to perform in the toughest conditions.
+                <p className="text-slate-200 text-base mb-6 leading-relaxed">
+                  From refineries and water treatment works to mining and power plants — ISA valves keep process flow moving in the toughest industrial environments on the continent.
                 </p>
-                <Link to="/about"
+                <Link to="/projects"
                   className="inline-flex items-center gap-2 bg-isa-500 hover:bg-isa-600 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-lg shadow-isa-500/30">
                   View Our Projects <ArrowRight className="w-4 h-4" />
                 </Link>
