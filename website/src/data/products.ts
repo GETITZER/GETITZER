@@ -103,6 +103,8 @@ export const products: Product[] = [
     useCase:
       'Specify this valve for thickener underflow, cyclone feed, tailings lines, and CIL/CIP circuits where standard knife gate or ball valves fail within months due to abrasion or chemical attack.',
     icon: '🔴',
+    image: '/images/products/isa-flex-pinch-sleeve.png',
+    imageAlt: 'ISA-Flex abrasion resistant pinch valve sleeve — PN16, ISO 5208 Grade A zero leakage, mining specification datasheet',
     badge: 'NEW · AUDIT GRADE A',
     badgeColor: 'red',
     featured: true,

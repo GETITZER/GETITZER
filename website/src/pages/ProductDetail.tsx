@@ -159,11 +159,25 @@ export default function ProductDetail() {
               </div>
               {/* Technical illustration */}
               <div className="hidden sm:block bg-slate-50 border border-slate-200 rounded-2xl p-6">
-                <ValveIllustration
-                  type={product.slug as 'ball-valve' | 'butterfly-valve' | 'gate-valve' | 'knife-gate-valve'}
-                  className="w-full"
-                />
-                <p className="text-xs text-center text-slate-400 mt-3 font-medium">Schematic illustration — {product.name}</p>
+                {product.image ? (
+                  <>
+                    <img
+                      src={product.image}
+                      alt={product.imageAlt ?? `${product.name} — product datasheet`}
+                      loading="lazy"
+                      className="w-full rounded-lg shadow-sm"
+                    />
+                    <p className="text-xs text-center text-slate-400 mt-3 font-medium">{product.name} — manufacturer datasheet</p>
+                  </>
+                ) : (
+                  <>
+                    <ValveIllustration
+                      type={product.slug as 'ball-valve' | 'butterfly-valve' | 'gate-valve' | 'knife-gate-valve'}
+                      className="w-full"
+                    />
+                    <p className="text-xs text-center text-slate-400 mt-3 font-medium">Schematic illustration — {product.name}</p>
+                  </>
+                )}
               </div>
             </div>
           </div>
