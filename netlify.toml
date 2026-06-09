@@ -9,6 +9,15 @@
 [functions]
   directory = "netlify/functions"
 
+# Pings search engines with the sitemap after every successful deploy.
+# Runs onSuccess — a failure here can never block a deploy.
+[[plugins]]
+  package = "netlify-plugin-submit-sitemap"
+  [plugins.inputs]
+    baseUrl = "https://www.isavalvesolutions.com"
+    sitemapPath = "/sitemap.xml"
+    providers = ["bing", "yandex"]
+
 [[redirects]]
   from   = "/api/clerk-webhook"
   to     = "/.netlify/functions/clerk-webhook"

@@ -185,7 +185,7 @@ export default function Home() {
         {/* Full-bleed background — ISA branded mining hero */}
         <div className="absolute inset-0">
           <img
-            src="/images/branded/isa-hero-mining.png"
+            src="/images/branded/isa-hero-mining.jpg"
             alt="ISA Valve Solutions — engineered solutions for mining performance"
             className="w-full h-full object-cover object-right"
             style={{ transform: 'scale(1.04)', animation: 'hero-zoom 10s ease-out forwards' }}
@@ -419,7 +419,7 @@ export default function Home() {
         <div className="relative h-[400px] sm:h-[500px]">
           {/* ISA branded waterworks/industrial photo */}
           <img
-            src="/images/branded/isa-hero-waterworks.png"
+            src="/images/branded/isa-hero-waterworks.jpg"
             alt="ISA Valve Solutions — control valves installed in waterworks facility"
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
@@ -567,7 +567,7 @@ export default function Home() {
       <section className="py-24 bg-isa-500 relative overflow-hidden">
         {/* ISA branded refinery photo — subtle bg under orange */}
         <img
-          src="/images/branded/isa-hero-refinery.png"
+          src="/images/branded/isa-hero-refinery.jpg"
           alt=""
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover object-center opacity-15 pointer-events-none"
