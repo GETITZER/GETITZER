@@ -7,6 +7,10 @@ import {
 import { WhatsAppIcon, WA_URL } from '../components/WhatsAppButton'
 import type { Product } from '../types'
 import ProductModal from '../components/ProductModal'
+import ValveIllustration from '../components/ValveIllustration'
+
+/* Valve types with accurate technical illustrations (see ValveIllustration) */
+type SlugType = 'ball-valve' | 'butterfly-valve' | 'gate-valve' | 'knife-gate-valve' | 'pinch-valve' | 'dxst-kgv'
 
 /* ── Animated counter ─────────────────────────────────────────────── */
 function StatCard({ target, suffix, label, sub }: {
@@ -61,12 +65,12 @@ const CERTS = [
 ]
 
 const PRODUCT_CATS = [
-  { title: 'ISA DXST™ Slurry KGV',      sub: '466% longer service life', spec: 'DN50–DN600 · Mining grade',        slug: 'dxst-kgv',         img: '/images/products/dxst-kgv.png' },
-  { title: 'ISA Titan™ Ball Valve',      sub: 'API 6D certified',          spec: 'DN15–DN600 · Full bore',           slug: 'ball-valve',        img: '/images/products/ball-valve.png' },
-  { title: 'ISA Hydra™ Butterfly Valve', sub: 'WRAS approved',             spec: 'DN50–DN1200 · Triple offset',      slug: 'butterfly-valve',   img: '/images/products/butterfly-valve.png' },
-  { title: 'ISA Core™ Gate Valve',       sub: 'SABS 664 certified',        spec: 'DN50–DN1000 · OS&Y',               slug: 'gate-valve',        img: '/images/products/gate-valve.png' },
-  { title: 'ISA Shield™ Pinch Valve',    sub: 'ISO 5208 Grade A',          spec: 'DN25–DN400 · 4 sleeve types',      slug: 'pinch-valve',       img: '/images/hero/mining-slurry.png' },
-  { title: 'ISA ProSeal™ Knife Gate',    sub: 'Ceramic-lined option',      spec: 'DN50–DN600 · Wafer/Lug',           slug: 'knife-gate-valve',  img: '/images/hero/industrial-banner.png' },
+  { title: 'ISA DXST™ Slurry KGV',      sub: '466% longer service life', spec: 'DN50–DN600 · Mining grade',        slug: 'dxst-kgv' },
+  { title: 'ISA Titan™ Ball Valve',      sub: 'API 6D certified',          spec: 'DN15–DN600 · Full bore',           slug: 'ball-valve' },
+  { title: 'ISA Hydra™ Butterfly Valve', sub: 'WRAS approved',             spec: 'DN50–DN1200 · Triple offset',      slug: 'butterfly-valve' },
+  { title: 'ISA Core™ Gate Valve',       sub: 'SABS 664 certified',        spec: 'DN50–DN1000 · OS&Y',               slug: 'gate-valve' },
+  { title: 'ISA Shield™ Pinch Valve',    sub: 'ISO 5208 Grade A',          spec: 'DN25–DN400 · 4 sleeve types',      slug: 'pinch-valve' },
+  { title: 'ISA ProSeal™ Knife Gate',    sub: 'Ceramic-lined option',      spec: 'DN50–DN600 · Wafer/Lug',           slug: 'knife-gate-valve' },
 ]
 
 const INDUSTRY_TABS = [
@@ -229,15 +233,12 @@ export default function Home() {
             {PRODUCT_CATS.map(cat => (
               <Link key={cat.slug} to={`/products/${cat.slug}`}
                 className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-slate-200 group hover:-translate-y-1">
-                {/* Larger image */}
-                <div className="relative h-64 overflow-hidden bg-slate-100">
-                  <img
-                    src={cat.img}
-                    alt={cat.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                {/* Accurate technical illustration — matched to the valve type */}
+                <div className="relative h-64 overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center p-8 border-b border-slate-100">
+                  <ValveIllustration
+                    type={cat.slug as SlugType}
+                    className="w-full max-w-[220px] drop-shadow-sm group-hover:scale-105 transition-transform duration-500"
                   />
-                  {/* Subtle bottom gradient for text readability */}
-                  <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/20 to-transparent" />
                 </div>
                 {/* Content */}
                 <div className="p-6">
