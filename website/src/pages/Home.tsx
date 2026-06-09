@@ -158,38 +158,42 @@ export default function Home() {
             src="/images/hero/pipeline-field.jpg"
             alt="ISA Valve Solutions industrial pipeline installation"
             className="w-full h-full object-cover object-center"
+            style={{ transform: 'scale(1.03)', animation: 'hero-zoom 8s ease-out forwards' }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-white/5" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/88 to-white/10" />
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full">
           <div className="max-w-xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold text-white mb-7 bg-isa-500">
+            <div className="hero-badge-enter inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold text-white mb-7 bg-isa-500 shadow-lg shadow-isa-500/25">
               <Shield className="w-3 h-3" /> ISO 9001:2015 Certified · South Africa
             </div>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-slate-900 tracking-tight leading-[1.05] mb-5">
+            <h1 className="hero-title-enter text-5xl sm:text-6xl lg:text-7xl font-extrabold text-slate-900 tracking-tight leading-[1.05] mb-5">
               Precision<br />
-              <span className="text-isa-500">Valve Solutions</span>
+              <span className="text-isa-500 relative">
+                Valve Solutions
+                <span className="absolute -bottom-1 left-0 right-0 h-1 bg-isa-500/20 rounded-full" />
+              </span>
             </h1>
 
-            <p className="text-lg text-slate-600 max-w-md mb-8 leading-relaxed">
+            <p className="hero-sub-enter text-lg text-slate-600 max-w-md mb-8 leading-relaxed">
               35 years supplying specification-grade industrial valves across Africa. Mining, water, oil &amp; gas and chemical industries trust ISA.
             </p>
 
-            <div className="flex flex-wrap gap-3 mb-10">
-              <Link to="/rfq" className="inline-flex items-center gap-2 bg-isa-500 hover:bg-isa-600 text-white font-bold px-7 py-3.5 rounded-lg transition-colors duration-150 text-base shadow-sm shadow-isa-500/30">
+            <div className="hero-cta-enter flex flex-wrap gap-3 mb-10">
+              <Link to="/rfq" className="btn-pulse inline-flex items-center gap-2 bg-isa-500 hover:bg-isa-600 text-white font-bold px-7 py-3.5 rounded-lg transition-colors duration-150 text-base shadow-md shadow-isa-500/30">
                 Get a Quote <ArrowRight className="w-4 h-4" />
               </Link>
               <Link to="/products"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg font-semibold text-base text-slate-700 border border-slate-300 hover:border-slate-400 bg-white/90 hover:bg-white transition-all duration-150">
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg font-semibold text-base text-slate-700 border border-slate-300 hover:border-isa-400 hover:text-isa-600 bg-white/90 hover:bg-white transition-all duration-150">
                 View Products
               </Link>
             </div>
 
             {/* Cert strip */}
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <div className="hero-certs-enter flex flex-wrap items-center gap-x-4 gap-y-2">
               {CERTS.map((c, i) => (
                 <span key={c.code} className="flex items-center gap-1.5 text-xs font-semibold text-slate-500">
                   {i > 0 && <span className="text-slate-300">·</span>}
@@ -200,8 +204,43 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* Floating product highlight — right side on desktop */}
+        <div className="hidden xl:flex absolute right-8 bottom-16 z-10 flex-col gap-2">
+          {PRODUCT_CATS.slice(0, 3).map((p, i) => (
+            <Link key={p.slug} to={`/products/${p.slug}`}
+              style={{ animationDelay: `${0.8 + i * 0.15}s` }}
+              className="hero-certs-enter flex items-center gap-3 bg-white/90 backdrop-blur-sm border border-slate-200 rounded-xl px-4 py-2.5 shadow-sm hover:shadow-md hover:border-isa-300 transition-all group">
+              <span className="w-2 h-2 rounded-full bg-isa-500 flex-shrink-0" />
+              <div>
+                <p className="text-xs font-bold text-slate-800 group-hover:text-isa-600 transition-colors leading-none">{p.title}</p>
+                <p className="text-[10px] text-slate-400 mt-0.5">{p.spec}</p>
+              </div>
+              <ArrowRight className="w-3 h-3 text-slate-300 group-hover:text-isa-500 transition-colors ml-1" />
+            </Link>
+          ))}
+        </div>
       </section>
 
+      {/* ── CERT TICKER ─────────────────────────────────────────────── */}
+      <div className="bg-isa-500 overflow-hidden py-2.5">
+        <div className="cert-ticker-inner">
+          {[...Array(2)].map((_, outer) => (
+            <div key={outer} className="flex items-center gap-0">
+              {[
+                'ISO 9001:2015 Certified', 'API 6D Pipeline Valves', 'WRAS Potable Water Approved',
+                'SABS 664 Gate Valves', 'ISO 5208 Grade A Zero Leakage', '35+ Years Engineering Experience',
+                'South Africa & Africa-Wide Supply', 'Mining · Water · Oil & Gas · Chemical',
+              ].map((item, i) => (
+                <span key={i} className="flex items-center gap-6 px-6 text-white text-xs font-bold uppercase tracking-widest whitespace-nowrap">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/40 flex-shrink-0" />
+                  {item}
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
       {/* ── 2. INDUSTRY SELECTOR ────────────────────────────────────── */}
       <IndustrySelector />
 
@@ -231,7 +270,7 @@ export default function Home() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {PRODUCT_CATS.map(cat => (
               <Link key={cat.slug} to={`/products/${cat.slug}`}
-                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 group hover:-translate-y-1 flex flex-col">
+                className="card-shimmer bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 group hover:-translate-y-1 flex flex-col">
                 {/* Product image — object-contain so full valve is visible */}
                 <div className="h-56 bg-gradient-to-b from-slate-50 to-white flex items-center justify-center overflow-hidden px-6 pt-6 pb-2">
                   <img
