@@ -62,11 +62,11 @@ const CERTS = [
 
 const PRODUCT_CATS = [
   { title: 'ISA DXST™ Slurry KGV',      sub: '466% longer service life', spec: 'DN50–DN600 · Mining grade',        slug: 'dxst-kgv',         img: '/images/products/knife-gate-valve-nobg.jpg' },
-  { title: 'ISA Titan™ Ball Valve',      sub: 'API 6D certified',          spec: 'DN15–DN600 · Full bore',           slug: 'ball-valve',        img: '/images/products/ball-valve-nobg.jpg' },
-  { title: 'ISA Hydra™ Butterfly Valve', sub: 'WRAS approved',             spec: 'DN50–DN4000 · Triple offset',      slug: 'butterfly-valve',   img: '/images/products/butterfly-valve-dn4000.png' },
+  { title: 'ISA Titan™ Ball Valve',      sub: 'API 6D certified',          spec: 'DN15–DN600 · Full bore',           slug: 'ball-valve',        img: '/images/actuators/ball-valve-electric-yellow.png' },
+  { title: 'ISA Hydra™ Butterfly Valve', sub: 'WRAS approved',             spec: 'DN50–DN4000 · Triple offset',      slug: 'butterfly-valve',   img: '/images/actuators/butterfly-valve-pneumatic-blue.png' },
   { title: 'ISA Core™ Gate Valve',       sub: 'SABS 664 certified',        spec: 'DN50–DN1000 · OS&Y',               slug: 'gate-valve',        img: '/images/products/gate-valve-clean.jpg' },
-  { title: 'ISA Shield™ Pinch Valve',    sub: 'ISO 5208 Grade A',          spec: 'DN25–DN400 · 4 sleeve types',      slug: 'pinch-valve',       img: '/images/products/pinch-valve.jpg' },
-  { title: 'ISA ProSeal™ Knife Gate',    sub: 'Ceramic-lined option',      spec: 'DN50–DN600 · Wafer/Lug',           slug: 'knife-gate-valve',  img: '/images/products/knife-gate-valve-isa.jpg' },
+  { title: 'ISA Shield™ Pinch Valve',    sub: 'ISO 5208 Grade A',          spec: 'DN25–DN400 · 4 sleeve types',      slug: 'pinch-valve',       img: '/images/products/pinch-valve-orange.jpg' },
+  { title: 'ISA ProSeal™ Knife Gate',    sub: 'Ceramic-lined option',      spec: 'DN50–DN600 · Wafer/Lug',           slug: 'knife-gate-valve',  img: '/images/actuators/knife-gate-pneumatic-stainless.png' },
 ]
 
 const INDUSTRY_TABS = [
@@ -143,58 +143,62 @@ export default function Home() {
   return (
     <div>
 
-      {/* ── 1. HERO — full-width photo, light overlay ──────────────── */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Full-bleed industrial photo */}
-        <div className="absolute inset-0">
-          <img
-            src="/images/hero/pipeline-field.jpg"
-            alt="ISA Valve industrial pipeline installation"
-            className="w-full h-full object-cover object-right"
-          />
-          {/* White gradient: solid left → transparent right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-white/10" />
-          {/* Bottom fade into next section */}
-          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent" />
-        </div>
+      {/* ── 1. HERO — bright OEM catalogue layout (text left · product right) ─── */}
+      <section className="relative overflow-hidden bg-white">
+        {/* Soft white → light-gray wash + faint engineering grid (no dark overlays) */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white to-slate-50" />
+        <div className="absolute inset-0 hero-grid-light" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 w-full">
-          <div className="max-w-2xl">
-            {/* Orange badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold text-white mb-8"
-              style={{ background: '#F97316' }}>
-              <Shield className="w-3 h-3" /> ISO 9001:2015 Certified · South Africa
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center min-h-[86vh] pt-28 pb-20 lg:py-24">
+
+            {/* LEFT — headline, copy, CTAs */}
+            <div className="max-w-xl">
+              {/* Orange badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold text-isa-700 mb-8 bg-isa-50 border border-isa-100">
+                <Shield className="w-3 h-3" /> ISO 9001:2015 Certified · South Africa
+              </div>
+
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-dark-900 tracking-tight leading-[1.05] mb-6">
+                Precision-Engineered<br />
+                <span className="text-isa-500">Valve Solutions</span>
+              </h1>
+
+              <p className="text-lg sm:text-xl text-slate-600 max-w-lg mb-8 leading-relaxed">
+                Trusted across mining, water treatment, oil &amp; gas, chemical processing and industrial applications throughout Africa.
+              </p>
+
+              <div className="flex flex-wrap gap-3 mb-10">
+                <Link to="/rfq" className="btn-primary !px-6 !py-3 !text-base">
+                  Request Quote <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link to="/products"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-base text-dark-900 border border-slate-300 hover:border-slate-400 bg-white hover:bg-slate-50 transition-all duration-150">
+                  Explore Products
+                </Link>
+              </div>
+
+              {/* Certification strip — orange left-rule accents */}
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2.5 text-xs sm:text-sm font-semibold text-slate-500">
+                {['ISO 9001:2015', 'API 6D', 'ISO 5208', 'WRAS Approved', 'SABS Certified'].map(c => (
+                  <span key={c} className="border-l-2 border-isa-500 pl-2.5 leading-tight">{c}</span>
+                ))}
+              </div>
             </div>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-slate-900 tracking-tight leading-[1.05] mb-6">
-              Precision-Engineered<br />
-              <span className="text-isa-500">Valve Solutions</span>
-            </h1>
-
-            <p className="text-xl text-slate-600 max-w-lg mb-8 leading-relaxed">
-              35 years supplying industrial valves across Africa. Mining, water, oil &amp; gas and chemical industries trust ISA for specification-grade flow control.
-            </p>
-
-            <div className="flex flex-wrap gap-3 mb-10">
-              <Link to="/rfq" className="btn-primary !px-6 !py-3 !text-base">
-                Request a Quote <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link to="/products"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-base text-slate-700 border border-slate-300 hover:border-slate-400 bg-white hover:bg-slate-50 transition-all duration-150">
-                View Products
-              </Link>
+            {/* RIGHT — large HD product with subtle soft ground shadow */}
+            <div className="relative flex items-center justify-center lg:justify-end">
+              <div className="relative w-full max-w-md">
+                {/* Subtle soft shadow beneath the product */}
+                <div className="absolute inset-x-0 bottom-4 mx-auto h-10 w-2/3 rounded-[50%] bg-dark-900/15 blur-2xl" />
+                <img
+                  src="/images/actuators/butterfly-valve-pneumatic-stainless.png"
+                  alt="ISA pneumatically actuated triple-offset butterfly valve"
+                  className="relative w-full h-auto object-contain"
+                />
+              </div>
             </div>
 
-            {/* Cert dots */}
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-semibold text-slate-500">
-              {CERTS.map((c, i) => (
-                <span key={c.code} className="flex items-center gap-1.5">
-                  {i > 0 && <span className="text-slate-300 mr-1">·</span>}
-                  <span className="w-1.5 h-1.5 rounded-full bg-isa-500 inline-block" />
-                  {c.code}
-                </span>
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -228,16 +232,14 @@ export default function Home() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {PRODUCT_CATS.map(cat => (
               <Link key={cat.slug} to={`/products/${cat.slug}`}
-                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-slate-200 group hover:-translate-y-1">
-                {/* Larger image */}
-                <div className="relative h-64 overflow-hidden bg-slate-100">
+                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-slate-200 group hover:-translate-y-1 hover:border-isa-300">
+                {/* Product image — centered, uncropped, consistent scale on light backdrop */}
+                <div className="relative h-64 flex items-center justify-center bg-[#F7F8FA] p-6">
                   <img
                     src={cat.img}
                     alt={cat.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="max-h-full max-w-full object-contain group-hover:scale-[1.04] transition-transform duration-500"
                   />
-                  {/* Subtle bottom gradient for text readability */}
-                  <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/20 to-transparent" />
                 </div>
                 {/* Content */}
                 <div className="p-6">

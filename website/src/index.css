@@ -67,6 +67,16 @@
     background-size: 40px 40px;
   }
 
+  /* Faint light engineering grid — bright OEM hero. Navy lines on white, fades out. */
+  .hero-grid-light {
+    background-image:
+      linear-gradient(rgba(7,27,46,0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(7,27,46,0.045) 1px, transparent 1px);
+    background-size: 56px 56px;
+    -webkit-mask-image: radial-gradient(ellipse 75% 80% at 50% 40%, #000 30%, transparent 78%);
+    mask-image: radial-gradient(ellipse 75% 80% at 50% 40%, #000 30%, transparent 78%);
+  }
+
   .oem-card {
     @apply bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200;
   }
@@ -82,6 +92,21 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Hero slow zoom — subtle, continuous, respects reduced-motion */
+@keyframes heroZoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.08); }
+}
+
+.animate-hero-zoom {
+  animation: heroZoom 20s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-zoom { animation: none; }
 }
 
 /* Chat streaming cursor */
