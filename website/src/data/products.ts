@@ -352,6 +352,91 @@ export const industryDetails: Record<string, IndustryDetail> = {
       { value: 'Full-bore', label: 'No flow restriction' },
     ],
   },
+  municipal: {
+    name: 'Municipal Water & Wastewater',
+    slug: 'municipal',
+    icon: '🏛️',
+    heroTagline: 'SABS and WRAS-approved valves for reliable municipal water infrastructure',
+    description:
+      'South African municipalities require valves certified to SABS and DWS standards for potable water distribution, bulk water transfer, sewage treatment, and stormwater management. Our gate and butterfly valves are designed for long service life in buried or submerged conditions with minimal maintenance across the full DN range.',
+    challenges: [
+      'Compliance with SABS 664, DWS, and WRAS potable water standards',
+      'Corrosion resistance in buried and permanently submerged service',
+      'Large-bore bulk water mains (DN300–DN1200) requiring cost-effective isolation',
+      'Wastewater and sewage service with high solids content and aggressive media',
+    ],
+    recommendedValves: ['gate-valve', 'butterfly-valve', 'knife-gate-valve'],
+    keyCertifications: ['SABS 664', 'WRAS', 'ISO 9001:2015', 'DWS approval'],
+    stats: [
+      { value: 'DN50–DN1200', label: 'Size range covered' },
+      { value: '25+ years', label: 'Typical design service life' },
+      { value: 'WRAS', label: 'Potable water approved' },
+      { value: 'SABS 664', label: 'South African standard' },
+    ],
+  },
+  agriculture: {
+    name: 'Agriculture & Irrigation',
+    slug: 'agriculture',
+    icon: '🌾',
+    heroTagline: 'Reliable flow control for large-scale irrigation and agricultural water systems',
+    description:
+      'Large-scale irrigation schemes, agricultural water supply networks, and agro-processing plants require cost-effective, reliable valves that handle clean water, fertiliser solutions, and light slurries. Our butterfly and pinch valves provide accurate flow control across wide diameter ranges at competitive price points.',
+    challenges: [
+      'Large-bore low-pressure irrigation main networks (DN200–DN600)',
+      'Fertiliser and chemical dosing systems requiring chemical-resistant materials',
+      'Remote operation requirements for automated irrigation scheduling',
+      'Seasonal dewatering systems requiring reliable, infrequently-used isolation',
+    ],
+    recommendedValves: ['butterfly-valve', 'pinch-valve', 'gate-valve'],
+    keyCertifications: ['ISO 9001:2015', 'SABS', 'WRAS'],
+    stats: [
+      { value: 'DN50–DN600', label: 'Butterfly valve range' },
+      { value: 'PTFE / EPDM', label: 'Chemical-resistant sleeves' },
+      { value: 'PN6–PN16', label: 'Low-pressure irrigation rated' },
+    ],
+  },
+  'power-generation': {
+    name: 'Power Generation',
+    slug: 'power-generation',
+    icon: '⚡',
+    heroTagline: 'High-cycle valves for cooling water, steam condensate, and ash slurry',
+    description:
+      'Power stations — coal, gas, diesel, and renewable — demand valves that withstand high-temperature cooling water, condensate service, and abrasive fly-ash slurry systems. Our knife gate valves for ash and our certified ball and gate valves for high-pressure steam-condensate lines are engineered for 24/7 baseload operation.',
+    challenges: [
+      'Ash slurry and fly-ash systems destroying standard gate and butterfly valves',
+      'High-temperature cooling water and condensate service requirements',
+      'High-cycle operation in automated control loops requiring low maintenance',
+      'Stringent safety requirements for critical isolation in pressurised systems',
+    ],
+    recommendedValves: ['knife-gate-valve', 'ball-valve', 'gate-valve'],
+    keyCertifications: ['ISO 9001:2015', 'API 6D', 'SABS'],
+    stats: [
+      { value: '24/7', label: 'Continuous baseload service' },
+      { value: 'High-cycle', label: 'Automated control rated' },
+      { value: 'DN15–DN600', label: 'Full size range' },
+    ],
+  },
+  'food-beverage': {
+    name: 'Food & Beverage',
+    slug: 'food-beverage',
+    icon: '🍶',
+    heroTagline: 'Hygienic valves for food-grade and beverage processing applications',
+    description:
+      'Food and beverage plants require valves manufactured from food-grade materials — typically 316L stainless steel with FDA-compliant elastomers — that can be cleaned in place (CIP) and withstand steam sterilisation. Our stainless steel ball valves with EPDM or PTFE seals are suitable for food, dairy, and beverage process lines.',
+    challenges: [
+      'Food-grade material requirements — 316L SS body, FDA-compliant elastomers',
+      'Clean-in-place (CIP) and steam-in-place (SIP) compatibility',
+      'High-frequency cycling in automated processing and filling lines',
+      'Contamination prevention — crevice-free designs and smooth bore surfaces',
+    ],
+    recommendedValves: ['ball-valve', 'butterfly-valve'],
+    keyCertifications: ['ISO 9001:2015', 'FDA-compliant materials', 'EHEDG guidelines'],
+    stats: [
+      { value: '316L SS', label: 'Food-grade stainless steel' },
+      { value: 'FDA', label: 'Compliant elastomers' },
+      { value: 'CIP/SIP', label: 'Cleanable in place' },
+    ],
+  },
 }
 
 export const industryList = Object.values(industryDetails)

@@ -25,6 +25,7 @@ const resourceLinks = [
 
 const navLinks = [
   { label: 'Industries', to: '/industries' },
+  { label: 'Projects',   to: '/projects' },
   { label: 'About',      to: '/about' },
 ]
 

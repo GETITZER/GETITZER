@@ -1,6 +1,8 @@
 import { useParams, Link } from 'react-router-dom'
 import { ArrowRight, CheckCircle, AlertTriangle, Shield } from 'lucide-react'
 import { industryDetails, products } from '../data/products'
+import { usePageMeta } from '../hooks/usePageMeta'
+import Breadcrumb from '../components/Breadcrumb'
 
 export default function IndustryDetail() {
   const { slug } = useParams<{ slug: string }>()
@@ -15,6 +17,12 @@ export default function IndustryDetail() {
     )
   }
 
+  usePageMeta({
+    title: `${industry.name} Valve Solutions — ISA Valve Solutions South Africa`,
+    description: industry.description.slice(0, 155),
+    canonical: `https://www.isavalvesolutions.com/industries/${industry.slug}`,
+  })
+
   const recommendedProducts = industry.recommendedValves
     .map(id => products.find(p => p.id === id))
     .filter(Boolean) as typeof products
@@ -24,9 +32,14 @@ export default function IndustryDetail() {
       {/* Hero */}
       <div className="bg-slate-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-          <Link to="/industries" className="text-slate-400 hover:text-slate-300 text-sm mb-6 inline-flex items-center gap-1">
-            ← All industries
-          </Link>
+          <Breadcrumb
+            crumbs={[
+              { label: 'Home', to: '/' },
+              { label: 'Industries', to: '/industries' },
+              { label: industry.name },
+            ]}
+            className="mb-6 [&_a]:text-slate-400 [&_a:hover]:text-slate-200 [&_span]:text-slate-300"
+          />
           <div className="flex items-center gap-4 mb-4">
             <span className="text-5xl">{industry.icon}</span>
             <div>

@@ -15,10 +15,12 @@ const productLinks = [
 const industryLinks = [
   { label: 'Mining & Resources',          to: '/industries/mining' },
   { label: 'Water Treatment',             to: '/industries/water-treatment' },
+  { label: 'Municipal Water',             to: '/industries/municipal' },
   { label: 'Oil & Gas',                   to: '/industries/oil-gas' },
   { label: 'Chemical & Petrochemical',    to: '/industries/chemical' },
-  { label: 'HVAC & Building Services',    to: '/industries/hvac' },
-  { label: 'Pulp & Paper',                to: '/industries/pulp-paper' },
+  { label: 'Power Generation',            to: '/industries/power-generation' },
+  { label: 'Agriculture & Irrigation',    to: '/industries/agriculture' },
+  { label: 'Food & Beverage',             to: '/industries/food-beverage' },
 ]
 
 const resourceLinks = [
@@ -26,6 +28,7 @@ const resourceLinks = [
   { label: 'Resource Centre',         to: '/resources',   icon: BookOpen },
   { label: 'Technical Blog',          to: '/blog',        icon: BookOpen },
   { label: 'Product Catalog',         to: '/catalog',     icon: Download },
+  { label: 'Projects & Case Studies', to: '/projects',    icon: null },
   { label: 'AI Valve Selector',       to: '/configure',   icon: null },
   { label: 'Request a Quote',         to: '/rfq',         icon: null },
   { label: 'About Us',                to: '/about',       icon: null },
@@ -115,7 +118,16 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="mt-14 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4" style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-          <p className="text-xs text-slate-600">© {new Date().getFullYear()} ISA Valve Solutions &amp; Industrial Supplies. All rights reserved. South Africa.</p>
+          <div className="flex flex-col sm:flex-row items-center gap-4 text-xs text-slate-600">
+            <p>© {new Date().getFullYear()} ISA Valve Solutions &amp; Industrial Supplies. All rights reserved. South Africa.</p>
+            <div className="flex items-center gap-3">
+              <Link to="/privacy-policy" className="hover:text-slate-400 transition-colors">Privacy Policy</Link>
+              <span className="w-1 h-1 rounded-full bg-slate-700" />
+              <Link to="/terms" className="hover:text-slate-400 transition-colors">Terms &amp; Conditions</Link>
+              <span className="w-1 h-1 rounded-full bg-slate-700" />
+              <Link to="/delivery-faq" className="hover:text-slate-400 transition-colors">Delivery &amp; FAQ</Link>
+            </div>
+          </div>
           <div className="flex flex-wrap items-center gap-3 text-xs text-slate-600">
             {['ISO 9001:2015', 'API 6D', 'ISO 5208 Grd A', 'WRAS', 'SABS'].map((cert, i, arr) => (
               <span key={cert} className="flex items-center gap-3">
