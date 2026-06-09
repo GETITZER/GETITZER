@@ -11,7 +11,6 @@ import type { Product } from '../types'
 import ProductModal from '../components/ProductModal'
 import { ISAMark } from '../components/ISALogo'
 import ValveCutaway from '../components/ValveCutaway'
-import PlantVideo from '../components/PlantVideo'
 
 /* ── Scroll reveal hook ───────────────────────────────────────────── */
 function useReveal(threshold = 0.12) {
@@ -183,16 +182,16 @@ export default function Home() {
       {/* ── 1. HERO ──────────────────────────────────────────────────── */}
       <section className="relative min-h-[75vh] sm:min-h-[92vh] flex items-start sm:items-center overflow-hidden isa-copyright-mark">
 
-        {/* Full-bleed background with strong overlay for large typography */}
+        {/* Full-bleed background — ISA branded mining hero */}
         <div className="absolute inset-0">
           <img
-            src="/images/hero/pipeline-field.jpg"
-            alt="ISA Valve Solutions industrial pipeline installation"
-            className="w-full h-full object-cover object-center"
+            src="/images/branded/isa-hero-mining.jpg"
+            alt="ISA Valve Solutions — engineered solutions for mining performance"
+            className="w-full h-full object-cover object-right"
             style={{ transform: 'scale(1.04)', animation: 'hero-zoom 10s ease-out forwards' }}
           />
-          {/* Left-to-right gradient: white on left, transparent right — keeps full image visible right side */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-white/10" />
+          {/* Left-to-right gradient: white on left covers image text, transparent right shows the scene */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/88 to-white/5" />
           {/* Bottom fade into white */}
           <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent" />
         </div>
@@ -415,17 +414,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 5. INDUSTRIAL PLANT SHOWCASE (animated / video) ──────────── */}
+      {/* ── 5. INDUSTRIAL PLANT SHOWCASE ─────────────────────────────── */}
       <section className="relative overflow-hidden">
         <div className="relative h-[400px] sm:h-[500px]">
-          {/* Animated plant scene (auto-swaps to /videos/industrial-plant.mp4 if present) */}
-          <PlantVideo className="absolute inset-0 w-full h-full" />
+          {/* ISA branded waterworks/industrial photo */}
+          <img
+            src="/images/branded/isa-hero-waterworks.jpg"
+            alt="ISA Valve Solutions — control valves installed in waterworks facility"
+            className="absolute inset-0 w-full h-full object-cover object-center"
+          />
           {/* Left-weighted overlay for text legibility */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/55 to-transparent" />
-          {/* LIVE badge */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/92 via-slate-900/60 to-slate-900/20" />
+          {/* ISA badge */}
           <div className="absolute top-5 right-5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-900/85 text-white text-[10px] font-bold uppercase tracking-widest z-10">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-            Live Plant
+            <span className="w-1.5 h-1.5 rounded-full bg-isa-500 animate-pulse" />
+            ISA Installed
           </div>
           <div className="absolute inset-0 flex items-center">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -562,6 +565,13 @@ export default function Home() {
 
       {/* ── 10. CTA ─────────────────────────────────────────────────── */}
       <section className="py-24 bg-isa-500 relative overflow-hidden">
+        {/* ISA branded refinery photo — subtle bg under orange */}
+        <img
+          src="/images/branded/isa-hero-refinery.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover object-center opacity-15 pointer-events-none"
+        />
         {/* Animated blob overlays on orange */}
         <div className="absolute top-0 left-0 w-96 h-96 rounded-full pointer-events-none blob-1"
           style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%)', top: '-20%', left: '-5%' }} />
