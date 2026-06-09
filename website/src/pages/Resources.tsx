@@ -7,6 +7,13 @@ interface DownloadDoc {
 }
 const downloads: DownloadDoc[] = [
   {
+    name: 'ISA Company Profile & Capability Catalog',
+    type: 'PDF', size: '9.1 MB',
+    desc: 'Complete company profile — engineering capability, full product portfolio, certifications, and project track record across mining, water, oil & gas and chemical processing',
+    icon: '🏭',
+    href: '/downloads/ISA-Company-Profile.pdf',
+  },
+  {
     name: 'ISA Pinch Valve Series — Audit Grade',
     type: 'PDF', size: '152 KB',
     desc: 'ISA-Flex™ / ISA-Extrem™ / ISA-Shield™ / ISA-Chem™ sleeves · PN16 · ISO 5208 Grade A Zero Leakage · Mining proven',
@@ -193,7 +200,24 @@ export default function Resources() {
           <div className="mb-6 p-4 rounded-2xl flex items-center gap-3"
             style={{ background: 'rgba(16,185,129,0.07)', border: '1px solid rgba(16,185,129,0.18)' }}>
             <Shield className="w-5 h-5 text-emerald-400 flex-shrink-0" />
-            <p className="text-sm text-emerald-300"><strong className="text-white">7 documents available for immediate download</strong> — no sign-up required. Additional data sheets available on request.</p>
+            <p className="text-sm text-emerald-300"><strong className="text-white">8 documents available for immediate download</strong> — no sign-up required. Additional data sheets available on request.</p>
+          </div>
+          {/* Audit-grade datasheet showcase */}
+          <div className="mb-8 grid md:grid-cols-[260px_1fr] gap-6 items-center glass p-6 rounded-2xl"
+            style={{ border: '1px solid rgba(255,255,255,0.07)' }}>
+            <img
+              src="/images/audit-grade-datasheets.jpg"
+              alt="ISA Audit Grade technical datasheets — ISA-Flex, ISA-Extrem, ISA-Shield and ISA-Chem pinch valve sleeve grades"
+              loading="lazy"
+              className="w-full rounded-xl shadow-lg"
+            />
+            <div>
+              <p className="eng-label mb-2">Audit Grade Certified</p>
+              <h3 className="font-display text-xl font-bold text-white mb-2">Technical datasheets engineered for precision &amp; performance</h3>
+              <p className="text-sm text-muted leading-relaxed">
+                Every ISA sleeve grade — ISA-Flex™ (abrasion), ISA-Extrem™ (high temp &amp; wear), ISA-Shield™ (ozone &amp; UV) and ISA-Chem™ (chemical) — ships with an Audit Grade datasheet covering key features, engineering data, applications and material specifications. Download the full catalog below or request any individual sheet.
+              </p>
+            </div>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {downloads.map(doc => {
