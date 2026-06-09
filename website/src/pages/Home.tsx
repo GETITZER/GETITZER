@@ -63,10 +63,10 @@ const CERTS = [
 const PRODUCT_CATS = [
   { title: 'ISA DXST™ Slurry KGV',      sub: '466% longer service life', spec: 'DN50–DN600 · Mining grade',        slug: 'dxst-kgv',         img: '/images/products/knife-gate-valve.jpg' },
   { title: 'ISA Titan™ Ball Valve',      sub: 'API 6D certified',          spec: 'DN15–DN600 · Full bore',           slug: 'ball-valve',        img: '/images/products/ball-valve.jpg' },
-  { title: 'ISA Hydra™ Butterfly Valve', sub: 'WRAS approved',             spec: 'DN50–DN1200 · Triple offset',      slug: 'butterfly-valve',   img: '/images/products/butterfly-valve.jpg' },
+  { title: 'ISA Hydra™ Butterfly Valve', sub: 'WRAS approved',             spec: 'DN50–DN4000 · Triple offset',      slug: 'butterfly-valve',   img: '/images/products/butterfly-valve-dn4000.png' },
   { title: 'ISA Core™ Gate Valve',       sub: 'SABS 664 certified',        spec: 'DN50–DN1000 · OS&Y',               slug: 'gate-valve',        img: '/images/products/gate-valve.jpg' },
   { title: 'ISA Shield™ Pinch Valve',    sub: 'ISO 5208 Grade A',          spec: 'DN25–DN400 · 4 sleeve types',      slug: 'pinch-valve',       img: '/images/products/pinch-valve.jpg' },
-  { title: 'ISA ProSeal™ Knife Gate',    sub: 'Ceramic-lined option',      spec: 'DN50–DN600 · Wafer/Lug',           slug: 'knife-gate-valve',  img: '/images/products/knife-gate-valve.jpg' },
+  { title: 'ISA ProSeal™ Knife Gate',    sub: 'Ceramic-lined option',      spec: 'DN50–DN600 · Wafer/Lug',           slug: 'knife-gate-valve',  img: '/images/products/knife-gate-valve-isa.jpg' },
 ]
 
 const INDUSTRY_TABS = [
