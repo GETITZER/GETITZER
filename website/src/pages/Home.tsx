@@ -19,7 +19,12 @@ function useReveal(threshold = 0.12) {
   useEffect(() => {
     const el = ref.current; if (!el) return
     const obs = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { el.classList.add('revealed'); obs.disconnect() }
+      if (e.isIntersecting) {
+        el.classList.add('revealed')
+        // Cascade to all .reveal descendants in the same section so cards animate in
+        el.closest('section')?.querySelectorAll('.reveal').forEach(c => c.classList.add('revealed'))
+        obs.disconnect()
+      }
     }, { threshold })
     obs.observe(el)
     return () => obs.disconnect()
@@ -176,7 +181,7 @@ export default function Home() {
     <div className="bg-white">
 
       {/* ── 1. HERO ──────────────────────────────────────────────────── */}
-      <section className="relative min-h-[92vh] flex items-center overflow-hidden isa-copyright-mark">
+      <section className="relative min-h-[75vh] sm:min-h-[92vh] flex items-start sm:items-center overflow-hidden isa-copyright-mark">
 
         {/* Full-bleed background with strong overlay for large typography */}
         <div className="absolute inset-0">
@@ -196,7 +201,7 @@ export default function Home() {
         <div className="absolute top-1/3 -left-24 w-[480px] h-[480px] rounded-full pointer-events-none blob-1"
           style={{ background: 'radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%)' }} />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 w-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10 sm:py-28 w-full">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
 
             {/* Left — hero text */}

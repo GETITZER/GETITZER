@@ -25,6 +25,8 @@ import Projects from './pages/Projects'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import Terms from './pages/Terms'
 import { WA_URL } from './components/WhatsAppButton'
+import WelkomSplash from './components/WelkomSplash'
+import WelcomePopup from './components/WelcomePopup'
 
 const orgSchema = {
   '@context': 'https://schema.org',
@@ -98,6 +100,8 @@ function MobileStickyBar() {
 export default function App() {
   return (
     <BrowserRouter>
+      <WelkomSplash />
+      <WelcomePopup />
       <SchemaMarkup schema={orgSchema} />
       <div className="min-h-screen flex flex-col pb-14 lg:pb-0">
         <Navigation />
