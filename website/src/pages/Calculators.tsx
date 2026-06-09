@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Calculator, ArrowRight, Info } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 type CalcTab = 'cv' | 'flow' | 'pressure' | 'velocity' | 'convert'
 
@@ -235,6 +236,11 @@ const tabs: { id: CalcTab; label: string; desc: string }[] = [
 ]
 
 export default function Calculators() {
+  usePageMeta({
+    title: 'Valve Engineering Calculators — Cv, Flow Rate, Pressure Drop | ISA Valve Solutions',
+    description: 'Free online valve engineering calculators: flow coefficient Cv, flow rate, pressure drop, velocity, and unit conversion tools for industrial valve sizing and selection.',
+    canonical: 'https://www.isavalvesolutions.com/calculators',
+  })
   const [activeTab, setActiveTab] = useState<CalcTab>('cv')
   const active = tabs.find(t => t.id === activeTab)!
 

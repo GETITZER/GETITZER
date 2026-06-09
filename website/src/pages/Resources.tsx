@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Download, BookOpen, ArrowRight, Calculator, ExternalLink, Shield, Zap } from 'lucide-react'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 interface DownloadDoc {
   name: string; type: string; size: string; desc: string; icon: string
@@ -147,6 +148,11 @@ function Section({ id, children }: { id?: string; children: React.ReactNode }) {
 }
 
 export default function Resources() {
+  usePageMeta({
+    title: 'Technical Resources & Downloads — ISA Valve Solutions Data Sheets, Catalogs',
+    description: 'Download ISA Valve Solutions technical data sheets, product catalogs, selection guides, and engineering resources for industrial valves in South Africa.',
+    canonical: 'https://www.isavalvesolutions.com/resources',
+  })
   return (
     <div style={{ background: '#081D42' }} className="min-h-screen pt-20 pb-24">
       {/* Header */}

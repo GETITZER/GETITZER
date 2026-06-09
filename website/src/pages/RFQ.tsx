@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Send, Loader2, CheckCircle, Sparkles, ArrowRight, Zap } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { WhatsAppIcon, WA_URL } from '../components/WhatsAppButton'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 interface SimpleRFQ {
   name: string
@@ -34,6 +35,11 @@ function renderAnalysis(text: string) {
 }
 
 export default function RFQ() {
+  usePageMeta({
+    title: 'Request a Valve Quote — ISA Valve Solutions South Africa',
+    description: 'Get a fast quote for industrial valves in South Africa. Ball valves, butterfly valves, gate valves, knife gate valves, and pinch valves. ISO 9001:2015 certified supplier.',
+    canonical: 'https://www.isavalvesolutions.com/rfq',
+  })
   const [form, setForm] = useState<SimpleRFQ>(initialForm)
   const [submitting, setSubmitting] = useState(false)
   const [analysis, setAnalysis] = useState<string | null>(null)

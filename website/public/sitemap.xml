@@ -1,33 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <!-- Core pages -->
-  <url><loc>https://www.isa-valve.co.za/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
-  <url><loc>https://www.isa-valve.co.za/about</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://www.isa-valve.co.za/rfq</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://www.isa-valve.co.za/configurator</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/</loc><lastmod>2026-06-09</lastmod><priority>1.0</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/about</loc><lastmod>2026-06-09</lastmod><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/rfq</loc><lastmod>2026-06-09</lastmod><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/configure</loc><lastmod>2026-06-09</lastmod><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/catalog</loc><lastmod>2026-06-09</lastmod><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/resources</loc><lastmod>2026-06-09</lastmod><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/calculators</loc><lastmod>2026-06-09</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
 
   <!-- Products -->
-  <url><loc>https://www.isa-valve.co.za/products</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
-  <url><loc>https://www.isa-valve.co.za/products/ball-valve</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://www.isa-valve.co.za/products/butterfly-valve</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://www.isa-valve.co.za/products/gate-valve</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://www.isa-valve.co.za/products/knife-gate-valve</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/products</loc><lastmod>2026-06-09</lastmod><priority>0.95</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/products/ball-valve</loc><lastmod>2026-06-09</lastmod><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/products/butterfly-valve</loc><lastmod>2026-06-09</lastmod><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/products/gate-valve</loc><lastmod>2026-06-09</lastmod><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/products/knife-gate-valve</loc><lastmod>2026-06-09</lastmod><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/products/pinch-valve</loc><lastmod>2026-06-09</lastmod><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/products/dxst-kgv</loc><lastmod>2026-06-09</lastmod><priority>0.9</priority><changefreq>monthly</changefreq></url>
 
   <!-- Industries -->
-  <url><loc>https://www.isa-valve.co.za/industries</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://www.isa-valve.co.za/industries/mining</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://www.isa-valve.co.za/industries/water-treatment</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://www.isa-valve.co.za/industries/oil-gas</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://www.isa-valve.co.za/industries/chemical</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://www.isa-valve.co.za/industries/hvac</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://www.isa-valve.co.za/industries/pulp-paper</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/industries</loc><lastmod>2026-06-09</lastmod><priority>0.85</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/industries/mining</loc><lastmod>2026-06-09</lastmod><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/industries/water-treatment</loc><lastmod>2026-06-09</lastmod><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/industries/oil-gas</loc><lastmod>2026-06-09</lastmod><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/industries/chemical</loc><lastmod>2026-06-09</lastmod><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/industries/hvac</loc><lastmod>2026-06-09</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/industries/pulp-paper</loc><lastmod>2026-06-09</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
 
   <!-- Blog -->
-  <url><loc>https://www.isa-valve.co.za/blog</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
-  <url><loc>https://www.isa-valve.co.za/blog/valve-selection-guide-mining</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://www.isa-valve.co.za/blog/ball-valve-vs-butterfly-valve</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://www.isa-valve.co.za/blog/sabs-iso-valve-certifications</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://www.isa-valve.co.za/blog/ceramic-lined-knife-gate-slurry</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://www.isa-valve.co.za/blog/hvac-valve-selection</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://www.isa-valve.co.za/blog/knife-gate-valve-failure-prevention</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/blog</loc><lastmod>2026-06-09</lastmod><priority>0.75</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/blog/valve-selection-guide-mining</loc><lastmod>2026-06-09</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/blog/ball-valve-vs-butterfly-valve</loc><lastmod>2026-06-09</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/blog/sabs-iso-valve-certifications</loc><lastmod>2026-06-09</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/blog/ceramic-lined-knife-gate-slurry</loc><lastmod>2026-06-09</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/blog/hvac-valve-selection</loc><lastmod>2026-06-09</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/blog/knife-gate-valve-failure-prevention</loc><lastmod>2026-06-09</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/blog/pinch-valve-mining-slurry</loc><lastmod>2026-06-09</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/blog/gate-valve-water-treatment</loc><lastmod>2026-06-09</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.isavalvesolutions.com/blog/butterfly-valve-api-wras</loc><lastmod>2026-06-09</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
+
 </urlset>

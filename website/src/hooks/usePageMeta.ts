@@ -1,39 +1,45 @@
 import { useEffect } from 'react'
 
-const DEFAULT_TITLE = 'ISA Valve Solutions — Precision-Engineered Valves & Industrial Supplies'
-const DEFAULT_DESC = 'ISO 9001:2015 certified ball, butterfly, gate and knife gate valves for mining, water treatment, oil & gas and industrial applications. South Africa.'
-
-function setMeta(name: string, content: string) {
-  let el = document.querySelector<HTMLMetaElement>(`meta[name="${name}"]`)
-  if (!el) {
-    el = document.createElement('meta')
-    el.setAttribute('name', name)
-    document.head.appendChild(el)
-  }
-  el.setAttribute('content', content)
+interface PageMeta {
+  title: string
+  description: string
+  canonical?: string
 }
 
-function setOg(property: string, content: string) {
-  let el = document.querySelector<HTMLMetaElement>(`meta[property="${property}"]`)
-  if (!el) {
-    el = document.createElement('meta')
-    el.setAttribute('property', property)
-    document.head.appendChild(el)
-  }
-  el.setAttribute('content', content)
-}
+// Accepts either usePageMeta({ title, description, canonical? }) or usePageMeta(title, description, canonical?)
+export function usePageMeta(
+  titleOrMeta: string | PageMeta,
+  descriptionArg?: string,
+  canonicalArg?: string,
+) {
+  const title = typeof titleOrMeta === 'string' ? titleOrMeta : titleOrMeta.title
+  const description = typeof titleOrMeta === 'string' ? (descriptionArg ?? '') : titleOrMeta.description
+  const canonical = typeof titleOrMeta === 'string' ? canonicalArg : titleOrMeta.canonical
 
-export function usePageMeta(title: string, description?: string) {
+  const fullTitle = title.includes('ISA Valve') ? title : `${title} | ISA Valve Solutions`
+
   useEffect(() => {
-    const fullTitle = `${title} | ISA Valve Solutions`
     document.title = fullTitle
-    const desc = description ?? DEFAULT_DESC
-    setMeta('description', desc)
-    setOg('og:title', fullTitle)
-    setOg('og:description', desc)
-    return () => {
-      document.title = DEFAULT_TITLE
-      setMeta('description', DEFAULT_DESC)
+
+    const descTag = document.querySelector<HTMLMetaElement>('meta[name="description"]')
+    if (descTag) descTag.content = description
+
+    const canonTag = document.querySelector<HTMLLinkElement>('link[rel="canonical"]')
+    if (canonical && canonTag) canonTag.href = canonical
+
+    const ogTitle = document.querySelector<HTMLMetaElement>('meta[property="og:title"]')
+    if (ogTitle) ogTitle.content = fullTitle
+
+    const ogDesc = document.querySelector<HTMLMetaElement>('meta[property="og:description"]')
+    if (ogDesc) ogDesc.content = description
+
+    if (canonical) {
+      const ogUrl = document.querySelector<HTMLMetaElement>('meta[property="og:url"]')
+      if (ogUrl) ogUrl.content = canonical
     }
-  }, [title, description])
+
+    return () => {
+      document.title = 'ISA Valve Solutions — Industrial Valves South Africa'
+    }
+  }, [fullTitle, description, canonical])
 }

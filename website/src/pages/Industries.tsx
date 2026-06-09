@@ -1,8 +1,14 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { industryList } from '../data/products'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 export default function Industries() {
+  usePageMeta({
+    title: 'Industrial Valve Solutions by Industry — ISA Valve Solutions South Africa',
+    description: 'ISA Valve Solutions provides certified valves for mining, water treatment, oil & gas, chemical processing, HVAC, and pulp & paper industries in South Africa.',
+    canonical: 'https://www.isavalvesolutions.com/industries',
+  })
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
       {/* Header */}
