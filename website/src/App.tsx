@@ -25,13 +25,42 @@ import { WA_URL } from './components/WhatsAppButton'
 
 const orgSchema = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
+  '@type': 'LocalBusiness',
+  '@id': 'https://www.isavalvesolutions.com/#organization',
   name: 'ISA Valve Solutions & Industrial Supplies',
-  description: 'ISO 9001:2015 certified industrial valve supplier in South Africa. Ball valves, butterfly valves, gate valves, and knife gate valves for mining, water treatment, oil & gas, and chemical industries.',
+  description: 'ISO 9001:2015 certified industrial valve supplier in South Africa. Ball valves, butterfly valves, gate valves, knife gate valves, and pinch valves for mining, water treatment, oil & gas, and chemical industries. 35+ years of precision engineering.',
   url: 'https://www.isavalvesolutions.com',
   telephone: '+27-060-688-5648',
   email: 'isa-valve@outlook.com',
-  address: { '@type': 'PostalAddress', addressCountry: 'ZA' },
+  image: 'https://www.isavalvesolutions.com/images/branding/isa-flow-control-hero.png',
+  priceRange: '$$',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Johannesburg',
+    addressRegion: 'Gauteng',
+    addressCountry: 'ZA',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: -26.2041,
+    longitude: 28.0473,
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'South Africa',
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Industrial Valve Products',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Product', name: 'Ball Valve', url: 'https://www.isavalvesolutions.com/products/ball-valve' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Product', name: 'Butterfly Valve', url: 'https://www.isavalvesolutions.com/products/butterfly-valve' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Product', name: 'Gate Valve', url: 'https://www.isavalvesolutions.com/products/gate-valve' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Product', name: 'Knife Gate Valve', url: 'https://www.isavalvesolutions.com/products/knife-gate-valve' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Product', name: 'Pinch Valve', url: 'https://www.isavalvesolutions.com/products/pinch-valve' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Product', name: 'DXST Slurry Knife Gate Valve', url: 'https://www.isavalvesolutions.com/products/dxst-kgv' } },
+    ],
+  },
   sameAs: [],
 }
 
