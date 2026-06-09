@@ -23,6 +23,8 @@ export interface Product {
   industries: string[]
   compliance: string[]
   icon: string
+  image?: string
+  imageAlt?: string
   badge?: string
   badgeColor?: 'isa' | 'brand' | 'green' | 'red'
   highlights?: string[]
