@@ -10,6 +10,7 @@ import { WhatsAppIcon, WA_URL } from '../components/WhatsAppButton'
 import type { Product } from '../types'
 import ProductModal from '../components/ProductModal'
 import { ISAMark } from '../components/ISALogo'
+import ValveCutaway from '../components/ValveCutaway'
 
 /* ── Scroll reveal hook ───────────────────────────────────────────── */
 function useReveal(threshold = 0.12) {
@@ -164,6 +165,7 @@ export default function Home() {
   const [modal, setModal] = useState<Product | null>(null)
 
   const revealProducts     = useReveal()
+  const revealCutaway      = useReveal()
   const revealCapabilities = useReveal()
   const revealProjects     = useReveal()
   const revealResources    = useReveal()
@@ -350,6 +352,59 @@ export default function Home() {
             <Link to="/products" className="inline-flex items-center gap-1.5 text-sm font-bold text-isa-600">
               View All Products <ArrowRight className="w-4 h-4" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 4b. LIVE VALVE CUTAWAY ──────────────────────────────────── */}
+      <section className="bg-white py-24 border-t border-slate-100 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div ref={revealCutaway} className="reveal grid lg:grid-cols-12 gap-12 items-center">
+            {/* Copy */}
+            <div className="lg:col-span-4">
+              <span className="section-label inline-flex items-center gap-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-isa-500 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-isa-500" />
+                </span>
+                Live · In Operation
+              </span>
+              <h2 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4">
+                See It Work
+              </h2>
+              <p className="text-slate-500 text-lg leading-relaxed mb-6">
+                Watch an ISA DXST™ knife-gate valve in action — abrasive slurry streams through the open bore, the
+                hardened gate strokes fully shut on its rising stem, then re-opens. Engineered for the most punishing
+                mining circuits in Africa.
+              </p>
+              <ul className="space-y-2.5 mb-8">
+                {[
+                  'Hardened gate — 466% longer service life',
+                  'Field-replaceable seat lining',
+                  'Rising stem with visual position indicator',
+                  'Full-bore, unobstructed slurry flow',
+                ].map(item => (
+                  <li key={item} className="flex items-start gap-2.5 text-sm text-slate-600">
+                    <span className="w-1.5 h-1.5 rounded-full bg-isa-500 mt-1.5 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <Link to="/products/dxst-kgv"
+                className="inline-flex items-center gap-2 bg-isa-500 hover:bg-isa-600 text-white font-bold px-7 py-3.5 rounded-xl transition-colors text-sm shadow-lg shadow-isa-500/30">
+                Explore the DXST™ KGV <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+            {/* Animated cutaway */}
+            <div className="lg:col-span-8">
+              <div className="relative rounded-2xl border border-slate-200 bg-gradient-to-b from-slate-50 to-white p-6 sm:p-10 shadow-sm">
+                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-900/90 text-white text-[10px] font-bold uppercase tracking-widest">
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                  Live Cutaway
+                </div>
+                <ValveCutaway />
+              </div>
+            </div>
           </div>
         </div>
       </section>
