@@ -98,31 +98,31 @@ export default function Home() {
     <div>
 
       {/* ── 1. HERO ─────────────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex items-center overflow-hidden" style={{ background: '#071A2D' }}>
-        {/* Hero image — right half, subtle brightness reduction */}
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-slate-50">
+        {/* Industrial photo — right half */}
         <div className="absolute inset-0 lg:left-1/2">
           <img
             src="/images/hero/industrial-banner.png"
             alt="Industrial valve installation"
-            className="w-full h-full object-cover brightness-75"
+            className="w-full h-full object-cover"
           />
-          {/* Edge fade so image blends into navy on the left */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#071A2D] via-[#071A2D]/60 to-transparent" />
+          {/* Fade photo into light background on the left */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-50 via-slate-50/70 to-transparent" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 w-full">
           <div className="max-w-xl">
             {/* Orange cert badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold text-white mb-8"
-              style={{ background: '#F97316', border: '1px solid rgba(249,115,22,0.5)' }}>
+              style={{ background: '#F97316' }}>
               <Shield className="w-3 h-3" /> ISO 9001:2015 Certified · South Africa
             </div>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.05] mb-6">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-slate-900 tracking-tight leading-[1.05] mb-6">
               Precision-Engineered<br />Valve Solutions
             </h1>
 
-            <p className="text-lg text-slate-300 max-w-lg mb-8 leading-relaxed">
+            <p className="text-lg text-slate-600 max-w-lg mb-8 leading-relaxed">
               35 years supplying ball, butterfly, gate, knife gate and slurry valves for mining, water treatment, oil & gas and chemical industries across Africa.
             </p>
 
@@ -132,16 +132,16 @@ export default function Home() {
                 Request a Quote <ArrowRight className="w-4 h-4" />
               </Link>
               <Link to="/products"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-base text-white border border-white/30 hover:border-white/60 hover:bg-white/5 transition-all duration-150">
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-base text-slate-700 border border-slate-300 hover:border-slate-400 hover:bg-white transition-all duration-150 bg-white">
                 View Products
               </Link>
             </div>
 
             {/* Cert dots row */}
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-semibold text-slate-400">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-semibold text-slate-500">
               {CERTS.map((c, i) => (
                 <span key={c.code} className="flex items-center gap-1.5">
-                  {i > 0 && <span className="text-slate-600 mr-2">·</span>}
+                  {i > 0 && <span className="text-slate-300 mr-2">·</span>}
                   <span className="w-1.5 h-1.5 rounded-full bg-isa-500 inline-block" />
                   {c.code}
                 </span>
@@ -221,37 +221,37 @@ export default function Home() {
       </section>
 
       {/* ── 5. CAPABILITIES ─────────────────────────────────────────── */}
-      <section className="py-20 relative" style={{ background: '#071A2D' }}>
+      <section className="py-20 relative bg-white border-t border-slate-100">
         {/* Orange accent bar at top */}
         <div className="absolute top-0 left-0 right-0 h-1 bg-isa-500" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="section-label">Engineering Excellence</span>
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
               Why Engineers Specify ISA
             </h2>
-            <p className="text-slate-400 text-lg mt-3 max-w-xl mx-auto">
+            <p className="text-slate-500 text-lg mt-3 max-w-xl mx-auto">
               From specification to commissioning — engineering support at every stage.
             </p>
           </div>
 
           <div className="grid sm:grid-cols-3 gap-6 mb-12">
             {CAPABILITIES.map(cap => (
-              <div key={cap.title} className="rounded-xl p-6" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.10)' }}>
-                <div className="w-8 h-8 rounded-lg bg-isa-500/20 flex items-center justify-center mb-4">
-                  <CheckCircle className="w-4 h-4 text-isa-400" />
+              <div key={cap.title} className="rounded-xl p-6 bg-slate-50 border border-slate-200">
+                <div className="w-8 h-8 rounded-lg bg-isa-50 border border-isa-100 flex items-center justify-center mb-4">
+                  <CheckCircle className="w-4 h-4 text-isa-500" />
                 </div>
-                <h3 className="font-bold text-white text-base mb-2">{cap.title}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">{cap.desc}</p>
+                <h3 className="font-bold text-slate-900 text-base mb-2">{cap.title}</h3>
+                <p className="text-sm text-slate-500 leading-relaxed">{cap.desc}</p>
               </div>
             ))}
           </div>
 
           {/* Metrics bar */}
-          <div className="flex flex-wrap justify-center gap-x-10 gap-y-3 pt-8 border-t border-white/10 text-center">
+          <div className="flex flex-wrap justify-center gap-x-10 gap-y-3 pt-8 border-t border-slate-200 text-center">
             {['35+ Years', '500+ Projects', '8+ Countries', 'ISO 9001:2015'].map(m => (
-              <span key={m} className="text-sm font-bold text-slate-300 uppercase tracking-widest">{m}</span>
+              <span key={m} className="text-sm font-bold text-slate-600 uppercase tracking-widest">{m}</span>
             ))}
           </div>
         </div>
@@ -363,33 +363,34 @@ export default function Home() {
       </section>
 
       {/* ── 10. CTA ─────────────────────────────────────────────────── */}
-      <section className="py-20" style={{ background: '#071A2D' }}>
+      <section className="py-20 bg-isa-500">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="text-xs font-bold uppercase tracking-widest text-isa-400 block mb-6">
+          <span className="text-xs font-bold uppercase tracking-widest text-orange-100 block mb-6">
             ISO 9001:2015 · API 6D · WRAS · SABS 664 · ISO 5208
           </span>
           <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
             Ready to Engineer<br />Your Next Project?
           </h2>
-          <p className="text-slate-400 text-lg mb-10 max-w-xl mx-auto">
+          <p className="text-orange-100 text-lg mb-10 max-w-xl mx-auto">
             Get expert valve sizing, product selection and engineering support from ISA Valve Solutions. ISO certified. Africa proven.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mb-10">
-            <Link to="/rfq" className="btn-primary !px-8 !py-3.5 !text-base">
+            <Link to="/rfq"
+              className="inline-flex items-center gap-2 bg-white hover:bg-orange-50 text-isa-600 font-bold px-8 py-3.5 rounded-lg transition-colors duration-150 text-base">
               Request Quote <ArrowRight className="w-4 h-4" />
             </Link>
             <Link to="/products"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg font-bold text-base text-white border border-white/25 hover:border-white/50 hover:bg-white/5 transition-all duration-150">
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg font-bold text-base text-white border border-white/40 hover:border-white/70 hover:bg-white/10 transition-all duration-150">
               View Products
             </Link>
             <a href={WA_URL} target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg font-bold text-base text-emerald-400 border border-emerald-500/25 hover:border-emerald-400/50 hover:bg-emerald-500/5 transition-all duration-150">
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg font-bold text-base text-white border border-white/40 hover:border-white/70 hover:bg-white/10 transition-all duration-150">
               <WhatsAppIcon className="w-4 h-4" /> WhatsApp Us
             </a>
           </div>
-          <div className="flex flex-wrap justify-center gap-6 text-sm text-slate-500">
+          <div className="flex flex-wrap justify-center gap-6 text-sm text-orange-100">
             <span className="flex items-center gap-1.5"><Phone className="w-3.5 h-3.5" /> +27 060 688 5648</span>
-            <a href="mailto:isa-valve@outlook.com" className="flex items-center gap-1.5 hover:text-isa-400 transition-colors">
+            <a href="mailto:isa-valve@outlook.com" className="flex items-center gap-1.5 hover:text-white transition-colors">
               <Mail className="w-3.5 h-3.5" /> isa-valve@outlook.com
             </a>
           </div>

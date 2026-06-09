@@ -39,8 +39,8 @@ export function ISALogoNav() {
         />
       )}
       <div className="leading-none">
-        <div className="font-bold text-sm tracking-tight text-white">ISA VALVE SOLUTIONS</div>
-        <div style={{ fontSize: '9px', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#5a7a9a' }}>
+        <div className="font-bold text-sm tracking-tight text-slate-900">ISA VALVE SOLUTIONS</div>
+        <div style={{ fontSize: '9px', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#6b7280' }}>
           & Industrial Supplies
         </div>
       </div>
