@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 /* ─── Animated ISA geometric mark ─── */
 export function ISAMark({ size = 32, animate = false }: { size?: number; animate?: boolean }) {
@@ -53,84 +53,36 @@ export function ISAWatermark({ size = 400, opacity = 0.04 }: { size?: number; op
 
 /* ─── Navigation logo ─── */
 export function ISALogoNav() {
-  const [imgFailed, setImgFailed] = useState(false)
-  const [ready, setReady] = useState(false)
-
-  useEffect(() => {
-    const t = setTimeout(() => setReady(true), 50)
-    return () => clearTimeout(t)
-  }, [])
-
   return (
-    <div className="flex items-center gap-2.5 select-none">
-      {imgFailed ? (
-        <ISAMark size={30} animate />
-      ) : (
-        <img
-          src="/images/logo.png"
-          alt="ISA"
-          className="h-8 w-auto"
-          onError={() => setImgFailed(true)}
-        />
-      )}
-      <div className={`leading-none transition-all duration-500 ${ready ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`}>
-        <div className="font-bold text-sm tracking-tight text-slate-900">ISA VALVE SOLUTIONS</div>
-        <div style={{ fontSize: '9px', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#6b7280' }}>
-          &amp; Industrial Supplies
-        </div>
-      </div>
-    </div>
+    <img
+      src="/images/isa-logo-light.png"
+      alt="ISA Valve Solutions & Industrial Supplies"
+      className="h-10 w-auto"
+    />
   )
 }
 
-/* ─── Hero logo: large, animated ─── */
+/* ─── Hero logo: large, for dark backgrounds ─── */
 export function ISALogoHero({ className = '' }: { className?: string }) {
-  const [step, setStep] = useState(0)
-
-  useEffect(() => {
-    const t1 = setTimeout(() => setStep(1), 100)
-    const t2 = setTimeout(() => setStep(2), 500)
-    return () => { clearTimeout(t1); clearTimeout(t2) }
-  }, [])
-
   return (
-    <div className={`flex items-center gap-4 ${className}`}>
-      <div className={`transition-all duration-700 ${step >= 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}`}>
-        <ISAMark size={56} animate />
-      </div>
-      <div className={`transition-all duration-500 delay-300 ${step >= 2 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}>
-        <div className="font-bold text-2xl sm:text-3xl text-white tracking-tight leading-none">
-          ISA VALVE SOLUTIONS
-        </div>
-        <div className="text-xs text-blue-300 tracking-[0.2em] font-semibold mt-1.5 uppercase">
-          Your Partner in Flow Control
-        </div>
-      </div>
-    </div>
+    <img
+      src="/images/isa-logo-light.png"
+      alt="ISA Valve Solutions & Industrial Supplies"
+      className={`h-16 w-auto ${className}`}
+      style={{ filter: 'brightness(0) invert(1)', opacity: 0.9 }}
+    />
   )
 }
 
-/* ─── Footer logo — animated on scroll into view ─── */
+/* ─── Footer logo — white silhouette for dark footer ─── */
 export function ISALogoFooter() {
-  const [visible, setVisible] = useState(false)
-
-  useEffect(() => {
-    const t = setTimeout(() => setVisible(true), 200)
-    return () => clearTimeout(t)
-  }, [])
-
   return (
-    <div className="flex items-center gap-3">
-      <div className={`transition-all duration-700 ${visible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}`}>
-        <ISAMark size={36} animate />
-      </div>
-      <div className={`leading-none transition-all duration-500 delay-200 ${visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-3'}`}>
-        <div className="font-bold text-base tracking-tight text-white">ISA VALVE SOLUTIONS</div>
-        <div style={{ fontSize: '9px', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#5a7a9a' }}>
-          &amp; Industrial Supplies
-        </div>
-      </div>
-    </div>
+    <img
+      src="/images/isa-logo-light.png"
+      alt="ISA Valve Solutions & Industrial Supplies"
+      className="h-12 w-auto"
+      style={{ filter: 'brightness(0) invert(1)', opacity: 0.85 }}
+    />
   )
 }
 
