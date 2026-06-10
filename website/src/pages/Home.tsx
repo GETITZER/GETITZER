@@ -9,7 +9,6 @@ import {
 import { WhatsAppIcon, WA_URL } from '../components/WhatsAppButton'
 import type { Product } from '../types'
 import ProductModal from '../components/ProductModal'
-import { ISAMark } from '../components/ISALogo'
 import ValveCutaway from '../components/ValveCutaway'
 
 /* ── Scroll reveal hook ───────────────────────────────────────────── */
@@ -182,16 +181,16 @@ export default function Home() {
       {/* ── 1. HERO ──────────────────────────────────────────────────── */}
       <section className="relative min-h-[75vh] sm:min-h-[92vh] flex items-start sm:items-center overflow-hidden isa-copyright-mark">
 
-        {/* Full-bleed background — ISA branded mining hero */}
+        {/* Full-bleed background — ISA branded industrial hero */}
         <div className="absolute inset-0">
           <img
-            src="/images/branded/isa-hero-mining.jpg"
-            alt="ISA Valve Solutions — engineered solutions for mining performance"
+            src="/images/branded/isa-bg-critical-systems.jpg"
+            alt="ISA Valve Solutions — precision flow control systems"
             className="w-full h-full object-cover object-right"
             style={{ transform: 'scale(1.04)', animation: 'hero-zoom 10s ease-out forwards' }}
           />
-          {/* Left-to-right gradient: white on left covers image text, transparent right shows the scene */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/88 to-white/5" />
+          {/* Left-to-right gradient: white on left for text, transparent right shows scene */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/10" />
           {/* Bottom fade into white */}
           <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent" />
         </div>
@@ -257,7 +256,11 @@ export default function Home() {
               <div className="relative flex items-center justify-center">
                 <div className="absolute w-72 h-72 rounded-full blob-2"
                   style={{ background: 'radial-gradient(circle, rgba(249,115,22,0.1) 0%, rgba(0,102,204,0.06) 50%, transparent 75%)' }} />
-                <ISAMark size={200} animate />
+                <img
+                  src="/images/isa-logo-stacked.png"
+                  alt="ISA Valve Solutions"
+                  className="w-52 h-auto relative z-10 drop-shadow-2xl"
+                />
               </div>
               <div className="flex flex-col gap-2 w-full max-w-xs">
                 {PRODUCT_CATS.slice(0, 4).map((p, i) => (
@@ -417,14 +420,14 @@ export default function Home() {
       {/* ── 5. INDUSTRIAL PLANT SHOWCASE ─────────────────────────────── */}
       <section className="relative overflow-hidden">
         <div className="relative h-[400px] sm:h-[500px]">
-          {/* ISA branded waterworks/industrial photo */}
+          {/* ISA branded industrial photo — clean image, no baked-in text */}
           <img
-            src="/images/branded/isa-hero-waterworks.jpg"
-            alt="ISA Valve Solutions — control valves installed in waterworks facility"
+            src="/images/branded/isa-bg-valves-row.jpg"
+            alt="ISA Valve Solutions — industrial valve installation"
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
-          {/* Left-weighted overlay for text legibility */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/92 via-slate-900/60 to-slate-900/20" />
+          {/* Strong left overlay for text legibility */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/75 to-slate-900/40" />
           {/* ISA badge */}
           <div className="absolute top-5 right-5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-900/85 text-white text-[10px] font-bold uppercase tracking-widest z-10">
             <span className="w-1.5 h-1.5 rounded-full bg-isa-500 animate-pulse" />
