@@ -27,11 +27,39 @@ export default function IndustryDetail() {
     .map(id => products.find(p => p.id === id))
     .filter(Boolean) as typeof products
 
+  const INDUSTRY_BG: Record<string, string> = {
+    'mining':           '/images/branded/isa-brand-mining.jpg',
+    'water-treatment':  '/images/branded/isa-brand-waterworks.jpg',
+    'oil-gas':          '/images/branded/isa-hero-refinery.jpg',
+    'chemical':         '/images/branded/isa-bg-critical-systems.jpg',
+    'municipal':        '/images/branded/isa-control-valves-water.jpg',
+    'power-generation': '/images/branded/isa-bg-critical-systems.jpg',
+    'agriculture':      '/images/branded/isa-bg-flow-control.jpg',
+    'food-beverage':    '/images/branded/isa-bg-tech.jpg',
+    'pulp-paper':       '/images/branded/isa-bg-mining-aerial.jpg',
+  }
+  const heroBg = INDUSTRY_BG[slug ?? ''] ?? '/images/branded/isa-bg-valves-row.jpg'
+
   return (
     <div>
       {/* Hero */}
-      <div className="bg-slate-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+      <div className="relative bg-slate-900 text-white overflow-hidden">
+        {/* Background image */}
+        <img
+          src={heroBg}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          style={{ opacity: 0.35 }}
+        />
+        {/* Gradient overlay — left-heavy for text legibility */}
+        <div className="absolute inset-0"
+          style={{ background: 'linear-gradient(to right, rgba(7,26,45,0.92) 0%, rgba(7,26,45,0.75) 55%, rgba(7,26,45,0.40) 100%)' }} />
+        {/* ISA orange top accent */}
+        <div className="absolute top-0 left-0 right-0 h-1"
+          style={{ background: 'linear-gradient(to right, #f97316, #fb923c, #f97316)' }} />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
           <Breadcrumb
             crumbs={[
               { label: 'Home', to: '/' },

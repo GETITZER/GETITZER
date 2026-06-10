@@ -35,39 +35,25 @@ export default function WelkomSplash() {
         src="/videos/welkom.mp4"
         autoPlay muted playsInline
         className="absolute inset-0 w-full h-full object-cover"
-        style={{ opacity: 0.55 }}
+        style={{ opacity: 0.75 }}
         onEnded={dismiss}
       />
 
-      {/* Overlay gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-transparent to-slate-900/80" />
+      {/* Top and bottom vignette */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-900/65 via-transparent to-slate-900/65" />
 
-      {/* Content */}
-      <div className="relative z-10 text-center px-6 flex flex-col items-center gap-6">
-        {/* Real ISA branded logo — black bg blends with dark splash via lighten mode */}
-        <img
-          src="/images/isa-logo-stacked-dark.jpg"
-          alt="ISA Valve Solutions & Industrial Supplies"
-          className="w-52 sm:w-64 h-auto rounded-xl"
-          style={{ mixBlendMode: 'lighten', opacity: 0.95 }}
-        />
-        <div>
-          <h1 className="text-5xl sm:text-7xl font-extrabold text-white tracking-tight leading-none mb-2"
-            style={{ textShadow: '0 2px 20px rgba(0,0,0,0.6)' }}>
-            Welkom
-          </h1>
-          <p className="text-lg sm:text-xl text-isa-300 font-semibold tracking-widest uppercase">
-            ISA Valve Solutions
-          </p>
-        </div>
-
-        <p className="text-slate-200 text-sm sm:text-base max-w-xs text-center leading-relaxed">
-          35 years of precision flow control across Africa
-        </p>
+      {/* Content — just Welkom */}
+      <div className="relative z-10 text-center px-6 flex flex-col items-center gap-8">
+        <h1
+          className="text-7xl sm:text-9xl font-extrabold text-white tracking-tight leading-none"
+          style={{ textShadow: '0 4px 40px rgba(0,0,0,0.7)' }}
+        >
+          Welkom
+        </h1>
 
         <button
           onClick={dismiss}
-          className="mt-2 inline-flex items-center gap-2 bg-isa-500 hover:bg-isa-600 text-white font-bold px-8 py-3.5 rounded-xl transition-colors shadow-lg shadow-isa-500/40 text-base"
+          className="inline-flex items-center gap-2 bg-isa-500 hover:bg-isa-600 text-white font-bold px-10 py-4 rounded-xl transition-colors shadow-xl shadow-isa-500/40 text-lg"
         >
           Enter Site
         </button>

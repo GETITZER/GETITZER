@@ -51,11 +51,11 @@ export function ISAWatermark({ size = 400, opacity = 0.04 }: { size?: number; op
   )
 }
 
-/* ─── Navigation logo ─── */
+/* ─── Navigation logo — tight-cropped for readability ─── */
 export function ISALogoNav() {
   return (
     <img
-      src="/images/isa-logo-light.png"
+      src="/images/isa-logo-nav.png"
       alt="ISA Valve Solutions & Industrial Supplies"
       className="h-10 w-auto"
     />
@@ -66,9 +66,9 @@ export function ISALogoNav() {
 export function ISALogoHero({ className = '' }: { className?: string }) {
   return (
     <img
-      src="/images/isa-logo-light.png"
+      src="/images/isa-logo-hero.png"
       alt="ISA Valve Solutions & Industrial Supplies"
-      className={`h-16 w-auto ${className}`}
+      className={`h-20 w-auto ${className}`}
       style={{ filter: 'brightness(0) invert(1)', opacity: 0.9 }}
     />
   )
@@ -78,9 +78,9 @@ export function ISALogoHero({ className = '' }: { className?: string }) {
 export function ISALogoFooter() {
   return (
     <img
-      src="/images/isa-logo-light.png"
+      src="/images/isa-logo-nav.png"
       alt="ISA Valve Solutions & Industrial Supplies"
-      className="h-12 w-auto"
+      className="h-10 w-auto"
       style={{ filter: 'brightness(0) invert(1)', opacity: 0.85 }}
     />
   )
