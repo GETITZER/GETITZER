@@ -83,11 +83,11 @@ const CERTS = [
 ]
 
 const PRODUCT_CATS = [
-  { title: 'ISA DXST™ Slurry KGV',      sub: '466% longer service life', spec: 'DN50–DN600 · Mining grade',   slug: 'dxst-kgv',        img: '/images/products/knife-gate-valve-nobg.jpg' },
+  { title: 'ISA DXST™ Slurry KGV',      sub: '466% longer service life', spec: 'DN50–DN600 · Mining grade',   slug: 'dxst-kgv',        img: '/images/products/dxst-kgv.png' },
   { title: 'ISA Titan™ Ball Valve',      sub: 'API 6D certified',         spec: 'DN15–DN600 · Full bore',      slug: 'ball-valve',       img: '/images/products/ball-valve-nobg.jpg' },
-  { title: 'ISA Hydra™ Butterfly Valve', sub: 'WRAS approved',            spec: 'DN50–DN4000 · Triple offset', slug: 'butterfly-valve',  img: '/images/products/butterfly-valve-dn4000.png' },
+  { title: 'ISA Hydra™ Butterfly Valve', sub: 'WRAS approved',            spec: 'DN50–DN4000 · Triple offset', slug: 'butterfly-valve',  img: '/images/products/butterfly-valve-clean.png' },
   { title: 'ISA Core™ Gate Valve',       sub: 'SABS 664 certified',       spec: 'DN50–DN1000 · OS&Y',          slug: 'gate-valve',       img: '/images/products/gate-valve-clean.jpg' },
-  { title: 'ISA Shield™ Pinch Valve',    sub: 'ISO 5208 Grade A',         spec: 'DN25–DN400 · 4 sleeve types', slug: 'pinch-valve',      img: '/images/products/pinch-valve.jpg' },
+  { title: 'ISA Shield™ Pinch Valve',    sub: 'ISO 5208 Grade A',         spec: 'DN25–DN400 · 4 sleeve types', slug: 'pinch-valve',      img: '/images/products/pinch-valve-orange.jpg' },
   { title: 'ISA ProSeal™ Knife Gate',    sub: 'Ceramic-lined option',     spec: 'DN50–DN600 · Wafer/Lug',      slug: 'knife-gate-valve', img: '/images/products/knife-gate-valve-isa.jpg' },
 ]
 
@@ -313,51 +313,78 @@ export default function Home() {
       </section>
 
       {/* ── 4. PRODUCTS ─────────────────────────────────────────────── */}
-      <section className="bg-slate-50 py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #050f20 0%, #071525 100%)' }}>
+        {/* Subtle dot grid */}
+        <div className="absolute inset-0 opacity-[0.035]"
+          style={{ backgroundImage: 'radial-gradient(circle, #60a5fa 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+        {/* Orange glow top */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-24 opacity-20 pointer-events-none"
+          style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(249,115,22,0.5) 0%, transparent 70%)' }} />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div ref={revealProducts} className="reveal flex items-end justify-between mb-14">
             <div>
-              <span className="section-label">Product Range</span>
-              <h2 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+              <span className="text-xs font-bold text-isa-400 uppercase tracking-widest block mb-2">Product Range</span>
+              <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
                 Flow Control Solutions
               </h2>
-              <p className="text-slate-500 text-lg mt-2">Purpose-engineered for your application</p>
+              <p className="text-slate-400 text-lg mt-2">Purpose-engineered for your application</p>
             </div>
-            <Link to="/products" className="hidden sm:flex items-center gap-1.5 text-sm font-bold text-isa-600 hover:text-isa-700 transition-colors">
+            <Link to="/products" className="hidden sm:flex items-center gap-1.5 text-sm font-bold text-isa-400 hover:text-isa-300 transition-colors">
               All Products <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {PRODUCT_CATS.map((cat, i) => (
               <Link key={cat.slug} to={`/products/${cat.slug}`}
-                className={`card-shimmer reveal reveal-delay-${Math.min(i+1,5)} bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200 hover:border-isa-300 group hover:-translate-y-2 flex flex-col`}>
-                <div className="h-56 bg-gradient-to-b from-slate-50 to-white flex items-center justify-center overflow-hidden px-6 pt-6 pb-2">
+                className={`reveal reveal-delay-${Math.min(i+1,5)} group relative rounded-2xl overflow-hidden flex flex-col hover:-translate-y-2 transition-all duration-300`}
+                style={{ background: 'linear-gradient(145deg, #0d1f3c 0%, #071525 100%)' }}>
+
+                {/* Top accent line */}
+                <div className="h-px bg-gradient-to-r from-transparent via-isa-500 to-transparent opacity-40 group-hover:opacity-100 transition-opacity duration-300" />
+
+                {/* Product image area */}
+                <div className="relative h-64 flex items-center justify-center overflow-hidden px-8 pt-6 pb-4">
+                  {/* Ambient glow */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{ background: 'radial-gradient(ellipse at 50% 60%, rgba(0,102,204,0.18) 0%, transparent 70%)' }} />
+                  {/* Cert/spec badge */}
+                  <span className="absolute top-3 left-3 text-[10px] font-bold text-isa-300 bg-isa-500/10 border border-isa-500/25 px-2.5 py-1 rounded-full uppercase tracking-widest z-20">
+                    {cat.sub}
+                  </span>
+                  {/* Product image */}
                   <img
                     src={cat.img}
                     alt={cat.title}
                     loading="lazy"
                     decoding="async"
-                    className="h-full w-full object-contain group-hover:scale-108 transition-transform duration-500 drop-shadow-sm"
-                    style={{ '--tw-scale-x': '1', '--tw-scale-y': '1' } as React.CSSProperties}
+                    className="h-full w-full object-contain group-hover:scale-110 transition-transform duration-700 relative z-10 drop-shadow-2xl"
                   />
                 </div>
-                {/* Orange accent bar — animated width on hover */}
-                <div className="h-0.5 bg-gradient-to-r from-isa-500/30 via-isa-500 to-isa-500/30 mx-0 group-hover:mx-0 transition-all" />
+
+                {/* Divider */}
+                <div className="mx-5 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(249,115,22,0.25), transparent)' }} />
+
+                {/* Text area */}
                 <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="font-bold text-slate-900 text-base mb-1 group-hover:text-isa-700 transition-colors">{cat.title}</h3>
-                  <p className="text-isa-600 text-sm font-semibold mb-1">{cat.sub}</p>
-                  <p className="text-slate-400 text-xs mb-5 flex-1">{cat.spec}</p>
-                  <span className="flex items-center gap-1 text-sm font-semibold text-isa-600 group-hover:gap-2.5 transition-all duration-200">
+                  <h3 className="font-bold text-white text-base mb-1.5 group-hover:text-isa-300 transition-colors">{cat.title}</h3>
+                  <p className="text-slate-500 text-xs mb-5 flex-1">{cat.spec}</p>
+                  <span className="flex items-center gap-1.5 text-sm font-semibold text-isa-400 group-hover:text-isa-300 group-hover:gap-3 transition-all duration-200">
                     View Specifications <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </div>
+
+                {/* Hover glow border */}
+                <div className="absolute inset-0 rounded-2xl border border-transparent group-hover:border-isa-500/30 transition-all duration-300 pointer-events-none" />
+                {/* Bottom accent on hover */}
+                <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-isa-500 to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-300" />
               </Link>
             ))}
           </div>
 
-          <div className="mt-8 sm:hidden text-center">
-            <Link to="/products" className="inline-flex items-center gap-1.5 text-sm font-bold text-isa-600">
+          <div className="mt-10 text-center sm:hidden">
+            <Link to="/products" className="inline-flex items-center gap-1.5 text-sm font-bold text-isa-400">
               View All Products <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
