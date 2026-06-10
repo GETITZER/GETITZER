@@ -9,10 +9,11 @@ export default function WelcomePopup() {
 
   useEffect(() => {
     if (sessionStorage.getItem('isa-welcome-shown')) return
+    // Wait for WelkomSplash to finish before showing popup
     const t = setTimeout(() => {
       setVisible(true)
       sessionStorage.setItem('isa-welcome-shown', '1')
-    }, 800)
+    }, 4000)
     return () => clearTimeout(t)
   }, [])
 
@@ -53,10 +54,11 @@ export default function WelcomePopup() {
           <X className="w-5 h-5" />
         </button>
 
+        {/* muted required for autoplay on mobile browsers; user can unmute via controls */}
         <video
           ref={videoRef}
           src="/videos/welcome-popup.mp4"
-          autoPlay muted={false} controls playsInline
+          autoPlay muted playsInline controls
           className="w-full block"
           style={{ maxHeight: '75vh', objectFit: 'contain', background: '#0d1f3c' }}
         />
