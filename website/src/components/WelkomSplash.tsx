@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import { ISAMark } from './ISALogo'
 
 /* Full-screen opening splash shown once per browser session.
    Auto-dismisses when the video ends, or user clicks "Enter". */
@@ -45,8 +44,6 @@ export default function WelkomSplash() {
 
       {/* Content */}
       <div className="relative z-10 text-center px-6 flex flex-col items-center gap-6">
-        <ISAMark size={90} animate />
-
         <div>
           <h1 className="text-5xl sm:text-7xl font-extrabold text-white tracking-tight leading-none mb-2"
             style={{ textShadow: '0 2px 20px rgba(0,0,0,0.6)' }}>
