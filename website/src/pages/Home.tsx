@@ -4,7 +4,7 @@ import {
   ArrowRight, Shield,
   HardHat, Droplets, Flame, FlaskConical, Building2, FileText,
   Wrench, Award, Truck, Phone, Mail, MapPin,
-  Download, Calculator, BookOpen, ChevronRight,
+  Download, Calculator, BookOpen,
 } from 'lucide-react'
 import { WhatsAppIcon, WA_URL } from '../components/WhatsAppButton'
 import type { Product } from '../types'
@@ -178,103 +178,151 @@ export default function Home() {
   return (
     <div className="bg-white">
 
-      {/* ── 1. HERO ──────────────────────────────────────────────────── */}
-      <section className="relative min-h-[75vh] sm:min-h-[92vh] flex items-start sm:items-center overflow-hidden isa-copyright-mark">
+      {/* ── 1. HERO — OEM catalogue style ─────────────────────────── */}
+      <section className="relative overflow-hidden bg-white">
+        {/* ISA orange top accent line */}
+        <div className="absolute top-0 left-0 right-0 h-1 z-10"
+          style={{ background: 'linear-gradient(to right, #f97316, #fb923c, #f97316)' }} />
+        {/* Subtle background gradient */}
+        <div className="absolute inset-0"
+          style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 55%, #eff6ff 100%)' }} />
+        {/* Orange glow — bottom-left atmosphere */}
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full pointer-events-none"
+          style={{ background: 'radial-gradient(circle, rgba(249,115,22,0.07) 0%, transparent 70%)' }} />
+        {/* Blue glow — right atmosphere */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] pointer-events-none"
+          style={{ background: 'radial-gradient(ellipse at 100% 0%, rgba(0,102,204,0.06) 0%, transparent 60%)' }} />
 
-        {/* Full-bleed background — ISA branded industrial hero */}
-        <div className="absolute inset-0">
-          <img
-            src="/images/branded/isa-bg-critical-systems.jpg"
-            alt="ISA Valve Solutions — precision flow control systems"
-            className="w-full h-full object-cover object-right"
-            style={{ transform: 'scale(1.04)', animation: 'hero-zoom 10s ease-out forwards' }}
-          />
-          {/* Left-to-right gradient: white on left for text, transparent right shows scene */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/10" />
-          {/* Bottom fade into white */}
-          <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent" />
-        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 sm:pt-20 sm:pb-28">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
-        {/* Animated orange glow blob — left side atmosphere */}
-        <div className="absolute top-1/3 -left-24 w-[480px] h-[480px] rounded-full pointer-events-none blob-1"
-          style={{ background: 'radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%)' }} />
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10 sm:py-28 w-full">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-
-            {/* Left — hero text */}
-            <div className="max-w-2xl">
+            {/* LEFT — Text content */}
+            <div className="order-2 lg:order-1">
               <div className="hero-badge-enter inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold text-white mb-8 bg-isa-500 shadow-lg shadow-isa-500/30">
                 <Shield className="w-3 h-3" /> ISO 9001:2015 Certified · South Africa
               </div>
 
-              {/* Giant headline */}
-              <h1 className="tracking-tight leading-[0.95] mb-6">
-                <span className="hero-title-enter block text-6xl sm:text-7xl lg:text-8xl font-extrabold text-slate-900">
+              <h1 className="tracking-tight leading-[0.96] mb-5">
+                <span className="hero-title-enter block text-5xl sm:text-6xl lg:text-7xl font-extrabold text-slate-900">
                   Precision
                 </span>
-                <span className="dark-hero-line2 block text-6xl sm:text-7xl lg:text-8xl font-extrabold">
-                  <span className="text-isa-500 relative inline-block">
-                    Valve
-                    <span className="absolute -bottom-2 left-0 right-0 h-1.5 bg-gradient-to-r from-isa-500 to-isa-400 rounded-full opacity-50" />
-                  </span>
-                  {' '}
+                <span className="hero-title-enter block text-5xl sm:text-6xl lg:text-7xl font-extrabold">
+                  <span className="text-isa-500">Valve</span>{' '}
                   <span className="text-slate-900">Solutions</span>
+                </span>
+                <span className="hero-title-enter block text-5xl sm:text-6xl lg:text-7xl font-extrabold text-slate-900">
+                  for Africa
                 </span>
               </h1>
 
-              <p className="hero-sub-enter text-xl text-slate-600 max-w-lg mb-10 leading-relaxed font-medium">
-                35 years supplying specification-grade industrial valves across Africa. Mining, water, oil &amp; gas and chemical industries trust ISA.
+              <p className="hero-sub-enter text-lg sm:text-xl text-slate-500 max-w-lg mb-3 leading-relaxed">
+                35 years supplying specification-grade industrial valves. Mining, water, oil &amp; gas and chemical industries trust ISA.
+              </p>
+              <p className="hero-sub-enter text-sm text-slate-400 max-w-lg mb-8 font-medium tracking-wide">
+                Pressure Reducing · Pressure Sustaining · Flow Control · Level Control · Surge Protection
               </p>
 
-              <div className="hero-cta-enter flex flex-wrap gap-3 mb-10">
-                <Link to="/rfq"
-                  className="btn-pulse inline-flex items-center gap-2 bg-isa-500 hover:bg-isa-600 text-white font-bold px-8 py-4 rounded-xl transition-colors duration-150 text-base shadow-lg shadow-isa-500/30">
-                  Get a Quote <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link to="/products"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-base text-slate-700 border-2 border-slate-200 hover:border-isa-400 hover:text-isa-600 bg-white/90 hover:bg-white transition-all duration-200 shadow-sm">
-                  View Products <ChevronRight className="w-4 h-4" />
-                </Link>
-              </div>
-
-              {/* Cert pills */}
-              <div className="hero-certs-enter flex flex-wrap items-center gap-2">
-                {CERTS.map(c => (
-                  <span key={c.code}
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold text-slate-500 bg-slate-100 border border-slate-200">
+              {/* Animated spec chips */}
+              <div className="hero-certs-enter flex flex-wrap gap-2 mb-10">
+                {[
+                  'DN15–DN4000', 'PN6–PN100', 'ISO 9001:2015',
+                  'API 6D', 'WRAS Approved', 'SABS 664',
+                  'ISO 5208 Grd A', '35+ Years',
+                ].map((chip, i) => (
+                  <span key={chip}
+                    style={{ animationDelay: `${0.4 + i * 0.06}s` }}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-bold text-slate-600 bg-white border border-slate-200 shadow-sm hover:border-isa-300 hover:text-isa-600 transition-colors">
                     <span className="w-1.5 h-1.5 rounded-full bg-isa-500 flex-shrink-0" />
-                    {c.code}
+                    {chip}
                   </span>
                 ))}
               </div>
+
+              <div className="hero-cta-enter flex flex-wrap gap-3">
+                <Link to="/rfq"
+                  className="btn-pulse inline-flex items-center gap-2 bg-isa-500 hover:bg-isa-600 text-white font-bold px-8 py-4 rounded-xl transition-colors text-base shadow-lg shadow-isa-500/30">
+                  Request Quote <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link to="/catalog"
+                  className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-base text-slate-700 border-2 border-slate-200 hover:border-isa-400 hover:text-isa-600 bg-white transition-all shadow-sm">
+                  <Download className="w-4 h-4" /> Product Catalog
+                </Link>
+              </div>
             </div>
 
-            {/* Right — ISA Mark + product quick-links (desktop only) */}
-            <div className="dark-hero-mark hidden lg:flex flex-col items-center gap-5">
-              {/* Glow halo behind the mark */}
-              <div className="relative flex items-center justify-center">
-                <div className="absolute w-72 h-72 rounded-full blob-2"
-                  style={{ background: 'radial-gradient(circle, rgba(249,115,22,0.1) 0%, rgba(0,102,204,0.06) 50%, transparent 75%)' }} />
-                <img
-                  src="/images/isa-logo-stacked.png"
-                  alt="ISA Valve Solutions"
-                  className="w-52 h-auto relative z-10 drop-shadow-2xl"
-                />
+            {/* RIGHT — Large valve render + floating glass cards */}
+            <div className="order-1 lg:order-2 relative flex items-center justify-center min-h-[340px] sm:min-h-[480px]">
+              {/* Blue ambient glow behind valve */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="w-80 h-80 rounded-full opacity-20"
+                  style={{ background: 'radial-gradient(circle, rgba(0,102,204,0.5) 0%, transparent 70%)' }} />
               </div>
-              <div className="flex flex-col gap-2 w-full max-w-xs">
-                {PRODUCT_CATS.slice(0, 4).map((p, i) => (
-                  <Link key={p.slug} to={`/products/${p.slug}`}
-                    style={{ animationDelay: `${0.9 + i * 0.12}s` }}
-                    className="hero-certs-enter flex items-center gap-3 bg-white/90 backdrop-blur-sm border border-slate-200 rounded-xl px-4 py-2.5 shadow-sm hover:shadow-md hover:border-isa-300 hover:-translate-y-0.5 transition-all group">
-                    <span className="w-2 h-2 rounded-full bg-isa-500 flex-shrink-0" />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs font-bold text-slate-800 group-hover:text-isa-600 transition-colors leading-none truncate">{p.title}</p>
-                      <p className="text-[10px] text-slate-400 mt-0.5">{p.spec}</p>
+
+              {/* Hero valve image — butterfly valve, large */}
+              <img
+                src="/images/products/butterfly-valve-clean.png"
+                alt="ISA Hydra™ Triple Offset Butterfly Valve DN4000"
+                className="hero-title-enter relative z-10 w-72 sm:w-96 lg:w-[420px] h-auto"
+                style={{ filter: 'drop-shadow(0 24px 48px rgba(0,102,204,0.22)) drop-shadow(0 8px 16px rgba(0,0,0,0.12))' }}
+              />
+
+              {/* Glass spec card — bottom-left, overlapping valve */}
+              <div className="absolute bottom-0 left-0 sm:left-4 z-20 w-56 sm:w-64 rounded-2xl p-4 sm:p-5"
+                style={{
+                  background: 'rgba(255,255,255,0.88)',
+                  backdropFilter: 'blur(20px)',
+                  WebkitBackdropFilter: 'blur(20px)',
+                  border: '1px solid rgba(255,255,255,0.7)',
+                  boxShadow: '0 8px 32px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06)',
+                }}>
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-1 h-10 rounded-full bg-isa-500 flex-shrink-0" />
+                  <div>
+                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Featured</p>
+                    <p className="text-sm font-bold text-slate-900 leading-tight">ISA Hydra™<br />Triple Offset Butterfly</p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-x-3 gap-y-2 mb-3">
+                  {[
+                    { label: 'Size', value: 'DN50–DN4000' },
+                    { label: 'Pressure', value: 'PN10–PN25' },
+                    { label: 'Body', value: 'Ductile Iron' },
+                    { label: 'Approval', value: 'WRAS' },
+                  ].map(s => (
+                    <div key={s.label}>
+                      <p className="text-[9px] text-slate-400 uppercase tracking-wider font-semibold">{s.label}</p>
+                      <p className="text-xs font-bold text-slate-800">{s.value}</p>
                     </div>
-                    <ArrowRight className="w-3 h-3 text-slate-300 group-hover:text-isa-500 transition-colors flex-shrink-0" />
-                  </Link>
-                ))}
+                  ))}
+                </div>
+                <Link to="/products/butterfly-valve"
+                  className="flex items-center gap-1 text-xs font-bold text-isa-600 hover:text-isa-700 transition-colors">
+                  Full Specifications <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+
+              {/* ISO cert badge — top-right */}
+              <div className="absolute top-2 right-0 z-20 px-3.5 py-2.5 rounded-2xl text-center"
+                style={{
+                  background: 'rgba(255,255,255,0.88)',
+                  backdropFilter: 'blur(16px)',
+                  WebkitBackdropFilter: 'blur(16px)',
+                  border: '1px solid rgba(255,255,255,0.7)',
+                  boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
+                }}>
+                <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Certified</p>
+                <p className="text-base font-black text-isa-500 leading-none mt-0.5">ISO 9001</p>
+                <p className="text-[9px] font-semibold text-slate-400 mt-0.5">:2015</p>
+              </div>
+
+              {/* 35 years badge — right side */}
+              <div className="absolute top-1/2 -translate-y-1/2 right-0 z-20 w-16 h-16 rounded-full flex flex-col items-center justify-center"
+                style={{
+                  background: 'linear-gradient(135deg, #1e3a5f 0%, #0f2040 100%)',
+                  boxShadow: '0 4px 16px rgba(0,0,0,0.20)',
+                }}>
+                <p className="text-xl font-black text-isa-400 leading-none">35</p>
+                <p className="text-[8px] font-bold text-slate-400 uppercase tracking-wider text-center leading-tight">Years</p>
               </div>
             </div>
 
@@ -312,79 +360,74 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 4. PRODUCTS ─────────────────────────────────────────────── */}
-      <section className="py-24 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #050f20 0%, #071525 100%)' }}>
-        {/* Subtle dot grid */}
-        <div className="absolute inset-0 opacity-[0.035]"
-          style={{ backgroundImage: 'radial-gradient(circle, #60a5fa 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-        {/* Orange glow top */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-24 opacity-20 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(249,115,22,0.5) 0%, transparent 70%)' }} />
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={revealProducts} className="reveal flex items-end justify-between mb-14">
+      {/* ── 4. PRODUCTS — OEM catalogue cards ───────────────────────── */}
+      <section className="bg-slate-50 py-24 border-t border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div ref={revealProducts} className="reveal flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14">
             <div>
-              <span className="text-xs font-bold text-isa-400 uppercase tracking-widest block mb-2">Product Range</span>
-              <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-8 h-0.5 bg-isa-500" />
+                <span className="text-xs font-bold text-isa-600 uppercase tracking-widest">Product Range</span>
+              </div>
+              <h2 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
                 Flow Control Solutions
               </h2>
-              <p className="text-slate-400 text-lg mt-2">Purpose-engineered for your application</p>
+              <p className="text-slate-500 text-lg mt-2 max-w-xl">
+                Purpose-engineered for mining, water, oil &amp; gas and chemical applications
+              </p>
             </div>
-            <Link to="/products" className="hidden sm:flex items-center gap-1.5 text-sm font-bold text-isa-400 hover:text-isa-300 transition-colors">
+            <Link to="/products"
+              className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-slate-700 border-2 border-slate-200 hover:border-isa-400 hover:text-isa-600 bg-white transition-all">
               All Products <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {PRODUCT_CATS.map((cat, i) => (
               <Link key={cat.slug} to={`/products/${cat.slug}`}
-                className={`reveal reveal-delay-${Math.min(i+1,5)} group relative rounded-2xl overflow-hidden flex flex-col hover:-translate-y-2 transition-all duration-300`}
-                style={{ background: 'linear-gradient(145deg, #0d1f3c 0%, #071525 100%)' }}>
+                className={`reveal reveal-delay-${Math.min(i+1,5)} group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 hover:border-isa-300 hover:-translate-y-1.5 flex flex-col`}>
 
-                {/* Top accent line */}
-                <div className="h-px bg-gradient-to-r from-transparent via-isa-500 to-transparent opacity-40 group-hover:opacity-100 transition-opacity duration-300" />
+                {/* Navy top accent — animated to isa-orange on hover */}
+                <div className="h-1 bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 group-hover:from-isa-500 group-hover:via-isa-400 group-hover:to-isa-500 transition-all duration-500" />
 
-                {/* Product image area */}
-                <div className="relative h-64 flex items-center justify-center overflow-hidden px-8 pt-6 pb-4">
-                  {/* Ambient glow */}
+                {/* Product image — clean, on light gradient bg */}
+                <div className="relative h-60 flex items-center justify-center overflow-hidden px-8 py-6"
+                  style={{ background: 'linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%)' }}>
+                  {/* Blue ambient glow on hover */}
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{ background: 'radial-gradient(ellipse at 50% 60%, rgba(0,102,204,0.18) 0%, transparent 70%)' }} />
-                  {/* Cert/spec badge */}
-                  <span className="absolute top-3 left-3 text-[10px] font-bold text-isa-300 bg-isa-500/10 border border-isa-500/25 px-2.5 py-1 rounded-full uppercase tracking-widest z-20">
-                    {cat.sub}
-                  </span>
-                  {/* Product image */}
+                    style={{ background: 'radial-gradient(ellipse at 50% 60%, rgba(0,102,204,0.07) 0%, transparent 70%)' }} />
                   <img
                     src={cat.img}
                     alt={cat.title}
                     loading="lazy"
                     decoding="async"
-                    className="h-full w-full object-contain group-hover:scale-110 transition-transform duration-700 relative z-10 drop-shadow-2xl"
+                    className="h-full w-full object-contain group-hover:scale-110 transition-transform duration-700 drop-shadow-lg relative z-10"
                   />
-                </div>
-
-                {/* Divider */}
-                <div className="mx-5 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(249,115,22,0.25), transparent)' }} />
-
-                {/* Text area */}
-                <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="font-bold text-white text-base mb-1.5 group-hover:text-isa-300 transition-colors">{cat.title}</h3>
-                  <p className="text-slate-500 text-xs mb-5 flex-1">{cat.spec}</p>
-                  <span className="flex items-center gap-1.5 text-sm font-semibold text-isa-400 group-hover:text-isa-300 group-hover:gap-3 transition-all duration-200">
-                    View Specifications <ArrowRight className="w-3.5 h-3.5" />
+                  {/* Spec badge */}
+                  <span className="absolute top-3 right-3 text-[10px] font-bold text-isa-700 bg-isa-50 border border-isa-200 px-2.5 py-1 rounded-full uppercase tracking-wider z-20">
+                    {cat.sub}
                   </span>
                 </div>
 
-                {/* Hover glow border */}
-                <div className="absolute inset-0 rounded-2xl border border-transparent group-hover:border-isa-500/30 transition-all duration-300 pointer-events-none" />
-                {/* Bottom accent on hover */}
-                <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-isa-500 to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-300" />
+                {/* Text */}
+                <div className="p-6 flex-1 flex flex-col border-t border-slate-100">
+                  <div className="flex items-start gap-3 mb-2">
+                    <div className="w-1 h-full min-h-[40px] rounded-full bg-isa-500 flex-shrink-0 opacity-60 group-hover:opacity-100 transition-opacity" />
+                    <div>
+                      <h3 className="font-bold text-slate-900 text-base group-hover:text-isa-700 transition-colors">{cat.title}</h3>
+                      <p className="text-slate-400 text-xs mt-0.5">{cat.spec}</p>
+                    </div>
+                  </div>
+                  <span className="mt-auto flex items-center gap-1.5 text-sm font-semibold text-isa-600 group-hover:gap-3 transition-all duration-200 pt-3 border-t border-slate-100">
+                    View Specifications <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
+                </div>
               </Link>
             ))}
           </div>
 
           <div className="mt-10 text-center sm:hidden">
-            <Link to="/products" className="inline-flex items-center gap-1.5 text-sm font-bold text-isa-400">
+            <Link to="/products" className="inline-flex items-center gap-1.5 text-sm font-bold text-isa-600">
               View All Products <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
