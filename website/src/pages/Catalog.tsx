@@ -259,20 +259,34 @@ export default function Catalog() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-      {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center gap-2 text-sm text-isa-600 font-semibold mb-3">
-          <BookOpen className="w-4 h-4" /> Technical Catalog 2025
+    <div>
+      {/* Hero banner */}
+      <div className="relative bg-slate-900 text-white overflow-hidden">
+        <img
+          src="/images/branded/isa-bg-valves-row.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          style={{ opacity: 0.3 }}
+        />
+        <div className="absolute inset-0"
+          style={{ background: 'linear-gradient(to right, rgba(7,26,45,0.95) 0%, rgba(7,26,45,0.70) 60%, rgba(7,26,45,0.35) 100%)' }} />
+        <div className="absolute top-0 left-0 right-0 h-1"
+          style={{ background: 'linear-gradient(to right, #f97316, #fb923c, #f97316)' }} />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-18">
+          <p className="text-xs font-bold text-isa-400 uppercase tracking-widest mb-3">Technical Catalog 2025</p>
+          <h1 className="text-4xl sm:text-5xl font-black text-white mb-4 leading-tight">
+            Full Product Catalog
+          </h1>
+          <p className="text-slate-300 text-lg leading-relaxed max-w-2xl">
+            5 product families · 40+ certified valve models · DN15–DN3000 · PN 2.5–64 / ANSI 150–1500. ISO 9001:2015 certified with full material traceability.
+          </p>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-black text-slate-900 mb-3">
-          ISA Valve Solutions — Full Product Catalog
-        </h1>
-        <p className="text-lg text-slate-500 max-w-3xl leading-relaxed">
-          5 product families · 40+ certified valve models · DN15 to DN3000 · PN 2.5–64 / ANSI 150–1500.
-          ISO 9001:2015 certified with full material traceability and hydrostatic test reports.
-        </p>
       </div>
+
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+
+      {/* Global network stats */}
 
       {/* Global network stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
@@ -402,6 +416,7 @@ export default function Catalog() {
           Get a Quote <ArrowRight className="w-4 h-4" />
         </Link>
       </div>
+    </div>
     </div>
   )
 }

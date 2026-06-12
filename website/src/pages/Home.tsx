@@ -6,7 +6,7 @@ import {
   Wrench, Award, Truck, Phone, Mail, MapPin,
   Download, Calculator, BookOpen,
 } from 'lucide-react'
-import { WhatsAppIcon, WA_URL } from '../components/WhatsAppButton'
+import { WhatsAppIcon, WA_QUOTE_URL } from '../components/WhatsAppButton'
 import type { Product } from '../types'
 import ProductModal from '../components/ProductModal'
 import ValveCutaway from '../components/ValveCutaway'
@@ -98,6 +98,30 @@ const INDUSTRY_TABS = [
   { name: 'Chemical Processing',Icon: FlaskConical, desc: 'Corrosion-resistant alloys and full-bore lining options for aggressive chemical and petrochemical media.',           to: '/industries/chemical' },
   { name: 'Municipal',          Icon: Building2,    desc: 'SABS 664-certified gate and butterfly valves for potable water distribution networks and wastewater systems.',       to: '/industries' },
   { name: 'Pulp & Paper',       Icon: FileText,     desc: 'Pinch valves and knife gate valves engineered for fibrous, abrasive pulp slurry and paper-making applications.',    to: '/industries/pulp-paper' },
+]
+
+const TESTIMONIALS = [
+  {
+    quote: "ISA's DXST valve transformed our tailings circuit. We went from quarterly sleeve replacements to annual maintenance cycles — a measurable 466% improvement in service life.",
+    name: 'Plant Manager',
+    company: 'Platinum Mining Operation, Limpopo',
+    industry: 'Mining',
+    initials: 'PM',
+  },
+  {
+    quote: "Our DN800 butterfly valve order arrived spec-certified and ready to install within 3 weeks. Other suppliers quoted 8 weeks. ISA delivered when it mattered.",
+    name: 'Project Engineer',
+    company: 'Municipal Water Authority, Gauteng',
+    industry: 'Water',
+    initials: 'PE',
+  },
+  {
+    quote: "ISA sized our entire control valve package in 48 hours with full engineering documentation. On-site within schedule — exactly what critical infrastructure projects require.",
+    name: 'Senior Site Engineer',
+    company: 'Chemical Processing Plant, KZN',
+    industry: 'Chemical',
+    initials: 'SE',
+  },
 ]
 
 const PROJECTS = [
@@ -407,6 +431,12 @@ export default function Home() {
                   <span className="absolute top-3 right-3 text-[10px] font-bold text-isa-700 bg-isa-50 border border-isa-200 px-2.5 py-1 rounded-full uppercase tracking-wider z-20">
                     {cat.sub}
                   </span>
+                  {/* Bestseller ribbon for DXST */}
+                  {cat.slug === 'dxst-kgv' && (
+                    <div className="absolute top-0 left-0 z-30 bg-isa-500 text-white text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-br-xl shadow-sm">
+                      Mining #1
+                    </div>
+                  )}
                 </div>
 
                 {/* Text */}
@@ -584,6 +614,38 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── 7b. TESTIMONIALS ────────────────────────────────────────── */}
+      <section className="bg-white py-20 border-t border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="section-label">Client Feedback</span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+              Trusted by Engineers Across Africa
+            </h2>
+          </div>
+          <div className="grid sm:grid-cols-3 gap-6">
+            {TESTIMONIALS.map((t, i) => (
+              <div key={i} className="bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col hover:border-isa-300 hover:shadow-lg transition-all duration-300">
+                <div className="text-5xl font-serif leading-none text-isa-300 mb-2 select-none">&ldquo;</div>
+                <p className="text-sm text-slate-600 leading-relaxed flex-1 italic mb-6">{t.quote}</p>
+                <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
+                  <div className="w-9 h-9 rounded-full bg-isa-500 flex items-center justify-center flex-shrink-0">
+                    <span className="text-xs font-black text-white">{t.initials}</span>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-bold text-slate-900 truncate">{t.name}</p>
+                    <p className="text-xs text-slate-500 truncate">{t.company}</p>
+                  </div>
+                  <span className="flex-shrink-0 text-[10px] font-black text-isa-700 bg-isa-50 border border-isa-200 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                    {t.industry}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── 8. CERTIFICATIONS ───────────────────────────────────────── */}
       <section className="bg-white py-20 border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -671,7 +733,7 @@ export default function Home() {
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-base text-white border-2 border-white/30 hover:border-white/80 hover:bg-white/10 transition-all duration-150">
               View Products
             </Link>
-            <a href={WA_URL} target="_blank" rel="noopener noreferrer"
+            <a href={WA_QUOTE_URL} target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-base text-white border-2 border-white/30 hover:border-white/80 hover:bg-white/10 transition-all duration-150">
               <WhatsAppIcon className="w-4 h-4" /> WhatsApp Us
             </a>

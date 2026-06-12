@@ -267,16 +267,32 @@ export default function Configurator() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-      {/* Header */}
-      <div className="mb-10">
-        <span className="inline-flex items-center gap-2 text-xs font-black text-isa-700 bg-isa-50 border border-isa-200 px-3 py-1.5 rounded-full mb-4 uppercase tracking-wider">
-          <Zap className="w-3 h-3" /> AI Valve Selector
-        </span>
-        <h1 className="text-3xl sm:text-4xl font-black text-slate-900">Find the right valve in 4 questions</h1>
-        <p className="text-slate-500 mt-2">Answer quickly — our AI narrows 4 valve types to your exact application.</p>
+    <div>
+      {/* Hero banner */}
+      <div className="relative bg-slate-900 text-white overflow-hidden">
+        <img
+          src="/images/branded/isa-bg-flow-control.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          style={{ opacity: 0.28 }}
+        />
+        <div className="absolute inset-0"
+          style={{ background: 'linear-gradient(to right, rgba(7,26,45,0.95) 0%, rgba(7,26,45,0.70) 60%, rgba(7,26,45,0.35) 100%)' }} />
+        <div className="absolute top-0 left-0 right-0 h-1"
+          style={{ background: 'linear-gradient(to right, #f97316, #fb923c, #f97316)' }} />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-18">
+          <p className="text-xs font-bold text-isa-400 uppercase tracking-widest mb-3">AI Valve Selector</p>
+          <h1 className="text-4xl sm:text-5xl font-black text-white mb-4 leading-tight">
+            Find the right valve<br className="hidden sm:block" /> in 4 questions
+          </h1>
+          <p className="text-slate-300 text-lg leading-relaxed max-w-xl">
+            Answer quickly — our AI analyses your industry, media, size and pressure to recommend the correct valve family and spec.
+          </p>
+        </div>
       </div>
 
+    <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
       {/* Progress */}
       <div className="mb-8">
         <div className="flex justify-between text-xs font-bold text-slate-400 mb-2">
@@ -335,6 +351,7 @@ export default function Configurator() {
           )}
         </button>
       </div>
+    </div>
     </div>
   )
 }

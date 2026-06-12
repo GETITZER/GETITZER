@@ -70,6 +70,38 @@ export default function RFQ() {
   }
 
   return (
+    <div>
+      {/* Hero banner */}
+      <div className="relative bg-slate-900 text-white overflow-hidden">
+        <img
+          src="/images/branded/isa-bg-critical-systems.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          style={{ opacity: 0.3 }}
+        />
+        <div className="absolute inset-0"
+          style={{ background: 'linear-gradient(to right, rgba(7,26,45,0.95) 0%, rgba(7,26,45,0.75) 60%, rgba(7,26,45,0.40) 100%)' }} />
+        <div className="absolute top-0 left-0 right-0 h-1"
+          style={{ background: 'linear-gradient(to right, #f97316, #fb923c, #f97316)' }} />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-18">
+          <p className="text-xs font-bold text-isa-400 uppercase tracking-widest mb-3">AI-Assisted Quotation</p>
+          <h1 className="text-4xl sm:text-5xl font-black text-white mb-4 leading-tight">
+            Request a Quote
+          </h1>
+          <p className="text-slate-300 text-lg leading-relaxed max-w-xl mb-6">
+            5 fields. AI extracts your technical requirements and qualifies your application — no lengthy spec sheets to fill out.
+          </p>
+          <div className="flex flex-wrap gap-5 text-sm font-bold text-slate-300">
+            {['ISO 9001:2015 Certified', '24-hour response', 'Full material documentation', 'Tested at 1.5× rated pressure'].map(t => (
+              <span key={t} className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-isa-500 flex-shrink-0" /> {t}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
       {/* Header */}
       <div className="max-w-xl mb-12">
@@ -213,6 +245,7 @@ export default function RFQ() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   )
 }

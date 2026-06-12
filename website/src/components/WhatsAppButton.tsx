@@ -1,6 +1,7 @@
 import React from 'react'
 
 const WA_URL = 'https://wa.me/message/6YEIKWCOPBWZJ1'
+const WA_QUOTE_URL = 'https://wa.me/27606885648?text=Hi%20ISA%20Valve%20Solutions%2C%20I%27d%20like%20to%20request%20a%20quote%20for%20industrial%20valves.'
 
 function WhatsAppIcon({ className = '', style }: { className?: string; style?: React.CSSProperties }) {
   return (
@@ -10,7 +11,7 @@ function WhatsAppIcon({ className = '', style }: { className?: string; style?: R
   )
 }
 
-export { WhatsAppIcon, WA_URL }
+export { WhatsAppIcon, WA_URL, WA_QUOTE_URL }
 
 export default function WhatsAppButton() {
   return (
