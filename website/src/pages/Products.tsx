@@ -1,11 +1,20 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Search, X, SlidersHorizontal, Eye } from 'lucide-react'
+import { ArrowRight, Search, X, SlidersHorizontal } from 'lucide-react'
 import { useState } from 'react'
 import { products } from '../data/products'
-import ValveIllustration from '../components/ValveIllustration'
 import ProductModal from '../components/ProductModal'
 import { usePageMeta } from '../hooks/usePageMeta'
 import type { Product } from '../types'
+
+/* Real product photo mapping (slug → image path) */
+const PRODUCT_PHOTOS: Record<string, string> = {
+  'ball-valve':        '/images/products/ball-valve-nobg.jpg',
+  'butterfly-valve':   '/images/products/butterfly-valve-clean.png',
+  'gate-valve':        '/images/products/gate-valve-clean.jpg',
+  'pinch-valve':       '/images/products/pinch-valve-orange.jpg',
+  'dxst-kgv':          '/images/products/dxst-kgv.png',
+  'knife-gate-valve':  '/images/products/knife-gate-valve-isa.jpg',
+}
 
 const INDUSTRIES = ['Mining', 'Water Treatment', 'Oil & Gas', 'Chemical Processing', 'HVAC', 'Pulp & Paper', 'Marine', 'Fire Protection', 'Municipal Supply', 'Irrigation', 'Wastewater']
 const ACTUATION = ['Manual', 'Pneumatic', 'Electric', 'Hydraulic', 'Gearbox']
@@ -26,8 +35,6 @@ function matchesPressure(product: (typeof products)[0], selected: string[]) {
   const val = getSpec(product, 'Pressure Class').toLowerCase()
   return selected.some(p => val.toLowerCase().includes(p.toLowerCase()))
 }
-
-type SlugType = 'ball-valve' | 'butterfly-valve' | 'gate-valve' | 'knife-gate-valve' | 'pinch-valve' | 'dxst-kgv'
 
 function toggle(arr: string[], val: string): string[] {
   return arr.includes(val) ? arr.filter(x => x !== val) : [...arr, val]
@@ -83,14 +90,33 @@ export default function Products() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-      {/* Header */}
-      <div className="max-w-2xl mb-8">
-        <h1 className="text-3xl sm:text-4xl font-black text-slate-900">Product Range</h1>
-        <p className="text-slate-500 mt-3 text-lg leading-relaxed">
-          Six precision-engineered valve types covering DN15 to DN1200. Filter by industry, actuation, or pressure class.
-        </p>
+    <div>
+      {/* Hero banner */}
+      <div className="relative bg-slate-900 text-white overflow-hidden">
+        <img
+          src="/images/branded/isa-bg-valves-row.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          style={{ opacity: 0.38 }}
+        />
+        <div className="absolute inset-0"
+          style={{ background: 'linear-gradient(to right, rgba(7,26,45,0.92) 0%, rgba(7,26,45,0.70) 55%, rgba(7,26,45,0.35) 100%)' }} />
+        <div className="absolute top-0 left-0 right-0 h-1"
+          style={{ background: 'linear-gradient(to right, #f97316, #fb923c, #f97316)' }} />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-18">
+          <p className="text-xs font-bold text-isa-400 uppercase tracking-widest mb-3">ISO 9001:2015 · API 6D · WRAS · SABS</p>
+          <h1 className="text-4xl sm:text-5xl font-black text-white mb-4 leading-tight">
+            Precision-Engineered<br className="hidden sm:block" /> Valve Range
+          </h1>
+          <p className="text-slate-300 text-lg leading-relaxed max-w-2xl">
+            Six valve families covering DN15–DN4000. Every valve tested at 1.5× rated pressure with full material traceability documentation.
+          </p>
+        </div>
       </div>
+
+    <div className="bg-slate-50 min-h-screen">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
       {/* Search + filter toggle */}
       <div className="flex items-center gap-3 mb-6">
@@ -199,77 +225,65 @@ export default function Products() {
         {(text || activeCount > 0) && ' match your criteria'}
       </p>
 
-      {/* Grid */}
-      <div className="grid sm:grid-cols-2 gap-6">
-        {filtered.map(product => (
-          <div
+      {/* OEM product card grid */}
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filtered.map(product => {
+          const photo = PRODUCT_PHOTOS[product.slug]
+          return (
+          <Link
             key={product.id}
-            className="group card p-6 flex gap-5 hover:shadow-lg hover:border-brand-200 transition-all duration-200 cursor-pointer"
-            onClick={() => setModalProduct(product)}
+            to={`/products/${product.slug}`}
+            className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 hover:border-isa-300 hover:-translate-y-1.5 flex flex-col"
           >
-            {/* SVG thumbnail */}
-            <div className="relative flex-shrink-0 w-20 h-20 bg-slate-50 border border-slate-100 rounded-xl flex items-center justify-center overflow-hidden">
-              <ValveIllustration
-                type={product.slug as SlugType}
-                className="w-16 h-16"
-              />
-              <div className="absolute inset-0 bg-brand-600/0 group-hover:bg-brand-600/10 transition-colors rounded-xl flex items-center justify-center opacity-0 group-hover:opacity-100">
-                <Eye className="w-5 h-5 text-brand-700" />
-              </div>
+            {/* Top accent bar */}
+            <div className="h-1 bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 group-hover:from-isa-500 group-hover:via-isa-400 group-hover:to-isa-500 transition-all duration-500" />
+
+            {/* Product image */}
+            <div className="relative h-52 flex items-center justify-center overflow-hidden px-8 py-5"
+              style={{ background: 'linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%)' }}>
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{ background: 'radial-gradient(ellipse at 50% 60%, rgba(0,102,204,0.07) 0%, transparent 70%)' }} />
+              {photo ? (
+                <img
+                  src={photo}
+                  alt={product.name}
+                  loading="lazy"
+                  className="h-full w-full object-contain group-hover:scale-110 transition-transform duration-700 drop-shadow-lg relative z-10"
+                />
+              ) : (
+                <div className="text-6xl">{product.icon}</div>
+              )}
+              {/* Cert badge */}
+              <span className="absolute top-3 right-3 text-[10px] font-bold text-isa-700 bg-isa-50 border border-isa-200 px-2.5 py-1 rounded-full uppercase tracking-wider z-20">
+                {product.tagline.split('—')[0].trim().split(' ').slice(0, 3).join(' ')}
+              </span>
+              {product.badge && (
+                <span className="absolute top-3 left-3 text-[10px] font-black px-2 py-1 rounded-full text-white bg-isa-500 z-20">NEW</span>
+              )}
             </div>
 
-            <div className="flex-1 min-w-0">
-              <div className="flex items-start justify-between gap-2">
-                <h2 className="font-black text-xl text-slate-900 group-hover:text-brand-700 transition-colors">{product.name}</h2>
-                {product.badge && (
-                  <span className={`text-[10px] font-black px-2 py-0.5 rounded-full text-white flex-shrink-0 ${product.badgeColor === 'red' ? 'bg-red-600' : product.badgeColor === 'green' ? 'bg-green-600' : 'bg-isa-600'}`}>
-                    NEW
-                  </span>
-                )}
+            {/* Card text */}
+            <div className="p-5 flex-1 flex flex-col border-t border-slate-100">
+              <div className="flex items-start gap-3 mb-2">
+                <div className="w-1 min-h-[36px] rounded-full bg-isa-500 flex-shrink-0 opacity-60 group-hover:opacity-100 transition-opacity" />
+                <div className="min-w-0">
+                  <h2 className="font-bold text-slate-900 text-sm group-hover:text-isa-700 transition-colors leading-snug">{product.name}</h2>
+                  <p className="text-slate-400 text-xs mt-0.5 truncate">{product.specs[0]?.value}</p>
+                </div>
               </div>
-              <p className="text-sm font-medium text-isa-600 mt-0.5 mb-2">{product.tagline}</p>
-              <p className="text-sm text-slate-500 leading-relaxed mb-3 line-clamp-2">{product.description}</p>
-
-              <div className="grid grid-cols-2 gap-x-4 gap-y-1 mb-3">
-                {product.specs.slice(0, 2).map(spec => (
-                  <div key={spec.label}>
-                    <span className="text-xs text-slate-400">{spec.label}</span>
-                    <p className="text-xs font-semibold text-slate-700 truncate">{spec.value}</p>
-                  </div>
+              <p className="text-xs text-slate-500 leading-relaxed mb-3 line-clamp-2 ml-4">{product.description}</p>
+              <div className="flex flex-wrap gap-1 mb-3 ml-4">
+                {product.industries.slice(0, 3).map(ind => (
+                  <span key={ind} className="text-[10px] font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">{ind}</span>
                 ))}
               </div>
-
-              <div className="flex items-center justify-between">
-                <div className="flex flex-wrap gap-1.5">
-                  {product.industries.slice(0, 2).map(ind => (
-                    <span key={ind} className="text-xs text-brand-700 bg-brand-50 px-2 py-0.5 rounded-full font-medium">
-                      {ind}
-                    </span>
-                  ))}
-                  {product.industries.length > 2 && (
-                    <span className="text-xs text-slate-400 px-2 py-0.5 rounded-full font-medium">
-                      +{product.industries.length - 2} more
-                    </span>
-                  )}
-                </div>
-                <div className="flex items-center gap-2 flex-shrink-0 ml-2">
-                  <span className="text-xs font-semibold text-brand-600 flex items-center gap-1 group-hover:gap-2 transition-all">
-                    <Eye className="w-3.5 h-3.5" /> Quick View
-                  </span>
-                  {['ball-valve','butterfly-valve','gate-valve','knife-gate-valve'].includes(product.slug) && (
-                    <Link
-                      to={`/products/${product.slug}`}
-                      onClick={e => e.stopPropagation()}
-                      className="text-xs text-slate-400 hover:text-slate-600 flex items-center gap-0.5"
-                    >
-                      Full page <ArrowRight className="w-3 h-3" />
-                    </Link>
-                  )}
-                </div>
-              </div>
+              <span className="mt-auto ml-4 flex items-center gap-1.5 text-xs font-semibold text-isa-600 group-hover:gap-3 transition-all duration-200">
+                View Specifications <ArrowRight className="w-3 h-3" />
+              </span>
             </div>
-          </div>
-        ))}
+          </Link>
+          )
+        })}
       </div>
 
       {filtered.length === 0 && (
@@ -282,9 +296,9 @@ export default function Products() {
       )}
 
       {/* CTA */}
-      <div className="mt-16 bg-gradient-to-br from-navy to-brand-900 rounded-2xl p-8 text-center">
+      <div className="mt-16 bg-slate-900 rounded-2xl p-8 text-center">
         <h2 className="text-xl font-bold text-white mb-2">Need a custom specification?</h2>
-        <p className="text-blue-200 text-sm mb-5">Our engineering team handles custom sizes, materials, and actuation configurations beyond catalogue specifications.</p>
+        <p className="text-slate-400 text-sm mb-5">Our engineering team handles custom sizes, materials, and actuation configurations beyond catalogue specifications.</p>
         <Link
           to="/rfq"
           className="inline-flex items-center gap-2 bg-isa-500 hover:bg-isa-600 text-white font-bold px-6 py-2.5 rounded-xl transition-colors"
@@ -294,6 +308,8 @@ export default function Products() {
       </div>
 
       <ProductModal product={modalProduct} onClose={() => setModalProduct(null)} />
+    </div>
+    </div>
     </div>
   )
 }

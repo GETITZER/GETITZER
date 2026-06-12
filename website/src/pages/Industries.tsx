@@ -10,17 +10,32 @@ export default function Industries() {
     canonical: 'https://www.isavalvesolutions.com/industries',
   })
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-      {/* Header */}
-      <div className="max-w-2xl mb-12">
-        <p className="text-xs font-black text-brand-700 uppercase tracking-widest mb-3">Industry Solutions</p>
-        <h1 className="text-3xl sm:text-4xl font-black text-slate-900 mb-4">
-          Valves engineered for your industry
-        </h1>
-        <p className="text-slate-500 text-lg leading-relaxed">
-          Every industry has unique media, pressure, and compliance requirements. Browse industry-specific valve guidance, recommended products, and technical certifications.
-        </p>
+    <div>
+      {/* Hero banner */}
+      <div className="relative bg-slate-900 text-white overflow-hidden">
+        <img
+          src="/images/branded/isa-bg-critical-systems.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          style={{ opacity: 0.35 }}
+        />
+        <div className="absolute inset-0"
+          style={{ background: 'linear-gradient(to right, rgba(7,26,45,0.92) 0%, rgba(7,26,45,0.70) 60%, rgba(7,26,45,0.35) 100%)' }} />
+        <div className="absolute top-0 left-0 right-0 h-1"
+          style={{ background: 'linear-gradient(to right, #f97316, #fb923c, #f97316)' }} />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+          <p className="text-xs font-bold text-isa-400 uppercase tracking-widest mb-3">Industry Solutions</p>
+          <h1 className="text-4xl sm:text-5xl font-black text-white mb-4 leading-tight">
+            Valves engineered<br className="hidden sm:block" /> for your industry
+          </h1>
+          <p className="text-slate-300 text-lg leading-relaxed max-w-2xl">
+            Every industry has unique media, pressure, and compliance requirements. Browse industry-specific valve guidance, recommended products, and technical certifications.
+          </p>
+        </div>
       </div>
+
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
 
       {/* Industry grid */}
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -78,6 +93,7 @@ export default function Industries() {
           Try AI Valve Selector <ArrowRight className="w-4 h-4" />
         </Link>
       </div>
+    </div>
     </div>
   )
 }

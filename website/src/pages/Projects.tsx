@@ -123,9 +123,19 @@ export default function Projects() {
       <SchemaMarkup schema={projectSchema} />
 
       {/* Hero */}
-      <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 pt-16 pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-40" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <section className="bg-slate-900 pt-16 pb-20 relative overflow-hidden">
+        <img
+          src="/images/branded/isa-bg-warehouse.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          style={{ opacity: 0.30 }}
+        />
+        <div className="absolute inset-0"
+          style={{ background: 'linear-gradient(to right, rgba(7,26,45,0.90) 0%, rgba(7,26,45,0.65) 60%, rgba(7,26,45,0.30) 100%)' }} />
+        <div className="absolute top-0 left-0 right-0 h-1"
+          style={{ background: 'linear-gradient(to right, #f97316, #fb923c, #f97316)' }} />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
             <p className="text-xs font-bold uppercase tracking-widest text-isa-400 mb-3">Project Portfolio</p>
             <h1 className="text-4xl sm:text-5xl font-black text-white mb-6 leading-tight">
