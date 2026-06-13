@@ -14,7 +14,8 @@ const productLinks = [
   { label: 'ISA ProSeal™ Knife Gate',    sub: 'Slurry · Ceramic-lined',        to: '/products/knife-gate-valve' },
   { label: 'ISA Shield™ Pinch Valve',    sub: 'ISO 5208 Grade A · 4 sleeves', to: '/products/pinch-valve' },
   { label: 'ISA DXST™ Slurry KGV',      sub: '466% longer life · Mining',    to: '/products/dxst-kgv' },
-  { label: 'Controls & Instrumentation', sub: 'Level, flow & temperature',     to: '/controls-instrumentation/level' },
+  { label: 'Level Instrumentation',     sub: 'Level transmitters & switches',  to: '/controls-instrumentation/level' },
+  { label: 'Flow Instrumentation',      sub: 'Indicators, sight glasses, needle valves', to: '/controls-instrumentation/flow' },
 ]
 
 const resourceLinks = [

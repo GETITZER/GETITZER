@@ -23,6 +23,7 @@ import Calculators from './pages/Calculators'
 import NotFound from './pages/NotFound'
 import Projects from './pages/Projects'
 import ControlsInstrumentation from './pages/ControlsInstrumentation'
+import FlowInstrumentation from './pages/FlowInstrumentation'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import Terms from './pages/Terms'
 import { WA_URL } from './components/WhatsAppButton'
@@ -123,6 +124,7 @@ export default function App() {
             <Route path="/catalog"         element={<Catalog />} />
             <Route path="/controls-instrumentation"        element={<ControlsInstrumentation />} />
             <Route path="/controls-instrumentation/level"  element={<ControlsInstrumentation />} />
+            <Route path="/controls-instrumentation/flow"   element={<FlowInstrumentation />} />
             <Route path="/resources"       element={<Resources />} />
             <Route path="/calculators"     element={<Calculators />} />
             <Route path="/seo"             element={<SEODashboard />} />

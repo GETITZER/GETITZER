@@ -215,3 +215,411 @@ export const instrumentCategories: InstrumentCategory[] = [
 ]
 
 export const levelCategory = instrumentCategories.find(c => c.id === 'level')!
+
+// ──────────────────────────────────────────────────────────────────────────
+// Flow indication & control range — sight flow indicators, sight glasses,
+// needle valves and packaged flow control. Real product photography supplied
+// to ISA and presented under the ISA instrumentation range.
+// ──────────────────────────────────────────────────────────────────────────
+
+const FLOW_IMG = '/images/instrumentation/flow'
+
+export const flowCategories: InstrumentCategory[] = [
+  {
+    id: 'flow-indicators',
+    name: 'Sight Flow Indicators',
+    description:
+      'In-line indicators that give an immediate visual confirmation of flow, direction and approximate rate. Available in gunmetal, carbon steel and stainless steel with flap, rotor, paddlewheel and spinner elements to suit clean liquids, steam and process media.',
+    instruments: [
+      {
+        id: 'gunmetal-flap-flow-indicator',
+        name: 'Gunmetal Flap-Type Flow Indicator',
+        tagline: 'Style GF · bi-directional flow',
+        description:
+          'Gunmetal-bodied flap indicator with a hinged vane visible through a sight window. The flap lifts with flow and falls back when flow stops, giving a clear at-a-glance indication of flow presence and direction in clean liquid lines.',
+        image: `${FLOW_IMG}/gunmetal-flap-flow-indicator.jpg`,
+        imageAlt: 'Gunmetal flap-type sight flow indicator',
+        principle: 'Hinged flap / vane',
+        specs: [
+          { label: 'Body', value: 'Gunmetal' },
+          { label: 'Element', value: 'Hinged flap' },
+          { label: 'Indication', value: 'Flow presence & direction' },
+          { label: 'Connection', value: 'Screwed BSP' },
+          { label: 'Media', value: 'Clean liquids' },
+        ],
+        applications: ['Water lines', 'Cooling circuits', 'Dosing lines', 'Pump discharge'],
+        featured: true,
+      },
+      {
+        id: 'gunmetal-twin-rotor-flow-indicator',
+        name: 'Gunmetal Twin-Rotor Flow Indicator',
+        tagline: 'Style GR · rotor motion indication',
+        description:
+          'Gunmetal twin-rotor indicator in which two rotors spin in the flow stream behind the sight window. Rotor motion confirms flow even in turbid or coloured media where a flap would be hard to read, and rotor speed gives a relative sense of flow rate.',
+        image: `${FLOW_IMG}/gunmetal-twin-rotor-flow-indicator.jpg`,
+        imageAlt: 'Gunmetal twin-rotor sight flow indicator',
+        principle: 'Twin rotating rotors',
+        specs: [
+          { label: 'Body', value: 'Gunmetal' },
+          { label: 'Element', value: 'Twin rotors' },
+          { label: 'Indication', value: 'Flow & relative rate' },
+          { label: 'Connection', value: 'Screwed BSP' },
+          { label: 'Media', value: 'Clean to turbid liquids' },
+        ],
+        applications: ['Process water', 'Chemical lines', 'Coolant loops', 'Return lines'],
+      },
+      {
+        id: 'gunmetal-vista-spinner-flow-indicator',
+        name: 'Gunmetal Vista Spinner Flow Indicator',
+        tagline: 'Vista series · full-view spinner',
+        description:
+          'Gunmetal Vista-series indicator with a full-circumference window and a coloured spinner that rotates with flow. The wide viewing area makes flow easy to see from any angle, ideal for plant rooms and skid-mounted equipment.',
+        image: `${FLOW_IMG}/gunmetal-vista-spinner-flow-indicator.jpg`,
+        imageAlt: 'Gunmetal Vista-series spinner flow indicator',
+        principle: 'Rotating spinner',
+        specs: [
+          { label: 'Body', value: 'Gunmetal' },
+          { label: 'Element', value: 'Coloured spinner' },
+          { label: 'View', value: 'Full-circumference window' },
+          { label: 'Connection', value: 'Screwed BSP' },
+          { label: 'Media', value: 'Clean liquids' },
+        ],
+        applications: ['Plant rooms', 'Skid packages', 'Building services', 'OEM equipment'],
+      },
+      {
+        id: 'carbon-steel-flap-flow-indicator',
+        name: 'Carbon Steel Flap-Type Flow Indicator',
+        tagline: 'Style F · higher-pressure duty',
+        description:
+          'Carbon steel flap indicator for higher-pressure industrial lines. The robust body suits general process and utility service while the hinged flap behind the sight window confirms flow and direction.',
+        image: `${FLOW_IMG}/carbon-steel-flap-flow-indicator.jpg`,
+        imageAlt: 'Carbon steel flap-type sight flow indicator',
+        principle: 'Hinged flap / vane',
+        specs: [
+          { label: 'Body', value: 'Carbon steel' },
+          { label: 'Element', value: 'Hinged flap' },
+          { label: 'Indication', value: 'Flow presence & direction' },
+          { label: 'Connection', value: 'Screwed / flanged' },
+          { label: 'Media', value: 'Process & utility liquids' },
+        ],
+        applications: ['Process plant', 'Utility lines', 'Compressed-air condensate', 'Oil lines'],
+      },
+      {
+        id: 'carbon-steel-straight-through-flow-indicator',
+        name: 'Carbon Steel Straight-Through Flow Indicator',
+        tagline: 'Style P · unobstructed bore',
+        description:
+          'Carbon steel straight-through (Style P) indicator with a clear bore and opposed sight windows. With no element in the flow path it offers minimal pressure loss while allowing direct visual inspection of the medium.',
+        image: `${FLOW_IMG}/carbon-steel-straight-through-flow-indicator.jpg`,
+        imageAlt: 'Carbon steel straight-through sight flow indicator',
+        principle: 'Straight-through sight window',
+        specs: [
+          { label: 'Body', value: 'Carbon steel' },
+          { label: 'Bore', value: 'Unobstructed' },
+          { label: 'View', value: 'Opposed windows' },
+          { label: 'Pressure loss', value: 'Minimal' },
+          { label: 'Media', value: 'Liquids & gases' },
+        ],
+        applications: ['Process plant', 'Pipelines', 'Condensate', 'Inspection points'],
+      },
+      {
+        id: 'carbon-steel-paddlewheel-flow-indicator',
+        name: 'Carbon Steel Paddlewheel Flow Indicator',
+        tagline: 'Style S · paddlewheel motion',
+        description:
+          'Carbon steel paddlewheel (Style S) indicator in which a paddle rotates in proportion to flow velocity. Clearly visible motion confirms flow and gives a relative rate indication in opaque or dark process fluids.',
+        image: `${FLOW_IMG}/carbon-steel-paddlewheel-flow-indicator.jpg`,
+        imageAlt: 'Carbon steel paddlewheel sight flow indicator',
+        principle: 'Rotating paddlewheel',
+        specs: [
+          { label: 'Body', value: 'Carbon steel' },
+          { label: 'Element', value: 'Paddlewheel' },
+          { label: 'Indication', value: 'Flow & relative rate' },
+          { label: 'Connection', value: 'Screwed / flanged' },
+          { label: 'Media', value: 'Opaque process liquids' },
+        ],
+        applications: ['Process lines', 'Coolant systems', 'Oil circulation', 'Return headers'],
+      },
+      {
+        id: 'stainless-flap-flow-indicator',
+        name: 'Stainless Steel Flap-Type Flow Indicator',
+        tagline: 'Style F · corrosion-resistant',
+        description:
+          'Stainless steel flap indicator for corrosive, hygienic and high-purity duties. The hinged flap gives clear flow and direction indication while the stainless body resists aggressive media and frequent wash-down.',
+        image: `${FLOW_IMG}/stainless-flap-flow-indicator.jpg`,
+        imageAlt: 'Stainless steel flap-type sight flow indicator',
+        principle: 'Hinged flap / vane',
+        specs: [
+          { label: 'Body', value: 'Stainless steel' },
+          { label: 'Element', value: 'Hinged flap' },
+          { label: 'Indication', value: 'Flow presence & direction' },
+          { label: 'Connection', value: 'Screwed / flanged' },
+          { label: 'Media', value: 'Corrosive & hygienic liquids' },
+        ],
+        applications: ['Chemical plant', 'Food & beverage', 'Water treatment', 'Pharma'],
+      },
+      {
+        id: 'stainless-straight-through-flow-indicator',
+        name: 'Stainless Steel Straight-Through Flow Indicator',
+        tagline: 'Style P · clear-bore inspection',
+        description:
+          'Stainless steel straight-through (Style P) indicator with opposed sight windows and an unobstructed bore. Combines corrosion resistance with low pressure loss for direct visual inspection of demanding media.',
+        image: `${FLOW_IMG}/stainless-straight-through-flow-indicator.jpg`,
+        imageAlt: 'Stainless steel straight-through sight flow indicator',
+        principle: 'Straight-through sight window',
+        specs: [
+          { label: 'Body', value: 'Stainless steel' },
+          { label: 'Bore', value: 'Unobstructed' },
+          { label: 'View', value: 'Opposed windows' },
+          { label: 'Pressure loss', value: 'Minimal' },
+          { label: 'Media', value: 'Corrosive liquids & gases' },
+        ],
+        applications: ['Chemical lines', 'CIP/SIP systems', 'Water treatment', 'Inspection points'],
+      },
+      {
+        id: 'stainless-paddlewheel-flow-indicator',
+        name: 'Stainless Steel Paddlewheel Flow Indicator',
+        tagline: 'Style S · corrosion-resistant rate',
+        description:
+          'Stainless steel paddlewheel (Style S) indicator giving visible rotary motion proportional to flow velocity. Suited to corrosive and opaque process fluids where flap or window inspection alone is insufficient.',
+        image: `${FLOW_IMG}/stainless-paddlewheel-flow-indicator.jpg`,
+        imageAlt: 'Stainless steel paddlewheel sight flow indicator',
+        principle: 'Rotating paddlewheel',
+        specs: [
+          { label: 'Body', value: 'Stainless steel' },
+          { label: 'Element', value: 'Paddlewheel' },
+          { label: 'Indication', value: 'Flow & relative rate' },
+          { label: 'Connection', value: 'Screwed / flanged' },
+          { label: 'Media', value: 'Corrosive, opaque liquids' },
+        ],
+        applications: ['Chemical dosing', 'Process coolant', 'Effluent lines', 'Recirculation'],
+      },
+      {
+        id: 'stainless-steam-flow-indicator',
+        name: 'Stainless Steel Flow Indicator for Steam',
+        tagline: 'Style P · steam & condensate',
+        description:
+          'Stainless steel straight-through indicator rated for steam and condensate service. High-temperature sight windows and a clear bore allow operators to verify flow and trap discharge on steam and hot-water systems.',
+        image: `${FLOW_IMG}/stainless-steam-flow-indicator.webp`,
+        imageAlt: 'Stainless steel straight-through flow indicator for steam',
+        principle: 'Straight-through sight window',
+        specs: [
+          { label: 'Body', value: 'Stainless steel' },
+          { label: 'Service', value: 'Steam & condensate' },
+          { label: 'Windows', value: 'High-temperature' },
+          { label: 'Bore', value: 'Unobstructed' },
+          { label: 'Function', value: 'Flow & trap-discharge check' },
+        ],
+        applications: ['Steam mains', 'Condensate return', 'Trap monitoring', 'Heat exchangers'],
+      },
+      {
+        id: 'stainless-vista-spinner-flow-indicator',
+        name: 'Stainless Steel Vista Spinner Flow Indicator',
+        tagline: 'Vista series · full-view spinner',
+        description:
+          'Stainless steel Vista-series indicator with a full-view window and rotating spinner. Corrosion-resistant construction with a wide viewing area for hygienic and chemical plant where flow must be seen at a glance.',
+        image: `${FLOW_IMG}/stainless-vista-spinner-flow-indicator.webp`,
+        imageAlt: 'Stainless steel Vista-series spinner flow indicator',
+        principle: 'Rotating spinner',
+        specs: [
+          { label: 'Body', value: 'Stainless steel' },
+          { label: 'Element', value: 'Coloured spinner' },
+          { label: 'View', value: 'Full-circumference window' },
+          { label: 'Connection', value: 'Screwed / flanged' },
+          { label: 'Media', value: 'Corrosive & hygienic liquids' },
+        ],
+        applications: ['Food & beverage', 'Chemical plant', 'Water treatment', 'Skid packages'],
+      },
+    ],
+  },
+  {
+    id: 'sight-glasses',
+    name: 'Sight Glasses',
+    description:
+      'Robust window assemblies for direct visual inspection of media inside a pipeline. Single- and double-window designs in gunmetal and stainless steel, with screwed and flanged connections rated for water, chemical and steam service.',
+    instruments: [
+      {
+        id: 'single-window-sight-glass',
+        name: 'Single Window Sight Glass',
+        tagline: 'Compact in-line inspection',
+        description:
+          'Compact single-window sight glass for direct observation of the medium in smaller-bore lines. A toughened glass window in a sealed body allows operators to confirm presence, colour and clarity of the process fluid.',
+        image: `${FLOW_IMG}/single-window-sight-glass.png`,
+        imageAlt: 'Single window in-line sight glass',
+        principle: 'Single-window inspection',
+        specs: [
+          { label: 'Windows', value: 'Single' },
+          { label: 'Window', value: 'Toughened glass' },
+          { label: 'Connection', value: 'Screwed' },
+          { label: 'Function', value: 'Visual inspection' },
+          { label: 'Media', value: 'Liquids & gases' },
+        ],
+        applications: ['Sampling points', 'Small-bore lines', 'Dosing skids', 'Laboratories'],
+      },
+      {
+        id: 'gunmetal-sight-glass',
+        name: 'Gunmetal Sight Glass',
+        tagline: 'General-purpose visual check',
+        description:
+          'Gunmetal-bodied sight glass for general water and utility service. The corrosion-resistant gunmetal body and clear window provide a durable, economical inspection point on plumbing and plant pipework.',
+        image: `${FLOW_IMG}/gunmetal-sight-glass.png`,
+        imageAlt: 'Gunmetal in-line sight glass',
+        principle: 'Window inspection',
+        specs: [
+          { label: 'Body', value: 'Gunmetal' },
+          { label: 'Window', value: 'Toughened glass' },
+          { label: 'Connection', value: 'Screwed BSP' },
+          { label: 'Function', value: 'Visual inspection' },
+          { label: 'Media', value: 'Water & utilities' },
+        ],
+        applications: ['Building services', 'Cooling water', 'Utility lines', 'Pump rooms'],
+      },
+      {
+        id: 'screwed-bsp-double-window-sight-glass',
+        name: 'Screwed BSP Double Window Sight Glass',
+        tagline: 'Stainless · see-through view',
+        description:
+          'Stainless steel double-window sight glass with opposed windows for a true see-through view of the flow. Screwed BSP connections make it a straightforward, economical inspection point on stainless and chemical lines.',
+        image: `${FLOW_IMG}/screwed-bsp-double-window-sight-glass.webp`,
+        imageAlt: 'Screwed BSP stainless steel double window sight glass',
+        principle: 'Double-window inspection',
+        specs: [
+          { label: 'Body', value: 'Stainless steel' },
+          { label: 'Windows', value: 'Double, opposed' },
+          { label: 'Connection', value: 'Screwed BSP' },
+          { label: 'View', value: 'See-through' },
+          { label: 'Media', value: 'Corrosive liquids' },
+        ],
+        applications: ['Chemical lines', 'Process water', 'Dosing systems', 'Sampling'],
+      },
+      {
+        id: 'flanged-pn16-double-window-sight-glass',
+        name: 'Flanged PN16 Double Window Sight Glass',
+        tagline: 'Stainless · PN16 flanged',
+        description:
+          'Stainless steel double-window sight glass with PN16 flanged connections for metric pipework. Opposed windows give a clear see-through view, with flanges for secure, leak-tight installation on process lines.',
+        image: `${FLOW_IMG}/flanged-pn16-double-window-sight-glass.webp`,
+        imageAlt: 'Flanged PN16 stainless steel double window sight glass',
+        principle: 'Double-window inspection',
+        specs: [
+          { label: 'Body', value: 'Stainless steel' },
+          { label: 'Windows', value: 'Double, opposed' },
+          { label: 'Connection', value: 'Flanged PN16' },
+          { label: 'View', value: 'See-through' },
+          { label: 'Media', value: 'Process liquids' },
+        ],
+        applications: ['Process plant', 'Water treatment', 'Chemical dosing', 'Pipelines'],
+      },
+      {
+        id: 'flanged-ansi150-double-window-sight-glass',
+        name: 'Flanged ANSI 150 Double Window Sight Glass',
+        tagline: 'Stainless · ANSI 150 flanged',
+        description:
+          'Stainless steel double-window sight glass with ANSI 150 flanged connections for imperial pipework. Provides a robust, see-through inspection point on process and utility lines built to ANSI standards.',
+        image: `${FLOW_IMG}/flanged-ansi150-double-window-sight-glass.webp`,
+        imageAlt: 'Flanged ANSI 150 stainless steel double window sight glass',
+        principle: 'Double-window inspection',
+        specs: [
+          { label: 'Body', value: 'Stainless steel' },
+          { label: 'Windows', value: 'Double, opposed' },
+          { label: 'Connection', value: 'Flanged ANSI 150' },
+          { label: 'View', value: 'See-through' },
+          { label: 'Media', value: 'Process liquids' },
+        ],
+        applications: ['Process plant', 'Oil & gas', 'Water treatment', 'Pipelines'],
+      },
+      {
+        id: 'flanged-ansi150-steam-sight-glass',
+        name: 'Flanged ANSI 150 Steam Sight Glass',
+        tagline: 'Type P · steam service',
+        description:
+          'Stainless steel flanged sight glass (Type P) rated for steam and high-temperature service. High-temperature windows and ANSI 150 flanges allow operators to verify flow and condensate on steam systems.',
+        image: `${FLOW_IMG}/flanged-ansi150-steam-sight-glass.webp`,
+        imageAlt: 'Type P stainless steel flanged ANSI 150 steam sight glass',
+        principle: 'Window inspection, steam-rated',
+        specs: [
+          { label: 'Body', value: 'Stainless steel' },
+          { label: 'Service', value: 'Steam & high temperature' },
+          { label: 'Connection', value: 'Flanged ANSI 150' },
+          { label: 'Windows', value: 'High-temperature' },
+          { label: 'Function', value: 'Visual inspection' },
+        ],
+        applications: ['Steam mains', 'Condensate return', 'Heat exchangers', 'Boiler houses'],
+      },
+    ],
+  },
+  {
+    id: 'needle-valves',
+    name: 'Needle Valves',
+    description:
+      'Precision regulating valves for fine flow control, instrument isolation and sampling. Stainless steel construction for clean, accurate throttling on gauges, transmitters and small-bore process lines.',
+    instruments: [
+      {
+        id: 'compression-316-needle-valve',
+        name: 'Compression-Ended 316 Stainless Needle Valve',
+        tagline: '6000 psi · instrument duty',
+        description:
+          'Compression-ended needle valve in 316 stainless steel rated to 6000 psi for high-pressure instrument and hydraulic service. The tapered needle gives fine, repeatable flow regulation and tight shut-off for gauges, transmitters and sampling points.',
+        image: `${FLOW_IMG}/compression-316-needle-valve.webp`,
+        imageAlt: 'Compression-ended 316 stainless steel needle valve rated 6000 psi',
+        principle: 'Tapered-needle throttling',
+        specs: [
+          { label: 'Body', value: '316 stainless steel' },
+          { label: 'Pressure', value: 'Up to 6000 psi' },
+          { label: 'Ends', value: 'Compression' },
+          { label: 'Function', value: 'Fine regulation & isolation' },
+          { label: 'Service', value: 'Instrument & hydraulic' },
+        ],
+        applications: ['Gauge isolation', 'Instrument lines', 'Sampling', 'Hydraulic systems'],
+        featured: true,
+      },
+      {
+        id: 'economy-stainless-needle-valve',
+        name: 'Economy Stainless Steel Needle Valve',
+        tagline: 'Cost-effective fine control',
+        description:
+          'Economy stainless steel needle valve for general fine-flow regulation and isolation on instrument and small-bore lines. A cost-effective option where precise throttling is needed without high-pressure duty.',
+        image: `${FLOW_IMG}/economy-stainless-needle-valve.webp`,
+        imageAlt: 'Economy stainless steel needle valve',
+        principle: 'Tapered-needle throttling',
+        specs: [
+          { label: 'Body', value: 'Stainless steel' },
+          { label: 'Ends', value: 'Screwed BSP' },
+          { label: 'Function', value: 'Fine regulation & isolation' },
+          { label: 'Service', value: 'Instrument & general' },
+          { label: 'Bore', value: 'Small-bore' },
+        ],
+        applications: ['Gauge isolation', 'Dosing trim', 'Sampling', 'Air & gas lines'],
+      },
+    ],
+  },
+  {
+    id: 'flow-control',
+    name: 'Flow Control Systems',
+    description:
+      'Packaged systems that move beyond indication to actively manage and limit flow, supplied ready for installation in water and process applications.',
+    instruments: [
+      {
+        id: 'cs4000-water-flow-control-system',
+        name: 'CS4000 Water Flow Control System',
+        tagline: 'Standard packaged flow control',
+        description:
+          'Standard CS4000 packaged water flow control system for managing and limiting flow in distribution and process water applications. Supplied as a complete, ready-to-install assembly to maintain a controlled flow rate without continuous operator attention.',
+        image: `${FLOW_IMG}/cs4000-water-flow-control-system.webp`,
+        imageAlt: 'CS4000 standard water flow control system',
+        principle: 'Packaged flow control',
+        specs: [
+          { label: 'Type', value: 'Packaged system' },
+          { label: 'Function', value: 'Flow control & limiting' },
+          { label: 'Media', value: 'Water' },
+          { label: 'Supply', value: 'Ready to install' },
+          { label: 'Service', value: 'Distribution & process' },
+        ],
+        applications: ['Water distribution', 'Process water', 'Flow limiting', 'Plant utilities'],
+        featured: true,
+      },
+    ],
+  },
+]
+
+export const flowProductCount = flowCategories.reduce((n, c) => n + c.instruments.length, 0)
