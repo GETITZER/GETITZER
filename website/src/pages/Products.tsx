@@ -93,6 +93,15 @@ const PRODUCT_PHOTOS: Record<string, string> = {
   'actuated-valve-butterfly-pneumatic':      '/images/products/actuated-butterfly-valve-pneumatic.webp',
   'actuated-valve-butterfly-electric':       '/images/products/actuated-butterfly-valve-electric.jpg',
   'actuated-valve-butterfly-plastic':        '/images/products/actuated-butterfly-valve-plastic.webp',
+  // Instrumentation / gauge subcategories
+  'instrumentation-pressure-gauge':          '/images/products/gauge-pressure-ss.webp',
+  'instrumentation-digital-pressure-gauge':  '/images/products/gauge-pressure-digital.webp',
+  'instrumentation-glycerine-gauge':         '/images/products/gauge-glycerine.webp',
+  'instrumentation-high-pressure-gauge':     '/images/products/gauge-high-pressure.webp',
+  'instrumentation-diaphragm-gauge':         '/images/products/gauge-diaphragm-hygienic.webp',
+  'instrumentation-thermometer-bimetallic':  '/images/products/thermometer-bimetallic.webp',
+  'instrumentation-thermometer-digital':     '/images/products/thermometer-digital.webp',
+  'instrumentation-gauge-accessories':       '/images/products/gauge-cock.webp',
 }
 
 const CATEGORIES = [
@@ -180,6 +189,14 @@ const CATEGORIES = [
   { label: '  Butterfly — PVDF/Plastic',      slug: 'actuated-valve-butterfly-plastic', indent: 1 },
   { label: 'Pneumatic Valves',                slug: 'pneumatic-valve',              indent: 0 },
   { label: 'Instrumentation',                 slug: 'instrumentation',              indent: 0 },
+  { label: '  SS Pressure Gauges',            slug: 'instrumentation-pressure-gauge',         indent: 1 },
+  { label: '  Digital Pressure Gauges',       slug: 'instrumentation-digital-pressure-gauge', indent: 1 },
+  { label: '  Glycerine-Filled Gauges',       slug: 'instrumentation-glycerine-gauge',        indent: 1 },
+  { label: '  High Pressure Gauges',          slug: 'instrumentation-high-pressure-gauge',    indent: 1 },
+  { label: '  Diaphragm Gauges',              slug: 'instrumentation-diaphragm-gauge',        indent: 1 },
+  { label: '  Bimetallic Thermometers',       slug: 'instrumentation-thermometer-bimetallic', indent: 1 },
+  { label: '  Digital Thermometers',          slug: 'instrumentation-thermometer-digital',    indent: 1 },
+  { label: '  Gauge Cocks & Siphons',         slug: 'instrumentation-gauge-accessories',      indent: 1 },
   { label: 'Pipe Fittings',                   slug: 'fittings',                     indent: 0 },
 ]
 
