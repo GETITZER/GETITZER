@@ -4,3 +4,6 @@ dist/
 *.local
 *.tsbuildinfo
 *.tsbuildinfo
+
+# Local Netlify folder
+.netlify

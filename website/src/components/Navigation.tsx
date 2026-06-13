@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X, ChevronDown, Zap, ArrowRight, Calculator, BookOpen, Download, FileText, LayoutDashboard } from 'lucide-react'
+import { Menu, X, ChevronDown, Zap, ArrowRight, Calculator, BookOpen, Download, FileText, LayoutDashboard, Phone, Mail, Truck, ShieldCheck } from 'lucide-react'
 import { SignInButton, SignUpButton, UserButton, Show } from '@clerk/react'
 
 const CLERK_ENABLED = !!import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
@@ -42,9 +42,39 @@ export default function Navigation() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
+        {/* ── Utility bar — contact + trust (valvesonline-style) ── */}
+        <div className="bg-navy text-slate-200 border-b border-white/5">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between h-9 text-xs">
+              <div className="flex items-center gap-5">
+                <a href="tel:+270606885648" className="flex items-center gap-1.5 hover:text-white transition-colors">
+                  <Phone className="w-3.5 h-3.5 text-isa-500" />
+                  <span className="font-semibold">+27 060 688 5648</span>
+                </a>
+                <a href="mailto:isa-valve@outlook.com" className="hidden sm:flex items-center gap-1.5 hover:text-white transition-colors">
+                  <Mail className="w-3.5 h-3.5 text-isa-500" />
+                  <span className="font-medium">isa-valve@outlook.com</span>
+                </a>
+              </div>
+              <div className="flex items-center gap-5">
+                <span className="hidden md:flex items-center gap-1.5">
+                  <ShieldCheck className="w-3.5 h-3.5 text-isa-500" />
+                  <span className="font-medium">ISO 9001:2015 Certified</span>
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Truck className="w-3.5 h-3.5 text-isa-500" />
+                  <span className="font-medium">Africa-Wide Delivery</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Main bar ── */}
+        <div className="border-b border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between h-16 lg:h-[72px]">
 
             {/* Logo */}
             <Link to="/" className="group">
@@ -156,12 +186,16 @@ export default function Navigation() {
               {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
+          </div>
         </div>
       </nav>
 
+      {/* Spacer to offset the fixed header */}
+      <div className="h-[100px] lg:h-[108px]" aria-hidden="true" />
+
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-40 lg:hidden pt-16 overflow-y-auto bg-white">
+        <div className="fixed inset-0 z-40 lg:hidden pt-[100px] overflow-y-auto bg-white">
           <div className="px-4 py-6 space-y-1">
             <p className="text-xs font-bold text-slate-400 uppercase tracking-widest px-3 mb-3">Products</p>
             {productLinks.map(p => (
