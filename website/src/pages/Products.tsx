@@ -27,10 +27,16 @@ const CATEGORIES = [
   { label: 'Control Valves',            slug: 'control-valve' },
   { label: 'Pressure Reducing Valves',  slug: 'pressure-reducing-valve' },
   { label: 'Safety & Relief Valves',    slug: 'safety-relief-valve' },
+  { label: 'Steam Valves',              slug: 'steam-valve' },
   { label: 'Steam Traps',               slug: 'steam-trap' },
   { label: 'Y-Strainers',               slug: 'y-strainer' },
   { label: 'Sight Glass',               slug: 'sight-glass' },
   { label: 'Block & Bleed Valves',      slug: 'block-bleed-valve' },
+  { label: 'Solenoid Valves',           slug: 'solenoid-valve' },
+  { label: 'Actuated Valves',           slug: 'actuated-valve' },
+  { label: 'Pneumatic Valves',          slug: 'pneumatic-valve' },
+  { label: 'Instrumentation',           slug: 'instrumentation' },
+  { label: 'Pipe Fittings',             slug: 'fittings' },
 ]
 
 const MATERIALS = ['Cast Iron', 'Ductile Iron', 'Carbon Steel', 'Stainless Steel', 'Brass', 'Bronze', 'PVDF / Plastic']

@@ -8,22 +8,28 @@ import { WhatsAppIcon, WA_URL } from './WhatsAppButton'
 import { ISALogoNav } from './ISALogo'
 
 const productLinks = [
-  { label: 'Ball Valves',          sub: 'DN15–DN600 · API 6D · Manual & Actuated', to: '/products/ball-valve' },
-  { label: 'Butterfly Valves',     sub: 'DN50–DN1200 · WRAS · Triple Offset',       to: '/products/butterfly-valve' },
-  { label: 'Gate Valves',          sub: 'DN50–DN1000 · SABS 664 · Full Bore',       to: '/products/gate-valve' },
-  { label: 'Check Valves',         sub: 'Swing · Dual Plate · Piston — DN15–DN1200',to: '/products/check-valve' },
-  { label: 'Globe Valves',         sub: 'Y-Pattern & Angle · Flow Regulation',       to: '/products/globe-valve' },
-  { label: 'Knife Gate Valves',    sub: 'Slurry · Mining Grade · Ceramic-lined',     to: '/products/knife-gate-valve' },
-  { label: 'Pinch Valves',         sub: 'ISO 5208 Grade A · 4 Sleeve Grades',        to: '/products/pinch-valve' },
-  { label: 'DXST Slurry KGV',     sub: '466% longer life · Mining #1',              to: '/products/dxst-kgv' },
-  { label: 'Y-Strainers',          sub: 'Y-Type · Basket · Pipeline Protection',     to: '/products/y-strainer' },
-  { label: 'Control Valves',       sub: 'PRV · Flow Control · Level Control',        to: '/products/control-valve' },
-  { label: 'Diaphragm Valves',          sub: 'Chemical & Slurry · Weir & Full Bore',      to: '/products/diaphragm-valve' },
-  { label: 'Safety Relief Valves',      sub: 'Spring-Loaded · Pilot-Operated · API 520',  to: '/products/safety-relief-valve' },
-  { label: 'Pressure Reducing Valves',  sub: 'Direct-Acting & Pilot-Operated · DN15–DN300',to: '/products/pressure-reducing-valve' },
-  { label: 'Steam Traps',               sub: 'Thermodynamic · Thermostatic · F&T',          to: '/products/steam-trap' },
-  { label: 'Sight Glass',               sub: 'Single · Double Window · Wye · Borosilicate', to: '/products/sight-glass' },
-  { label: 'Block & Bleed Valves',      sub: 'DBB Globe · Needle · Gate · ANSI 300–600',    to: '/products/block-bleed-valve' },
+  { label: 'Ball Valves',               sub: 'DN15–DN600 · API 6D · Manual & Actuated',   to: '/products/ball-valve' },
+  { label: 'Butterfly Valves',          sub: 'DN50–DN1200 · WRAS · Triple Offset',          to: '/products/butterfly-valve' },
+  { label: 'Gate Valves',               sub: 'DN50–DN1000 · SABS 664 · Full Bore',          to: '/products/gate-valve' },
+  { label: 'Check Valves',              sub: 'Swing · Dual Plate · Piston · DN15–DN1200',   to: '/products/check-valve' },
+  { label: 'Globe Valves',              sub: 'Y-Pattern & Angle · Flow Regulation',          to: '/products/globe-valve' },
+  { label: 'Knife Gate Valves',         sub: 'Slurry · Mining Grade · Ceramic-lined',        to: '/products/knife-gate-valve' },
+  { label: 'Pinch Valves',              sub: 'ISO 5208 Grade A · 4 Sleeve Grades',           to: '/products/pinch-valve' },
+  { label: 'DXST Slurry KGV',          sub: '466% longer life · Mining #1',                 to: '/products/dxst-kgv' },
+  { label: 'Diaphragm Valves',          sub: 'Chemical & Slurry · Weir & Full Bore',         to: '/products/diaphragm-valve' },
+  { label: 'Control Valves',            sub: 'PRV · Flow Control · Level Control',           to: '/products/control-valve' },
+  { label: 'Actuated Valves',           sub: 'Electric & Pneumatic · Full Assemblies',       to: '/products/actuated-valve' },
+  { label: 'Solenoid Valves',           sub: '2/2 · 3/2 · On/Off · 24V DC / 220V AC',      to: '/products/solenoid-valve' },
+  { label: 'Pneumatic Valves',          sub: '3/2 · 4/2 · 5/2 Way · Manifold Mount',        to: '/products/pneumatic-valve' },
+  { label: 'Steam Valves',              sub: 'Gate · Globe · Check · Up to 550°C',           to: '/products/steam-valve' },
+  { label: 'Steam Traps',               sub: 'Thermodynamic · Thermostatic · F&T',           to: '/products/steam-trap' },
+  { label: 'Safety & Relief Valves',    sub: 'Spring-Loaded · Pilot-Operated · API 520',     to: '/products/safety-relief-valve' },
+  { label: 'Pressure Reducing Valves',  sub: 'Direct-Acting & Pilot-Operated · DN15–DN300',  to: '/products/pressure-reducing-valve' },
+  { label: 'Y-Strainers',               sub: 'Y-Type · Basket · Pipeline Protection',        to: '/products/y-strainer' },
+  { label: 'Sight Glass',               sub: 'Single · Double Window · Wye · Borosilicate',  to: '/products/sight-glass' },
+  { label: 'Block & Bleed Valves',      sub: 'DBB Globe · Needle · Gate · ANSI 300–600',     to: '/products/block-bleed-valve' },
+  { label: 'Instrumentation',           sub: 'Gauges · Transmitters · Flow Meters',          to: '/products/instrumentation' },
+  { label: 'Pipe Fittings',             sub: 'Flanges · Elbows · Tees · Reducers',           to: '/products/fittings' },
 ]
 
 const resourceLinks = [
@@ -71,9 +77,9 @@ export default function Navigation() {
                   Products <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${productOpen ? 'rotate-180' : ''}`} />
                 </button>
                 {productOpen && (
-                  <div className="absolute top-full left-0 pt-2 w-[640px]">
+                  <div className="absolute top-full left-0 pt-2 w-[860px]">
                     <div className="p-3 shadow-xl rounded-xl bg-white border border-slate-200">
-                      <div className="grid grid-cols-2 gap-0.5 mb-1">
+                      <div className="grid grid-cols-3 gap-0.5 mb-1">
                         {productLinks.map(p => (
                           <Link key={p.to} to={p.to} className="flex items-start gap-2.5 px-3 py-2.5 rounded-lg hover:bg-slate-50 transition-colors group">
                             <div className="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-isa-500 mt-1.5" />
