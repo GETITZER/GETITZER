@@ -8,12 +8,18 @@ import { WhatsAppIcon, WA_URL } from './WhatsAppButton'
 import { ISALogoNav } from './ISALogo'
 
 const productLinks = [
-  { label: 'ISA Titan™ Ball Valve',      sub: 'DN15–DN600 · API 6D',          to: '/products/ball-valve' },
-  { label: 'ISA Hydra™ Butterfly Valve', sub: 'DN50–DN1200 · WRAS',           to: '/products/butterfly-valve' },
-  { label: 'ISA Core™ Gate Valve',       sub: 'DN50–DN1000 · SABS 664',       to: '/products/gate-valve' },
-  { label: 'ISA ProSeal™ Knife Gate',    sub: 'Slurry · Ceramic-lined',        to: '/products/knife-gate-valve' },
-  { label: 'ISA Shield™ Pinch Valve',    sub: 'ISO 5208 Grade A · 4 sleeves', to: '/products/pinch-valve' },
-  { label: 'ISA DXST™ Slurry KGV',      sub: '466% longer life · Mining',    to: '/products/dxst-kgv' },
+  { label: 'Ball Valves',          sub: 'DN15–DN600 · API 6D · Manual & Actuated', to: '/products/ball-valve' },
+  { label: 'Butterfly Valves',     sub: 'DN50–DN1200 · WRAS · Triple Offset',       to: '/products/butterfly-valve' },
+  { label: 'Gate Valves',          sub: 'DN50–DN1000 · SABS 664 · Full Bore',       to: '/products/gate-valve' },
+  { label: 'Check Valves',         sub: 'Swing · Dual Plate · Piston — DN15–DN1200',to: '/products/check-valve' },
+  { label: 'Globe Valves',         sub: 'Y-Pattern & Angle · Flow Regulation',       to: '/products/globe-valve' },
+  { label: 'Knife Gate Valves',    sub: 'Slurry · Mining Grade · Ceramic-lined',     to: '/products/knife-gate-valve' },
+  { label: 'Pinch Valves',         sub: 'ISO 5208 Grade A · 4 Sleeve Grades',        to: '/products/pinch-valve' },
+  { label: 'DXST Slurry KGV',     sub: '466% longer life · Mining #1',              to: '/products/dxst-kgv' },
+  { label: 'Y-Strainers',          sub: 'Y-Type · Basket · Pipeline Protection',     to: '/products/y-strainer' },
+  { label: 'Control Valves',       sub: 'PRV · Flow Control · Level Control',        to: '/products/control-valve' },
+  { label: 'Diaphragm Valves',     sub: 'Chemical & Slurry · Weir & Full Bore',      to: '/products/diaphragm-valve' },
+  { label: 'Safety Relief Valves', sub: 'Spring-Loaded · Pilot-Operated · API 520',  to: '/products/safety-relief-valve' },
 ]
 
 const resourceLinks = [
@@ -61,20 +67,22 @@ export default function Navigation() {
                   Products <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${productOpen ? 'rotate-180' : ''}`} />
                 </button>
                 {productOpen && (
-                  <div className="absolute top-full left-0 pt-2 w-80">
-                    <div className="p-2 shadow-xl rounded-xl bg-white border border-slate-200">
-                      {productLinks.map(p => (
-                        <Link key={p.to} to={p.to} className="flex items-center gap-3 px-3.5 py-2.5 rounded-lg hover:bg-slate-50 transition-colors group">
-                          <div className="w-2 h-2 rounded-full flex-shrink-0 bg-isa-500" />
-                          <div>
-                            <span className="text-sm font-semibold text-slate-900 group-hover:text-isa-600 transition-colors block">{p.label}</span>
-                            <span className="text-xs text-slate-500">{p.sub}</span>
-                          </div>
-                        </Link>
-                      ))}
-                      <div className="border-t border-slate-100 mt-1 pt-1">
-                        <Link to="/products" className="flex items-center gap-2 px-3.5 py-2.5 rounded-lg text-sm font-semibold text-isa-600 hover:bg-slate-50 transition-colors">
-                          All Products <ArrowRight className="w-3.5 h-3.5" />
+                  <div className="absolute top-full left-0 pt-2 w-[640px]">
+                    <div className="p-3 shadow-xl rounded-xl bg-white border border-slate-200">
+                      <div className="grid grid-cols-2 gap-0.5 mb-1">
+                        {productLinks.map(p => (
+                          <Link key={p.to} to={p.to} className="flex items-start gap-2.5 px-3 py-2.5 rounded-lg hover:bg-slate-50 transition-colors group">
+                            <div className="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-isa-500 mt-1.5" />
+                            <div>
+                              <span className="text-sm font-semibold text-slate-900 group-hover:text-isa-600 transition-colors block leading-snug">{p.label}</span>
+                              <span className="text-xs text-slate-400 leading-tight">{p.sub}</span>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                      <div className="border-t border-slate-100 pt-2 px-2">
+                        <Link to="/products" className="flex items-center gap-2 px-2.5 py-2 rounded-lg text-sm font-bold text-isa-600 hover:bg-isa-50 transition-colors">
+                          Browse All Products <ArrowRight className="w-3.5 h-3.5" />
                         </Link>
                       </div>
                     </div>
