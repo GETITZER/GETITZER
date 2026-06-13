@@ -14,19 +14,23 @@ const PRODUCT_PHOTOS: Record<string, string> = {
 }
 
 const CATEGORIES = [
-  { label: 'All Products',         slug: 'all' },
-  { label: 'Ball Valves',          slug: 'ball-valve' },
-  { label: 'Butterfly Valves',     slug: 'butterfly-valve' },
-  { label: 'Gate Valves',          slug: 'gate-valve' },
-  { label: 'Check Valves',         slug: 'check-valve' },
-  { label: 'Globe Valves',         slug: 'globe-valve' },
-  { label: 'Knife Gate Valves',    slug: 'knife-gate-valve' },
-  { label: 'Pinch Valves',         slug: 'pinch-valve' },
-  { label: 'DXST Slurry KGV',     slug: 'dxst-kgv' },
-  { label: 'Y-Strainers',          slug: 'y-strainer' },
-  { label: 'Control Valves',       slug: 'control-valve' },
-  { label: 'Diaphragm Valves',     slug: 'diaphragm-valve' },
-  { label: 'Safety Valves',        slug: 'safety-relief-valve' },
+  { label: 'All Products',              slug: 'all' },
+  { label: 'Ball Valves',               slug: 'ball-valve' },
+  { label: 'Butterfly Valves',          slug: 'butterfly-valve' },
+  { label: 'Gate Valves',               slug: 'gate-valve' },
+  { label: 'Check Valves',              slug: 'check-valve' },
+  { label: 'Globe Valves',              slug: 'globe-valve' },
+  { label: 'Knife Gate Valves',         slug: 'knife-gate-valve' },
+  { label: 'Pinch Valves',              slug: 'pinch-valve' },
+  { label: 'DXST Slurry KGV',          slug: 'dxst-kgv' },
+  { label: 'Diaphragm Valves',          slug: 'diaphragm-valve' },
+  { label: 'Control Valves',            slug: 'control-valve' },
+  { label: 'Pressure Reducing Valves',  slug: 'pressure-reducing-valve' },
+  { label: 'Safety & Relief Valves',    slug: 'safety-relief-valve' },
+  { label: 'Steam Traps',               slug: 'steam-trap' },
+  { label: 'Y-Strainers',               slug: 'y-strainer' },
+  { label: 'Sight Glass',               slug: 'sight-glass' },
+  { label: 'Block & Bleed Valves',      slug: 'block-bleed-valve' },
 ]
 
 const MATERIALS = ['Cast Iron', 'Ductile Iron', 'Carbon Steel', 'Stainless Steel', 'Brass', 'Bronze', 'PVDF / Plastic']

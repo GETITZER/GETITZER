@@ -361,6 +361,102 @@ export const products: Product[] = [
     industries: ['Oil & Gas', 'Chemical Processing', 'Power Generation', 'Mining', 'HVAC'],
     compliance: ['ISO 9001:2015', 'API 520', 'API 526', 'PED 2014/68/EU', 'ASME VIII'],
   },
+  {
+    id: 'pressure-reducing-valve',
+    slug: 'pressure-reducing-valve',
+    name: 'Pressure Reducing Valves (PRV)',
+    shortName: 'Pressure Reducing',
+    tagline: 'Direct-Acting & Pilot-Operated — Water, Steam & Air Pressure Regulation',
+    description:
+      'ISA pressure reducing valves automatically maintain a constant downstream pressure regardless of upstream fluctuations or flow rate changes. Available in direct-acting (compact, simple) and pilot-operated (high accuracy, wide flow range) configurations for water, steam, air, and gas service.',
+    useCase:
+      'Install wherever downstream pressure must be maintained below a set point: building services, steam distribution, compressed air systems, water supply zones, and process plant utilities. Pilot-operated type for accurate regulation over a wide flow range; direct-acting for simple, low-flow applications.',
+    icon: '⬇️',
+    specs: [
+      { label: 'Types', value: 'Direct-Acting · Pilot-Operated · Self-Contained' },
+      { label: 'Size Range', value: 'DN15–DN300' },
+      { label: 'Inlet Pressure', value: 'Up to 25 bar (type dependent)' },
+      { label: 'Pressure Class', value: 'PN16 / PN25 / PN40' },
+      { label: 'Body Materials', value: 'Bronze / brass / cast iron / stainless steel' },
+      { label: 'Media', value: 'Water · Steam · Compressed air · Non-corrosive gas' },
+      { label: 'End Connection', value: 'Screwed (BSP/NPT) · Flanged' },
+      { label: 'Set Range', value: 'Factory adjustable 0.5–16 bar downstream' },
+      { label: 'Applications', value: 'Building services · Steam mains · Compressed air · Water supply zones · Process utilities' },
+    ],
+    industries: ['HVAC', 'Water Treatment', 'Power Generation', 'Oil & Gas', 'Chemical Processing', 'Municipal Supply'],
+    compliance: ['ISO 9001:2015', 'PED 2014/68/EU', 'WRAS'],
+  },
+  {
+    id: 'steam-trap',
+    slug: 'steam-trap',
+    name: 'Steam Traps',
+    shortName: 'Steam Trap',
+    tagline: 'Thermodynamic · Thermostatic · Float & Thermostatic — Condensate Drainage',
+    description:
+      'ISA steam traps automatically discharge condensate, air, and non-condensable gases from steam systems while preventing live steam loss. Available in thermodynamic (robust, high-pressure), thermostatic (bimetallic/capsule), and float & thermostatic (continuous discharge) types to match every steam application.',
+    useCase:
+      'Install on steam mains, heat exchangers, jacketed vessels, tracing lines, and steam distribution headers. Select thermodynamic for high-pressure main lines; float & thermostatic for heat exchangers requiring continuous condensate removal; thermostatic for small steam lines and tracing.',
+    icon: '💨',
+    specs: [
+      { label: 'Types', value: 'Thermodynamic (TD) · Thermostatic Bimetallic · Float & Thermostatic (F&T)' },
+      { label: 'Size Range', value: '½" to 2" (DN15–DN50)' },
+      { label: 'Max Pressure', value: 'Up to 42 bar (type dependent)' },
+      { label: 'Max Temperature', value: 'Up to 450°C (thermodynamic)' },
+      { label: 'Body Materials', value: 'Stainless steel · Carbon steel · Cast iron' },
+      { label: 'End Connection', value: 'Screwed (BSP/NPT) · Socket Weld · Flanged' },
+      { label: 'Discharge Capacity', value: 'Up to 750 kg/h condensate (model dependent)' },
+      { label: 'Applications', value: 'Steam mains · Heat exchangers · Jacketed vessels · Tracing lines · Process steam' },
+    ],
+    industries: ['Power Generation', 'Chemical Processing', 'Oil & Gas', 'Food & Beverage', 'HVAC'],
+    compliance: ['ISO 9001:2015', 'PED 2014/68/EU', 'BS 6023'],
+  },
+  {
+    id: 'sight-glass',
+    slug: 'sight-glass',
+    name: 'Sight Glass & Flow Indicators',
+    shortName: 'Sight Glass',
+    tagline: 'Visual Flow Verification — Inline, Wafer & Flange-End Designs',
+    description:
+      'ISA sight glasses and flow indicators provide visual confirmation of flow direction, rate, and fluid condition in pipelines. Available in single-window, double-window (through-view), and wye-pattern designs for water, steam, chemicals, and hygienic applications with borosilicate glass or quartz sight ports.',
+    useCase:
+      'Install on pump discharge lines, chemical dosing systems, condensate return lines, and cooling circuits to visually confirm flow presence and detect air locks or blockages. Hygienic tri-clamp designs for food, beverage, and pharmaceutical applications.',
+    icon: '👁️',
+    specs: [
+      { label: 'Types', value: 'Single Window (Inline) · Double Window (Through-View) · Wye Pattern' },
+      { label: 'Size Range', value: 'DN15–DN150' },
+      { label: 'Pressure Class', value: 'PN16 / PN25 / PN40 · Class 800 (forged)' },
+      { label: 'Body Materials', value: 'Carbon steel · Stainless steel 316 · Bronze · PVC' },
+      { label: 'Sight Port', value: 'Borosilicate glass · Quartz · Mica (high-temp)' },
+      { label: 'End Connection', value: 'Screwed (BSP/NPT) · Flanged · Tri-Clamp (hygienic)' },
+      { label: 'Options', value: 'Flow indicator (paddle/disc) · Illuminated · PTFE-lined' },
+      { label: 'Applications', value: 'Pump discharge · Chemical dosing · Steam condensate · Cooling circuits · Hygienic process' },
+    ],
+    industries: ['Chemical Processing', 'Food & Beverage', 'Water Treatment', 'HVAC', 'Oil & Gas', 'Pharmaceutical'],
+    compliance: ['ISO 9001:2015', 'PED 2014/68/EU'],
+  },
+  {
+    id: 'block-bleed-valve',
+    slug: 'block-bleed-valve',
+    name: 'Block & Bleed Valves',
+    shortName: 'Block & Bleed',
+    tagline: 'Double Block & Bleed — Instrument Isolation, Gas & Process Safety',
+    description:
+      'ISA block and bleed valves provide positive double isolation of instrumentation and process lines with an integrated bleed/vent to confirm zero pressure between the two block valves. Essential for instrument maintenance, hot-tap connections, and gas line isolation. Available as needle valve manifolds, globe valve assemblies, and gate valve designs.',
+    useCase:
+      'Specify for pressure gauge and transmitter isolation, differential pressure tap isolation, hot-tap operations, and natural gas meter sets where double isolation with intermediate vent is required by HSE regulations or client safety standards.',
+    icon: '🔐',
+    specs: [
+      { label: 'Types', value: 'Double Block & Bleed (DBB) Globe · Needle Manifold · Gate Valve DBB' },
+      { label: 'Size Range', value: 'DN15–DN100 (valve body) · ½"–2" instrument connections' },
+      { label: 'Pressure Class', value: 'PN40 / ANSI 300 / ANSI 600 · Class 800–1500 (needle)' },
+      { label: 'Body Materials', value: 'Carbon steel · Stainless steel 316 · Duplex' },
+      { label: 'End Connection', value: 'Screwed (NPT) · Flanged · Compression · Socket Weld' },
+      { label: 'Bleed/Vent', value: 'Integrated needle bleed valve · ⅛" NPT vent port' },
+      { label: 'Applications', value: 'Instrument isolation · Gas meter sets · Hot-tap · Pressure gauge isolation · Differential pressure taps' },
+    ],
+    industries: ['Oil & Gas', 'Chemical Processing', 'Power Generation', 'Mining', 'Water Treatment'],
+    compliance: ['ISO 9001:2015', 'API 6D', 'PED 2014/68/EU', 'ATEX (selection)'],
+  },
 ]
 
 export function getProduct(slug: string): Product | undefined {

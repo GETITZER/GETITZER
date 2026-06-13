@@ -18,8 +18,12 @@ const productLinks = [
   { label: 'DXST Slurry KGV',     sub: '466% longer life · Mining #1',              to: '/products/dxst-kgv' },
   { label: 'Y-Strainers',          sub: 'Y-Type · Basket · Pipeline Protection',     to: '/products/y-strainer' },
   { label: 'Control Valves',       sub: 'PRV · Flow Control · Level Control',        to: '/products/control-valve' },
-  { label: 'Diaphragm Valves',     sub: 'Chemical & Slurry · Weir & Full Bore',      to: '/products/diaphragm-valve' },
-  { label: 'Safety Relief Valves', sub: 'Spring-Loaded · Pilot-Operated · API 520',  to: '/products/safety-relief-valve' },
+  { label: 'Diaphragm Valves',          sub: 'Chemical & Slurry · Weir & Full Bore',      to: '/products/diaphragm-valve' },
+  { label: 'Safety Relief Valves',      sub: 'Spring-Loaded · Pilot-Operated · API 520',  to: '/products/safety-relief-valve' },
+  { label: 'Pressure Reducing Valves',  sub: 'Direct-Acting & Pilot-Operated · DN15–DN300',to: '/products/pressure-reducing-valve' },
+  { label: 'Steam Traps',               sub: 'Thermodynamic · Thermostatic · F&T',          to: '/products/steam-trap' },
+  { label: 'Sight Glass',               sub: 'Single · Double Window · Wye · Borosilicate', to: '/products/sight-glass' },
+  { label: 'Block & Bleed Valves',      sub: 'DBB Globe · Needle · Gate · ANSI 300–600',    to: '/products/block-bleed-valve' },
 ]
 
 const resourceLinks = [
