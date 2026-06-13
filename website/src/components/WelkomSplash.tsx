@@ -35,12 +35,12 @@ export default function WelkomSplash() {
         src="/videos/welkom.mp4"
         autoPlay muted playsInline
         className="absolute inset-0 w-full h-full object-cover"
-        style={{ opacity: 0.55 }}
+        style={{ opacity: 1 }}
         onEnded={dismiss}
       />
 
-      {/* Overlay gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-transparent to-slate-900/80" />
+      {/* Overlay gradient — kept light so the footage stays clear while text remains legible */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-900/30 via-transparent to-slate-900/55" />
 
       {/* Content */}
       <div className="relative z-10 text-center px-6 flex flex-col items-center gap-6">
