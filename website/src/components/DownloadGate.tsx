@@ -41,12 +41,22 @@ export default function DownloadGate({ fileName, fileHref, children, className }
     setError(null)
     setSubmitting(true)
 
-    // Log download lead (non-blocking — best effort)
+    // Capture download lead via Netlify Forms (non-blocking — best effort).
+    // Posts to the static skeleton path (public/__forms.html) so Netlify's
+    // form handler processes it; never block the download on a network error.
     try {
-      await fetch('https://formspree.io/f/placeholder', {
+      const body = new URLSearchParams({
+        'form-name': 'datasheet-download',
+        'bot-field': '',
+        name: form.name,
+        email: form.email,
+        company: form.company,
+        document: fileName,
+      })
+      await fetch('/__forms.html', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, document: fileName, _subject: `Download: ${fileName}` }),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body.toString(),
       }).catch(() => {}) // don't block download on network error
     } catch { /* ignore */ }
 
