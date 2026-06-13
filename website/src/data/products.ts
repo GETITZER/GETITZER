@@ -29,6 +29,8 @@ export const products: Product[] = [
     useCase:
       'Specify this valve for systems requiring fast shut-off, leak-proof sealing, and minimal maintenance in high-pressure or corrosive service.',
     icon: '⚙️',
+    image: '/images/products/ball-valve-nobg.jpg',
+    imageAlt: 'ISA ball valve — API 6D certified full-bore quarter-turn shut-off valve',
     specs: [
       { label: 'Application', value: 'Chemical, petrochemical, oil & gas, general industrial' },
       { label: 'Function', value: 'Quarter-turn rotary shut-off with full bore flow' },
@@ -54,6 +56,8 @@ export const products: Product[] = [
     useCase:
       'Specify this valve for systems requiring compact design, fast quarter-turn operation, and cost-effective flow control in water, air, or non-corrosive media.',
     icon: '🦋',
+    image: '/images/products/butterfly-valve-clean.png',
+    imageAlt: 'ISA butterfly valve — wafer-type quarter-turn valve for large-volume flow control',
     specs: [
       { label: 'Application', value: 'Large volume flow systems, water, air, non-corrosive media' },
       { label: 'Function', value: 'Quarter-turn disc for rapid shut-off and throttling' },
@@ -79,6 +83,8 @@ export const products: Product[] = [
     useCase:
       'Specify this valve for systems requiring minimal flow restriction and full-bore isolation in clean water, HVAC, or municipal service where infrequent operation is expected.',
     icon: '🔧',
+    image: '/images/products/gate-valve-clean.jpg',
+    imageAlt: 'ISA gate valve — SABS 664 full-bore resilient-seat isolation valve',
     specs: [
       { label: 'Application', value: 'Clean water, HVAC, low-turbulence flow systems' },
       { label: 'Function', value: 'Rising or non-rising stem for linear shut-off' },
@@ -103,8 +109,8 @@ export const products: Product[] = [
     useCase:
       'Specify this valve for thickener underflow, cyclone feed, tailings lines, and CIL/CIP circuits where standard knife gate or ball valves fail within months due to abrasion or chemical attack.',
     icon: '🔴',
-    image: '/images/products/isa-flex-pinch-sleeve.png',
-    imageAlt: 'ISA-Flex abrasion resistant pinch valve sleeve — PN16, ISO 5208 Grade A zero leakage, mining specification datasheet',
+    image: '/images/products/pinch-valve-orange.jpg',
+    imageAlt: 'ISA Pinch Valve Series — ISO 5208 Grade A zero-leakage heavy-duty mining valve in ISA orange',
     badge: 'NEW · AUDIT GRADE A',
     badgeColor: 'red',
     featured: true,
@@ -169,6 +175,8 @@ export const products: Product[] = [
     useCase:
       'Specify the DXST when valve service life under 6 months is unacceptable. Proven to extend life from 3 months to 14 months in Northern Cape copper mining thickener underflow. Part number format: DXST-[DN Size]-[Material]-[Pressure].',
     icon: '🟠',
+    image: '/images/products/dxst-kgv.png',
+    imageAlt: 'ISA DXST Series slurry knife gate valve — heavy-duty mining edition with ISA-Shield polymer lining',
     badge: '466% LONGER LIFE',
     badgeColor: 'green',
     featured: true,
@@ -205,6 +213,8 @@ export const products: Product[] = [
     useCase:
       'Specify for systems requiring positive shut-off in slurry, abrasive fluids, or solids-laden media. Available in Wafer, Lug, and Flanged end connections across DN25–DN300. Typical applications: Thickener Underflow, Mill Discharge, Tailings & Slurry Lines, Slurry Pump Isolation.',
     icon: '🔪',
+    image: '/images/products/knife-gate-valve-isa.jpg',
+    imageAlt: 'ISA high-performance slurry knife gate valve — DN25 to DN300 for abrasive mining media',
     specs: [
       { label: 'Size Range',        value: 'DN25–DN300 (DN25, DN40, DN55, DN60, DN105, DN125, DN160, DN250, DN300)' },
       { label: 'Pressure Rating',   value: 'PN6 to PN20 (size dependent)' },

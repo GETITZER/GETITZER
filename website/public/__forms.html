@@ -1,0 +1,24 @@
+<!doctype html>
+<!--
+  Static form skeleton for Netlify build-time form detection.
+  This SPA renders forms client-side, so Netlify's build bot cannot see them.
+  Every Netlify-handled form in the app must be mirrored here with matching
+  name and field names. Not linked or shown to users.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>ISA Valve Solutions — form registration</title>
+  </head>
+  <body>
+    <!-- Gated datasheet / document downloads (DownloadGate.tsx) -->
+    <form name="datasheet-download" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="datasheet-download" />
+      <input name="bot-field" />
+      <input name="name" />
+      <input type="email" name="email" />
+      <input name="company" />
+      <input name="document" />
+    </form>
+  </body>
+</html>

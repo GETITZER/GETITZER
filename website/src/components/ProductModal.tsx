@@ -74,9 +74,18 @@ export default function ProductModal({ product, onClose }: Props) {
             </button>
 
             <div className="flex flex-col sm:flex-row sm:items-start gap-6">
-              {/* Illustration */}
-              <div className="flex-shrink-0 w-full sm:w-56 h-44 bg-white/10 rounded-2xl flex items-center justify-center border border-white/20 p-4">
-                <ValveIllustration type={slugType} className="w-full h-full" />
+              {/* Product image / illustration */}
+              <div className="flex-shrink-0 w-full sm:w-56 h-44 bg-white rounded-2xl flex items-center justify-center border border-white/20 p-4 overflow-hidden">
+                {product.image ? (
+                  <img
+                    src={product.image}
+                    alt={product.imageAlt ?? `${product.name} — ISA Valve Solutions`}
+                    loading="lazy"
+                    className="w-full h-full object-contain"
+                  />
+                ) : (
+                  <ValveIllustration type={slugType} className="w-full h-full" />
+                )}
               </div>
 
               {/* Title block */}
