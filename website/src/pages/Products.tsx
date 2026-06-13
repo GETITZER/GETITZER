@@ -5,12 +5,28 @@ import { products } from '../data/products'
 import { usePageMeta } from '../hooks/usePageMeta'
 
 const PRODUCT_PHOTOS: Record<string, string> = {
-  'ball-valve':            '/images/products/ball-valve-nobg.jpg',
-  'butterfly-valve':       '/images/products/butterfly-valve-clean.png',
-  'gate-valve':            '/images/products/gate-valve-clean.jpg',
-  'pinch-valve':           '/images/products/pinch-valve-orange.jpg',
-  'dxst-kgv':              '/images/products/dxst-kgv.png',
-  'knife-gate-valve':      '/images/products/knife-gate-valve-isa.jpg',
+  'ball-valve':                '/images/products/ball-valve-nobg.jpg',
+  'butterfly-valve':           '/images/products/butterfly-valve-clean.png',
+  'gate-valve':                '/images/products/gate-valve-clean.jpg',
+  'pinch-valve':               '/images/products/pinch-valve-orange.jpg',
+  'dxst-kgv':                  '/images/products/dxst-kgv.png',
+  'knife-gate-valve':          '/images/products/knife-gate-valve-isa.jpg',
+  'check-valve':               '/images/products/check-valve-product.jpg',
+  'globe-valve':               '/images/products/globe-valve-product.jpg',
+  'y-strainer':                '/images/products/y-strainer-product.jpg',
+  'control-valve':             '/images/products/control-valve-product.jpg',
+  'diaphragm-valve':           '/images/products/diaphragm-valve-product.jpg',
+  'safety-relief-valve':       '/images/products/safety-relief-valve-product.jpg',
+  'pressure-reducing-valve':   '/images/products/pressure-reducing-valve-product.jpg',
+  'steam-trap':                '/images/products/steam-trap-product.jpg',
+  'sight-glass':               '/images/products/sight-glass-product.jpg',
+  'block-bleed-valve':         '/images/products/block-bleed-valve-product.jpg',
+  'steam-valve':               '/images/products/steam-valve-product.jpg',
+  'solenoid-valve':            '/images/products/solenoid-valve-product.jpg',
+  'actuated-valve':            '/images/products/actuated-valve-product.jpg',
+  'pneumatic-valve':           '/images/products/pneumatic-valve-product.jpg',
+  'instrumentation':           '/images/products/instrumentation-product.jpg',
+  'fittings':                  '/images/products/fittings-product.jpg',
 }
 
 const CATEGORIES = [
