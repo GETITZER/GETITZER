@@ -5,54 +5,114 @@ import { products } from '../data/products'
 import { usePageMeta } from '../hooks/usePageMeta'
 
 const PRODUCT_PHOTOS: Record<string, string> = {
-  'ball-valve':                '/images/products/ball-valve-nobg.jpg',
-  'butterfly-valve':           '/images/products/butterfly-valve-clean.png',
-  'gate-valve':                '/images/products/gate-valve-clean.jpg',
-  'pinch-valve':               '/images/products/pinch-valve-orange.jpg',
-  'dxst-kgv':                  '/images/products/dxst-kgv.png',
-  'knife-gate-valve':          '/images/products/knife-gate-valve-isa.jpg',
-  'check-valve':               '/images/products/check-valve-product.jpg',
-  'globe-valve':               '/images/products/globe-valve-product.jpg',
-  'y-strainer':                '/images/products/y-strainer-product.jpg',
-  'control-valve':             '/images/products/control-valve-product.jpg',
-  'diaphragm-valve':           '/images/products/diaphragm-valve-product.jpg',
-  'safety-relief-valve':       '/images/products/safety-relief-valve-product.jpg',
-  'pressure-reducing-valve':   '/images/products/pressure-reducing-valve-product.jpg',
-  'steam-trap':                '/images/products/steam-trap-product.jpg',
-  'sight-glass':               '/images/products/sight-glass-product.jpg',
-  'block-bleed-valve':         '/images/products/block-bleed-valve-product.jpg',
-  'steam-valve':               '/images/products/steam-valve-product.jpg',
-  'solenoid-valve':            '/images/products/solenoid-valve-product.jpg',
-  'actuated-valve':            '/images/products/actuated-valve-product.jpg',
-  'pneumatic-valve':           '/images/products/pneumatic-valve-product.jpg',
-  'instrumentation':           '/images/products/instrumentation-product.jpg',
-  'fittings':                  '/images/products/fittings-product.jpg',
+  // Main categories
+  'ball-valve':                    '/images/products/ball-valve-nobg.jpg',
+  'butterfly-valve':               '/images/products/butterfly-valve-wras.jpg',
+  'gate-valve':                    '/images/products/gate-valve-clean.jpg',
+  'pinch-valve':                   '/images/products/pinch-valve-orange.jpg',
+  'dxst-kgv':                      '/images/products/dxst-kgv.png',
+  'knife-gate-valve':              '/images/products/knife-gate-valve-isa.jpg',
+  'check-valve':                   '/images/products/check-valve-product.jpg',
+  'globe-valve':                   '/images/products/globe-valve-product.jpg',
+  'y-strainer':                    '/images/products/y-strainer-product.jpg',
+  'control-valve':                 '/images/products/control-valve-product.jpg',
+  'diaphragm-valve':               '/images/products/diaphragm-valve-product.jpg',
+  'safety-relief-valve':           '/images/products/safety-relief-valve-product.jpg',
+  'pressure-reducing-valve':       '/images/products/pressure-reducing-valve-product.jpg',
+  'steam-trap':                    '/images/products/steam-trap-product.jpg',
+  'sight-glass':                   '/images/products/sight-glass-product.jpg',
+  'block-bleed-valve':             '/images/products/block-bleed-valve-product.jpg',
+  'steam-valve':                   '/images/products/steam-valve-product.jpg',
+  'solenoid-valve':                '/images/products/solenoid-valve-product.jpg',
+  'actuated-valve':                '/images/products/actuated-valve-product.jpg',
+  'pneumatic-valve':               '/images/products/pneumatic-valve-product.jpg',
+  'instrumentation':               '/images/products/instrumentation-product.jpg',
+  'fittings':                      '/images/products/fittings-product.jpg',
+  // Ball valve subcategories
+  'ball-valve-2piece':             '/images/products/ball-valve-2piece.jpg',
+  'ball-valve-3piece':             '/images/products/ball-valve-3piece.jpg',
+  'ball-valve-3way':               '/images/products/ball-valve-3way.jpg',
+  'ball-valve-brass':              '/images/products/ball-valve-brass.jpg',
+  'ball-valve-carbon-steel':       '/images/products/ball-valve-carbon-steel.jpg',
+  'ball-valve-flanged':            '/images/products/ball-valve-flanged.jpg',
+  'ball-valve-gas':                '/images/products/ball-valve-gas.jpg',
+  'ball-valve-high-pressure':      '/images/products/ball-valve-high-pressure.jpg',
+  'ball-valve-limit-switch':       '/images/products/ball-valve-limit-switch.jpg',
+  'ball-valve-mini':               '/images/products/ball-valve-mini.jpg',
+  'ball-valve-plastic':            '/images/products/ball-valve-plastic.jpg',
+  'ball-valve-sanitary':           '/images/products/ball-valve-sanitary.jpg',
+  'ball-valve-stainless':          '/images/products/ball-valve-stainless.jpg',
+  'ball-valve-wafer':              '/images/products/ball-valve-wafer.jpg',
+  'ball-valve-wras':               '/images/products/ball-valve-wras.jpg',
+  // Butterfly valve subcategories
+  'butterfly-valve-double-offset': '/images/products/butterfly-valve-double-offset.jpg',
+  'butterfly-valve-high-performance': '/images/products/butterfly-valve-hp.jpg',
+  'butterfly-valve-hygienic':      '/images/products/butterfly-valve-hygienic.jpg',
+  'butterfly-valve-lugged':        '/images/products/butterfly-valve-lugged.jpg',
+  'butterfly-valve-marine':        '/images/products/butterfly-valve-marine.png',
+  'butterfly-valve-plastic':       '/images/products/butterfly-valve-plastic.jpg',
+  'butterfly-valve-process':       '/images/products/butterfly-valve-process.jpg',
+  'butterfly-valve-ptfe':          '/images/products/butterfly-valve-ptfe.png',
+  'butterfly-valve-resilient':     '/images/products/butterfly-valve-resilient.jpg',
+  'butterfly-valve-stainless':     '/images/products/butterfly-valve-stainless.png',
+  'butterfly-valve-wafer':         '/images/products/butterfly-valve-wafer.jpg',
+  'butterfly-valve-wras':          '/images/products/butterfly-valve-wras.jpg',
 }
 
 const CATEGORIES = [
-  { label: 'All Products',              slug: 'all' },
-  { label: 'Ball Valves',               slug: 'ball-valve' },
-  { label: 'Butterfly Valves',          slug: 'butterfly-valve' },
-  { label: 'Gate Valves',               slug: 'gate-valve' },
-  { label: 'Check Valves',              slug: 'check-valve' },
-  { label: 'Globe Valves',              slug: 'globe-valve' },
-  { label: 'Knife Gate Valves',         slug: 'knife-gate-valve' },
-  { label: 'Pinch Valves',              slug: 'pinch-valve' },
-  { label: 'DXST Slurry KGV',          slug: 'dxst-kgv' },
-  { label: 'Diaphragm Valves',          slug: 'diaphragm-valve' },
-  { label: 'Control Valves',            slug: 'control-valve' },
-  { label: 'Pressure Reducing Valves',  slug: 'pressure-reducing-valve' },
-  { label: 'Safety & Relief Valves',    slug: 'safety-relief-valve' },
-  { label: 'Steam Valves',              slug: 'steam-valve' },
-  { label: 'Steam Traps',               slug: 'steam-trap' },
-  { label: 'Y-Strainers',               slug: 'y-strainer' },
-  { label: 'Sight Glass',               slug: 'sight-glass' },
-  { label: 'Block & Bleed Valves',      slug: 'block-bleed-valve' },
-  { label: 'Solenoid Valves',           slug: 'solenoid-valve' },
-  { label: 'Actuated Valves',           slug: 'actuated-valve' },
-  { label: 'Pneumatic Valves',          slug: 'pneumatic-valve' },
-  { label: 'Instrumentation',           slug: 'instrumentation' },
-  { label: 'Pipe Fittings',             slug: 'fittings' },
+  { label: 'All Products',                    slug: 'all',                          indent: 0 },
+  // Ball Valves
+  { label: 'Ball Valves',                     slug: 'ball-valve',                   indent: 0 },
+  { label: '  2 Piece',                       slug: 'ball-valve-2piece',            indent: 1 },
+  { label: '  3 Piece',                       slug: 'ball-valve-3piece',            indent: 1 },
+  { label: '  3 Way',                         slug: 'ball-valve-3way',              indent: 1 },
+  { label: '  Brass',                         slug: 'ball-valve-brass',             indent: 1 },
+  { label: '  Carbon Steel',                  slug: 'ball-valve-carbon-steel',      indent: 1 },
+  { label: '  Flanged',                       slug: 'ball-valve-flanged',           indent: 1 },
+  { label: '  GAS Approved',                  slug: 'ball-valve-gas',               indent: 1 },
+  { label: '  High Pressure',                 slug: 'ball-valve-high-pressure',     indent: 1 },
+  { label: '  With Limit Switch',             slug: 'ball-valve-limit-switch',      indent: 1 },
+  { label: '  Mini',                          slug: 'ball-valve-mini',              indent: 1 },
+  { label: '  Plastic / PVC',                 slug: 'ball-valve-plastic',           indent: 1 },
+  { label: '  Sanitary',                      slug: 'ball-valve-sanitary',          indent: 1 },
+  { label: '  Stainless Steel',               slug: 'ball-valve-stainless',         indent: 1 },
+  { label: '  Wafer Pattern',                 slug: 'ball-valve-wafer',             indent: 1 },
+  { label: '  WRAS Approved',                 slug: 'ball-valve-wras',              indent: 1 },
+  // Butterfly Valves
+  { label: 'Butterfly Valves',                slug: 'butterfly-valve',              indent: 0 },
+  { label: '  Double Offset',                 slug: 'butterfly-valve-double-offset',indent: 1 },
+  { label: '  High Performance',              slug: 'butterfly-valve-high-performance', indent: 1 },
+  { label: '  Hygienic',                      slug: 'butterfly-valve-hygienic',     indent: 1 },
+  { label: '  Lugged',                        slug: 'butterfly-valve-lugged',       indent: 1 },
+  { label: '  Marine',                        slug: 'butterfly-valve-marine',       indent: 1 },
+  { label: '  Plastic / PVDF',                slug: 'butterfly-valve-plastic',      indent: 1 },
+  { label: '  Process',                       slug: 'butterfly-valve-process',      indent: 1 },
+  { label: '  PTFE Lined',                    slug: 'butterfly-valve-ptfe',         indent: 1 },
+  { label: '  Resilient Seat',                slug: 'butterfly-valve-resilient',    indent: 1 },
+  { label: '  Stainless Steel',               slug: 'butterfly-valve-stainless',    indent: 1 },
+  { label: '  Wafer',                         slug: 'butterfly-valve-wafer',        indent: 1 },
+  { label: '  WRAS Approved',                 slug: 'butterfly-valve-wras',         indent: 1 },
+  // Other valve types
+  { label: 'Gate Valves',                     slug: 'gate-valve',                   indent: 0 },
+  { label: 'Check Valves',                    slug: 'check-valve',                  indent: 0 },
+  { label: 'Globe Valves',                    slug: 'globe-valve',                  indent: 0 },
+  { label: 'Knife Gate Valves',               slug: 'knife-gate-valve',             indent: 0 },
+  { label: 'Pinch Valves',                    slug: 'pinch-valve',                  indent: 0 },
+  { label: 'DXST Slurry KGV',                slug: 'dxst-kgv',                     indent: 0 },
+  { label: 'Diaphragm Valves',                slug: 'diaphragm-valve',              indent: 0 },
+  { label: 'Control Valves',                  slug: 'control-valve',                indent: 0 },
+  { label: 'Pressure Reducing Valves',        slug: 'pressure-reducing-valve',      indent: 0 },
+  { label: 'Safety & Relief Valves',          slug: 'safety-relief-valve',          indent: 0 },
+  { label: 'Steam Valves',                    slug: 'steam-valve',                  indent: 0 },
+  { label: 'Steam Traps',                     slug: 'steam-trap',                   indent: 0 },
+  { label: 'Y-Strainers',                     slug: 'y-strainer',                   indent: 0 },
+  { label: 'Sight Glass',                     slug: 'sight-glass',                  indent: 0 },
+  { label: 'Block & Bleed Valves',            slug: 'block-bleed-valve',            indent: 0 },
+  { label: 'Solenoid Valves',                 slug: 'solenoid-valve',               indent: 0 },
+  { label: 'Actuated Valves',                 slug: 'actuated-valve',               indent: 0 },
+  { label: 'Pneumatic Valves',                slug: 'pneumatic-valve',              indent: 0 },
+  { label: 'Instrumentation',                 slug: 'instrumentation',              indent: 0 },
+  { label: 'Pipe Fittings',                   slug: 'fittings',                     indent: 0 },
 ]
 
 const MATERIALS = ['Cast Iron', 'Ductile Iron', 'Carbon Steel', 'Stainless Steel', 'Brass', 'Bronze', 'PVDF / Plastic']
@@ -108,7 +168,7 @@ export default function Products() {
   const filtered = products.filter(p => {
     const q = text.toLowerCase()
     const textMatch = !q || p.name.toLowerCase().includes(q) || p.shortName?.toLowerCase().includes(q) || p.industries.some(i => i.toLowerCase().includes(q))
-    const catMatch = category === 'all' || p.slug === category
+    const catMatch = category === 'all' || p.slug === category || p.slug.startsWith(category + '-')
     const specText = p.specs.map(s => s.value.toLowerCase()).join(' ')
     const matMatch = !materials.length || materials.some(m => specText.includes(m.split(' / ')[0].toLowerCase()) || specText.includes(m.toLowerCase()))
     const connMatch = !connections.length || connections.some(c => specText.includes(c.toLowerCase().split(' / ')[0]))
@@ -130,10 +190,12 @@ export default function Products() {
             <li key={cat.slug}>
               <button
                 onClick={() => setCategory(cat.slug)}
-                className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center justify-between group ${
+                className={`w-full text-left rounded-lg text-sm transition-colors flex items-center justify-between group ${
+                  cat.indent ? 'pl-6 pr-3 py-1.5' : 'px-3 py-2'
+                } ${
                   category === cat.slug
-                    ? 'bg-isa-600 text-white font-semibold'
-                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                    ? cat.indent ? 'text-isa-600 font-semibold bg-isa-50' : 'bg-isa-600 text-white font-semibold'
+                    : cat.indent ? 'text-slate-500 hover:text-slate-800 hover:bg-slate-50' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
                 }`}
               >
                 {cat.label}
