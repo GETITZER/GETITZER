@@ -409,6 +409,7 @@ function IndustriesShowcase() {
                   style={{
                     opacity: isHovered ? 1 : 0,
                     transform: isHovered ? 'translateY(0)' : 'translateY(24px)',
+                    pointerEvents: isHovered ? 'auto' : 'none',
                     background: 'rgba(15,23,42,0.96)',
                     backdropFilter: 'blur(12px)',
                     borderTop: '1px solid rgba(255,255,255,0.08)',

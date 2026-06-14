@@ -9,11 +9,11 @@ export default function WelcomePopup() {
 
   useEffect(() => {
     if (sessionStorage.getItem('isa-welcome-shown')) return
-    // Wait for WelkomSplash to finish before showing popup
-    const t = setTimeout(() => {
-      setVisible(true)
-      sessionStorage.setItem('isa-welcome-shown', '1')
-    }, 4000)
+    sessionStorage.setItem('isa-welcome-shown', '1')
+    // Skip popup when the WelkomSplash intro already played this session
+    // (both share the same sessionStorage, splash sets 'isa-splash-shown' first)
+    if (sessionStorage.getItem('isa-splash-shown')) return
+    const t = setTimeout(() => setVisible(true), 3000)
     return () => clearTimeout(t)
   }, [])
 
