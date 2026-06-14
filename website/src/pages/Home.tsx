@@ -4,7 +4,7 @@ import {
   ArrowRight, Shield,
   HardHat, Droplets, Flame, FlaskConical, Building2, FileText,
   Wrench, Award, Truck, Phone, Mail, MapPin,
-  Download, Calculator, BookOpen,
+  Download, Calculator, BookOpen, Pickaxe, Waves, Factory,
 } from 'lucide-react'
 import { WhatsAppIcon, WA_QUOTE_URL } from '../components/WhatsAppButton'
 import type { Product } from '../types'
@@ -146,6 +146,75 @@ const RESOURCES = [
   { Icon: Shield,      title: 'Standards Reference',      sub: 'ISO, API 6D, SABS, WRAS',              to: '/resources#standards' },
 ]
 
+const SPOTLIGHT = [
+  {
+    title: 'Control Valves',
+    subtitle: 'PRECISION CONTROL · PURE PERFORMANCE',
+    tag: 'Municipal Waterworks',
+    img: '/images/featured/control-valve-waterworks.png',
+    glowRgb: '0, 102, 204',
+    slug: 'ball-valve',
+  },
+  {
+    title: 'ISA Pinch Valves',
+    subtitle: 'SIMPLE · RELIABLE · BUILT TO PERFORM',
+    tag: 'Mining · Chemical · Slurry',
+    img: '/images/featured/pinch-valve-lineup.png',
+    glowRgb: '249, 115, 22',
+    slug: 'pinch-valve',
+  },
+  {
+    title: 'Slurry Pinch Knife Gate',
+    subtitle: 'BUILT TO CUT · BUILT TO LAST',
+    tag: 'ISO 5208 Grade A · Zero Leakage',
+    img: '/images/featured/slurry-knife-gate-valve.png',
+    glowRgb: '239, 68, 68',
+    slug: 'knife-gate-valve',
+  },
+]
+
+const INDUSTRY_SHOWCASE = [
+  {
+    name: 'Mining & Minerals',
+    Icon: Pickaxe,
+    subtitle: 'Engineered for Abrasion',
+    img: '/images/featured/industry-mining.png',
+    products: ['DXST™ Slurry KGV', 'Pinch Valves', 'Slurry Samplers', 'Knife Gate Valves'],
+    desc: 'Zero-leakage slurry isolation, tailings and concentrate transfer — built for abrasive mining circuits across Africa.',
+    to: '/industries/mining',
+    glowCss: 'rgba(217,119,6,0.25)',
+    textCls: 'text-amber-400',
+    tagCls: 'bg-amber-500/10 border-amber-500/30 text-amber-300',
+    accentCls: 'bg-amber-500',
+  },
+  {
+    name: 'Water & Waterworks',
+    Icon: Waves,
+    subtitle: 'WRAS Approved Flow Control',
+    img: '/images/featured/industry-waterworks.png',
+    products: ['Control Valves', 'Butterfly Valves', 'Gate Valves', 'Pressure Reducing'],
+    desc: 'WRAS-compliant butterfly and gate valves for municipal supply, pressure management and distribution networks.',
+    to: '/industries/water-treatment',
+    glowCss: 'rgba(0,102,204,0.25)',
+    textCls: 'text-blue-400',
+    tagCls: 'bg-blue-500/10 border-blue-500/30 text-blue-300',
+    accentCls: 'bg-blue-500',
+  },
+  {
+    name: 'Oil, Gas & Chemical',
+    Icon: Factory,
+    subtitle: 'API 6D · ISO 5208 Grade A',
+    img: '/images/featured/industry-refinery.png',
+    products: ['Ball Valves', 'Actuated Packages', 'Needle Valves', 'Instrumentation'],
+    desc: 'Fugitive-emission-rated ball and gate valves, full actuated packages and instrumentation for critical process control.',
+    to: '/industries/oil-gas',
+    glowCss: 'rgba(249,115,22,0.22)',
+    textCls: 'text-isa-400',
+    tagCls: 'bg-isa-500/10 border-isa-500/30 text-isa-300',
+    accentCls: 'bg-isa-500',
+  },
+]
+
 /* ── Industry selector ─────────────────────────────────────────── */
 function IndustrySelector() {
   const [active, setActive] = useState(0)
@@ -188,6 +257,189 @@ function IndustrySelector() {
   )
 }
 
+/* ── Spotlight Products (dark, lit product showcase) ───────────── */
+function SpotlightProducts() {
+  return (
+    <section className="bg-slate-950 py-24 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-14">
+          <span className="text-xs font-bold text-isa-400 uppercase tracking-widest block mb-3">ISA Signature Products</span>
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+            Engineered for Africa's<br />
+            <span className="text-isa-400">Toughest Conditions</span>
+          </h2>
+          <p className="text-slate-400 text-lg mt-4 max-w-xl mx-auto">
+            Purpose-built product lines with decades of field-proven performance.
+          </p>
+        </div>
+
+        {/* Top 3 spotlight cards */}
+        <div className="grid lg:grid-cols-3 gap-5 mb-5">
+          {SPOTLIGHT.map((item) => (
+            <Link key={item.slug} to={`/products/${item.slug}`}
+              className="group relative rounded-2xl overflow-hidden border border-slate-800 hover:border-slate-600 transition-all duration-500 flex flex-col"
+              style={{ background: 'linear-gradient(160deg, #1e293b 0%, #0f172a 100%)' }}>
+
+              {/* Spotlight glow — top-center radial on hover */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{ background: `radial-gradient(ellipse at 50% 20%, rgba(${item.glowRgb},0.22) 0%, transparent 65%)` }} />
+
+              {/* Bottom warm glow on hover */}
+              <div className="absolute bottom-0 left-0 right-0 h-40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{ background: `linear-gradient(to top, rgba(${item.glowRgb},0.14), transparent)` }} />
+
+              {/* Product flyer image */}
+              <div className="relative overflow-hidden" style={{ height: '240px' }}>
+                <img src={item.img} alt={item.title}
+                  className="w-full h-full object-cover object-top group-hover:scale-[1.04] transition-transform duration-700" />
+                {/* Subtle dark vignette at bottom to blend into card */}
+                <div className="absolute inset-x-0 bottom-0 h-20 pointer-events-none"
+                  style={{ background: 'linear-gradient(to top, #1e293b, transparent)' }} />
+              </div>
+
+              {/* Text content */}
+              <div className="relative z-10 p-6 flex flex-col flex-1">
+                <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-isa-400 border border-isa-800 bg-isa-950/60 px-2.5 py-1 rounded-full mb-3 w-fit">
+                  {item.tag}
+                </span>
+                <h3 className="text-xl font-extrabold text-white mb-1 group-hover:text-isa-300 transition-colors duration-300">{item.title}</h3>
+                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4">{item.subtitle}</p>
+                <span className="mt-auto flex items-center gap-2 text-sm font-bold text-isa-500 group-hover:text-isa-400 group-hover:gap-3 transition-all duration-200">
+                  View Specifications <ArrowRight className="w-4 h-4" />
+                </span>
+              </div>
+
+              {/* Glowing border on hover */}
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{ boxShadow: `inset 0 0 0 1px rgba(${item.glowRgb},0.35), 0 8px 40px rgba(${item.glowRgb},0.12)` }} />
+            </Link>
+          ))}
+        </div>
+
+        {/* Bottom 2 horizontal cards */}
+        <div className="grid lg:grid-cols-2 gap-5">
+          {[
+            { title: 'Slurry Sampler', sub: 'Precise · Reliable · Representative. Built for abrasive slurry sampling.', img: '/images/featured/slurry-sampler.png', slug: 'dxst-kgv', glowRgb: '239,68,68' },
+            { title: 'Complete Slurry Sampling System', sub: 'Smart Sampling · Better Data · Better Decisions. For thickener tanks & process lines.', img: '/images/featured/slurry-sampling-system.png', slug: 'dxst-kgv', glowRgb: '249,115,22' },
+          ].map(item => (
+            <Link key={item.title} to={`/products/${item.slug}`}
+              className="group flex overflow-hidden rounded-2xl border border-slate-800 hover:border-slate-600 transition-all duration-400"
+              style={{ background: 'linear-gradient(to right, #1e293b, #0f172a)' }}>
+              <div className="w-44 sm:w-56 flex-shrink-0 overflow-hidden relative">
+                <img src={item.img} alt={item.title}
+                  className="w-full h-full object-cover object-left group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute inset-y-0 right-0 w-8 pointer-events-none"
+                  style={{ background: 'linear-gradient(to right, transparent, #1e293b)' }} />
+              </div>
+              <div className="p-5 sm:p-6 flex flex-col justify-center">
+                <h3 className="font-extrabold text-white text-sm sm:text-base mb-1.5 group-hover:text-isa-300 transition-colors leading-snug">{item.title}</h3>
+                <p className="text-xs text-slate-500 leading-relaxed mb-3">{item.sub}</p>
+                <span className="flex items-center gap-1.5 text-xs font-bold text-isa-500 group-hover:gap-2.5 transition-all duration-200">
+                  View Details <ArrowRight className="w-3.5 h-3.5" />
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ── Industries We Serve (hover reveal popup cards) ────────────── */
+function IndustriesShowcase() {
+  const [hovered, setHovered] = useState<number | null>(null)
+
+  return (
+    <section className="bg-slate-900 py-24 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-14">
+          <span className="text-xs font-bold text-isa-400 uppercase tracking-widest block mb-3">Markets</span>
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+            Industries We Serve
+          </h2>
+          <p className="text-slate-400 text-lg mt-4 max-w-xl mx-auto">
+            Hover each sector to discover the ISA solutions specified for that application.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-3 gap-5">
+          {INDUSTRY_SHOWCASE.map((ind, idx) => {
+            const Icon = ind.Icon
+            const isHovered = hovered === idx
+            return (
+              <div key={ind.name}
+                onMouseEnter={() => setHovered(idx)}
+                onMouseLeave={() => setHovered(null)}
+                className="relative rounded-2xl overflow-hidden border border-slate-800 transition-all duration-500 cursor-pointer"
+                style={{
+                  height: '420px',
+                  boxShadow: isHovered ? `0 0 60px ${ind.glowCss}` : 'none',
+                  borderColor: isHovered ? 'rgba(255,255,255,0.15)' : undefined,
+                }}>
+
+                {/* Background image */}
+                <img src={ind.img} alt={ind.name}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
+                  style={{ transform: isHovered ? 'scale(1.06)' : 'scale(1)' }} />
+
+                {/* Dark overlay */}
+                <div className="absolute inset-0 bg-slate-900 transition-opacity duration-500"
+                  style={{ opacity: isHovered ? 0.6 : 0.72 }} />
+
+                {/* Left accent line */}
+                <div className={`absolute left-0 top-0 bottom-0 w-1 ${ind.accentCls} transition-opacity duration-300`}
+                  style={{ opacity: isHovered ? 1 : 0 }} />
+
+                {/* DEFAULT: Icon + title at bottom */}
+                <div className="absolute inset-0 flex flex-col justify-end p-7 transition-all duration-400"
+                  style={{ opacity: isHovered ? 0 : 1, transform: isHovered ? 'translateY(12px)' : 'translateY(0)' }}>
+                  <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center mb-4">
+                    <Icon className="w-5 h-5 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-extrabold text-white leading-tight mb-1">{ind.name}</h3>
+                  <p className={`text-sm font-semibold ${ind.textCls}`}>{ind.subtitle}</p>
+                  <p className="text-slate-500 text-xs mt-3 flex items-center gap-1.5">
+                    Hover to explore <ArrowRight className="w-3 h-3" />
+                  </p>
+                </div>
+
+                {/* HOVER: slide-up popup panel */}
+                <div className="absolute inset-x-0 bottom-0 transition-all duration-400"
+                  style={{
+                    opacity: isHovered ? 1 : 0,
+                    transform: isHovered ? 'translateY(0)' : 'translateY(24px)',
+                    background: 'rgba(15,23,42,0.96)',
+                    backdropFilter: 'blur(12px)',
+                    borderTop: '1px solid rgba(255,255,255,0.08)',
+                    padding: '24px',
+                  }}>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Icon className={`w-4 h-4 ${ind.textCls}`} />
+                    <h3 className={`text-base font-extrabold ${ind.textCls}`}>{ind.name}</h3>
+                  </div>
+                  <p className="text-slate-400 text-xs leading-relaxed mb-4">{ind.desc}</p>
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {ind.products.map(p => (
+                      <span key={p} className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border ${ind.tagCls}`}>
+                        {p}
+                      </span>
+                    ))}
+                  </div>
+                  <Link to={ind.to}
+                    className={`inline-flex items-center gap-1.5 text-sm font-bold ${ind.textCls} hover:text-white transition-colors duration-200`}>
+                    Explore Solutions <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 /* ═══════════════════════════════════════════════════════════════════ */
 export default function Home() {
   const [modal, setModal] = useState<Product | null>(null)
@@ -198,6 +450,8 @@ export default function Home() {
   const revealProjects     = useReveal()
   const revealResources    = useReveal()
   const revealCerts        = useReveal()
+  const revealSpotlight    = useReveal()
+  const revealIndustries   = useReveal()
 
   return (
     <div className="bg-white">
@@ -464,7 +718,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 4b. LIVE VALVE CUTAWAY ──────────────────────────────────── */}
+      {/* ── 4b. SPOTLIGHT PRODUCTS ──────────────────────────────────── */}
+      <div ref={revealSpotlight} className="reveal">
+        <SpotlightProducts />
+      </div>
+
+      {/* ── 4c. INDUSTRIES WE SERVE ─────────────────────────────────── */}
+      <div ref={revealIndustries} className="reveal">
+        <IndustriesShowcase />
+      </div>
+
+      {/* ── 4d. LIVE VALVE CUTAWAY ──────────────────────────────────── */}
       <section className="bg-white py-24 border-t border-slate-100 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div ref={revealCutaway} className="reveal grid lg:grid-cols-12 gap-12 items-center">
