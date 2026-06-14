@@ -93,6 +93,12 @@ const PRODUCT_PHOTOS: Record<string, string> = {
   'actuated-valve-butterfly-pneumatic':      '/images/products/actuated-butterfly-valve-pneumatic.webp',
   'actuated-valve-butterfly-electric':       '/images/products/actuated-butterfly-valve-electric.jpg',
   'actuated-valve-butterfly-plastic':        '/images/products/actuated-butterfly-valve-plastic.webp',
+  // Sight glass subcategories
+  'sight-glass-flanged':                     '/images/products/sight-glass-flanged.webp',
+  'sight-glass-screwed':                     '/images/products/sight-glass-screwed.webp',
+  'sight-glass-full-view':                   '/images/products/sight-glass-full-view.webp',
+  'sight-glass-brass':                       '/images/products/sight-glass-brass.png',
+  'sight-glass-double-window':               '/images/products/sight-glass-double-window.webp',
   // Instrumentation / gauge subcategories
   'instrumentation-pressure-gauge':          '/images/products/gauge-pressure-ss.webp',
   'instrumentation-digital-pressure-gauge':  '/images/products/gauge-pressure-digital.webp',
@@ -102,6 +108,16 @@ const PRODUCT_PHOTOS: Record<string, string> = {
   'instrumentation-thermometer-bimetallic':  '/images/products/thermometer-bimetallic.webp',
   'instrumentation-thermometer-digital':     '/images/products/thermometer-digital.webp',
   'instrumentation-gauge-accessories':       '/images/products/gauge-cock.webp',
+  // Flow measurement
+  'instrumentation-flow-indicator':          '/images/products/flow-indicator-rotary.webp',
+  'instrumentation-water-meter':             '/images/products/water-meter.webp',
+  'instrumentation-flow-transmitter':        '/images/products/flow-transmitter.webp',
+  'instrumentation-needle-valve':            '/images/products/needle-valve-ss.webp',
+  // Level measurement
+  'instrumentation-level-switch-float':      '/images/products/level-switch-float.webp',
+  'instrumentation-level-switch-vibrating':  '/images/products/level-switch-vibrating.webp',
+  'instrumentation-level-sensor-ultrasonic': '/images/products/level-sensor-ultrasonic.webp',
+  'instrumentation-level-controller':        '/images/products/level-controller.webp',
 }
 
 const CATEGORIES = [
@@ -171,6 +187,10 @@ const CATEGORIES = [
   { label: 'Steam Traps',                     slug: 'steam-trap',                   indent: 0 },
   { label: 'Y-Strainers',                     slug: 'y-strainer',                   indent: 0 },
   { label: 'Sight Glass',                     slug: 'sight-glass',                  indent: 0 },
+  { label: '  Flanged SS',                    slug: 'sight-glass-flanged',          indent: 1 },
+  { label: '  Screwed Inline',               slug: 'sight-glass-screwed',          indent: 1 },
+  { label: '  Full-View',                    slug: 'sight-glass-full-view',        indent: 1 },
+  { label: '  Brass / Steam',               slug: 'sight-glass-brass',            indent: 1 },
   { label: 'Block & Bleed Valves',            slug: 'block-bleed-valve',            indent: 0 },
   { label: 'Solenoid Valves',                 slug: 'solenoid-valve',               indent: 0 },
   { label: 'Actuated Valves',                 slug: 'actuated-valve',               indent: 0 },
@@ -197,6 +217,14 @@ const CATEGORIES = [
   { label: '  Bimetallic Thermometers',       slug: 'instrumentation-thermometer-bimetallic', indent: 1 },
   { label: '  Digital Thermometers',          slug: 'instrumentation-thermometer-digital',    indent: 1 },
   { label: '  Gauge Cocks & Siphons',         slug: 'instrumentation-gauge-accessories',      indent: 1 },
+  { label: '  Flow Indicators',              slug: 'instrumentation-flow-indicator',         indent: 1 },
+  { label: '  Water Meters',                 slug: 'instrumentation-water-meter',            indent: 1 },
+  { label: '  Flow Transmitters',            slug: 'instrumentation-flow-transmitter',       indent: 1 },
+  { label: '  Needle Valves',               slug: 'instrumentation-needle-valve',           indent: 1 },
+  { label: '  Float Level Switches',         slug: 'instrumentation-level-switch-float',     indent: 1 },
+  { label: '  Vibrating Fork Switches',      slug: 'instrumentation-level-switch-vibrating', indent: 1 },
+  { label: '  Ultrasonic Level Sensors',     slug: 'instrumentation-level-sensor-ultrasonic',indent: 1 },
+  { label: '  Level Controllers',            slug: 'instrumentation-level-controller',       indent: 1 },
   { label: 'Pipe Fittings',                   slug: 'fittings',                     indent: 0 },
 ]
 
