@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "server": "tsx server/index.ts",
-    "start": "npm run build && node --import tsx/esm server/index.ts"
+    "start": "npm run build && node --import tsx/esm server/index.ts",
+    "deploy": "wrangler pages deploy dist"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.36.3",
