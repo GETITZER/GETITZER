@@ -49,7 +49,7 @@ export default function IndustryDetail() {
           src={heroBg}
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          className="absolute inset-0 w-full h-full object-cover object-right sm:object-center"
           style={{ opacity: 0.35 }}
         />
         {/* Gradient overlay — left-heavy for text legibility */}

@@ -380,7 +380,7 @@ function IndustriesShowcase() {
 
                 {/* Background image */}
                 <img src={ind.img} alt={ind.name}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
+                  className="absolute inset-0 w-full h-full object-cover object-right sm:object-center transition-transform duration-700"
                   style={{ transform: isHovered ? 'scale(1.06)' : 'scale(1)' }} />
 
                 {/* Dark overlay */}
@@ -793,7 +793,7 @@ export default function Home() {
           <img
             src="/images/branded/isa-bg-valves-row.jpg"
             alt="ISA Valve Solutions — industrial valve installation"
-            className="absolute inset-0 w-full h-full object-cover object-center"
+            className="absolute inset-0 w-full h-full object-cover object-right sm:object-center"
           />
           {/* Strong left overlay for text legibility */}
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/75 to-slate-900/40" />

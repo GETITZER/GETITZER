@@ -274,7 +274,7 @@ export default function Configurator() {
           src="/images/branded/isa-bg-flow-control.jpg"
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          className="absolute inset-0 w-full h-full object-cover object-right sm:object-center"
           style={{ opacity: 0.28 }}
         />
         <div className="absolute inset-0"
