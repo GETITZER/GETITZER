@@ -720,11 +720,6 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="mt-10 text-center sm:hidden">
-            <Link to="/products" className="inline-flex items-center gap-1.5 text-sm font-bold text-isa-600">
-              View All Products <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
         </div>
       </section>
 

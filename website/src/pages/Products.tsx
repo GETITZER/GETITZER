@@ -637,7 +637,7 @@ export default function Products() {
               </div>
               <div className="flex items-center gap-3 flex-shrink-0">
                 <Link to="/configure" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border-2 border-slate-300 text-sm font-bold text-slate-700 hover:border-isa-500 hover:text-isa-700 bg-white transition-all">
-                  AI Selector
+                  AI Valve Selector
                 </Link>
                 <Link to="/rfq" className="inline-flex items-center gap-2 bg-isa-600 hover:bg-isa-700 text-white font-bold px-5 py-2.5 rounded-xl transition-colors text-sm">
                   Request Quote <ArrowRight className="w-4 h-4" />

@@ -90,7 +90,7 @@ export default function Industries() {
           to="/configurator"
           className="flex-shrink-0 inline-flex items-center gap-2 bg-isa-600 hover:bg-isa-700 text-white font-black px-6 py-3 rounded-xl transition-colors"
         >
-          Try AI Valve Selector <ArrowRight className="w-4 h-4" />
+          AI Valve Selector <ArrowRight className="w-4 h-4" />
         </Link>
       </div>
     </div>

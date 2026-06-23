@@ -305,7 +305,7 @@ export default function Resources() {
             <p className="text-sm text-slate-300 mb-3">Not sure which valve is right for your application?</p>
             <div className="flex flex-wrap justify-center gap-3">
               <Link to="/configure" className="btn-blue text-sm px-6 py-2.5">
-                <Zap className="w-3.5 h-3.5" /> Try AI Valve Selector
+                <Zap className="w-3.5 h-3.5" /> AI Valve Selector
               </Link>
               <Link to="/rfq" className="btn-primary text-sm px-6 py-2.5">
                 Ask an Engineer <ArrowRight className="w-3.5 h-3.5"/>

@@ -216,10 +216,10 @@ export default function Navigation() {
 
             <div className="border-t border-slate-100 my-4" />
             <Link to="/configure" className="flex items-center gap-2 px-3 py-3 rounded-xl font-bold text-isa-600">
-              <Zap className="w-4 h-4" /> AI Valve Selector
+              <Zap className="w-4 h-4" /> AI Selector
             </Link>
             <Link to="/rfq" className="block mt-2">
-              <div className="btn-primary justify-center text-center w-full">Get a Quote</div>
+              <div className="btn-primary justify-center text-center w-full">Get Quote</div>
             </Link>
             <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 justify-center mt-3 text-sm font-semibold text-emerald-600">
               <WhatsAppIcon className="w-4 h-4" /> WhatsApp Business
