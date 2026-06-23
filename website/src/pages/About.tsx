@@ -250,7 +250,7 @@ export default function About() {
               </p>
 
               <div className="space-y-4 mb-8">
-                <a href="tel:+27060688548" className="flex items-center gap-4 glass hover:glass-blue p-4 rounded-xl transition-all group">
+                <a href="tel:+270606885648" className="flex items-center gap-4 glass hover:glass-blue p-4 rounded-xl transition-all group">
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
                     style={{ background: 'rgba(0,109,255,0.12)', border: '1px solid rgba(0,109,255,0.2)' }}>
                     <Phone className="w-5 h-5 text-blue-400" />

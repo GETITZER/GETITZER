@@ -789,10 +789,11 @@ export default function Home() {
       {/* ── 5. INDUSTRIAL PLANT SHOWCASE ─────────────────────────────── */}
       <section className="relative overflow-hidden">
         <div className="relative h-[400px] sm:h-[500px]">
-          {/* ISA branded industrial photo — clean image, no baked-in text */}
-          <img
-            src="/images/branded/isa-bg-valves-row.jpg"
-            alt="ISA Valve Solutions — industrial valve installation"
+          {/* ISA hero reel — autoplay muted loop, falls back to poster image */}
+          <video
+            src="/videos/industrial-plant.mp4"
+            poster="/images/branded/isa-bg-valves-row.jpg"
+            autoPlay muted loop playsInline preload="metadata"
             className="absolute inset-0 w-full h-full object-cover object-right sm:object-center"
           />
           {/* Strong left overlay for text legibility */}

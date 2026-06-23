@@ -105,7 +105,7 @@ export default function DeliveryFAQ() {
 
       {/* Quick contact strip */}
       <div className="grid sm:grid-cols-2 gap-4 mb-14">
-        <a href="tel:+27060688548" className="flex items-center gap-4 p-5 bg-brand-50 border border-brand-200 rounded-xl hover:bg-brand-100 transition-colors group">
+        <a href="tel:+270606885648" className="flex items-center gap-4 p-5 bg-brand-50 border border-brand-200 rounded-xl hover:bg-brand-100 transition-colors group">
           <div className="w-11 h-11 rounded-lg bg-brand-600 flex items-center justify-center flex-shrink-0">
             <Phone className="w-5 h-5 text-white" />
           </div>
@@ -270,7 +270,7 @@ export default function DeliveryFAQ() {
             <h3 className="font-black text-slate-900 mb-4">Need help with an order?</h3>
             <div className="space-y-3 text-sm">
               <p className="text-slate-600 leading-relaxed">Our team responds within 24 hours on business days. For urgent requirements, WhatsApp or phone is fastest.</p>
-              <a href="tel:+27060688548" className="flex items-center gap-2 font-semibold text-brand-700 hover:text-brand-800">
+              <a href="tel:+270606885648" className="flex items-center gap-2 font-semibold text-brand-700 hover:text-brand-800">
                 <Phone className="w-4 h-4" /> +27 060 688 5648
               </a>
               <a href="mailto:isa-valve@outlook.com" className="flex items-center gap-2 font-semibold text-brand-700 hover:text-brand-800 break-all">

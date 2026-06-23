@@ -20,6 +20,7 @@ import DeliveryFAQ from './pages/DeliveryFAQ'
 import Catalog from './pages/Catalog'
 import Resources from './pages/Resources'
 import Calculators from './pages/Calculators'
+import Dashboard from './pages/Dashboard'
 import NotFound from './pages/NotFound'
 import Projects from './pages/Projects'
 import PrivacyPolicy from './pages/PrivacyPolicy'
@@ -124,6 +125,7 @@ export default function App() {
             <Route path="/calculators"     element={<Calculators />} />
             <Route path="/seo"             element={<SEODashboard />} />
             <Route path="/projects"        element={<Projects />} />
+            <Route path="/dashboard"       element={<Dashboard />} />
             <Route path="/privacy-policy"  element={<PrivacyPolicy />} />
             <Route path="/terms"           element={<Terms />} />
             <Route path="*"                element={<NotFound />} />
