@@ -207,12 +207,21 @@ export default function Products() {
             className="group card p-6 flex gap-5 hover:shadow-lg hover:border-brand-200 transition-all duration-200 cursor-pointer"
             onClick={() => setModalProduct(product)}
           >
-            {/* SVG thumbnail */}
-            <div className="relative flex-shrink-0 w-20 h-20 bg-slate-50 border border-slate-100 rounded-xl flex items-center justify-center overflow-hidden">
-              <ValveIllustration
-                type={product.slug as SlugType}
-                className="w-16 h-16"
-              />
+            {/* Product thumbnail */}
+            <div className="relative flex-shrink-0 w-20 h-20 bg-white border border-slate-100 rounded-xl flex items-center justify-center overflow-hidden">
+              {product.image ? (
+                <img
+                  src={product.image}
+                  alt={product.imageAlt ?? `${product.name} — ISA Valve Solutions`}
+                  loading="lazy"
+                  className="w-full h-full object-contain p-1.5 transition-transform duration-200 group-hover:scale-110"
+                />
+              ) : (
+                <ValveIllustration
+                  type={product.slug as SlugType}
+                  className="w-16 h-16"
+                />
+              )}
               <div className="absolute inset-0 bg-brand-600/0 group-hover:bg-brand-600/10 transition-colors rounded-xl flex items-center justify-center opacity-0 group-hover:opacity-100">
                 <Eye className="w-5 h-5 text-brand-700" />
               </div>
