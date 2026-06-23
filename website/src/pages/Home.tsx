@@ -974,7 +974,7 @@ export default function Home() {
           src="/images/branded/isa-hero-refinery.jpg"
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover object-center opacity-15 pointer-events-none"
+          className="absolute inset-0 w-full h-full object-cover object-right sm:object-center opacity-[0.08] pointer-events-none"
         />
         {/* Animated blob overlays on orange */}
         <div className="absolute top-0 left-0 w-96 h-96 rounded-full pointer-events-none blob-1"
@@ -984,9 +984,11 @@ export default function Home() {
         <div className="absolute inset-0 opacity-10"
           style={{ backgroundImage: 'radial-gradient(circle at 25% 50%, white 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="text-xs font-bold uppercase tracking-widest text-orange-100 block mb-5">
-            ISO 9001:2015 · API 6D · WRAS · SABS 664 · ISO 5208
-          </span>
+          <div className="flex flex-wrap justify-center gap-x-3 gap-y-1 mb-5">
+            {['ISO 9001:2015', 'API 6D', 'WRAS', 'SABS 664', 'ISO 5208'].map(c => (
+              <span key={c} className="text-xs font-bold uppercase tracking-widest text-orange-100">{c}</span>
+            ))}
+          </div>
           <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
             Ready to Specify<br />Your Next Project?
           </h2>
