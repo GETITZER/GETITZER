@@ -772,14 +772,18 @@ export default function Home() {
                 Explore the DXST™ KGV <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
-            {/* Animated cutaway */}
+            {/* Valve in action video */}
             <div className="lg:col-span-8">
-              <div className="relative rounded-2xl border border-slate-200 bg-gradient-to-b from-slate-50 to-white p-6 sm:p-10 shadow-sm">
-                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-900/90 text-white text-[10px] font-bold uppercase tracking-widest">
+              <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-lg bg-slate-900" style={{ aspectRatio: '16/9' }}>
+                <div className="absolute top-4 left-4 z-10 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-900/90 text-white text-[10px] font-bold uppercase tracking-widest">
                   <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-                  Live Cutaway
+                  ISA DXST™ In Action
                 </div>
-                <ValveCutaway />
+                <video
+                  src="/videos/valve-in-action.mp4"
+                  autoPlay muted loop playsInline preload="metadata"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>
