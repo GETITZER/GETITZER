@@ -629,6 +629,15 @@ export default function Home() {
         </div>
       </div>
 
+      {/* ── BANNER ──────────────────────────────────────────────────── */}
+      <section className="w-full overflow-hidden bg-white border-b border-slate-100">
+        <img
+          src="/images/isa-banner.png"
+          alt="ISA Valve Solutions — Engineered for Precision & Performance"
+          className="w-full h-auto object-cover"
+        />
+      </section>
+
       {/* ── 2. INDUSTRY SELECTOR ────────────────────────────────────── */}
       <IndustrySelector />
 
