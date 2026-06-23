@@ -138,7 +138,7 @@ export default function ChatWidget() {
 
       <button
         onClick={() => setOpen(!open)}
-        className="fixed bottom-4 right-4 sm:right-6 p-3.5 bg-navy hover:bg-brand-800 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 z-50"
+        className="fixed bottom-20 lg:bottom-4 right-4 sm:right-6 p-3.5 bg-navy hover:bg-brand-800 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 z-50"
         aria-label={open ? 'Close valve assistant' : 'Open valve assistant'}
       >
         {open ? <X className="w-5 h-5" /> : <MessageCircle className="w-5 h-5" />}

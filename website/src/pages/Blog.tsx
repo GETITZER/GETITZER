@@ -61,6 +61,30 @@ export const blogSeeds: BlogSeed[] = [
     category: 'Maintenance',
     readTime: '7 min read',
   },
+  {
+    slug: 'pinch-valve-mining-slurry',
+    title: 'Pinch Valves for Mining Slurry: Why ISA-Flex™ Outperforms Metal-Seated Valves',
+    excerpt: 'In tailings lines, thickener underflow, and CIL/CIP circuits, pinch valves deliver zero-leakage shut-off that metal-seated valves cannot match. Here is why pinch valve sleeve selection is the single biggest factor in service life.',
+    keywords: 'pinch valve mining, slurry pinch valve, ISA-Flex sleeve, tailings valve South Africa',
+    category: 'Mining',
+    readTime: '6 min read',
+  },
+  {
+    slug: 'gate-valve-water-treatment',
+    title: 'Gate Valves for Water Treatment: SABS 664 Compliance and Specification Guide',
+    excerpt: 'Municipal water treatment and distribution projects in South Africa require SABS 664-compliant gate valves. This guide covers material selection, pressure classes, flange standards, and how to avoid the most common specification mistakes.',
+    keywords: 'gate valve water treatment, SABS 664 gate valve, municipal valve South Africa, water treatment valve specification',
+    category: 'Valve Selection',
+    readTime: '5 min read',
+  },
+  {
+    slug: 'butterfly-valve-api-wras',
+    title: 'Butterfly Valve Certifications: API vs WRAS vs ISO — What Each Standard Means for Your Project',
+    excerpt: 'Specifying a butterfly valve for industrial service requires understanding which certifications actually matter for your application. API, WRAS, ISO 5208, and SABS each cover different aspects of valve performance — here is a plain-language breakdown.',
+    keywords: 'butterfly valve certification, WRAS butterfly valve, API butterfly valve, butterfly valve ISO standard',
+    category: 'Compliance',
+    readTime: '5 min read',
+  },
 ]
 
 const categoryColors: Record<string, string> = {

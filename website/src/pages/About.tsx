@@ -10,7 +10,7 @@ import { WhatsAppIcon, WA_URL } from '../components/WhatsAppButton'
 import { ISALogoHero, ISAWatermark, AboutBgImage } from '../components/ISALogo'
 
 const stats = [
-  { value: '25+', label: 'Years in operation' },
+  { value: '35+', label: 'Years in operation' },
   { value: '6',   label: 'Valve product lines' },
   { value: '6',   label: 'Industries served' },
   { value: 'ISO 9001', label: '2015 Certified' },

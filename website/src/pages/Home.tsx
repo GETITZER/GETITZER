@@ -9,7 +9,6 @@ import {
 import { WhatsAppIcon, WA_QUOTE_URL } from '../components/WhatsAppButton'
 import type { Product } from '../types'
 import ProductModal from '../components/ProductModal'
-import ValveCutaway from '../components/ValveCutaway'
 
 /* ── Scroll reveal hook ───────────────────────────────────────────── */
 function useReveal(threshold = 0.12) {
@@ -348,7 +347,7 @@ function SpotlightProducts() {
 
 /* ── Industries We Serve (hover reveal popup cards) ────────────── */
 function IndustriesShowcase() {
-  const [hovered, setHovered] = useState<number | null>(null)
+  const [active, setActive] = useState<number | null>(null)
 
   return (
     <section className="bg-slate-900 py-24 overflow-hidden">
@@ -359,18 +358,19 @@ function IndustriesShowcase() {
             Industries We Serve
           </h2>
           <p className="text-slate-400 text-lg mt-4 max-w-xl mx-auto">
-            Hover each sector to discover the ISA solutions specified for that application.
+            Tap or hover each sector to discover the ISA solutions specified for that application.
           </p>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-5">
           {INDUSTRY_SHOWCASE.map((ind, idx) => {
             const Icon = ind.Icon
-            const isHovered = hovered === idx
+            const isHovered = active === idx
             return (
               <div key={ind.name}
-                onMouseEnter={() => setHovered(idx)}
-                onMouseLeave={() => setHovered(null)}
+                onMouseEnter={() => setActive(idx)}
+                onMouseLeave={() => setActive(null)}
+                onClick={() => setActive(active === idx ? null : idx)}
                 className="relative rounded-2xl overflow-hidden border border-slate-800 transition-all duration-500 cursor-pointer"
                 style={{
                   height: '420px',
@@ -400,7 +400,9 @@ function IndustriesShowcase() {
                   <h3 className="text-2xl font-extrabold text-white leading-tight mb-1">{ind.name}</h3>
                   <p className={`text-sm font-semibold ${ind.textCls}`}>{ind.subtitle}</p>
                   <p className="text-slate-500 text-xs mt-3 flex items-center gap-1.5">
-                    Hover to explore <ArrowRight className="w-3 h-3" />
+                    <span className="hidden sm:inline">Hover</span>
+                    <span className="sm:hidden">Tap</span>
+                    &nbsp;to explore <ArrowRight className="w-3 h-3" />
                   </p>
                 </div>
 

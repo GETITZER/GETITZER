@@ -20,7 +20,7 @@ export default function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with us on WhatsApp"
-      className="fixed bottom-6 left-6 z-50 group flex items-center gap-2.5"
+      className="hidden lg:flex fixed bottom-6 left-6 z-50 group items-center gap-2.5"
     >
       {/* Tooltip */}
       <span className="hidden sm:block opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-slate-900 text-white text-xs font-semibold px-3 py-1.5 rounded-lg whitespace-nowrap pointer-events-none shadow-lg">
